@@ -9,6 +9,9 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <None Remove="Views\TicketStatus\" />
+    <None Remove="Ultils\" />
+    <None Remove="Views\Data\" />
+    <None Remove="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
@@ -514,6 +517,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.11" />
+    <PackageReference Include="Bogus" Version="34.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -525,6 +531,9 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\TicketStatus\" />
+    <Folder Include="Ultils\" />
+    <Folder Include="Views\Data\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,6 +10,8 @@ namespace LibraryModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Email { get; set; }
+        public string? UserName { get; set; }
+        public string? Code { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public bool Status { get; set; }
@@ -21,7 +23,7 @@ namespace LibraryModels
         // Quan hệ một-nhiều với Discussion
         public ICollection<Discussion>? Discussions { get; set; }
 
-        public UsersInfo UsersInfo { get; set; }
+        public UserInfo? userInfo { get; set; }
 
     }
 }

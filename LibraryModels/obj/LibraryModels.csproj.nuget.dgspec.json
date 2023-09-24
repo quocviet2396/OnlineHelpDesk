@@ -1,27 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {}
+    "/Users/mac/Desktop/OnlineHelpDesk/LibraryModels/LibraryModels.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {
+    "/Users/mac/Desktop/OnlineHelpDesk/LibraryModels/LibraryModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/OnlineHelpDesk/LibraryModels/LibraryModels.csproj",
         "projectName": "LibraryModels",
-        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\obj\\",
+        "projectPath": "/Users/mac/Desktop/OnlineHelpDesk/LibraryModels/LibraryModels.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/OnlineHelpDesk/LibraryModels/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         }
       }
     }

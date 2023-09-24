@@ -22,21 +22,20 @@ namespace WebApp.Controllers
         {
             if (authenService.IsUserLoggedIn() && authenService.IsAdmin())
             {
-                return View();
-                //return RedirectToAction("Index", "Backend");
+                return RedirectToAction("Index", "Backend");
             }
             else if (authenService.IsUserLoggedIn() && authenService.IsSupporter())
             {
                 return RedirectToAction("Index", "Backend");
             }
-            else if (authenService.IsUserLoggedIn() && !authenService.IsAdmin() && !authenService.IsSupporter())
+            else if (authenService.IsUserLoggedIn())
             {
-                return RedirectToAction("Index", "Frontend");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
 
-        public bool IsLoginValid (string email, string password)
+        public bool IsLoginValid(string email, string password)
         {
             var user = db.Users.FirstOrDefault(a => a.Email == email && a.Password == password);
             //trả về user nếu khác null, ngược lại thì false
@@ -46,25 +45,36 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Login(Users user)
         {
-            if(IsLoginValid(user.Email, user.Password))
+            if (IsLoginValid(user.Email, user.Password))
             {
                 HttpContext.Session.SetString("accEmail", user.Email);
-                //chuyển trang theo role
-                if(authenService.IsAdmin() || authenService.IsSupporter())
+                /*HttpContext.Session.SetString("accCode", user.Code);*/
+                // Chuyển trang theo role
+                if (authenService.IsAdmin())
                 {
+                    user.Role = "Admin";
+                    HttpContext.Session.SetString("accRole", user.Role);
+                    return RedirectToAction("Index", "Backend");
+                }
+                else if (authenService.IsSupporter())
+                {
+                    user.Role = "Supporter";
+                    HttpContext.Session.SetString("accRole", user.Role);
                     return RedirectToAction("Index", "Backend");
                 }
                 else
                 {
-                    /*Chỗ này rồi sẽ sửa thành frontend home*/
-                    return RedirectToAction("Index", "Home");
+                    user.Role = "User";
+                    HttpContext.Session.SetString("accRole", user.Role);
+                    return RedirectToAction("Index", "Home"); // Chuyển hướng đến trang frontend
                 }
             }
             else
             {
-                TempData["Message"] = "Username or Password is invalid!! Please try again or create new one";
+                TempData["Message"] = "Username or Password is invalid! Please try again or create a new one.";
                 TempData["MessageType"] = "danger";
             }
+
             return View();
         }
         public IActionResult Logout()

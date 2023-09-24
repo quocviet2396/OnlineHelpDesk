@@ -1,0 +1,120 @@
+﻿@model IEnumerable<LibraryModels.UsersInfo>
+@using WebApp.Services
+@using Newtonsoft.Json;
+@inject WebApp.Ultils.Helper HelperService
+
+
+@{
+    ViewData["Title"] = "Student";
+    Layout = "_Layout";
+    var ids = 1;
+    var resJson = TempData["response"] as string;
+    var res = resJson != null ? JsonConvert.DeserializeObject<LibraryModels.Response>(resJson) : new LibraryModels.Response() { Msg = "", Success = false };
+    var AccCode = ViewData["AccCode"] as List<string>;
+}
+
+@functions {
+    public string GetSortDirection(string? propertySort, string? nameSort, string currentSort, string nameToSort)
+    {
+        return string.IsNullOrEmpty(propertySort) ? currentSort : (nameSort == nameToSort ? propertySort : currentSort);
+    }
+}
+
+<div class="body-wrapper">
+    <div class="col-lg-12 d-flex align-items-stretch">
+        <div class="w-100">
+            <div class="alert @(res.Success ==true ?"alert-success":"alert-danger")" @(res.Msg == "" ? "hidden" : "")>
+                <span class="text-black font-weight-bold h1 text-center text-uppercase ">@res.Msg</span>
+            </div>
+
+            <form asp-action="Create" method="post">
+                <input type="checkbox" id="All_student" /><span>All</span>
+                <input type="submit" value="Create" />
+                <table class="table table-hover table-responsive table-bordered">
+                    <thead class=" table-primary">
+                        <tr class="text-center">
+                            <th>Id</th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_FullName","FullName")">Fullname</a>@ViewData["nameSort"] </th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Student_code</th>
+                            <th>Address</th>
+                            <th>Photo</th>
+                            <th>Phone</th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_City","City")">City</a></th>
+                            <th>Dateofbirth</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-center">
+                                <td>@ids</td>
+                                <td>@item.FullName</td>
+                                <td>@{ var result = item.Gender == true ? "Male" : "Female";} @result</td>
+                                <td>@HelperService.AnEmail(@item.Email, 4)</td>
+                                <td>@item.Student_code</td>
+                                <td>@item.Address</td>
+                                <td><img src="@item.Photo" /></td>
+                                <td>@item.Phone</td>
+                                <td>@item.City</td>
+                                <td>@item.DateOfBirth</td>
+                                <td>
+                                    @if (AccCode.Contains(item.Student_code))
+                                    {
+                                        <span>Has already account</span>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" name="student_code" value="@item.Student_code" id="stu-@item.Student_code" />
+                                    }
+                                </td>
+                            </tr>
+                            ids++;
+                        }
+                    </tbody>
+                </table>
+            </form>
+            @{
+                var Totalpage = (int)ViewData["totalPages"];
+                var PanigationInfo = Model as WebApp.Ultils.Paginated<LibraryModels.UsersInfo>;
+            }
+            <div>
+                <div class="flex w-full items-center justify-content-center align-items-center">
+                    @if (PanigationInfo.PageIndex > 1)
+                    {
+                        <a class="btn btn-primary" asp-route-pageIndex="@(1)">First</a>
+                        <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex -1)">Prev</a>
+                    }
+                    @for (int i = 1; i <= Totalpage; i++)
+                    {
+                        <a class="btn btn-outline-primary @(PanigationInfo.PageIndex == i ? "active" : string.Empty)" asp-route-pageIndex="@(i)">@(i)</a>
+                    }
+
+                    @if (PanigationInfo.PageIndex < PanigationInfo.TotalPages)
+                    {
+                        <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex +1)">Next</a>
+                        <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.TotalPages)">Last</a>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>var stu_check = document.getElementById("All_student")
+    var all_student = document.querySelectorAll("input[name='student_code']")
+    stu_check.addEventListener("change", () => {
+        var isCheckdAll = stu_check.checked;
+        all_student.forEach(function (studentCheckbox) {
+            studentCheckbox.checked = isCheckdAll;
+        });
+
+    })
+    all_student.forEach(stu => {
+        stu.addEventListener("change", () => {
+            var isCheckAll = all_student.length === document.querySelectorAll("input[name='student_code']:checked").length
+            stu_check.checked = isCheckAll;
+        })
+    })</script>

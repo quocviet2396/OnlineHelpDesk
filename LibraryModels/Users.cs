@@ -23,6 +23,8 @@ namespace LibraryModels
         // Quan hệ một-nhiều với Discussion
         public ICollection<Discussion>? Discussions { get; set; }
 
+        public ICollection<Ticket>? Tickets { get; set; }
+
         public UserInfo? userInfo { get; set; }
 
     }

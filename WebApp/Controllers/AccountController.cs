@@ -47,9 +47,25 @@ namespace WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> UserProfile()
         {
-            var email = HttpContext.Session.GetString("accEmail");
-            var user = await _account.UserProfile(email);
-            ViewData["UserProfile"] = user;
+            var stucode = HttpContext.Session.GetString("stuCode");
+            var model = _account.UserInfo(stucode).FirstOrDefault();
+            UserInfoDTO result = new UserInfoDTO()
+            {
+                Id = model.Id,
+                Email = _helper.AnEmail(model.Email, 4),
+                UserName = model.UserName,
+                Password = model.Password,
+                Code = model.Code,
+                Role = model.Role,
+                DateOfBirth = model.DateOfBirth,
+                Status = model.Status,
+                Gender = model.Gender,
+                Phone = model.Phone,
+                Photo = model.Photo,
+                Address = model.Address,
+                City = model.City
+            };
+            ViewData["UserProfile"] = result;
             //var result = JsonConvert.DeserializeObject(user);
             return View();
         }
@@ -72,18 +88,24 @@ namespace WebApp.Controllers
 
 
         [HttpGet]
-        public async Task<JsonResult> UserInfo(string id)
+        public async Task<JsonResult> UserInfo(string stCode)
         {
-            var model = await _account.UserInfo(id);
-            Users result = new Users()
+            var model = _account.UserInfo(stCode).FirstOrDefault();
+            UserInfoDTO result = new UserInfoDTO()
             {
                 Id = model.Id,
                 Email = _helper.AnEmail(model.Email, 4),
+                UserName = model.UserName,
                 Password = model.Password,
                 Code = model.Code,
                 Role = model.Role,
-                Discussions = model.Discussions,
-                Status = model.Status
+                DateOfBirth = model.DateOfBirth,
+                Status = model.Status,
+                Gender = model.Gender,
+                Phone = model.Phone,
+                Photo = model.Photo,
+                Address = model.Address,
+                City = model.City
             };
             var user = JsonConvert.SerializeObject(result);
             return Json(user);

@@ -28,17 +28,32 @@ namespace WebApp.Services
             return result;
         }
 
-        public async Task<Users> UserInfo(string stuCodeTd)
+        public List<UserInfoDTO> UserInfo(string stuCodeTd)
         {
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.Code == stuCodeTd);
-            return user;
+
+            var user = from a in _db.Users
+                       join b in _db.UserInfos
+                             on a.Id equals b.UserId
+                       where a.Code.Equals(stuCodeTd)
+                       select new UserInfoDTO()
+                       {
+                           Id = a.Id,
+                           UserName = a.UserName,
+                           Email = a.Email,
+                           Code = a.Code,
+                           Password = a.Password,
+                           Status = a.Status,
+                           Role = a.Role,
+                           Gender = b.Gender,
+                           DateOfBirth = b.DateOfBirth,
+                           Phone = b.Phone,
+                           Photo = b.Photo,
+                           Address = b.Address,
+                           City = b.City
+                       };
+            return user.ToList();
         }
 
-        public async Task<Users> UserProfile(string mail)
-        {
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email.Equals(mail));
-            return user;
-        }
 
         public async Task<Response> ResetPassword(string code)
         {

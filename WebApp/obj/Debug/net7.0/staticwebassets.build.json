@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NYacVHL1dWOJHxlP8zPtQL6GQlceLNnfWsILLsiiGqM=",
+  "Hash": "7CAnco4g1tpzrTeVJD/A0jE6fKLRQ8an4jkkTxqLutM=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/img/avatars/7.png"
+    },
+    {
+      "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/assets/img/avatars/avatar_default.jpeg",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "assets/img/avatars/avatar_default.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/img/avatars/avatar_default.jpeg"
     },
     {
       "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/assets/img/backgrounds/18.jpg",

@@ -28,13 +28,13 @@ namespace WebApp.Services
             return result;
         }
 
-        public List<UserInfoDTO> UserInfo(string stuCodeTd)
+        public UserInfoDTO UserInfo(string stuCodeId)
         {
-
+            Console.WriteLine(stuCodeId);
             var user = from a in _db.Users
                        join b in _db.UserInfos
                              on a.Id equals b.UserId
-                       where a.Code.Equals(stuCodeTd)
+                       where a.Code == stuCodeId
                        select new UserInfoDTO()
                        {
                            Id = a.Id,
@@ -51,7 +51,7 @@ namespace WebApp.Services
                            Address = b.Address,
                            City = b.City
                        };
-            return user.ToList();
+            return user.FirstOrDefault();
         }
 
 

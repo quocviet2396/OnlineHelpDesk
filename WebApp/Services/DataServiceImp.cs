@@ -1,5 +1,6 @@
 ﻿using System;
 using LibraryModels;
+using Microsoft.EntityFrameworkCore;
 using WebApp.Database_helper;
 using WebApp.Repositories;
 using WebApp.Ultils;
@@ -23,9 +24,14 @@ namespace WebApp.Services
         {
             currentSort = string.IsNullOrEmpty(currentSort) ? "asc_Id" : currentSort;
             var sort = await Sort<UsersInfo>.SortAsync(_db.UsersInfo.ToList(), currentSort);
-            //goi phuong thuc paginate de phan chia trang           goi csdl de phan trang      skip     lay bao nhieu   orderby
+            //goi phuong thuc paginate de phan chia trang                csdl       skip     lay bao nhieu   orderby
             var result = await Paginated<UsersInfo>.CreatePaginate(sort.ToList(), pageNumber, (int)Limit, x => x.Id);
             return result;
+        }
+
+        public async Task<List<string>> AccCode()
+        {
+            return await _db.Users.Where(u => !string.IsNullOrEmpty(u.Code)).Select(u => u.Code).ToListAsync();
         }
 
 
@@ -53,6 +59,7 @@ namespace WebApp.Services
 
 
                         _db.Users.Add(user);
+                        _db.SaveChanges();
                         int userId = user.Id;
 
                         UserInfo userInfo = new UserInfo()
@@ -61,10 +68,11 @@ namespace WebApp.Services
                             DateOfBirth = userinfo.DateOfBirth,
                             Gender = userinfo.Gender,
                             Phone = userinfo.Phone,
-                            Photo = null,
+                            Photo = userinfo.Photo,
+                            City = userinfo.City,
                             UserId = userId
                         };
-
+                        _db.UserInfos.Add(userInfo);
                         _db.SaveChanges();
 
                         Console.WriteLine(BCrypt.Net.BCrypt.Verify(pass, user.Password));

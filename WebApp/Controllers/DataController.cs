@@ -34,6 +34,7 @@ namespace WebApp.Controllers
             var result = await _data.AllUser(pageNumber, Limit, propertySort) as Paginated<UsersInfo>;
             ViewData["totalPages"] = result.TotalPages;
             ViewData["Count"] = result.Count;
+            ViewData["AccCode"] = _data.AccCode().GetAwaiter().GetResult();
             return View(result);
         }
 
@@ -48,7 +49,7 @@ namespace WebApp.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(Users users)
+        public async Task<IActionResult> CreateAccount(Users users)
         {
             var result = await _data.CreateAccount(users);
             TempData["response"] = JsonConvert.SerializeObject(result);

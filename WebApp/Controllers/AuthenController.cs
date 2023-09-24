@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Database_helper;
 using WebApp.Repositories;
+using WebApp.Ultils;
 
 namespace WebApp.Controllers
 {
@@ -9,12 +10,14 @@ namespace WebApp.Controllers
     {
         private readonly DatabaseContext db;
         private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly Helper _helper;
         private IAuthenService authenService;
-        public AuthenController(DatabaseContext db, IHttpContextAccessor httpContextAccessor, IAuthenService authenService)
+        public AuthenController(DatabaseContext db, IHttpContextAccessor httpContextAccessor, IAuthenService authenService, Helper helper)
         {
             this.db = db;
             this.httpContextAccessor = httpContextAccessor;
             this.authenService = authenService;
+            _helper = helper;
         }
 
         [HttpGet]
@@ -35,19 +38,38 @@ namespace WebApp.Controllers
             return View();
         }
 
-        public bool IsLoginValid(string email, string password)
+        public Response<Users> IsLoginValid(string email, string password)
         {
-            var user = db.Users.FirstOrDefault(a => a.Email == email && a.Password == password);
+            var user = db.Users.FirstOrDefault(a => a.Email == email);
+            if (user != null)
+            {
+                bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.Password);
+                if (isPasswordValid)
+                {
+                    return _helper.CreateResponse<Users>("Successfully", true, user);
+                }
+                else
+                {
+                    return _helper.CreateResponse<Users>("Failure", false);
+
+                }
+            }
+            else
+            {
+                return _helper.CreateResponse<Users>("Username or Password is invalid! Please try again or create a new one", false);
+
+            }
             //trả về user nếu khác null, ngược lại thì false
-            return user != null;
         }
 
         [HttpPost]
         public IActionResult Login(Users user)
         {
-            if (IsLoginValid(user.Email, user.Password))
+            if (IsLoginValid(user.Email, user.Password).Success)
             {
+
                 HttpContext.Session.SetString("accEmail", user.Email);
+                HttpContext.Session.SetString("accCode", IsLoginValid(user.Email, user.Password).Data.Code);
 
                 // Chuyển trang theo role
                 if (authenService.IsAdmin())

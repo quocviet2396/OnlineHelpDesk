@@ -15,7 +15,6 @@ namespace LibraryModels
         public string Phone { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public string Gender { get; set; }
 
 
         public int UsersId { get; set; }

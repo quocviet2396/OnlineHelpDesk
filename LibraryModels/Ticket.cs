@@ -16,9 +16,10 @@ namespace LibraryModels
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime CreateDate { get; set; } = DateTime.Now;
+        public DateTime? CreateDate { get; set; } = DateTime.Now;
         public DateTime? ModifiedDate { get; set; }
         public string? Attachment { get; set; }
+
 
 
         // Mối quan hệ một-nhiều với TicketStatus (Trạng thái yêu cầu)
@@ -29,9 +30,9 @@ namespace LibraryModels
         public int? CategoryId { get; set; }
         public Facilities? Category { get; set; }
 
-        // Mối quan hệ một-nhiều với Users (Người viết yêu cầu - Creator)
-        public int CreatorId { get; set; }
-        public Users Creator { get; set; }
+        // Mối quan hệ một-nhiều với Users (Người nhận yêu cầu - Employee)
+        public int? CreatorId { get; set; }
+        public Users? Creator { get; set; }
 
         // Mối quan hệ một-nhiều với Users (Người hỗ trợ yêu cầu - Supporter)
         public int? SupporterId { get; set; }

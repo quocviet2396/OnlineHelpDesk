@@ -7,14 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DatabaseContext>();
+
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddDirectoryBrowser();
 
 
 // Add DI
 builder.Services.AddScoped<IAuthenService, AuthenServiceImp>();
-builder.Services.AddScoped<ITicketStatusServices, TicketStatusServicesImp>();
-
+builder.Services.AddScoped<ITicket, TicketServiceImp>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

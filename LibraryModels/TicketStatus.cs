@@ -14,7 +14,7 @@ namespace LibraryModels
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         // Quan hệ một-nhiều với Ticket ( yêu cầu hỗ trợ )
         public ICollection<Ticket>? Ticket { get; set;}

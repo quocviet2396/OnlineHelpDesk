@@ -10,10 +10,10 @@ namespace WebApp.Repositories
 
 
 
-        Task<Response> ResetPassword(string code);
-        Task<Response> CheckPassword(string value, string key, string code, string newPas, string conPas);
+        Task<Response<string>> ResetPassword(string code);
+        Task<Response<string>> CheckPassword(string value, string key, string code, string newPas, string conPas);
 
-        Task<Response> ChangePassword(string pass, string code);
+        Task<Response<string>> ChangePassword(string pass, string code);
     }
 }
 

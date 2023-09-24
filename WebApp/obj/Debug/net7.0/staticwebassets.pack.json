@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets/assets/img/avatars/avatar_default.jpeg"
     },
     {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/assets/img/avatars/logo-apple-1.png",
+      "PackagePath": "staticwebassets/assets/img/avatars/logo-apple-1.png"
+    },
+    {
       "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/assets/img/backgrounds/18.jpg",
       "PackagePath": "staticwebassets/assets/img/backgrounds/18.jpg"
     },

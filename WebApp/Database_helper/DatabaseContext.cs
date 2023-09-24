@@ -22,11 +22,14 @@ namespace WebApp.Database_helper
         public DbSet<TicketStatus> TicketStatus { get; set; }
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<News> News { get; set; }
+        public DbSet<Comments> Comments { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string url = "server=DESKTOP-T6R536I\\SQLEXPRESS01;database=OHDDb;uid=sa; pwd=123;TrustServerCertificate=true";
+            string url = "server=ADMIN-PC\\SQLEXPRESS04;database=OHDDb;uid=sa; pwd=123;TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(url);
         }
 
@@ -53,6 +56,8 @@ namespace WebApp.Database_helper
                  .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<News>().HasMany(_ => _.Comments).WithOne(a => a.News).HasForeignKey(a => a.NewId).OnDelete(DeleteBehavior.NoAction);
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbUsers"
             modelBuilder.Entity<Users>().HasData(

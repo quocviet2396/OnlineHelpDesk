@@ -10,6 +10,8 @@ namespace WebApp.Repositories
         public Task<Response> CreateStudent(List<string> Student_code);
 
         public Task<Response> CreateAccount(Users users);
+
+        Task<List<string>> AccCode();
     }
 }
 

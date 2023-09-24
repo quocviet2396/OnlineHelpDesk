@@ -6,7 +6,7 @@ namespace WebApp.Repositories
     public interface IAccountService
     {
         Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort);
-        List<UserInfoDTO> UserInfo(string stuCodeTd);
+        UserInfoDTO UserInfo(string stuCodeTd);
 
 
 

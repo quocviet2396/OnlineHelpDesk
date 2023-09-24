@@ -16,11 +16,7 @@ namespace WebApp.Controllers
 {
     public class AccountController : Controller
     {
-        public class MyDataModel
-        {
-            public string InputValue { get; set; }
-            public string AdditionalValue { get; set; }
-        }
+
         private readonly Helper _helper;
         private readonly IAccountService _account;
         public AccountController(IAccountService account, Helper helper)
@@ -48,7 +44,7 @@ namespace WebApp.Controllers
         public async Task<IActionResult> UserProfile()
         {
             var stucode = HttpContext.Session.GetString("stuCode");
-            var model = _account.UserInfo(stucode).FirstOrDefault();
+            var model = _account.UserInfo(stucode);
             UserInfoDTO result = new UserInfoDTO()
             {
                 Id = model.Id,
@@ -88,27 +84,35 @@ namespace WebApp.Controllers
 
 
         [HttpGet]
-        public async Task<JsonResult> UserInfo(string stCode)
+        public async Task<JsonResult> UserInfo(string stuCodeId)
         {
-            var model = _account.UserInfo(stCode).FirstOrDefault();
-            UserInfoDTO result = new UserInfoDTO()
+            var model = _account.UserInfo(stuCodeId);
+            if (model != null)
             {
-                Id = model.Id,
-                Email = _helper.AnEmail(model.Email, 4),
-                UserName = model.UserName,
-                Password = model.Password,
-                Code = model.Code,
-                Role = model.Role,
-                DateOfBirth = model.DateOfBirth,
-                Status = model.Status,
-                Gender = model.Gender,
-                Phone = model.Phone,
-                Photo = model.Photo,
-                Address = model.Address,
-                City = model.City
-            };
-            var user = JsonConvert.SerializeObject(result);
-            return Json(user);
+                UserInfoDTO result = new UserInfoDTO()
+                {
+                    Id = model.Id,
+                    Email = _helper.AnEmail(model.Email, 4),
+                    UserName = model.UserName,
+                    Password = model.Password,
+                    Code = model.Code,
+                    Role = model.Role,
+                    DateOfBirth = model.DateOfBirth,
+                    Status = model.Status,
+                    Gender = model.Gender,
+                    Phone = model.Phone,
+                    Photo = model.Photo,
+                    Address = model.Address,
+                    City = model.City
+                };
+                var user = JsonConvert.SerializeObject(result);
+                return Json(new { Success = false, Msg = "", data = user });
+            }
+            else
+            {
+                return Json(new { Success = false, Msg = "Chua co thong tin" });
+            }
+
         }
 
 

@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets/assets/img/avatars/7.png"
     },
     {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/assets/img/avatars/avatar_default.jpeg",
+      "PackagePath": "staticwebassets/assets/img/avatars/avatar_default.jpeg"
+    },
+    {
       "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/assets/img/backgrounds/18.jpg",
       "PackagePath": "staticwebassets/assets/img/backgrounds/18.jpg"
     },

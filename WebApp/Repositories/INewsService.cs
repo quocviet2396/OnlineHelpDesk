@@ -20,5 +20,6 @@ namespace WebApp.Repositories
 
         // Thêm một bình luận cho một tin tức
         void AddCommentToNews(int newsId, Comments comment);
+        void UpdateNews(int id);
     }
 }

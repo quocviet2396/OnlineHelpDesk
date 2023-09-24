@@ -22,19 +22,13 @@ namespace WebApp.Services
             {
                 try
                 {
-                    /*// Đặt ngày tạo tin tức là ngày hiện tại
-                    news.CreatedDate = DateTime.Now;*/
-
-                    // Thêm tin tức mới vào DbSet trong DbContext
+                    news.PublishDate = DateTime.Now;
                    db.News.Add(news);
-
-                    // Lưu thay đổi vào cơ sở dữ liệu
                     db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
-                    // Xử lý lỗi nếu cần thiết
-                    // Ví dụ: Ghi log lỗi hoặc thông báo lỗi cho người dùng
+
                     throw ex;
                 }
             }
@@ -85,26 +79,39 @@ namespace WebApp.Services
             {
                 try
                 {
-                    // Tìm tin tức cần cập nhật dựa trên Id
                     var existingNews = db.News.Find(news.Id);
 
-                    // Kiểm tra xem tin tức có tồn tại không
                     if (existingNews != null)
                     {
-                        // Cập nhật thông tin tin tức
                         existingNews.Title = news.Title;
                         existingNews.Content = news.Content;
 
-                        // Lưu thay đổi vào cơ sở dữ liệu
                         db.SaveChanges();
                     }
                 }
                 catch (Exception ex)
                 {
-                    // Xử lý lỗi nếu cần thiết
-                    // Ví dụ: Ghi log lỗi hoặc thông báo lỗi cho người dùng
                     throw ex;
                 }
             }
+
+        public void UpdateNews(int id, News news)
+        {
+            db.News.Update(news);
+            db.SaveChangesAsync();
+            return;
         }
+
+        public async Task<bool> editTicketStatus(TicketStatus newTicketStatus)
+        {
+            db.TicketStatus.Update(newTicketStatus);
+            await db.SaveChangesAsync();
+            return true;
+        }
+
+        public void UpdateNews(int id)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

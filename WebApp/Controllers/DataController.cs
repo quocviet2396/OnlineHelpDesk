@@ -49,11 +49,11 @@ namespace WebApp.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateAccount(Users users)
+        public async Task<JsonResult> CreateAccount(IFormCollection data)
         {
-            var result = await _data.CreateAccount(users);
-            TempData["response"] = JsonConvert.SerializeObject(result);
-            return RedirectToAction("Index");
+            var res = await _data.CreateAccount(data);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
         }
     }
 }

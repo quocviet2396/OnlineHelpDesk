@@ -26,8 +26,8 @@ namespace WebApp.Database_helper
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string url = "server=DESKTOP-T6R536I\\SQLEXPRESS01;database=OHDDb;uid=sa; pwd=123;TrustServerCertificate=true";
-            optionsBuilder.UseSqlServer(url);
+            string str = "server=DESKTOP-F4OHHB4\\MSSQLSERVER01; database=OHDDb; Trusted_Connection=true; TrustServerCertificate=true";
+            optionsBuilder.UseSqlServer(str);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -88,13 +88,13 @@ namespace WebApp.Database_helper
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbTicketStatus"
             modelBuilder.Entity<TicketStatus>().HasData(
-                new TicketStatus { Id = 1, Name = "Open", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 2, Name = "In progress", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 3, Name = "Pending", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 4, Name = "On hold", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 5, Name = "Rejected", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 6, Name = "Completed", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 7, Name = "Closed", Ticket = new List<Ticket>() }
+                new TicketStatus { Id = 1, Name = "Open" },
+                new TicketStatus { Id = 2, Name = "In progress" },
+                new TicketStatus { Id = 3, Name = "Pending" },
+                new TicketStatus { Id = 4, Name = "On hold" },
+                new TicketStatus { Id = 5, Name = "Rejected" },
+                new TicketStatus { Id = 6, Name = "Completed" },
+                new TicketStatus { Id = 7, Name = "Closed"}
             );
 
             var ids = 0;

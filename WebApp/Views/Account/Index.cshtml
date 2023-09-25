@@ -9,7 +9,7 @@
     Layout = "_Layout";
     var ids = 1;
     var resJson = TempData["res"] as string;
-    var res = resJson != null ? JsonConvert.DeserializeObject<LibraryModels.Response>(resJson) : new LibraryModels.Response() { Msg = "", Success = false };
+    var res = resJson != null ? JsonConvert.DeserializeObject<LibraryModels.Response<string>>(resJson) : new LibraryModels.Response<string>() { Msg = "", Success = false };
 }
 
 @functions {
@@ -18,6 +18,11 @@
         return string.IsNullOrEmpty(propertySort) ? currentSort : (nameSort == nameToSort ? propertySort : currentSort);
     }
 }
+<style>
+    .my-swal {
+        z-index: 99999999;
+    }
+</style>
 
 <div class="body-wrapper">
     <div class="col-lg-12 ">
@@ -101,60 +106,68 @@
                         </button>
                         <button id="btn-have">Create new account with available infomation</button>
 
-                        <form method="post" action="/Users/CreateAccount">
+                        <form enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="Email">Email:</label>
-                                <input type="text" class="form-control" id="Email" name="Email" />
+                                <input type="email" class="form-control" id="Email" name="Email" required />
                             </div>
                             <div class="form-group">
                                 <label for="UserName">Username:</label>
-                                <input type="text" class="form-control" id="UserName" name="UserName" />
-                            </div>
-                            <div class="form-group">
-                                <label for="Code">Code:</label>
-                                <input type="text" class="form-control" id="Code" name="Code" />
+                                <input type="text" class="form-control" id="UserName" name="UserName" required />
                             </div>
                             <div class="form-group">
                                 <label for="Password">Password:</label>
-                                <input type="password" class="form-control" id="Password" name="Password" />
-                            </div>
-                            <div class="form-group">
-                                <label for="Status">Status:</label>
-                                <input type="checkbox" class="form-control" id="Status" name="Status" />
-                            </div>
-                            <div class="form-group">
-                                <label for="Role">Role:</label>
-                                <input type="text" class="form-control" id="Role" name="Role" />
-                            </div>
-                            <div class="form-group">
-                                <label for="Gender">Gender:</label>
-                                <input type="radio" id="GenderMale" name="userInfo.Gender" value="true" />
-                                <label for="GenderMale">Male</label>
-                                <input type="radio" id="GenderFemale" name="userInfo.Gender" value="false" />
-                                <label for="GenderFemale">Female</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="DateOfBirth">Date of Birth:</label>
-                                <input type="text" class="form-control" id="DateOfBirth" name="userInfo.DateOfBirth" />
-                            </div>
-                            <div class="form-group">
-                                <label for="Photo">Photo:</label>
-                                <input type="text" class="form-control" id="Photo" name="userInfo.Photo" />
-                            </div>
-                            <div class="form-group">
-                                <label for="Phone">Phone:</label>
-                                <input type="text" class="form-control" id="Phone" name="userInfo.Phone" />
-                            </div>
-                            <div class="form-group">
-                                <label for="Address">Address:</label>
-                                <input type="text" class="form-control" id="Address" name="userInfo.Address" />
-                            </div>
-                            <div class="form-group">
-                                <label for="City">City:</label>
-                                <input type="text" class="form-control" id="City" name="userInfo.City" />
+                                <input type="password" class="form-control" id="Password" name="Password" required />
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <div class="form-group">
+                                <label for="Role">Role:</label>
+                                <select name="SelectedRole" id="Role" class="form-control" required>
+                                    <option value="">---Choose role---</option>
+                                    <option value="@LibraryModels.Role.Admin">Admin</option>
+                                    <option value="@LibraryModels.Role.Student">Student</option>
+                                    <option value="@LibraryModels.Role.FacilityHead">Facility Head</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Gender:</label>
+                                <div class="form-check">
+                                    <input type="radio" id="Male" name="userInfo.Gender" value="true" class="form-check-input" required />
+                                    <label for="Male" class="form-check-label">Male</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="Female" name="userInfo.Gender" value="false" class="form-check-input" required />
+                                    <label for="Female" class="form-check-label">Female</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="DateOfBirth">Date of Birth:</label>
+                                <input type="date" class="form-control" id="DateOfBirth" name="userInfo.DateOfBirth" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Photo">Photo:</label>
+                                <input type="file" class="form-control" id="Photo" name="userInfo.Photo" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Phone">Phone:</label>
+                                <input type="tel" class="form-control" id="Phone" name="userInfo.Phone" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Address">Address:</label>
+                                <input type="text" class="form-control" id="Address" name="userInfo.Address" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="City">City:</label>
+                                <input type="text" class="form-control" id="City" name="userInfo.City" required />
+                            </div>
+
+                            <button type="submit" id="Create_avai" class="btn btn-primary">Create</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -237,7 +250,7 @@
                         if (data) {
                             username.text(data.UserName)
                             email.text("Email:  " + data.Email)
-                            avarta.attr("src", data.Photo ? data.Photo : `/assets/img/avatars/avatar_default.jpeg`)
+                            avarta.attr("src", data.Photo ? `/assets/img/avatars/{data.Photo}` : `/assets/img/avatars/avatar_default.jpeg`)
                             phone.text("Phone:  " + data.Phone)
                             address.text("Address:  " + data.Address)
                             city.text("City:  " + data.City)
@@ -259,7 +272,72 @@
             });
 
 
+            $("#Create_avai").on("click", function (event) {
+                event.preventDefault();
 
+                var email = $("#Email").val();
+                var userName = $("#UserName").val();
+                var password = $("#Password").val();
+                var role = $("#Role").val();
+                var gender = $("input[name='userInfo.Gender']:checked").val();
+                var dateOfBirth = $("#DateOfBirth").val();
+                var photo = $("#Photo")[0].files[0];
+                var phone = $("#Phone").val();
+                var address = $("#Address").val();
+                var city = $("#City").val();
+
+                var parts = dateOfBirth.split("-");
+                var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
+
+                var formData = new FormData();
+                formData.append("Email", email);
+                formData.append("UserName", userName);
+                formData.append("Password", password);
+                formData.append("Role", role);
+                formData.append("Gender", gender);
+                formData.append("DateOfBirth", formattedDate);
+                formData.append("Photo", photo);
+                formData.append("Phone", phone);
+                formData.append("Address", address);
+                formData.append("City", city);
+
+                // Gửi dữ liệu lên server
+                $.ajax({
+                    url: "/Data/CreateAccount",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response);
+                        var data = JSON.parse(response)
+                        Swal.fire({
+                            icon: data.Success ? "success" : "error",
+                            title: data.Success ? "Success" : "Oops",
+                            text: data.Msg,
+                            customClass: {
+                                container: 'my-swal'
+                            }
+                        }).then((result) => {
+                            result.isConfirmed ? window.location.reload() : ""
+                        })
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
+                    }
+                });
+            });
+
+
+            $("#Photo").on("change", function () {
+                var fileSize = this.files[0].size;
+                var maxSize = 2 * 1024 * 1024; // 2MB (trong bytes)
+
+                if (fileSize > maxSize) {
+                    alert("File size must be less than 2MB. Please choose a smaller file.");
+                    this.value = "";
+                }
+            });
         });
 
 

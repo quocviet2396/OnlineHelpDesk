@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "_Layout - Copy";
+    Layout = "_Layout";
 }
 @model IEnumerable<LibraryModels.Ticket>
 
@@ -13,7 +13,7 @@
     <label for="categoryFilter">Category Filter:</label>
     <select id="categoryFilter" class="form-control">
         <option value="">All</option>
-   
+
     </select>
 </div>
 
@@ -33,7 +33,7 @@
                     <button id="searchCategory" class="category-search-button">
                         Search
                     </button>
-                    
+
                 </div>
             </th>
             <th>@Html.DisplayNameFor(model => model.Creator)</th>
@@ -69,8 +69,7 @@
     </tbody>
 </table>
 
-<script>
-    // Lắng nghe sự kiện thay đổi của dropdown
+<script>// Lắng nghe sự kiện thay đổi của dropdown
     document.getElementById('categoryFilter').addEventListener('change', function () {
         var selectedCategoryId = this.value; // Lấy giá trị đã chọn
 
@@ -92,5 +91,4 @@
                 alert('Error occurred while filtering.');
             }
         });
-    });
-</script>
+    });</script>

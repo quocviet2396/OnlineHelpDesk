@@ -22,7 +22,6 @@ namespace WebApp.Controllers
             this.authService = authService;
         }
 
-
         public async Task<IActionResult> Index()
         {
             if (!authService.IsUserLoggedIn())
@@ -33,7 +32,7 @@ namespace WebApp.Controllers
             if (authService.IsAdmin())
             {
                 var tickets = await context.Ticket
-                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp=>sp.Supporter)
+                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter)
                     .OrderByDescending(t => t.CreateDate)
                     .ToListAsync();
 
@@ -137,7 +136,7 @@ namespace WebApp.Controllers
         .ToList();
 
             // Thêm một tùy chọn mặc định nếu cần
-            ticketStatusOptions.Insert(0, new SelectListItem { Value = "", Text = "Chọn trạng thái" });
+            ticketStatusOptions.Insert(0, new SelectListItem { Value = "", Text = "Select status" });
 
             // Gán danh sách tùy chọn cho ViewBag.TicketStatusId
             ViewBag.TicketStatusId = ticketStatusOptions;
@@ -151,14 +150,14 @@ namespace WebApp.Controllers
             ViewBag.CategoryId = facilities;
 
             return View();
-          
+
         }
 
         [HttpPost]
         public IActionResult Create(Ticket NewTicket, IFormFile? file)
         {
             var test = (HttpContext.Session.GetString("accEmail")).ToString();
-            var idUser = context.Users.Where(x=>x.Email == test).FirstOrDefault().Id;
+            var idUser = context.Users.Where(x => x.Email == test).FirstOrDefault().Id;
             try
             {
 
@@ -215,7 +214,7 @@ namespace WebApp.Controllers
                     {
                         ModelState.AddModelError(string.Empty, "Please select a file for attachment.");
                     }
-                
+
                 }
             }
             catch (Exception ex)
@@ -318,7 +317,7 @@ namespace WebApp.Controllers
                     Text = u.Email
                 }).ToList();
             suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
-            ViewBag.SupporterEmails=suporter;
+            ViewBag.SupporterEmails = suporter;
 
 
             return View(ticket);
@@ -364,7 +363,7 @@ namespace WebApp.Controllers
             oldTicket.Title = editTicket.Title;
             oldTicket.Description = editTicket.Description;
             oldTicket.CategoryId = editTicket.CategoryId;
-            
+
 
             // Kiểm tra xem người dùng có phải là admin không
             if (authService.IsAdmin())

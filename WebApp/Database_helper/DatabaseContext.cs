@@ -26,7 +26,7 @@ namespace WebApp.Database_helper
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=DESKTOP-F4OHHB4\\MSSQLSERVER01; database=OHDDb; Trusted_Connection=true; TrustServerCertificate=true";
+            string str = "server=localhost; database=OHDDb; uid=sa;password=ngoc@2906mysql; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 
@@ -94,7 +94,7 @@ namespace WebApp.Database_helper
                 new TicketStatus { Id = 4, Name = "On hold" },
                 new TicketStatus { Id = 5, Name = "Rejected" },
                 new TicketStatus { Id = 6, Name = "Completed" },
-                new TicketStatus { Id = 7, Name = "Closed"}
+                new TicketStatus { Id = 7, Name = "Closed" }
             );
 
             var ids = 0;

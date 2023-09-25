@@ -113,7 +113,7 @@ namespace WebApp.Services
                     return res = _helper.CreateResponse<string>("File size must be less than 2MB. Please choose a smaller file.", false);
                 }
                 var fileName = users.Files["photo"].FileName;
-                var filePath = Path.Combine(_environment.ContentRootPath, "wwwroot/assets/img/avatars", fileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/assets/img/avatars", fileName);
 
                 // Kiểm tra tệp trùng lặp
                 if (!System.IO.File.Exists(filePath))

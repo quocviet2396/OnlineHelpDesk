@@ -1,6 +1,6 @@
 ﻿@model LibraryModels.Ticket
 @{
-    Layout = "_Layout - Copy";
+    Layout = "_Layout";
 }
 @{
     ViewData["Title"] = "Edit";
@@ -45,7 +45,7 @@
             <!-- Hộp tải lên tệp mới -->
             <div class="form-group">
                 <label asp-for="Attachment" class="control-label"></label>
-                <input asp-for="Attachment" type="file" name="file"  class="form-control" />
+                <input asp-for="Attachment" type="file" name="file" class="form-control" />
                 <span asp-validation-for="Attachment" class="text-danger"></span>
             </div>
 

@@ -383,7 +383,6 @@ namespace WebApp.Controllers
             // Lưu thay đổi vào cơ sở dữ liệu
             await ticketService.update(oldTicket);
 
-            ViewBag.msg = "Edit Ticket Success";
             TempData["Message"] = "Edit Ticket Success.";
             TempData["MessageType"] = "Success";
             return RedirectToAction("Index", "Ticket");

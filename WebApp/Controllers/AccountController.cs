@@ -43,7 +43,7 @@ namespace WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> UserProfile()
         {
-            var stucode = HttpContext.Session.GetString("stuCode");
+            var stucode = HttpContext.Session.GetString("accCode");
             var model = _account.UserInfo(stucode);
             UserInfoDTO result = new UserInfoDTO()
             {

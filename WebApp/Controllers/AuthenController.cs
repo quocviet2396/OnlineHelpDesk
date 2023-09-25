@@ -37,9 +37,20 @@ namespace WebApp.Controllers
 
         public bool IsLoginValid(string email, string password)
         {
-            var user = db.Users.FirstOrDefault(a => a.Email == email && a.Password == password);
-            //trả về user nếu khác null, ngược lại thì false
-            return user != null;
+            var user = db.Users.FirstOrDefault(a => a.Email == email);
+
+            if (user != null)
+            {
+                // Kiểm tra tính hợp lệ mã hóa của password
+                bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, user.Password);
+
+                if (isPasswordValid)
+                {
+                    return true;
+                }
+            }
+            // Người dùng không tồn tại hoặc mật khẩu không hợp lệ
+            return false;
         }
 
         [HttpPost]

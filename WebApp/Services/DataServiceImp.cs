@@ -123,6 +123,11 @@ namespace WebApp.Services
                         await users.Files["photo"].CopyToAsync(fileSteam);
                     }
                 }
+                var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(users["Email"].FirstOrDefault()));
+                if (hasEmail == null)
+                {
+                    return res = _helper.CreateResponse<string>("Email has already", false);
+                }
 
                 Users user = new Users()
                 {

@@ -69,6 +69,7 @@ namespace WebApp.Controllers
             {
 
                 HttpContext.Session.SetString("accEmail", user.Email);
+                Console.WriteLine(IsLoginValid(user.Email, user.Password).Data.Code);
                 HttpContext.Session.SetString("accCode", IsLoginValid(user.Email, user.Password).Data.Code);
 
                 // Chuyển trang theo role

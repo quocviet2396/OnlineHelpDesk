@@ -18,6 +18,11 @@
         return string.IsNullOrEmpty(propertySort) ? currentSort : (nameSort == nameToSort ? propertySort : currentSort);
     }
 }
+<style>
+    .my-swal {
+        z-index: 99999999;
+    }
+</style>
 
 <div class="body-wrapper">
     <div class="col-lg-12 ">
@@ -245,7 +250,7 @@
                         if (data) {
                             username.text(data.UserName)
                             email.text("Email:  " + data.Email)
-                            avarta.attr("src", data.Photo ? data.Photo : `/assets/img/avatars/avatar_default.jpeg`)
+                            avarta.attr("src", data.Photo ? `/assets/img/avatars/{data.Photo}` : `/assets/img/avatars/avatar_default.jpeg`)
                             phone.text("Phone:  " + data.Phone)
                             address.text("Address:  " + data.Address)
                             city.text("City:  " + data.City)
@@ -305,6 +310,17 @@
                     contentType: false,
                     success: function (response) {
                         console.log(response);
+                        var data = JSON.parse(response)
+                        Swal.fire({
+                            icon: data.Success ? "success" : "error",
+                            title: data.Success ? "Success" : "Oops",
+                            text: data.Msg,
+                            customClass: {
+                                container: 'my-swal'
+                            }
+                        }).then((result) => {
+                            result.isConfirmed ? window.location.reload() : ""
+                        })
                     },
                     error: function (xhr, status, error) {
                         console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);

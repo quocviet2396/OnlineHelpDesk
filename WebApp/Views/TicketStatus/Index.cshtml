@@ -47,7 +47,7 @@
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2" style="justify-content:center">
                                             <form asp-action="Delete" asp-controller="TicketStatus" method="post" enctype="multipart/form-data">
-                                                <input type="hidden" name="id" value="@item.Id">
+                                                <input type="hidden" name="arrlist" value="@item.Id">
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-trash"></i>
                                                 </button>

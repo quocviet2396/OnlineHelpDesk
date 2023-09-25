@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "g4Dtt4+MU/xLOuIU36mY5BMpRSb3IIQMRs5EwvrNDYA=",
+  "Hash": "u9zwIjrqELamNuPHcPU8SobsM/SfiXwRnetOsQnuiK0=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -12646,6 +12646,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/attachment/9c921292-ff9c-4186-b7d6-20c3e2a6730c_Screenshot 2023-08-20 123818.png"
+    },
+    {
+      "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/attachment/9cb07604-e464-4e8d-b4e0-996542c50493_logo-apple-1.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/attachment/9cb07604-e464-4e8d-b4e0-996542c50493_logo-apple-1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/attachment/9cb07604-e464-4e8d-b4e0-996542c50493_logo-apple-1.png"
     },
     {
       "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/attachment/9cde9d55-ba0c-41bc-bfd4-1e5ef9b27b8a_Screenshot 2023-07-26 092203.png",

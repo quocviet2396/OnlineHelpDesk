@@ -26,185 +26,186 @@
 
 <div class="body-wrapper">
     <div class="col-lg-12 ">
-
-        <div class="alert @(res.Success ==true ?"alert-success":"alert-danger")" @(res.Msg == "" ? "hidden" : "")>
-            <span class="text-black font-weight-bold h1 text-center text-uppercase ">@res.Msg</span>
-        </div>
-
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Create New Account
-        </button>
-        <form asp-controller="Account" method="post">
-            <table class="table table-hover table-responsive table-bordered" id="table_user">
-                <thead class=" table-primary">
-                    <tr class="text-center">
-                        <th>Id</th>
-                        <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Email","Email")">Email</a></th>
-                        <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_UserName","UserName")">Username</a></th>
-                        <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Code","Code")">Code</a></th>
-                        <th>Status</th>
-                        <th>Role</th>
-                        <th colspan="2"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr class="get_data" id="user_@item.Code data-bs-target="#myModal">
-                            <td>@ids</td>
-                            <td class="text-left">@HelperService.AnEmail(@item.Email, 4)</td>
-                            <td>@item.UserName</td>
-                            <td id="stu_code">@item.Code</td>
-                            <td>@item.Status</td>
-                            <td>@item.Role</td>
-                            <td name="dont_click" colspan="2" class="text-center">
-                                <input type="submit" asp-action="ResetPassword" asp-route-code="@item.Code" value="Reset password" class="btn btn-danger text-white" />
-                                <input type="submit" class="btn btn-warning text-white " value="Ban account">
-                            </td>
-                        </tr>
-                        ids++;
-                    }
-                </tbody>
-            </table>
-        </form>
-        @{
-            var Totalpage = (int)ViewData["totalPages"];
-            var PanigationInfo = Model as WebApp.Ultils.Paginated<LibraryModels.Users>;
-        }
-        <div>
-            <div class="flex w-full items-center justify-content-center align-items-center">
-                @if (PanigationInfo.PageIndex > 1)
-                {
-                    <a class="btn btn-primary" asp-route-pageIndex="@(1)">First</a>
-                    <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex -1)">Prev</a>
-                }
-                @for (int i = 1; i <= Totalpage; i++)
-                {
-                    <a class="btn btn-outline-primary @(PanigationInfo.PageIndex == i ? "active" : string.Empty)" asp-route-pageIndex="@(i)">@(i)</a>
-                }
-
-                @if (PanigationInfo.PageIndex < PanigationInfo.TotalPages)
-                {
-                    <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex +1)">Next</a>
-                    <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.TotalPages)">Last</a>
-                }
+        <div class="w-100">
+            <div class="alert @(res.Success ==true ?"alert-success":"alert-danger")" @(res.Msg == "" ? "hidden" : "")>
+                <span class="text-black font-weight-bold h1 text-center text-uppercase ">@res.Msg</span>
             </div>
-        </div>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Create New Account
+            </button>
+            <form asp-controller="Account" method="post">
+                <table class="table table-hover table-responsive table-bordered" id="table_user">
+                    <thead class=" table-primary">
+                        <tr class="text-center">
+                            <th>Id</th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Email","Email")">Email</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_UserName","UserName")">Username</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Code","Code")">Code</a></th>
+                            <th>Status</th>
+                            <th>Role</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="get_data" id="user_@item.Code data-bs-target="#myModal">
+                                <td>@ids</td>
+                                <td class="text-left">@HelperService.AnEmail(@item.Email, 4)</td>
+                                <td>@item.UserName</td>
+                                <td id="stu_code">@item.Code</td>
+                                <td>@item.Status</td>
+                                <td>@item.Role</td>
+                                <td name="dont_click" colspan="2" class="text-center">
+                                    <input type="submit" asp-action="ResetPassword" asp-route-code="@item.Code" value="Reset password" class="btn btn-danger text-white" />
+                                    <input type="submit" class="btn btn-warning text-white " value="Ban account">
+                                </td>
+                            </tr>
+                            ids++;
+                        }
+                    </tbody>
+                </table>
+            </form>
+            @{
+                var Totalpage = (int)ViewData["totalPages"];
+                var PanigationInfo = Model as WebApp.Ultils.Paginated<LibraryModels.Users>;
+            }
+            <div>
+                <div class="flex w-full items-center justify-content-center align-items-center">
+                    @if (PanigationInfo.PageIndex > 1)
+                    {
+                        <a class="btn btn-primary" asp-route-pageIndex="@(1)">First</a>
+                        <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex -1)">Prev</a>
+                    }
+                    @for (int i = 1; i <= Totalpage; i++)
+                    {
+                        <a class="btn btn-outline-primary @(PanigationInfo.PageIndex == i ? "active" : string.Empty)" asp-route-pageIndex="@(i)">@(i)</a>
+                    }
+
+                    @if (PanigationInfo.PageIndex < PanigationInfo.TotalPages)
+                    {
+                        <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex +1)">Next</a>
+                        <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.TotalPages)">Last</a>
+                    }
+                </div>
+            </div>
 
 
-        <!-- Modal -->
-        <div class="modal fade modal2" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!-- Modal -->
+            <div class="modal fade modal2" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <button id="btn-new">
+                                Create new account with new infomation
+                            </button>
+                            <button id="btn-have">Create new account with available infomation</button>
+
+                            <form enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="Email">Email:</label>*
+                                    <input type="email" class="form-control" id="Email" name="Email" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="UserName">Username:</label>*
+                                    <input type="text" class="form-control" id="UserName" name="UserName" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Password">Password:</label>*
+                                    <input type="password" class="form-control" id="Password" name="Password" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Role">Role:</label>*
+                                    <select name="SelectedRole" id="Role" class="form-control" required>
+                                        <option value="">---Choose role---</option>
+                                        <option value="@LibraryModels.Role.Admin">@LibraryModels.Role.Admin</option>
+                                        <option value="@LibraryModels.Role.Student">@LibraryModels.Role.Student</option>
+                                        <option value="@LibraryModels.Role.FacilityHead">@LibraryModels.Role.FacilityHead</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Gender:</label>
+                                    <div class="form-check">
+                                        <input type="radio" id="Male" name="userInfo.Gender" value="true" class="form-check-input" required />
+                                        <label for="Male" class="form-check-label">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" id="Female" name="userInfo.Gender" value="false" class="form-check-input" required />
+                                        <label for="Female" class="form-check-label">Female</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="DateOfBirth">Date of Birth:</label>
+                                    <input type="date" class="form-control" id="DateOfBirth" name="userInfo.DateOfBirth" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Photo">Photo:</label>
+                                    <input type="file" class="form-control" id="Photo" name="userInfo.Photo" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Phone">Phone:</label>
+                                    <input type="tel" class="form-control" id="Phone" name="userInfo.Phone" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Address">Address:</label>
+                                    <input type="text" class="form-control" id="Address" name="userInfo.Address" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="City">City:</label>
+                                    <input type="text" class="form-control" id="City" name="userInfo.City" required />
+                                </div>
+
+                                <button type="submit" id="Create_avai" class="btn btn-primary">Create</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <button id="btn-new">
-                            Create new account with new infomation
-                        </button>
-                        <button id="btn-have">Create new account with available infomation</button>
+                </div>
+            </div>
 
-                        <form enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="Email">Email:</label>
-                                <input type="email" class="form-control" id="Email" name="Email" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="UserName">Username:</label>
-                                <input type="text" class="form-control" id="UserName" name="UserName" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="Password">Password:</label>
-                                <input type="password" class="form-control" id="Password" name="Password" required />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Role">Role:</label>
-                                <select name="SelectedRole" id="Role" class="form-control" required>
-                                    <option value="">---Choose role---</option>
-                                    <option value="@LibraryModels.Role.Admin">Admin</option>
-                                    <option value="@LibraryModels.Role.Student">Student</option>
-                                    <option value="@LibraryModels.Role.FacilityHead">Facility Head</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Gender:</label>
-                                <div class="form-check">
-                                    <input type="radio" id="Male" name="userInfo.Gender" value="true" class="form-check-input" required />
-                                    <label for="Male" class="form-check-label">Male</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" id="Female" name="userInfo.Gender" value="false" class="form-check-input" required />
-                                    <label for="Female" class="form-check-label">Female</label>
+            <div class="modal fade modal1" tabindex="-1" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Infomation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img src="" alt="profile picture" class="rounded-circle "
+                                             style="width: 150px; height: 150px" id="avarta">
+                                    </div>
+                                    <br />
+                                    <p class="card-title mt-2">Username:  <b id="username"></b></p>
+                                    <p class="card-title mt-2" id="email"> </p>
+                                    <p class="card-title mt-2" id="phone"></p>
+                                    <p class="card-title mt-2" id="address"></p>
+                                    <p class="card-title mt-2" id="city"></p>
+                                    <p class="card-title mt-2" id="dob"></p>
+                                    <p class="card-title mt-2" id="phone"></p>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label for="DateOfBirth">Date of Birth:</label>
-                                <input type="date" class="form-control" id="DateOfBirth" name="userInfo.DateOfBirth" required />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Photo">Photo:</label>
-                                <input type="file" class="form-control" id="Photo" name="userInfo.Photo" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Phone">Phone:</label>
-                                <input type="tel" class="form-control" id="Phone" name="userInfo.Phone" required />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Address">Address:</label>
-                                <input type="text" class="form-control" id="Address" name="userInfo.Address" required />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="City">City:</label>
-                                <input type="text" class="form-control" id="City" name="userInfo.City" required />
-                            </div>
-
-                            <button type="submit" id="Create_avai" class="btn btn-primary">Create</button>
-                        </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade modal1" tabindex="-1" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Infomation</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="" alt="profile picture" class="rounded-circle "
-                                         style="width: 150px; height: 150px" id="avarta">
-                                </div>
-                                <br />
-                                <p class="card-title mt-2">Username:  <b id="username"></b></p>
-                                <p class="card-title mt-2" id="email"> </p>
-                                <p class="card-title mt-2" id="phone"></p>
-                                <p class="card-title mt-2" id="address"></p>
-                                <p class="card-title mt-2" id="city"></p>
-                                <p class="card-title mt-2" id="dob"></p>
-                                <p class="card-title mt-2" id="phone"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -250,7 +251,7 @@
                         if (data) {
                             username.text(data.UserName)
                             email.text("Email:  " + data.Email)
-                            avarta.attr("src", data.Photo ? `/assets/img/avatars/{data.Photo}` : `/assets/img/avatars/avatar_default.jpeg`)
+                            avarta.attr("src", data.Photo ? data.Photo : `/assets/img/avatars/avatar_default.jpeg`)
                             phone.text("Phone:  " + data.Phone)
                             address.text("Address:  " + data.Address)
                             city.text("City:  " + data.City)
@@ -271,7 +272,7 @@
                 modal.modal('show');
             });
 
-
+            //Create new account
             $("#Create_avai").on("click", function (event) {
                 event.preventDefault();
 
@@ -301,9 +302,53 @@
                 formData.append("Address", address);
                 formData.append("City", city);
 
-                // Gửi dữ liệu lên server
                 $.ajax({
-                    url: "/Data/CreateAccount",
+                    url: "/Account/CreateAccount",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response);
+                        var data = JSON.parse(response)
+                        if (data.Success) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            }).then((result) => {
+                                result.isConfirmed ? window.location.reload() : ""
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            })
+                        }
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
+                    }
+                });
+            });
+
+
+            $("#Photo").on("change", function () {
+                var photo = $("#Photo")[0].files[0];
+                var formData = new FormData();
+                formData.append("Photo", photo);
+
+
+                $.ajax({
+                    url: "/Account/CheckPhoto",
                     method: "POST",
                     data: formData,
                     processData: false,
@@ -318,25 +363,12 @@
                             customClass: {
                                 container: 'my-swal'
                             }
-                        }).then((result) => {
-                            result.isConfirmed ? window.location.reload() : ""
                         })
                     },
                     error: function (xhr, status, error) {
                         console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
                     }
                 });
-            });
-
-
-            $("#Photo").on("change", function () {
-                var fileSize = this.files[0].size;
-                var maxSize = 2 * 1024 * 1024; // 2MB (trong bytes)
-
-                if (fileSize > maxSize) {
-                    alert("File size must be less than 2MB. Please choose a smaller file.");
-                    this.value = "";
-                }
             });
         });
 

@@ -25,6 +25,7 @@ namespace WebApp.Controllers
             _helper = helper;
         }
 
+        [Route("/Backend/Account")]
         public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort)
         {
             var Limit = limit ?? 7;
@@ -45,25 +46,35 @@ namespace WebApp.Controllers
         {
             var stucode = HttpContext.Session.GetString("accCode");
             var model = _account.UserInfo(stucode);
-            UserInfoDTO result = new UserInfoDTO()
+            if (model != null)
             {
-                Id = model.Id,
-                Email = _helper.AnEmail(model.Email, 4),
-                UserName = model.UserName,
-                Password = model.Password,
-                Code = model.Code,
-                Role = model.Role,
-                DateOfBirth = model.DateOfBirth,
-                Status = model.Status,
-                Gender = model.Gender,
-                Phone = model.Phone,
-                Photo = model.Photo,
-                Address = model.Address,
-                City = model.City
-            };
-            ViewData["UserProfile"] = result;
-            //var result = JsonConvert.DeserializeObject(user);
-            return View();
+                UserInfoDTO result = new UserInfoDTO()
+                {
+                    Id = model.Id,
+                    Email = _helper.AnEmail(model.Email, 4),
+                    UserName = model.UserName,
+                    Password = model.Password,
+                    Code = model.Code,
+                    Role = model.Role,
+                    DateOfBirth = model.DateOfBirth,
+                    Status = model.Status,
+                    Gender = model.Gender,
+                    Phone = model.Phone,
+                    Photo = model.Photo,
+                    Address = model.Address,
+                    City = model.City
+                };
+                ViewData["UserDtoProfile"] = result;
+                //var result = JsonConvert.DeserializeObject(user);
+                return View();
+            }
+            else
+            {
+                var user = _account.users(stucode);
+                ViewData["UserProfile"] = user;
+                //var result = JsonConvert.DeserializeObject(user);
+                return View();
+            }
         }
 
 
@@ -138,6 +149,31 @@ namespace WebApp.Controllers
             var res = await _account.ChangePassword(newPas, accCode);
             var result = JsonConvert.SerializeObject(res);
             return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> CreateAccount(IFormCollection data)
+        {
+            var res = await _account.CreateAccount(data);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
+        }
+
+
+        [HttpPost]
+        public async Task<JsonResult> CheckPhoto(IFormCollection data)
+        {
+            var res = await _account.CheckPhoto(data);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> InfoChange(IFormCollection form)
+        {
+            var btn = form["ValueBtn"];
+            Console.WriteLine(btn);
+            return Json(btn);
         }
     }
 }

@@ -249,7 +249,6 @@
 /Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/staticwebassets.pack.json
 /Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/staticwebassets.build.json
 /Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/staticwebassets.development.json
-/Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/scopedcss/Views/Shared/_Layout - Copy.cshtml.rz.scp.css
 /Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/scopedcss/bundle/WebApp.styles.css
 /Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/scopedcss/projectbundle/WebApp.bundle.scp.css

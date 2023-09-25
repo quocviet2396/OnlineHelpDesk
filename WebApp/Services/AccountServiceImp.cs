@@ -5,6 +5,7 @@ using WebApp.Database_helper;
 using WebApp.Repositories;
 using WebApp.Ultils;
 using BCrypt.Net;
+using System.Globalization;
 
 namespace WebApp.Services
 {
@@ -30,28 +31,30 @@ namespace WebApp.Services
 
         public UserInfoDTO UserInfo(string stuCodeId)
         {
-            Console.WriteLine(stuCodeId);
-            var user = from a in _db.Users
-                       join b in _db.UserInfos
-                             on a.Id equals b.UserId
-                       where a.Code == stuCodeId
-                       select new UserInfoDTO()
-                       {
-                           Id = a.Id,
-                           UserName = a.UserName,
-                           Email = a.Email,
-                           Code = a.Code,
-                           Password = a.Password,
-                           Status = a.Status,
-                           Role = a.Role,
-                           Gender = b.Gender,
-                           DateOfBirth = b.DateOfBirth,
-                           Phone = b.Phone,
-                           Photo = b.Photo,
-                           Address = b.Address,
-                           City = b.City
-                       };
-            return user.FirstOrDefault();
+            var user = _db.Users.Where(u => u.Code == stuCodeId).Include(c => c.userInfo).Select(
+                c => new UserInfoDTO()
+                {
+                    Id = c.Id,
+                    UserName = c.UserName,
+                    Email = c.Email,
+                    Code = c.Code,
+                    Password = c.Password,
+                    Status = c.Status,
+                    Role = c.Role,
+                    Gender = c.userInfo.Gender,
+                    DateOfBirth = c.userInfo.DateOfBirth,
+                    Phone = c.userInfo.Phone,
+                    Photo = c.userInfo.Phone,
+                    Address = c.userInfo.Address,
+                    City = c.userInfo.City
+                }).SingleOrDefault();
+            return user;
+        }
+
+        public async Task<Users> users(string stuCodeId)
+        {
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Code == stuCodeId);
+            return user;
         }
 
 
@@ -145,6 +148,114 @@ namespace WebApp.Services
             }
         }
 
+
+
+        public async Task<Response<string>> CheckPhoto(IFormCollection photo)
+        {
+            if (photo.Files["photo"] != null)
+            {
+                long fileSize = photo.Files["photo"].Length;
+                long maxSize = 2 * 1024 * 1024;
+                if (fileSize > maxSize)
+                {
+                    return res = _helper.CreateResponse<string>("File size must be less than 2MB. Please choose a smaller file.", false);
+                }
+
+                var fileName = photo.Files["photo"].FileName;
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/assets/img/avatars", fileName);
+
+                // Kiểm tra tệp trùng lặp
+                if (!System.IO.File.Exists(filePath))
+                {
+                    using (var fileSteam = new FileStream(filePath, FileMode.Create))
+                    {
+                        await photo.Files["photo"].CopyToAsync(fileSteam);
+                    }
+                }
+                return res = _helper.CreateResponse<string>("Upload file successfully", true, filePath);
+            }
+            else
+            {
+                return res = _helper.CreateResponse<string>("Upload file failure", false);
+            }
+        }
+
+        public async Task<Response<string>> CreateAccount(IFormCollection users)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(users["Email"]) || string.IsNullOrEmpty(users["Role"]) || string.IsNullOrEmpty(users["Password"]) || string.IsNullOrEmpty(users["Username"]))
+                {
+                    return res = _helper.CreateResponse<string>("Field is not blank", false);
+                }
+
+                var checkphoto = await CheckPhoto(users);
+                var filePath = checkphoto.Data;
+                var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(users["Email"].FirstOrDefault()));
+                if (hasEmail != null)
+                {
+                    return res = _helper.CreateResponse<string>("Email has already", false);
+                }
+
+                Users user = new Users()
+                {
+                    Email = users["Email"].FirstOrDefault(),
+                    Password = BCrypt.Net.BCrypt.HashPassword(users["Password"]),
+                    Status = true,
+                    UserName = users["Username"].FirstOrDefault(),
+                    Role = users["Role"],
+                    Code = $"{users["Role"]}{_helper.randomString(10)}",
+                };
+
+                _db.Add(user);
+                _db.SaveChanges();
+                int userId = user.Id;
+                UserInfo userInfo = new UserInfo()
+                {
+                    Address = users["Address"].FirstOrDefault() ?? null,
+                    City = users["City"].FirstOrDefault() ?? null,
+                    Gender = bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
+                    DateOfBirth = DateTime.TryParseExact(users["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
+                    Phone = users["Phone"].FirstOrDefault() ?? null,
+                    Photo = filePath,
+                    UserId = userId
+                };
+
+                _db.UserInfos.Add(userInfo);
+                _db.SaveChanges();
+
+
+                return res = _helper.CreateResponse<string>("Successfully", true);
+            }
+            catch (Exception ex)
+            {
+                return res = _helper.CreateResponse<string>(ex.Message, false);
+            }
+        }
+
+
+        public async Task<Response<string>> InfoChange(IFormCollection form)
+        {
+            try
+            {
+                UserInfo userinfo = new UserInfo()
+                {
+                    Address = form["Address"].FirstOrDefault() ?? null,
+                    DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
+                    City = form["City"].FirstOrDefault() ?? null,
+                    Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
+                    Phone = form["Phone"].FirstOrDefault() ?? null,
+                    UserId = int.Parse(form["AccId"].FirstOrDefault()),
+                };
+
+
+                return res = _helper.CreateResponse<string>("Change password successfully", true);
+            }
+            catch (Exception ex)
+            {
+                return res = _helper.CreateResponse<string>(ex.Message, false);
+            }
+        }
 
     }
 }

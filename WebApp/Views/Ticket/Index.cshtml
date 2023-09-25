@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "_Layout - Copy";
+}
+@model IEnumerable<LibraryModels.Ticket>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<div class="form-group">
+    <label for="categoryFilter">Category Filter:</label>
+    <select id="categoryFilter" class="form-control">
+        <option value="">All</option>
+   
+    </select>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.CreateDate)</th>
+            <th>@Html.DisplayNameFor(model => model.ModifiedDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Attachment)</th>
+            <th>@Html.DisplayNameFor(model => model.TicketStatus)</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+                <div class="category-filter">
+                    <input type="text" id="categorySearch" class="category-search" placeholder="Search category...">
+                    <button id="searchCategory" class="category-search-button">
+                        Search
+                    </button>
+                    
+                </div>
+            </th>
+            <th>@Html.DisplayNameFor(model => model.Creator)</th>
+            <th>@Html.DisplayNameFor(model => model.Supporter)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.ModifiedDate)</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Attachment))
+                    {
+                        <img src="~/images/attachment/@item.Attachment" class="img-thumbnail" width="100" height="100" />
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.TicketStatus.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Creator.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.Supporter.Email)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    // Lắng nghe sự kiện thay đổi của dropdown
+    document.getElementById('categoryFilter').addEventListener('change', function () {
+        var selectedCategoryId = this.value; // Lấy giá trị đã chọn
+
+        // Gửi yêu cầu lọc đến máy chủ và cập nhật danh sách phiếu
+        // Sử dụng JavaScript/AJAX hoặc jQuery để thực hiện điều này
+
+        // Ví dụ: Sử dụng jQuery
+        $.ajax({
+            url: '/Ticket/Index', // Điều hướng đến hành động Index để xử lý yêu cầu lọc
+            method: 'GET',
+            data: { categoryId: selectedCategoryId },
+            success: function (data) {
+                // Cập nhật bảng danh sách phiếu bằng dữ liệu trả về từ máy chủ
+                // data chứa dữ liệu phiếu đã được lọc
+                // Cập nhật bảng bằng cách thay thế nội dung tbody bằng dữ liệu mới
+                $('table tbody').html(data);
+            },
+            error: function () {
+                alert('Error occurred while filtering.');
+            }
+        });
+    });
+</script>

@@ -523,17 +523,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="LibraryModels">
-      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\TicketStatus\" />
     <Folder Include="Ultils\" />
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LibraryModels">
+      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

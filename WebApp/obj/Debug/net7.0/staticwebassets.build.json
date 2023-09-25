@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "f5VKCyD9q7u+e9l8X+0gOj9dVDKVvqu5gBNLzyvNBVQ=",
+  "Hash": "mppe1rCKrVCiPrc0U0LYDbIliXdEThD3zM03SgmyvoI=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -236,6 +236,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\avatars\\logo-apple-1.png"
+    },
+    {
+      "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\assets\\img\\avatars\\lotso.jpg",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "assets/img/avatars/lotso.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\avatars\\lotso.jpg"
     },
     {
       "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\assets\\img\\backgrounds\\18.jpg",
@@ -12308,6 +12325,23 @@
       "OriginalItemSpec": "wwwroot\\images\\attachment\\0f006c2b-5f69-4a4a-be9f-5c3c95b163bc_Screenshot 2023-08-20 122327.png"
     },
     {
+      "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\0f891bde-8aff-4f26-a9f5-8e0b209dfc1e_gaudemo.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/attachment/0f891bde-8aff-4f26-a9f5-8e0b209dfc1e_gaudemo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\attachment\\0f891bde-8aff-4f26-a9f5-8e0b209dfc1e_gaudemo.png"
+    },
+    {
       "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\145d7161-1982-4b3b-af73-d8e2dcd4aad4_Screenshot 2023-08-20 125504.png",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
@@ -12374,6 +12408,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\attachment\\21a02b57-368f-4ea3-860d-4ddadece91d8_Screenshot 2023-09-05 144224.png"
+    },
+    {
+      "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\2609ef65-b76c-481f-b7cf-7ee6964a9f1d_gaudemo.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/attachment/2609ef65-b76c-481f-b7cf-7ee6964a9f1d_gaudemo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\attachment\\2609ef65-b76c-481f-b7cf-7ee6964a9f1d_gaudemo.png"
+    },
+    {
+      "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\2c34696f-d152-4612-bd22-d94f3e457940_gaudemo.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/attachment/2c34696f-d152-4612-bd22-d94f3e457940_gaudemo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\attachment\\2c34696f-d152-4612-bd22-d94f3e457940_gaudemo.png"
     },
     {
       "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\3eb754af-eb49-4c7f-9eeb-cb1346c2bc70_Screenshot 2023-07-26 092203.png",
@@ -12527,6 +12595,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\attachment\\79ad0c52-3293-4c6a-a668-f708dd0f2011_Screenshot 2023-08-20 122430.png"
+    },
+    {
+      "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\7d61751c-b8b1-4239-9044-9492b3cc1322_gaudemo.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/attachment/7d61751c-b8b1-4239-9044-9492b3cc1322_gaudemo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\attachment\\7d61751c-b8b1-4239-9044-9492b3cc1322_gaudemo.png"
     },
     {
       "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\842be812-0c5e-4639-9c8a-4bdddcc568ba_Screenshot 2023-06-13 170534.png",
@@ -12784,6 +12869,23 @@
       "OriginalItemSpec": "wwwroot\\images\\attachment\\d273b47c-fdd8-4b00-b388-223db3ecbb53_Screenshot 2023-08-20 125417.png"
     },
     {
+      "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\dbb04da7-8672-404b-920e-cf963dbe5349_gaudemo.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/attachment/dbb04da7-8672-404b-920e-cf963dbe5349_gaudemo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\attachment\\dbb04da7-8672-404b-920e-cf963dbe5349_gaudemo.png"
+    },
+    {
       "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\de5f2c99-50d6-4e9a-b499-e4357ec23a67_Screenshot 2023-08-20 122327.png",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
@@ -12816,6 +12918,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\attachment\\ee536e21-192e-495e-a2db-bc08a9f604ac_Screenshot 2023-08-20 122430.png"
+    },
+    {
+      "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\ef73374f-0fd4-499e-994d-a925bb879a21_gaudemo.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/attachment/ef73374f-0fd4-499e-994d-a925bb879a21_gaudemo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\attachment\\ef73374f-0fd4-499e-994d-a925bb879a21_gaudemo.png"
     },
     {
       "Identity": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\f577bb64-5d78-4239-9261-3b4111eb9ee1_Screenshot 2023-08-25 214449.png",

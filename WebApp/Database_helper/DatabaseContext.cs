@@ -26,7 +26,7 @@ namespace WebApp.Database_helper
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=DESKTOP-F4OHHB4\\MSSQLSERVER01; database=OHDDb; Trusted_Connection=true; TrustServerCertificate=true";
+            string str = "server=DESKTOP-T6R536I\\SQLEXPRESS01; database=OHDDb; Trusted_Connection=true; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 

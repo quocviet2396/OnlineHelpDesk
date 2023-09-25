@@ -6,7 +6,7 @@
 
 @{
     ViewData["Title"] = "Account User";
-    Layout = "_Layout";
+    Layout = "_BackendLayout";
     var ids = 1;
     var resJson = TempData["res"] as string;
     var res = resJson != null ? JsonConvert.DeserializeObject<LibraryModels.Response<string>>(resJson) : new LibraryModels.Response<string>() { Msg = "", Success = false };

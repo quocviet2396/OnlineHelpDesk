@@ -19,179 +19,177 @@
     }
 </style>
 <div class="container mt-5">
-    <div class="container mt-3">
-        <div class="row">
-            @if (userDto != null)
-            {
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <div>
-                                <img src="@Url.Content(userDto?.Photo)" alt="profile picture" class="rounded-circle"
-                                     style="width: 150px; height: 150px">
-                            </div>
-                            <p class="card-title mt-2">Username: <b>@userDto?.UserName</b></p>
-                            <p class="card-title  mt-2">Email: @userDto?.Email</p>
-                            <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="Change password" />
+    <div class="row">
+        @if (userDto != null)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div>
+                            <img src="images/avatars/@(userDto.Photo!=null ? userDto.Photo :"avatar_default.jpeg" )" alt="profile picture" class="rounded-circle"
+                                 style="width: 150px; height: 150px">
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title col-md-4" style="white-space: nowrap;"><b>Infomation</b> </h4>
-                            <div>
-                                <form enctype="multipart/form-data">
-                                    <input hidden name="accId" value="@userDto?.Id" />
-                                    <div class="form-group">
-                                        <label>Gender:</label>
-                                        @if (userDto?.Gender == true)
-                                        {
-                                            <div class="form-check">
-                                                <input type="radio" id="Male" name="Gender" checked value="true" class="form-check-input" required />
-                                                <label for="Male" class="form-check-label">Male</label>
-                                            </div><div class="form-check">
-                                                <input type="radio" id="Female" name="Gender" value="false" class="form-check-input" required />
-                                                <label for="Female" class="form-check-label">Female</label>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="form-check">
-                                                <input type="radio" id="Male" name="Gender" value="true" class="form-check-input" required />
-                                                <label for="Male" class="form-check-label">Male</label>
-                                            </div><div class="form-check">
-                                                <input type="radio" id="Female" name="Gender" checked value="false" class="form-check-input" required />
-                                                <label for="Female" class="form-check-label">Female</label>
-                                            </div>}
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="DateOfBirth">Date of Birth:</label>
-                                        <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@date" required />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="Phone">Phone:</label>
-                                        <input type="tel" class="form-control" value="@userDto?.Phone" id="Phone" name="Phone" required />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="Address">Address:</label>
-                                        <input type="text" class="form-control" value="@userDto?.Address" id="Address" name="Address" required />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="City">City:</label>
-                                        <input type="text" class="form-control" id="City" value="@userDto?.City" name="City" required />
-                                    </div>
-
-                                    <button type="submit" id="Info_create" value="update" class="btn btn-primary mt-3">Create</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <div>
-                                <img src="/assets/img/avatars/avatar_default.jpeg" alt="profile picture" class="rounded-circle"
-                                     style="width: 150px; height: 150px">
-                            </div>
-                            <p class="card-title mt-2">Username: <b>@user?.UserName</b></p>
-                            <p class="card-title  mt-2">Email: @user?.Email</p>
-                            <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="Change password" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title col-md-4" style="white-space: nowrap;"><b>Infomation</b> </h4>
-                            <div>
-                                <form enctype="multipart/form-data">
-                                    <input hidden name="accId" value="@user?.Id" />
-                                    <div class="form-group">
-                                        <label>Gender:</label>
-                                        <div class="form-check">
-                                            <input type="radio" id="Male" name="Gender" value="true" class="form-check-input" required />
-                                            <label for="Male" class="form-check-label">Male</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="Female" name="Gender" value="false" class="form-check-input" required />
-                                            <label for="Female" class="form-check-label">Female</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="DateOfBirth">Date of Birth:</label>
-                                        <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" required />
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="Phone">Phone:</label>
-                                        <input type="tel" class="form-control" id="Phone" name="Phone" required />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="Address">Address:</label>
-                                        <input type="text" class="form-control" id="Address" name="Address" required />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="City">City:</label>
-                                        <input type="text" class="form-control" id="City" name="City" required />
-                                    </div>
-
-                                    <button type="submit" id="Info_create" value="Create" class="btn btn-primary mt-3">Create</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Change password</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-group" method="post" asp-action="ChangePassword">
-                                <input hidden name="accCode" value="@(userDto !=null ? @userDto?.Code : @user?.Code)" />
-                                <div class="mb-3">
-                                    <label for="oldPassword" class="form-label">Old password</label>
-                                    <input type="password" class="form-control" id="oldPassword" aria-describedby="emailHelp">
-                                    <div class="invalid-feedback p-2" id="alert-old" role="alert"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="newPassword" class="form-label">New password</label>
-                                    <input type="password" class="form-control" id="newPassword">
-                                    <div class="invalid-feedback p-2" id="alert-new" role="alert"></div>
-                                </div>
-                                <div class="mb-3 ">
-                                    <label for="confirmPassword" class="form-label">Confirm password</label>
-                                    <input type="password" class="form-control" id="confirmPassword">
-                                    <div class="invalid-feedback p-2" id="alert-con" role="alert"></div>
-                                </div>
-                                <input type="submit" id="ChangePass" value="Change" class="btn btn-secondary" disabled />
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
+                        <p class="card-title mt-2">Username: <b>@userDto?.UserName</b></p>
+                        <p class="card-title  mt-2">Email: @userDto?.Email</p>
+                        <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="Change password" />
                     </div>
                 </div>
             </div>
 
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title col-md-4" style="white-space: nowrap;"><b>Infomation</b> </h4>
+                        <div>
+                            <form enctype="multipart/form-data">
+                                <input hidden name="accId" value="@userDto?.Id" />
+                                <div class="form-group">
+                                    <label>Gender:</label>
+                                    @if (userDto?.Gender == true)
+                                    {
+                                        <div class="form-check">
+                                            <input type="radio" id="Male" name="Gender" checked value="true" class="form-check-input" required />
+                                            <label for="Male" class="form-check-label">Male</label>
+                                        </div><div class="form-check">
+                                            <input type="radio" id="Female" name="Gender" value="false" class="form-check-input" required />
+                                            <label for="Female" class="form-check-label">Female</label>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-check">
+                                            <input type="radio" id="Male" name="Gender" value="true" class="form-check-input" required />
+                                            <label for="Male" class="form-check-label">Male</label>
+                                        </div><div class="form-check">
+                                            <input type="radio" id="Female" name="Gender" checked value="false" class="form-check-input" required />
+                                            <label for="Female" class="form-check-label">Female</label>
+                                        </div>}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="DateOfBirth">Date of Birth:</label>
+                                    <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@date" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Phone">Phone:</label>
+                                    <input type="tel" class="form-control" value="@userDto?.Phone" id="Phone" name="Phone" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Address">Address:</label>
+                                    <input type="text" class="form-control" value="@userDto?.Address" id="Address" name="Address" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="City">City:</label>
+                                    <input type="text" class="form-control" id="City" value="@userDto?.City" name="City" required />
+                                </div>
+
+                                <button type="submit" id="Info_create" value="update" class="btn btn-primary mt-3">Create</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div>
+                            <img src="/assets/img/avatars/avatar_default.jpeg" alt="profile picture" class="rounded-circle"
+                                 style="width: 150px; height: 150px">
+                        </div>
+                        <p class="card-title mt-2">Username: <b>@user?.UserName</b></p>
+                        <p class="card-title  mt-2">Email: @user?.Email</p>
+                        <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="Change password" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title col-md-4" style="white-space: nowrap;"><b>Infomation</b> </h4>
+                        <div>
+                            <form enctype="multipart/form-data">
+                                <input hidden name="accId" value="@user?.Id" />
+                                <div class="form-group">
+                                    <label>Gender:</label>
+                                    <div class="form-check">
+                                        <input type="radio" id="Male" name="Gender" value="true" class="form-check-input" required />
+                                        <label for="Male" class="form-check-label">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" id="Female" name="Gender" value="false" class="form-check-input" required />
+                                        <label for="Female" class="form-check-label">Female</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="DateOfBirth">Date of Birth:</label>
+                                    <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" required />
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="Phone">Phone:</label>
+                                    <input type="tel" class="form-control" id="Phone" name="Phone" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Address">Address:</label>
+                                    <input type="text" class="form-control" id="Address" name="Address" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="City">City:</label>
+                                    <input type="text" class="form-control" id="City" name="City" required />
+                                </div>
+
+                                <button type="submit" id="Info_create" value="Create" class="btn btn-primary mt-3">Create</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Change password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group" method="post" asp-action="ChangePassword">
+                            <input hidden name="accCode" value="@(userDto !=null ? @userDto?.Code : @user?.Code)" />
+                            <div class="mb-3">
+                                <label for="oldPassword" class="form-label">Old password</label>
+                                <input type="password" class="form-control" id="oldPassword" aria-describedby="emailHelp">
+                                <div class="invalid-feedback p-2" id="alert-old" role="alert"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">New password</label>
+                                <input type="password" class="form-control" id="newPassword">
+                                <div class="invalid-feedback p-2" id="alert-new" role="alert"></div>
+                            </div>
+                            <div class="mb-3 ">
+                                <label for="confirmPassword" class="form-label">Confirm password</label>
+                                <input type="password" class="form-control" id="confirmPassword">
+                                <div class="invalid-feedback p-2" id="alert-con" role="alert"></div>
+                            </div>
+                            <input type="submit" id="ChangePass" value="Change" class="btn btn-secondary" disabled />
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 

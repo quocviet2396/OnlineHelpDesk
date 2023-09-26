@@ -206,7 +206,7 @@ namespace WebApp.Controllers
             }
             else
             {
-                TempData["res"] = result;
+                TempData["res"] = JsonConvert.SerializeObject(result);
                 return View();
             }
         }

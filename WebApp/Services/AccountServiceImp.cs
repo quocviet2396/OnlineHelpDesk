@@ -152,14 +152,21 @@ namespace WebApp.Services
 
         public async Task<Response<string>> ForgotPassword(string email)
         {
-            var result = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(email));
-            if (result != null)
+            if (email != null)
             {
-                return res = _helper.CreateResponse<string>("", true, result.Code);
+                var result = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(email));
+                if (result != null)
+                {
+                    return res = _helper.CreateResponse<string>("", true, result.Code);
+                }
+                else
+                {
+                    return res = _helper.CreateResponse<string>("Email is not valid!! Try again", false);
+                }
             }
             else
             {
-                return res = _helper.CreateResponse<string>("Email is not valid try again", false);
+                return res = _helper.CreateResponse<string>("Please enter email!! ", false);
             }
         }
 

@@ -3041,6 +3041,10 @@
       "PackagePath": "staticwebassets/images/attachment/ff4b0538-fbd0-440f-b988-fb6c34b63728_Screenshot 2023-07-30 225033.png"
     },
     {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/logo-apple-1.png",
+      "PackagePath": "staticwebassets/images/avatars/logo-apple-1.png"
+    },
+    {
       "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/testimonial-1.jpg",
       "PackagePath": "staticwebassets/images/testimonial-1.jpg"
     },

@@ -44,7 +44,7 @@ namespace WebApp.Services
                     Gender = c.userInfo.Gender,
                     DateOfBirth = c.userInfo.DateOfBirth,
                     Phone = c.userInfo.Phone,
-                    Photo = c.userInfo.Phone,
+                    Photo = c.userInfo.Photo,
                     Address = c.userInfo.Address,
                     City = c.userInfo.City
                 }).SingleOrDefault();
@@ -162,7 +162,7 @@ namespace WebApp.Services
                 }
 
                 var fileName = photo.Files["photo"].FileName;
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/assets/img/avatars", fileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/avatars", fileName);
 
                 // Kiểm tra tệp trùng lặp
                 if (!System.IO.File.Exists(filePath))
@@ -238,18 +238,37 @@ namespace WebApp.Services
         {
             try
             {
-                UserInfo userinfo = new UserInfo()
+                //UserInfo userinfo = new UserInfo()
+                //{
+                //    Address = form["Address"].FirstOrDefault() ?? null,
+                //    DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
+                //    City = form["City"].FirstOrDefault() ?? null,
+                //    Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
+                //    Phone = form["Phone"].FirstOrDefault() ?? null,
+                //    UserId = int.Parse(form["AccId"].FirstOrDefault()),
+                //};
+                Console.WriteLine(form["AccId"]);
+                var accIdd = int.TryParse(form["AccId"].FirstOrDefault(), out int accId) ? (int)accId : 0;
+                Console.WriteLine(accIdd);
+                var infoUser = _db.UserInfos.FirstOrDefault(u => u.UserId == accIdd);
+
+                if (form["ValueBtn"].FirstOrDefault() == "update" && infoUser != null)
                 {
-                    Address = form["Address"].FirstOrDefault() ?? null,
-                    DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
-                    City = form["City"].FirstOrDefault() ?? null,
-                    Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
-                    Phone = form["Phone"].FirstOrDefault() ?? null,
-                    UserId = int.Parse(form["AccId"].FirstOrDefault()),
-                };
+                    infoUser.Address = form["Address"].FirstOrDefault() ?? null;
+                    infoUser.DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth1) ? (DateTime?)parsedDateOfBirth1 : null;
+                    infoUser.City = form["City"].FirstOrDefault() ?? null;
+                    infoUser.Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender1) ? (bool?)parsedGender1 : null;
+                    infoUser.Phone = form["Phone"].FirstOrDefault() ?? null;
+                    _db.SaveChanges();
+                    return res = _helper.CreateResponse<string>("Update infomation successfully", true);
+                }
+                else
+                {
+                    //_db.UserInfos.Add(userinfo);
+                    _db.SaveChanges();
+                    return res = _helper.CreateResponse<string>("Add infomation successfully", true);
+                }
 
-
-                return res = _helper.CreateResponse<string>("Change password successfully", true);
             }
             catch (Exception ex)
             {

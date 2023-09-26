@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "u9zwIjrqELamNuPHcPU8SobsM/SfiXwRnetOsQnuiK0=",
+  "Hash": "0G65kUMvknoOofvRqGWxPPkGO34T/AnHton6OQ+uVDg=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -12952,6 +12952,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/attachment/Screenshot 2023-09-05 144224.png"
+    },
+    {
+      "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/logo-apple-1.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/avatars/logo-apple-1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/avatars/logo-apple-1.png"
     },
     {
       "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/testimonial-1.jpg",

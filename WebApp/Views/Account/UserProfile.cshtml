@@ -1,10 +1,21 @@
 ﻿@model LibraryModels.Users;
+@using System.Globalization;
 @{
     ViewData["Title"] = "Student";
     Layout = "_Layout";
 
     var user = ViewData["UserProfile"] as LibraryModels.Users;
     var userDto = ViewData["UserDtoProfile"] as LibraryModels.UserInfoDTO;
+    DateTime? dateOfBirth = userDto?.DateOfBirth;
+    if (dateOfBirth.HasValue) // Kiểm tra nếu giá trị không null
+    {
+        var date1 = DateTime.ParseExact(dateOfBirth.Value.ToString("yyyy-MM-dd"), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+    }
+    var date = userDto?.DateOfBirth != null
+    ? DateTime.TryParseExact(userDto?.DateOfBirth.ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth)
+        ? (DateTime?)parsedDateOfBirth
+        : (DateTime?)null
+    : (DateTime?)null;
 }
 
 <style>
@@ -21,7 +32,7 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <div>
-                                <img src="@userDto.Photo" alt="profile picture" class="rounded-circle"
+                                <img src="/images/avatars/z" alt="profile picture" class="rounded-circle"
                                      style="width: 150px; height: 150px">
                             </div>
                             <p class="card-title mt-2">Username: <b>@userDto?.UserName</b></p>
@@ -40,39 +51,45 @@
                                     <input hidden name="accId" value="@userDto?.Id" />
                                     <div class="form-group">
                                         <label>Gender:</label>
-                                        <div class="form-check">
-                                            <input type="radio" id="Male" name="Gender" value="true" class="form-check-input" required />
-                                            <label for="Male" class="form-check-label">Male</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="Female" name="Gender" value="false" class="form-check-input" required />
-                                            <label for="Female" class="form-check-label">Female</label>
-                                        </div>
+                                        @if (userDto?.Gender == true)
+                                        {
+                                            <div class="form-check">
+                                                <input type="radio" id="Male" name="Gender" checked value="true" class="form-check-input" required />
+                                                <label for="Male" class="form-check-label">Male</label>
+                                            </div><div class="form-check">
+                                                <input type="radio" id="Female" name="Gender" value="false" class="form-check-input" required />
+                                                <label for="Female" class="form-check-label">Female</label>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="form-check">
+                                                <input type="radio" id="Male" name="Gender" value="true" class="form-check-input" required />
+                                                <label for="Male" class="form-check-label">Male</label>
+                                            </div><div class="form-check">
+                                                <input type="radio" id="Female" name="Gender" checked value="false" class="form-check-input" required />
+                                                <label for="Female" class="form-check-label">Female</label>
+                                            </div>}
                                     </div>
 
                                     <div class="form-group">
                                         <label for="DateOfBirth">Date of Birth:</label>
-                                        <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" required />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="Photo">Photo:</label>
-                                        <input type="file" class="form-control" id="Photo" name="Photo" />
+                                        <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@date" required />
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Phone">Phone:</label>
-                                        <input type="tel" class="form-control" id="Phone" name="Phone" required />
+                                        <input type="tel" class="form-control" value="@userDto?.Phone" id="Phone" name="Phone" required />
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Address">Address:</label>
-                                        <input type="text" class="form-control" id="Address" name="Address" required />
+                                        <input type="text" class="form-control" value="@userDto?.Address" id="Address" name="Address" required />
                                     </div>
 
                                     <div class="form-group">
                                         <label for="City">City:</label>
-                                        <input type="text" class="form-control" id="City" name="City" required />
+                                        <input type="text" class="form-control" id="City" value="@userDto?.City" name="City" required />
                                     </div>
 
                                     <button type="submit" id="Info_create" value="update" class="btn btn-primary mt-3">Create</button>
@@ -121,10 +138,6 @@
                                         <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" required />
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="Photo">Photo:</label>
-                                        <input type="file" class="form-control" id="Photo" name="Photo" />
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="Phone">Phone:</label>
@@ -157,21 +170,21 @@
                         </div>
                         <div class="modal-body">
                             <form class="form-group" method="post" asp-action="ChangePassword">
-                                <input hidden name="accCode" value="@(userDto !=null) ? @userDto.?Id : @user?.Id" />
+                                <input hidden name="accCode" value="@(userDto !=null ? @userDto?.Code : @user?.Code)" />
                                 <div class="mb-3">
                                     <label for="oldPassword" class="form-label">Old password</label>
                                     <input type="password" class="form-control" id="oldPassword" aria-describedby="emailHelp">
-                                    <span class="alert" id="alert-old" hidden role="alert"></span>
+                                    <div class="invalid-feedback" id="alert-old" role="alert"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="newPassword" class="form-label">New password</label>
                                     <input type="password" class="form-control" id="newPassword">
-                                    <span class="alert" id="alert-new" hidden role="alert"></span>
+                                    <div class="invalid-feedback" id="alert-new" role="alert"></div>
                                 </div>
                                 <div class="mb-3 ">
                                     <label for="confirmPassword" class="form-label">Confirm password</label>
                                     <input type="password" class="form-control" id="confirmPassword">
-                                    <span class="alert" id="alert-con" hidden role="alert"></span>
+                                    <div class="invalid-feedback" id="alert-con" role="alert"></div>
                                 </div>
                                 <input type="submit" id="ChangePass" value="Change" class="btn btn-secondary" disabled />
                             </form>
@@ -199,7 +212,7 @@
             var conPas = ""
             var url = `/Account/CheckPassword`
 
-
+            console.log(accId);
 
             $("#oldPassword").on("change", () => {
                 var inputValue = $("#oldPassword").val();
@@ -216,9 +229,10 @@
                     success: (res) => {
                         var data = JSON.parse(res)
                         if (!data.Success) {
+                            console.log($("#alert-old"))
+                            $("#alert-old").show()
                             $("#alert-old").text(data.Msg)
                             $("#alert-old").addClass("alert-danger")
-                            $("#alert-old").show()
                         }
                         else {
                             $("#alert-old").hide()
@@ -320,7 +334,7 @@
                                 container: 'my-swal'
                             }
                         }).then((result) => {
-                            result.isConfirmed ? window.location.reload() : ""
+                            result.isConfirmed ? window.location.href("/Authen/Login") : ""
                         })
                     },
                     error: err => console.log(err)
@@ -333,7 +347,6 @@
                 var valueBtn = $("#Info_create").val();
                 var gender = $("input[name='Gender']:checked").val();
                 var dateOfBirth = $("#DateOfBirth").val();
-                var photo = $("#Photo")[0].files[0];
                 var phone = $("#Phone").val();
                 var address = $("#Address").val();
                 var city = $("#City").val();
@@ -344,10 +357,9 @@
                 var formData = new FormData();
 
                 formData.append("ValueBtn", valueBtn);
-                formData.append("AccId", accId);
+                formData.append("AccId", accId.val());
                 formData.append("Gender", gender);
                 formData.append("DateOfBirth", formattedDate);
-                formData.append("Photo", photo);
                 formData.append("Phone", phone);
                 formData.append("Address", address);
                 formData.append("City", city);
@@ -359,30 +371,28 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        console.log(response);
-                        //var data = JSON.parse(response)
-                        //if (data.Success) {
-                        //    Swal.fire({
-                        //        icon: "success",
-                        //        title: "Success",
-                        //        text: data.Msg,
-                        //        customClass: {
-                        //            container: 'my-swal'
-                        //        }
-                        //    }).then((result) => {
-                        //        result.isConfirmed ? window.location.reload() : ""
-                        //    })
-                        //} else {
-                        //    Swal.fire({
-                        //        icon: "error",
-                        //        title: "Oops",
-                        //        text: data.Msg,
-                        //        customClass: {
-                        //            container: 'my-swal'
-                        //        }
-                        //    })
-                        //}
-
+                        var data = JSON.parse(response)
+                        if (data.Success) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            }).then((result) => {
+                                result.isConfirmed ? window.location.reload() : ""
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            })
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);

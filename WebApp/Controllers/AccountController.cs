@@ -147,6 +147,11 @@ namespace WebApp.Controllers
             var accCode = newPassword["accCode"];
             var newPas = newPassword["newPass"];
             var res = await _account.ChangePassword(newPas, accCode);
+            if (res.Success)
+            {
+                HttpContext.Session.Remove("accCode");
+                HttpContext.Session.Remove("accEmail");
+            }
             var result = JsonConvert.SerializeObject(res);
             return Json(result);
         }
@@ -171,9 +176,10 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<JsonResult> InfoChange(IFormCollection form)
         {
-            var btn = form["ValueBtn"];
-            Console.WriteLine(btn);
-            return Json(btn);
+            Console.WriteLine(form["AccId"]);
+            var res = await _account.InfoChange(form);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
         }
     }
 }

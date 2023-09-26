@@ -238,16 +238,7 @@ namespace WebApp.Services
         {
             try
             {
-                //UserInfo userinfo = new UserInfo()
-                //{
-                //    Address = form["Address"].FirstOrDefault() ?? null,
-                //    DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
-                //    City = form["City"].FirstOrDefault() ?? null,
-                //    Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
-                //    Phone = form["Phone"].FirstOrDefault() ?? null,
-                //    UserId = int.Parse(form["AccId"].FirstOrDefault()),
-                //};
-                Console.WriteLine(form["AccId"]);
+
                 var accIdd = int.TryParse(form["AccId"].FirstOrDefault(), out int accId) ? (int)accId : 0;
                 Console.WriteLine(accIdd);
                 var infoUser = _db.UserInfos.FirstOrDefault(u => u.UserId == accIdd);
@@ -264,7 +255,16 @@ namespace WebApp.Services
                 }
                 else
                 {
-                    //_db.UserInfos.Add(userinfo);
+                    UserInfo userinfo = new UserInfo()
+                    {
+                        Address = form["Address"].FirstOrDefault() ?? null,
+                        DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
+                        City = form["City"].FirstOrDefault() ?? null,
+                        Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
+                        Phone = form["Phone"].FirstOrDefault() ?? null,
+                        UserId = int.Parse(form["AccId"].FirstOrDefault()),
+                    };
+                    _db.UserInfos.Add(userinfo);
                     _db.SaveChanges();
                     return res = _helper.CreateResponse<string>("Add infomation successfully", true);
                 }

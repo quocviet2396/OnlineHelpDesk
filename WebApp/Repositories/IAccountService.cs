@@ -21,6 +21,8 @@ namespace WebApp.Repositories
         Task<Response<string>> CheckPassword(string value, string key, string code, string newPas, string conPas);
 
         Task<Response<string>> ChangePassword(string pass, string code);
+
+        Task<Response<string>> ForgotPassword(string email);
     }
 }
 

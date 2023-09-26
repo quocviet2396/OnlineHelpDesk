@@ -13,11 +13,13 @@ namespace WebApp.Services
     {
         private readonly DatabaseContext _db;
         private readonly Helper _helper;
+        private readonly Mailultil _mailultil;
         public Response<string> res = new Response<string>();
-        public AccountServiceImp(DatabaseContext db, Helper helper)
+        public AccountServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil)
         {
             _db = db;
             _helper = helper;
+            _mailultil = mailultil;
         }
 
         public async Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort)
@@ -148,6 +150,18 @@ namespace WebApp.Services
             }
         }
 
+        public async Task<Response<string>> ForgotPassword(string email)
+        {
+            var result = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(email));
+            if (result != null)
+            {
+                return res = _helper.CreateResponse<string>("", true, result.Code);
+            }
+            else
+            {
+                return res = _helper.CreateResponse<string>("Email is not valid try again", false);
+            }
+        }
 
 
         public async Task<Response<string>> CheckPhoto(IFormCollection photo)

@@ -6,11 +6,6 @@
 
     var user = ViewData["UserProfile"] as LibraryModels.Users;
     var userDto = ViewData["UserDtoProfile"] as LibraryModels.UserInfoDTO;
-    DateTime? dateOfBirth = userDto?.DateOfBirth;
-    if (dateOfBirth.HasValue) // Kiểm tra nếu giá trị không null
-    {
-        var date1 = DateTime.ParseExact(dateOfBirth.Value.ToString("yyyy-MM-dd"), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-    }
     var date = userDto?.DateOfBirth != null
     ? DateTime.TryParseExact(userDto?.DateOfBirth.ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth)
         ? (DateTime?)parsedDateOfBirth
@@ -174,17 +169,17 @@
                                 <div class="mb-3">
                                     <label for="oldPassword" class="form-label">Old password</label>
                                     <input type="password" class="form-control" id="oldPassword" aria-describedby="emailHelp">
-                                    <div class="invalid-feedback" id="alert-old" role="alert"></div>
+                                    <div class="invalid-feedback p-2" id="alert-old" role="alert"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="newPassword" class="form-label">New password</label>
                                     <input type="password" class="form-control" id="newPassword">
-                                    <div class="invalid-feedback" id="alert-new" role="alert"></div>
+                                    <div class="invalid-feedback p-2" id="alert-new" role="alert"></div>
                                 </div>
                                 <div class="mb-3 ">
                                     <label for="confirmPassword" class="form-label">Confirm password</label>
                                     <input type="password" class="form-control" id="confirmPassword">
-                                    <div class="invalid-feedback" id="alert-con" role="alert"></div>
+                                    <div class="invalid-feedback p-2" id="alert-con" role="alert"></div>
                                 </div>
                                 <input type="submit" id="ChangePass" value="Change" class="btn btn-secondary" disabled />
                             </form>

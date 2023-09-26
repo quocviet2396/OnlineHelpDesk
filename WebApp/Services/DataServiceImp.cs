@@ -15,17 +15,13 @@ namespace WebApp.Services
         private readonly DatabaseContext _db;
         private readonly Helper _helper;
         private readonly Mailultil _mailultil;
-        [Obsolete]
-        private readonly IHostEnvironment _environment;
         public Response<string> res = new Response<string>();
 
-        [Obsolete]
-        public DataServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil, IHostEnvironment environment)
+        public DataServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil)
         {
             _db = db;
             _helper = helper;
             _mailultil = mailultil;
-            _environment = environment;
         }
 
         public async Task<ICollection<UsersInfo>> AllUser(int pageNumber, int? Limit, string currentSort)

@@ -132,7 +132,8 @@ namespace WebApp.Controllers
         {
             var additionalValue = data["additionalValue"];
             var inputValue = data["inputValue"];
-            var accCode = data["accCode"];
+            var code = HttpContext.Session.GetString("emailForgot");
+            var accCode = data["accCode"].FirstOrDefault() != null ? data["accCode"].FirstOrDefault() : code;
             var newPas = data["newPass"];
             var conPas = data["conPass"];
             var res = await _account.CheckPassword(inputValue, additionalValue, accCode, newPas, conPas);
@@ -180,6 +181,34 @@ namespace WebApp.Controllers
             var res = await _account.InfoChange(form);
             var result = JsonConvert.SerializeObject(res);
             return Json(result);
+        }
+
+        [HttpGet]
+        [Route("/ForgotPass")]
+        public IActionResult ForgotPassword()
+        { return View(); }
+
+        [HttpGet]
+        [Route("/ChangePassword")]
+        public IActionResult ChangePassword()
+        { return View(); }
+
+        [HttpPost]
+        [Route("/ForgotPass")]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            var result = await _account.ForgotPassword(email);
+            if (result.Success)
+            {
+
+                HttpContext.Session.SetString("emailForgot", result.Data);
+                return RedirectToAction("ChangePassword");
+            }
+            else
+            {
+                TempData["res"] = result;
+                return View();
+            }
         }
     }
 }

@@ -73,17 +73,15 @@ namespace WebApp.Services
                         UserInfo userInfo = new UserInfo()
                         {
                             Address = userinfo.Address,
-                            DateOfBirth = DateTime.ParseExact(userinfo.DateOfBirth.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                            DateOfBirth = DateTime.ParseExact(userinfo.DateOfBirth.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture),
                             Gender = userinfo.Gender,
                             Phone = userinfo.Phone,
-                            Photo = userinfo.Photo,
                             City = userinfo.City,
                             UserId = userId
                         };
                         _db.UserInfos.Add(userInfo);
                         _db.SaveChanges();
 
-                        Console.WriteLine(BCrypt.Net.BCrypt.Verify(pass, user.Password));
                         //string content = System.IO.File.ReadAllText("Mail/account.html");
                         //content = content.Replace("{{email}}", user.Email);
                         //content = content.Replace("{{password}}", pass);

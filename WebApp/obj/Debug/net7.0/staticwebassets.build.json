@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0G65kUMvknoOofvRqGWxPPkGO34T/AnHton6OQ+uVDg=",
+  "Hash": "+zc0Eud1A5edT+eApUNzt0Wv5bgIQzPriUSBkLbexjE=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -202,23 +202,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/img/avatars/7.png"
-    },
-    {
-      "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/assets/img/avatars/avatar_default.jpeg",
-      "SourceId": "WebApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/",
-      "BasePath": "_content/WebApp",
-      "RelativePath": "assets/img/avatars/avatar_default.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/assets/img/avatars/avatar_default.jpeg"
     },
     {
       "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/assets/img/avatars/logo-apple-1.png",
@@ -12240,6 +12223,23 @@
       "OriginalItemSpec": "wwwroot/fonts/boxicons.scss"
     },
     {
+      "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/.DS_Store",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/.DS_Store"
+    },
+    {
       "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/82e1b487-f553-404a-95f7-05004d924309_Screenshot 2023-07-26 093629.png",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
@@ -12952,6 +12952,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/attachment/Screenshot 2023-09-05 144224.png"
+    },
+    {
+      "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/avatar_default.jpeg",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/avatars/avatar_default.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/avatars/avatar_default.jpeg"
     },
     {
       "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/logo-apple-1.png",

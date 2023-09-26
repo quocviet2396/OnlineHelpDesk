@@ -22,7 +22,6 @@ namespace LibraryModels
         public bool Gender { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-MM-yyyy}")]
         public DateTime DateOfBirth { get; set; }
-        public string Photo { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

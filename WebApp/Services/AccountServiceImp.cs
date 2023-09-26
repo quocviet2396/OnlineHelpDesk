@@ -160,9 +160,11 @@ namespace WebApp.Services
                 {
                     return res = _helper.CreateResponse<string>("File size must be less than 2MB. Please choose a smaller file.", false);
                 }
-
                 var fileName = photo.Files["photo"].FileName;
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/avatars", fileName);
+                var fileExtension = Path.GetExtension(fileName); // Lấy phần mở rộng của tệp
+                var uniqueFileName = Guid.NewGuid().ToString() + fileExtension; // Tạo tên tệp mới không trùng
+
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/avatars", uniqueFileName);
 
                 // Kiểm tra tệp trùng lặp
                 if (!System.IO.File.Exists(filePath))
@@ -172,7 +174,7 @@ namespace WebApp.Services
                         await photo.Files["photo"].CopyToAsync(fileSteam);
                     }
                 }
-                return res = _helper.CreateResponse<string>("Upload file successfully", true, filePath);
+                return res = _helper.CreateResponse<string>("Upload file successfully", true, uniqueFileName);
             }
             else
             {
@@ -241,7 +243,7 @@ namespace WebApp.Services
 
                 var accIdd = int.TryParse(form["AccId"].FirstOrDefault(), out int accId) ? (int)accId : 0;
                 Console.WriteLine(accIdd);
-                var infoUser = _db.UserInfos.FirstOrDefault(u => u.UserId == accIdd);
+                var infoUser = await _db.UserInfos.FirstOrDefaultAsync(u => u.UserId == accIdd);
 
                 if (form["ValueBtn"].FirstOrDefault() == "update" && infoUser != null)
                 {

@@ -1,0 +1,97 @@
+﻿@model LibraryModels.Ticket
+@{
+    Layout = "_BackendLayout";
+}
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h1>Edit</h1>
+
+<h4>Ticket</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedDate" class="control-label"></label>
+                <input asp-for="ModifiedDate" class="form-control" name="dateTime" />
+                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Current Attachment:</label>
+                <img src="@Url.Content($"~/images/attachment/{Model.Attachment}")" class="img-thumbnail" width="100" height="100" />
+            </div>
+
+
+            <!-- Hộp tải lên tệp mới -->
+            <div class="form-group">
+                <label asp-for="Attachment" class="control-label"></label>
+                <input asp-for="Attachment" type="file" name="file"  class="form-control" />
+                <span asp-validation-for="Attachment" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="TicketStatusId" class="control-label"></label>
+                @if (ViewBag.AuthService != null && !ViewBag.AuthService.IsAdmin())
+                {
+                    <input asp-for="TicketStatusId" class="form-control" disabled />
+                }
+                else
+                {
+                    <select asp-for="TicketStatusId" class="form-control" asp-items="ViewBag.TicketStatusId"></select>
+                }
+                <span asp-validation-for="TicketStatusId" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatorId" class="control-label"></label>
+                <select asp-for="CreatorId" class="form-control" asp-items="ViewBag.CreatorId"></select>
+                <span asp-validation-for="CreatorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupporterId" class="control-label"></label>
+                <select asp-for="SupporterId" class="form-control" asp-items="ViewBag.SupporterEmails"></select>
+
+                <span asp-validation-for="SupporterId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

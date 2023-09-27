@@ -7,9 +7,9 @@ namespace WebApp.Repositories
     {
         public Task<ICollection<UsersInfo>> AllUser(int pageIndex, int? Limit, string currentSort);
 
-        public Task<Response> CreateStudent(List<string> Student_code);
+        public Task<Response<string>> CreateStudent(List<string> Student_code);
 
-        public Task<Response> CreateAccount(Users users);
+        public Task<Response<string>> CreateAccount(IFormCollection users);
 
         Task<List<string>> AccCode();
     }

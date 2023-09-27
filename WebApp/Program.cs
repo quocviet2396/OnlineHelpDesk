@@ -21,13 +21,7 @@ builder.Services.AddScoped<IAuthenService, AuthenServiceImp>();
 builder.Services.AddScoped<ITicketStatusServices, TicketStatusServicesImp>();
 builder.Services.AddScoped<IDataService, DataServiceImp>();
 builder.Services.AddScoped<IAccountService, AccountServiceImp>();
-builder.Services.AddScoped<INewsService, NewsServiceImp>();
-
-
-
-
-
-
+builder.Services.AddScoped<ITicket, TicketServiceImp>();
 builder.Services.AddScoped<Helper>();
 builder.Services.AddScoped<Mailultil>();
 

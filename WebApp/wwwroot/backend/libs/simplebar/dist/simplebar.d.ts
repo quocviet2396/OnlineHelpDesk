@@ -38,6 +38,8 @@ declare namespace SimpleBar {
 
 declare class SimpleBar {
     static removeObserver(): void;
+    
+
     constructor(element: HTMLElement, options?: SimpleBar.Options);
 
     recalculate(): void;

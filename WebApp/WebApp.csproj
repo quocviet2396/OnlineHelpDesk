@@ -531,7 +531,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj" />
+    <Reference Include="LibraryModels">
+      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

@@ -22,15 +22,12 @@ namespace WebApp.Database_helper
         public DbSet<TicketStatus> TicketStatus { get; set; }
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
-        public DbSet<News> News { get; set; }
-        public DbSet<Comments> Comments { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string url = "server=ADMIN-PC\\SQLEXPRESS04;database=OHDDb;uid=sa; pwd=123;TrustServerCertificate=true";
-            optionsBuilder.UseSqlServer(url);
+            string str = "server=DESKTOP-T6R536I\\SQLEXPRESS01; database=OHDDb; Trusted_Connection=true; TrustServerCertificate=true";
+            optionsBuilder.UseSqlServer(str);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -56,8 +53,6 @@ namespace WebApp.Database_helper
                  .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<News>().HasMany(_ => _.Comments).WithOne(a => a.News).HasForeignKey(a => a.NewId).OnDelete(DeleteBehavior.NoAction);
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbUsers"
             modelBuilder.Entity<Users>().HasData(
@@ -93,13 +88,13 @@ namespace WebApp.Database_helper
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbTicketStatus"
             modelBuilder.Entity<TicketStatus>().HasData(
-                new TicketStatus { Id = 1, Name = "Open", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 2, Name = "In progress", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 3, Name = "Pending", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 4, Name = "On hold", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 5, Name = "Rejected", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 6, Name = "Completed", Ticket = new List<Ticket>() },
-                new TicketStatus { Id = 7, Name = "Closed", Ticket = new List<Ticket>() }
+                new TicketStatus { Id = 1, Name = "Open" },
+                new TicketStatus { Id = 2, Name = "In progress" },
+                new TicketStatus { Id = 3, Name = "Pending" },
+                new TicketStatus { Id = 4, Name = "On hold" },
+                new TicketStatus { Id = 5, Name = "Rejected" },
+                new TicketStatus { Id = 6, Name = "Completed" },
+                new TicketStatus { Id = 7, Name = "Closed"}
             );
 
             var ids = 0;

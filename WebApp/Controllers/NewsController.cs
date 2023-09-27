@@ -30,7 +30,8 @@ namespace WebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _news.CreateNews(news);
+                var email = HttpContext.Session.GetString("accEmail")!=null? HttpContext.Session.GetString("accEmail"):"";
+                _news.CreateNews(news,email);
                 _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -75,7 +76,21 @@ _news.UpdateNews(news);
             return RedirectToAction("Index");
         }
 
-        
+        public async Task<IActionResult> NewsDetail(int id)
+        {
+            var newsItem = await _news.GetNewsById(id);
+            if (newsItem == null)
+            {
+                return NotFound();
+            }
+            return View(newsItem);
+        }
 
+        public async Task<IActionResult> News()
+        {
+            var allNews = _news.GetAllNews();
+
+            return View(allNews);
+        }
     }
 }

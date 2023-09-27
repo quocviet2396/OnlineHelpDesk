@@ -7,10 +7,11 @@ namespace WebApp.Repositories
         IEnumerable<News> GetAllNews();
 
         // Lấy thông tin chi tiết của một tin tức dựa trên ID
-        News GetNewsById(int id);
+
+        Task<News> GetNewsById(int id);
 
         // Tạo một tin tức mới
-        void CreateNews(News news);
+        void CreateNews(News news, string email);
 
         // Cập nhật thông tin của một tin tức
         void UpdateNews(News news);

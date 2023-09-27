@@ -1,4 +1,4 @@
-﻿using Bogus;
+using Bogus;
 using LibraryModels;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
@@ -22,11 +22,13 @@ namespace WebApp.Database_helper
         public DbSet<TicketStatus> TicketStatus { get; set; }
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<News> News { get; set; }
+       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=DESKTOP-T6R536I\\SQLEXPRESS01; database=OHDDb; Trusted_Connection=true; TrustServerCertificate=true";
+            string str = "server=ADMIN-PC\\SQLEXPRESS04; database=OHDDb; Trusted_Connection=true; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 
@@ -94,7 +96,7 @@ namespace WebApp.Database_helper
                 new TicketStatus { Id = 4, Name = "On hold" },
                 new TicketStatus { Id = 5, Name = "Rejected" },
                 new TicketStatus { Id = 6, Name = "Completed" },
-                new TicketStatus { Id = 7, Name = "Closed"}
+                new TicketStatus { Id = 7, Name = "Closed" }
             );
 
             var ids = 0;

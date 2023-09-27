@@ -10,7 +10,6 @@
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
           "Bogus": "34.0.2",
-          "LibraryModels": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "7.0.11",
           "Microsoft.EntityFrameworkCore": "7.0.11",
           "Microsoft.EntityFrameworkCore.Design": "7.0.11",
@@ -18,7 +17,8 @@
           "Microsoft.EntityFrameworkCore.Tools": "7.0.11",
           "Microsoft.TypeScript.MSBuild": "5.2.2",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.10",
-          "Newtonsoft.Json": "13.0.3"
+          "Newtonsoft.Json": "13.0.3",
+          "LibraryModels": "1.0.0.0"
         },
         "runtime": {
           "WebApp.dll": {}
@@ -2554,9 +2554,12 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "LibraryModels/1.0.0": {
+      "LibraryModels/1.0.0.0": {
         "runtime": {
-          "LibraryModels.dll": {}
+          "LibraryModels.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -4163,8 +4166,8 @@
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
-    "LibraryModels/1.0.0": {
-      "type": "project",
+    "LibraryModels/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

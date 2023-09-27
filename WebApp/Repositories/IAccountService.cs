@@ -12,7 +12,7 @@ namespace WebApp.Repositories
 
         Task<Response<string>> CreateAccount(IFormCollection users);
 
-        Task<Response<string>> CheckPhoto(IFormCollection photo);
+        Task<Response<string>> CheckPhoto(IFormFile photo);
 
         Task<Response<string>> InfoChange(IFormCollection form);
 
@@ -23,6 +23,8 @@ namespace WebApp.Repositories
         Task<Response<string>> ChangePassword(string pass, string code);
 
         Task<Response<string>> ForgotPassword(string email);
+
+        Task<Response<string>> ChangeAvatar(IFormCollection avatar);
     }
 }
 

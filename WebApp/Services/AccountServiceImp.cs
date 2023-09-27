@@ -171,17 +171,17 @@ namespace WebApp.Services
         }
 
 
-        public async Task<Response<string>> CheckPhoto(IFormCollection photo)
+        public async Task<Response<string>> CheckPhoto(IFormFile photo)
         {
-            if (photo.Files["photo"] != null)
+            if (photo != null)
             {
-                long fileSize = photo.Files["photo"].Length;
+                long fileSize = photo.Length;
                 long maxSize = 2 * 1024 * 1024;
                 if (fileSize > maxSize)
                 {
                     return res = _helper.CreateResponse<string>("File size must be less than 2MB. Please choose a smaller file.", false);
                 }
-                var fileName = photo.Files["photo"].FileName;
+                var fileName = photo.FileName;
                 var fileExtension = Path.GetExtension(fileName); // Lấy phần mở rộng của tệp
                 var uniqueFileName = Guid.NewGuid().ToString() + fileExtension; // Tạo tên tệp mới không trùng
 
@@ -192,7 +192,7 @@ namespace WebApp.Services
                 {
                     using (var fileSteam = new FileStream(filePath, FileMode.Create))
                     {
-                        await photo.Files["photo"].CopyToAsync(fileSteam);
+                        await photo.CopyToAsync(fileSteam);
                     }
                 }
                 return res = _helper.CreateResponse<string>("Upload file successfully", true, uniqueFileName);
@@ -212,7 +212,7 @@ namespace WebApp.Services
                     return res = _helper.CreateResponse<string>("Field is not blank", false);
                 }
 
-                var checkphoto = await CheckPhoto(users);
+                var checkphoto = await CheckPhoto(users.Files["Photo"]);
                 var filePath = checkphoto.Data;
                 var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(users["Email"].FirstOrDefault()));
                 if (hasEmail != null)
@@ -263,7 +263,6 @@ namespace WebApp.Services
             {
 
                 var accIdd = int.TryParse(form["AccId"].FirstOrDefault(), out int accId) ? (int)accId : 0;
-                Console.WriteLine(accIdd);
                 var infoUser = await _db.UserInfos.FirstOrDefaultAsync(u => u.UserId == accIdd);
 
                 if (form["ValueBtn"].FirstOrDefault() == "update" && infoUser != null)
@@ -292,6 +291,39 @@ namespace WebApp.Services
                     return res = _helper.CreateResponse<string>("Add infomation successfully", true);
                 }
 
+            }
+            catch (Exception ex)
+            {
+                return res = _helper.CreateResponse<string>(ex.Message, false);
+            }
+        }
+
+
+        public async Task<Response<string>> ChangeAvatar(IFormCollection avatar)
+        {
+            try
+            {
+                var accIdd = int.TryParse(avatar["AccId"].FirstOrDefault(), out int accId) ? (int)accId : 0;
+                var checkphoto = await CheckPhoto(avatar.Files["photo"]);
+                var userInfo = await _db.UserInfos.FirstOrDefaultAsync(u => u.UserId == accIdd);
+                if (userInfo != null)
+                {
+                    userInfo.Photo = checkphoto.Data;
+                    _db.SaveChanges();
+                }
+                else
+                {
+
+                    UserInfo userinfo = new UserInfo();
+                    userinfo.Photo = checkphoto.Data;
+                    userinfo.UserId = accIdd;
+
+
+                    _db.UserInfos.Add(userinfo);
+                    _db.SaveChanges();
+                }
+
+                return res = _helper.CreateResponse<string>("Change avatar successfully", true);
             }
             catch (Exception ex)
             {

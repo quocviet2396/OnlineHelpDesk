@@ -3041,8 +3041,88 @@
       "PackagePath": "staticwebassets/images/attachment/ff4b0538-fbd0-440f-b988-fb6c34b63728_Screenshot 2023-07-30 225033.png"
     },
     {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/005cb785-ed0e-47b1-81fc-8e247f8e90c8.png",
+      "PackagePath": "staticwebassets/images/avatars/005cb785-ed0e-47b1-81fc-8e247f8e90c8.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/060741d1-ac14-4edd-8f64-cc19be2efbcc.png",
+      "PackagePath": "staticwebassets/images/avatars/060741d1-ac14-4edd-8f64-cc19be2efbcc.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/0706eebe-58de-4403-9b0b-87a5732596a1.png",
+      "PackagePath": "staticwebassets/images/avatars/0706eebe-58de-4403-9b0b-87a5732596a1.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/0cfd6a41-4ddd-4f9c-8b76-e6c4c274ded3.png",
+      "PackagePath": "staticwebassets/images/avatars/0cfd6a41-4ddd-4f9c-8b76-e6c4c274ded3.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/11cdd2ed-044e-4e81-95fd-dc4751381e87.png",
+      "PackagePath": "staticwebassets/images/avatars/11cdd2ed-044e-4e81-95fd-dc4751381e87.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/16c785c3-3054-4c46-a677-eb95e9c56124.png",
+      "PackagePath": "staticwebassets/images/avatars/16c785c3-3054-4c46-a677-eb95e9c56124.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/22858276-1fae-4207-a087-27c31f396be0.png",
+      "PackagePath": "staticwebassets/images/avatars/22858276-1fae-4207-a087-27c31f396be0.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/38ad2cc5-37a5-408d-804e-665b65946490.png",
+      "PackagePath": "staticwebassets/images/avatars/38ad2cc5-37a5-408d-804e-665b65946490.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/3f9e8a9b-b9c2-4029-b32b-79813503452a.png",
+      "PackagePath": "staticwebassets/images/avatars/3f9e8a9b-b9c2-4029-b32b-79813503452a.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/47d31e0d-8052-419b-9525-28fe39264b25.png",
+      "PackagePath": "staticwebassets/images/avatars/47d31e0d-8052-419b-9525-28fe39264b25.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/53f87625-f32c-4d54-aaa4-d5f0183a20b0.png",
+      "PackagePath": "staticwebassets/images/avatars/53f87625-f32c-4d54-aaa4-d5f0183a20b0.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/580741a5-294c-4889-b6ef-bea30bfa1145.png",
+      "PackagePath": "staticwebassets/images/avatars/580741a5-294c-4889-b6ef-bea30bfa1145.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/64d24fff-7076-4c70-a263-837b693a2593.png",
+      "PackagePath": "staticwebassets/images/avatars/64d24fff-7076-4c70-a263-837b693a2593.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/7ee7ad32-771c-4bc0-8baa-97d2e4307ea9.png",
+      "PackagePath": "staticwebassets/images/avatars/7ee7ad32-771c-4bc0-8baa-97d2e4307ea9.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/9fcf9bb2-ef40-4822-971d-e120a4ca8670.png",
+      "PackagePath": "staticwebassets/images/avatars/9fcf9bb2-ef40-4822-971d-e120a4ca8670.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/a2219519-0374-496a-9009-7e1aa676e547.png",
+      "PackagePath": "staticwebassets/images/avatars/a2219519-0374-496a-9009-7e1aa676e547.png"
+    },
+    {
       "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/avatar_default.jpeg",
       "PackagePath": "staticwebassets/images/avatars/avatar_default.jpeg"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/b0a0013c-f3c3-4b2d-b0b0-de159b55ff47.png",
+      "PackagePath": "staticwebassets/images/avatars/b0a0013c-f3c3-4b2d-b0b0-de159b55ff47.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/b1ed196d-0240-45b5-af6c-9f7d70715366.png",
+      "PackagePath": "staticwebassets/images/avatars/b1ed196d-0240-45b5-af6c-9f7d70715366.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/daf95d17-02ae-40a6-a3d7-46a3b6ce0a1d.png",
+      "PackagePath": "staticwebassets/images/avatars/daf95d17-02ae-40a6-a3d7-46a3b6ce0a1d.png"
+    },
+    {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/ee896db8-463f-4c54-aafa-dc4bd2ccaed8.png",
+      "PackagePath": "staticwebassets/images/avatars/ee896db8-463f-4c54-aafa-dc4bd2ccaed8.png"
     },
     {
       "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/images/avatars/logo-apple-1.png",

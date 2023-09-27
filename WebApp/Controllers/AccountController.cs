@@ -169,7 +169,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<JsonResult> CheckPhoto(IFormCollection data)
         {
-            var res = await _account.CheckPhoto(data);
+            var res = await _account.CheckPhoto(data.Files["Photo"]);
             var result = JsonConvert.SerializeObject(res);
             return Json(result);
         }
@@ -177,7 +177,6 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<JsonResult> InfoChange(IFormCollection form)
         {
-            Console.WriteLine(form["AccId"]);
             var res = await _account.InfoChange(form);
             var result = JsonConvert.SerializeObject(res);
             return Json(result);
@@ -209,6 +208,14 @@ namespace WebApp.Controllers
                 TempData["res"] = JsonConvert.SerializeObject(result);
                 return View();
             }
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ChangeAvatar(IFormCollection avatar)
+        {
+            var res = await _account.ChangeAvatar(avatar);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
         }
     }
 }

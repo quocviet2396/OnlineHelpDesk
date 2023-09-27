@@ -251,7 +251,7 @@
                         if (data) {
                             username.text(data.UserName)
                             email.text("Email:  " + data.Email)
-                            avarta.attr("src", `/images/avatars/data.Photo ? data.Photo : avatar_default.jpeg`)
+                            avarta.attr("src", `~/images/avatars/data.Photo ? data.Photo : avatar_default.jpeg`)
                             phone.text("Phone:  " + data.Phone)
                             address.text("Address:  " + data.Address)
                             city.text("City:  " + data.City)
@@ -354,16 +354,17 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        console.log(response);
                         var data = JSON.parse(response)
-                        Swal.fire({
-                            icon: data.Success ? "success" : "error",
-                            title: data.Success ? "Success" : "Oops",
-                            text: data.Msg,
-                            customClass: {
-                                container: 'my-swal'
-                            }
-                        })
+                        if (!data.Success) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            })
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);

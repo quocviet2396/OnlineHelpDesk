@@ -12,6 +12,8 @@
     <None Remove="Ultils\" />
     <None Remove="Views\Data\" />
     <None Remove="Views\Account\" />
+    <None Remove="Views\Priority\" />
+    <None Remove="Views\Facilities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
@@ -528,6 +530,8 @@
     <Folder Include="Ultils\" />
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\Priority\" />
+    <Folder Include="Views\Facilities\" />
   </ItemGroup>
 
   <ItemGroup>

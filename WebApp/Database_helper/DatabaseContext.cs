@@ -26,8 +26,8 @@ namespace WebApp.Database_helper
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=DESKTOP-T6R536I\\SQLEXPRESS01; database=OHDDb; Trusted_Connection=true; TrustServerCertificate=true";
-            optionsBuilder.UseSqlServer(str);
+            string url = "server=localhost;database=OHDDb;uid=sa; pwd=123456aA@$;TrustServerCertificate=true";
+            optionsBuilder.UseSqlServer(url);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

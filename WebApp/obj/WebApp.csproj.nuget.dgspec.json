@@ -1,27 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {}
+    "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {
+    "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
-        "packagesPath": "C:\\Users\\T490\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\obj\\",
+        "projectPath": "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/WebApp.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\T490\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
+          "/usr/local/share/dotnet/sdk/7.0.308/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -106,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
         }
       }
     }

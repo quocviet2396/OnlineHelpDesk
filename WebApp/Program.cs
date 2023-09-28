@@ -24,6 +24,8 @@ builder.Services.AddScoped<IAccountService, AccountServiceImp>();
 builder.Services.AddScoped<ITicket, TicketServiceImp>();
 builder.Services.AddScoped<Helper>();
 builder.Services.AddScoped<Mailultil>();
+builder.Services.AddScoped<IPriorityServices, PriorityServicesImp>();
+builder.Services.AddScoped<IFacilitiesServices, FacilitiesServiceImp>();
 
 var app = builder.Build();
 

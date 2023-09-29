@@ -20,6 +20,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IAuthenService, AuthenServiceImp>();
 builder.Services.AddScoped<ITicketStatusServices, TicketStatusServicesImp>();
 builder.Services.AddScoped<IPriorityServices, PriorityServicesImp>();
+builder.Services.AddScoped<IFacilitiesServices, FacilitiesServiceImp>();
 builder.Services.AddScoped<IDataService, DataServiceImp>();
 builder.Services.AddScoped<IAccountService, AccountServiceImp>();
 builder.Services.AddScoped<ITicket, TicketServiceImp>();
@@ -45,6 +46,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Frontend}/{action=Index}/{id?}");
 
 app.Run();

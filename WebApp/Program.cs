@@ -3,6 +3,7 @@ using WebApp.Repositories;
 using WebApp.Services;
 using WebApp.Ultils;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,11 +17,13 @@ builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
 
+
 // Add DI
 builder.Services.AddScoped<IAuthenService, AuthenServiceImp>();
 builder.Services.AddScoped<ITicketStatusServices, TicketStatusServicesImp>();
 builder.Services.AddScoped<IDataService, DataServiceImp>();
 builder.Services.AddScoped<IAccountService, AccountServiceImp>();
+builder.Services.AddScoped<ITicket, TicketServiceImp>();
 builder.Services.AddScoped<Helper>();
 builder.Services.AddScoped<Mailultil>();
 

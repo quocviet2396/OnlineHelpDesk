@@ -1,17 +1,19 @@
 ﻿@model LibraryModels.Ticket
 @{
-    Layout = "_Layout - Copy";
+    Layout = "Frontend";
 }
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Ticket</h4>
 <hr />
+<div class="container">
+    
 <div class="row">
-    <div class="col-md-4">
+        
+        <div class="col-md-5 mx-auto">
+            <h1>Send Ticket</h1>
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -40,8 +42,8 @@
                 <span asp-validation-for="Attachment" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TicketStatusId" class="control-label"></label>
-                <select asp-for="TicketStatusId" class ="form-control" asp-items="ViewBag.TicketStatusId"></select>
+                <label asp-for="TicketStatusId" hidden class="control-label"></label>
+                <select asp-for="TicketStatusId" hidden class ="form-control" asp-items="ViewBag.TicketStatusId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
@@ -55,13 +57,17 @@
                 <label asp-for="SupporterId"  hidden class="control-label"></label>
                 <select asp-for="SupporterId" hidden class ="form-control" asp-items="ViewBag.SupporterId"></select>
             </div>
+                <div class="form-group">
+                    <label asp-for="PriorityId" hidden class="control-label"></label>
+                    <select asp-for="PriorityId" hidden class="form-control" asp-items="ViewBag.Pro"></select>
+                </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Send" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+</div>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

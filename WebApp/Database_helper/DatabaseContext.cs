@@ -26,7 +26,7 @@ namespace WebApp.Database_helper
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=DESKTOP-F4OHHB4\\MSSQLSERVER01; database=OHDDb; Trusted_Connection=true; TrustServerCertificate=true";
+            string str = "server=DESKTOP-F4OHHB4\\MSSQLSERVER01; database=OHDDb1; Trusted_Connection=true; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 
@@ -45,6 +45,7 @@ namespace WebApp.Database_helper
                  .WithMany()
                  .HasForeignKey(t => t.SupporterId)
                  .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Ticket>().HasOne(i=>i.Priority).WithMany(o=>o.Ticket).HasForeignKey(t => t.PriorityId).OnDelete(DeleteBehavior.NoAction); ;
 
             modelBuilder.Entity<Discussion>()
                  .HasOne(d => d.Ticket)

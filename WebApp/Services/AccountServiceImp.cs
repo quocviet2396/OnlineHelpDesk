@@ -12,7 +12,7 @@ namespace WebApp.Services
     {
         private readonly DatabaseContext _db;
         private readonly Helper _helper;
-        public Response res = new Response();
+        public Response<string> res = new Response<string>();
         public AccountServiceImp(DatabaseContext db, Helper helper)
         {
             _db = db;
@@ -55,7 +55,7 @@ namespace WebApp.Services
         }
 
 
-        public async Task<Response> ResetPassword(string code)
+        public async Task<Response<string>> ResetPassword(string code)
         {
             try
             {
@@ -64,17 +64,17 @@ namespace WebApp.Services
                 {
                     user.Password = BCrypt.Net.BCrypt.HashPassword("123456");
                     _db.SaveChanges();
-                    return res = _helper.CreateResponse("Success", true);
+                    return res = _helper.CreateResponse<string>("Success", true);
                 }
-                else { return res = _helper.CreateResponse("Failure", false); }
+                else { return res = _helper.CreateResponse<string>("Failure", false); }
             }
             catch (Exception ex)
             {
-                return res = _helper.CreateResponse(ex.Message, false);
+                return res = _helper.CreateResponse<string>(ex.Message, false);
             }
         }
 
-        public async Task<Response> CheckPassword(string value, string key, string code, string newPas, string conPas)
+        public async Task<Response<string>> CheckPassword(string value, string key, string code, string newPas, string conPas)
         {
             var oldPass = await _db.Users.FirstOrDefaultAsync(p => p.Code == code);
             switch (key)
@@ -83,45 +83,46 @@ namespace WebApp.Services
                     var result = oldPass != null ? BCrypt.Net.BCrypt.Verify(value, oldPass.Password) : false;
                     if (result)
                     {
-                        return res = _helper.CreateResponse("", result);
+                        return res = _helper.CreateResponse<string>("", result);
                     }
                     else
                     {
-                        return res = _helper.CreateResponse("Old password is not valid", result);
+                        return res = _helper.CreateResponse<string>("Old password is not valid", result);
                     }
                 case "newPassword":
                     var result2 = BCrypt.Net.BCrypt.Verify(value, oldPass.Password);
                     var result3 = conPas == value;
                     if (result2)
                     {
-                        return res = _helper.CreateResponse("The new password cannot be the same as the old password", !result2);
+                        return res = _helper.CreateResponse<string>("The new password cannot be the same as the old password", !result2);
                     }
                     else if (result3)
                     {
-                        return res = _helper.CreateResponse("", result3);
+                        return res = _helper.CreateResponse<string>("", result3);
                     }
                     else
                     {
-                        return res = _helper.CreateResponse("Confirm password not same", result3);
+                        return res = _helper.CreateResponse<string>("Confirm password not same", result3);
 
                     }
                 case "confirmPassword":
                     var result4 = newPas == value;
                     if (result4)
                     {
-                        return res = _helper.CreateResponse("", result4);
+                        return res = _helper.CreateResponse<string>("", result4);
                     }
                     else
                     {
-                        return res = _helper.CreateResponse("Confirm password not same", result4);
+                        return res = _helper.CreateResponse<string>("Confirm password not same", result4);
                     }
                 default:
                     break;
             }
-            return res = _helper.CreateResponse("fail", false);
+            return res = _helper.CreateResponse<string>("fail", false);
         }
 
-        public async Task<Response> ChangePassword(string pass, string code)
+
+        public async Task<Response<string>> ChangePassword(string pass, string code)
         {
             try
             {
@@ -130,19 +131,21 @@ namespace WebApp.Services
                 {
                     user.Password = BCrypt.Net.BCrypt.HashPassword(pass);
                     _db.SaveChanges();
-                    return res = _helper.CreateResponse("Change password successfully", true);
+                    return res = _helper.CreateResponse<string>("Change password successfully", true);
                 }
                 else
                 {
-                    return res = _helper.CreateResponse("Some thing wrongs", false);
+                    return res = _helper.CreateResponse<string>("Some thing wrongs", false);
                 }
             }
             catch (Exception ex)
             {
 
-                return res = _helper.CreateResponse(ex.Message, false);
+                return res = _helper.CreateResponse<string>(ex.Message, false);
             }
         }
+
+
     }
 }
 

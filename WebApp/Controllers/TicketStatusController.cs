@@ -60,13 +60,10 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] TicketStatus ticketStatus)
         {
-            if (!ModelState.IsValid)
-            {
+            
                 _context.Add(ticketStatus);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(ticketStatus);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -93,8 +90,6 @@ namespace WebApp.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
-            {
                 try
                 {
                     _context.Update(ticketStatus);
@@ -112,8 +107,6 @@ namespace WebApp.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(ticketStatus);
         }
 
 

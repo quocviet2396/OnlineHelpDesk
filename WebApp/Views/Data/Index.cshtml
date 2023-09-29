@@ -9,7 +9,7 @@
     Layout = "_Layout";
     var ids = 1;
     var resJson = TempData["response"] as string;
-    var res = resJson != null ? JsonConvert.DeserializeObject<LibraryModels.Response>(resJson) : new LibraryModels.Response() { Msg = "", Success = false };
+    var res = resJson != null ? JsonConvert.DeserializeObject<LibraryModels.Response<string>>(resJson) : new LibraryModels.Response<string>() { Msg = "", Success = false };
     var AccCode = ViewData["AccCode"] as List<string>;
 }
 

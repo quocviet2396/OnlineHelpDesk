@@ -17,6 +17,6 @@ namespace LibraryModels
         public string Name { get; set; }
 
         // Mối quan hệ một-nhiều với Ticket (Yêu cầu hỗ trợ)
-        public ICollection<Ticket> Ticket { get; set; }
+        public ICollection<Ticket>? Ticket { get; set; }
     }
 }

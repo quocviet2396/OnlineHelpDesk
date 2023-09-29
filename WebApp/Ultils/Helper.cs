@@ -23,25 +23,15 @@ namespace WebApp.Ultils
         }
 
 
-        public string CreateEmail(string firstname, string lastname, DateTime dob)
+        public string CreateEmail(string firstname, string lastname)
         {
-            DateTime dateTime = DateTime.ParseExact(dob.ToString(), "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
 
-            int year = dateTime.Year;
-            int month = dateTime.Month;
-
-            // Lấy hai chữ số cuối cùng của năm
-            string lastTwoDigitsOfYear = year.ToString().Substring(2);
-
-            // Kết quả
-            string Dob = lastTwoDigitsOfYear + month.ToString("D2");
-            // Loại bỏ các ký tự không hợp lệ từ firstname và lastname (nếu cần)
             string Fname = firstname.ToLower();
             string Lname = lastname.ToLower();
             Random random = new Random();
             string randomNumber = random.Next(10, 99).ToString();
 
-            string email = $"{Fname}{Lname}{Dob}{randomNumber}@gmail.com";
+            string email = $"{Fname}{Lname}{randomNumber}@gmail.com";
 
             return email;
         }
@@ -61,12 +51,13 @@ namespace WebApp.Ultils
             return password;
         }
 
-        public Response CreateResponse(string mes, bool success)
+        public Response<T> CreateResponse<T>(string mes, bool success, T? data = default)
         {
-            return new Response
+            return new Response<T>
             {
                 Success = success,
-                Msg = mes
+                Msg = mes,
+                Data = data
             };
         }
 

@@ -529,6 +529,7 @@
     <Folder Include="Ultils\" />
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="wwwroot\images\avatars\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -542,4 +543,7 @@
     <TypeScriptCompile Include="wwwroot\backend\libs\simplebar\dist\simplebar.d.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\images\avatars\" />
+  </ItemGroup>
 </Project>

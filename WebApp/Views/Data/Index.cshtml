@@ -39,7 +39,6 @@
                             <th>Email</th>
                             <th>Student_code</th>
                             <th>Address</th>
-                            <th>Photo</th>
                             <th>Phone</th>
                             <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_City","City")">City</a></th>
                             <th>Dateofbirth</th>
@@ -56,7 +55,6 @@
                                 <td>@HelperService.AnEmail(@item.Email, 4)</td>
                                 <td>@item.Student_code</td>
                                 <td>@item.Address</td>
-                                <td><img src="@item.Photo" /></td>
                                 <td>@item.Phone</td>
                                 <td>@item.City</td>
                                 <td>@item.DateOfBirth</td>

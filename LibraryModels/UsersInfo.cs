@@ -20,9 +20,8 @@ namespace LibraryModels
         public string Email { get; set; }
         public string Student_code { get; set; }
         public bool Gender { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-MM-yyyy}")]
         public DateTime DateOfBirth { get; set; }
-        public string Photo { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

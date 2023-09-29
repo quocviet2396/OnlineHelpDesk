@@ -19,6 +19,7 @@ builder.Services.AddHttpContextAccessor();
 // Add DI
 builder.Services.AddScoped<IAuthenService, AuthenServiceImp>();
 builder.Services.AddScoped<ITicketStatusServices, TicketStatusServicesImp>();
+builder.Services.AddScoped<IPriorityServices, PriorityServicesImp>();
 builder.Services.AddScoped<IDataService, DataServiceImp>();
 builder.Services.AddScoped<IAccountService, AccountServiceImp>();
 builder.Services.AddScoped<ITicket, TicketServiceImp>();

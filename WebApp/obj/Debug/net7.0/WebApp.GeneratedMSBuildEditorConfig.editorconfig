@@ -36,6 +36,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Facilities/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjaWxpdGllc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Facilities/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjaWxpdGllc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Facilities/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjaWxpdGllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Frontend/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJvbnRlbmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,6 +78,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/Views/News/UpdateNews.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xVcGRhdGVOZXdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Priority/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpb3JpdHlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Priority/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpb3JpdHlcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Priority/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpb3JpdHlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Shared/Error.cshtml]

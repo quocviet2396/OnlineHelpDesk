@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApp.Database_helper;
 using Microsoft.EntityFrameworkCore;
 
+using System.Drawing.Printing;
+
 namespace WebApp.Controllers
 {
     public class TicketController : Controller
@@ -25,6 +27,8 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            
+
             if (!authService.IsUserLoggedIn())
             {
                 return RedirectToAction("Login", "Authen");
@@ -32,15 +36,17 @@ namespace WebApp.Controllers
 
             if (authService.IsAdmin())
             {
+                ViewData["Layout"] = "_BackendLayout";
                 var tickets = await context.Ticket
-                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp=>sp.Supporter)
-                    .OrderByDescending(t => t.CreateDate)
+                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp=>sp.Supporter).Include(pr=>pr.Priority)
+                .OrderByDescending(t => t.CreateDate)
                     .ToListAsync();
 
                 return View(tickets);
             }
             else if (authService.IsSupporter())
             {
+                ViewData["Layout"] = "_BackendLayout";
                 string supporterEmail = HttpContext.Session.GetString("accEmail");
 
                 if (string.IsNullOrEmpty(supporterEmail))
@@ -52,7 +58,7 @@ namespace WebApp.Controllers
                 ViewBag.AccountName = supporterEmail;
 
                 var tickets = await context.Ticket
-                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus)
+                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter).Include(pr => pr.Priority)
                     .Where(t => t.Supporter.Email == supporterEmail)
                     .OrderByDescending(t => t.CreateDate)
                     .ToListAsync();
@@ -61,6 +67,8 @@ namespace WebApp.Controllers
             }
             else
             {
+                ViewBag.us = "hidden";
+                ViewData["Layout"] = "Frontend";
                 // Nếu người dùng không phải là "admin" hoặc "supporter", chỉ hiển thị danh sách ticket của họ
                 string userEmail = HttpContext.Session.GetString("accEmail");
 
@@ -73,13 +81,14 @@ namespace WebApp.Controllers
                 ViewBag.AccountName = userEmail;
 
                 var tickets = await context.Ticket
-                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus)
+                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter).Include(pr => pr.Priority)
                     .Where(t => t.Creator.Email == userEmail)
                     .OrderByDescending(t => t.CreateDate)
                     .ToListAsync();
 
                 return View(tickets);
             }
+
         }
 
 
@@ -87,7 +96,24 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var ticket = await ticketService.GetTicketById(id);
+            if (!authService.IsUserLoggedIn())
+            {
+                return RedirectToAction("Login", "Authen");
+            }
+            if (authService.IsAdmin())
+            {
+                ViewData["Layout"] = "_BackendLayout";
+            }
+            else if (authService.IsSupporter())
+            {
+                ViewData["Layout"] = "_BackendLayout";
+            }
+            else
+            {
+                ViewData["Layout"] = "Frontend";
+            }
+
+                var ticket = await ticketService.GetTicketById(id);
 
             if (ticket == null)
             {
@@ -128,6 +154,10 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            if (!authService.IsUserLoggedIn())
+            {
+                return RedirectToAction("Login", "Authen");
+            }
             var ticketStatusOptions = context.TicketStatus
         .Select(ts => new SelectListItem
         {
@@ -137,7 +167,7 @@ namespace WebApp.Controllers
         .ToList();
 
             // Thêm một tùy chọn mặc định nếu cần
-            ticketStatusOptions.Insert(0, new SelectListItem { Value = "", Text = "Chọn trạng thái" });
+            ticketStatusOptions.Insert(0, new SelectListItem { Value = "", Text = "Select status" });
 
             // Gán danh sách tùy chọn cho ViewBag.TicketStatusId
             ViewBag.TicketStatusId = ticketStatusOptions;
@@ -232,6 +262,23 @@ namespace WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            if (!authService.IsUserLoggedIn())
+            {
+                return RedirectToAction("Login", "Authen");
+            }
+            if (authService.IsAdmin())
+            {
+                ViewData["Layout"] = "_BackendLayout";
+            }
+            else if (authService.IsSupporter())
+            {
+                ViewData["Layout"] = "_BackendLayout";
+            }
+            else
+            {
+                ViewData["Layout"] = "Frontend";
+            }
+
             var ticket = await ticketService.GetTicketById(id);
 
             if (ticket == null)
@@ -252,6 +299,20 @@ namespace WebApp.Controllers
             {
                 ViewData["TicketStatusName"] = "Unknown"; // Nếu không tìm thấy TicketStatus
             }
+
+            // Lấy thông tin của Category cho Ticket
+            var category = await context.Facilities.FirstOrDefaultAsync(f => f.Id == ticket.CategoryId);
+
+            // Lấy thông tin của Creator cho Ticket
+            var creator = await context.Users.FirstOrDefaultAsync(u => u.Id == ticket.CreatorId);
+
+            // Lấy thông tin của Supporter (nếu có) cho Ticket
+            var supporter = await context.Users.FirstOrDefaultAsync(u => u.Id == ticket.SupporterId);
+
+            // Đặt thông tin vào ViewBag hoặc ViewData để sử dụng trong View
+            ViewBag.Category = category;
+            ViewBag.Creator = creator;
+            ViewBag.Supporter = supporter;
 
             return View(ticket);
         }
@@ -274,6 +335,24 @@ namespace WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            if (!authService.IsUserLoggedIn())
+            {
+                return RedirectToAction("Login", "Authen");
+            }
+            if (authService.IsAdmin())
+            {
+                ViewData["Layout"] = "_BackendLayout";
+            }
+            else if (authService.IsSupporter())
+            {
+                ViewBag.sp = "hidden";
+                ViewData["Layout"] = "_BackendLayout";
+            }
+            else
+            {
+                ViewBag.us = "hidden";
+                ViewData["Layout"] = "Frontend";
+            }
             var ticket = await ticketService.GetTicketById(id);
 
             if (ticket == null)
@@ -320,7 +399,13 @@ namespace WebApp.Controllers
             suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
             ViewBag.SupporterEmails=suporter;
 
-
+            var pro = context.Priority.Select(p => new SelectListItem
+            {
+                Value = p.Id.ToString(),
+                Text = p.Name
+            }).ToList();
+            pro.Insert(0, new SelectListItem { Value = "", Text = "Select Priority" });
+            ViewBag.Pro = pro;
             return View(ticket);
         }
 
@@ -373,11 +458,14 @@ namespace WebApp.Controllers
                 oldTicket.TicketStatusId = editTicket.TicketStatusId;
                 oldTicket.SupporterId = editTicket.SupporterId;
                 oldTicket.ModifiedDate = dateTime;
+                oldTicket.PriorityId = editTicket.PriorityId;
             }
             else if (authService.IsSupporter())
             {
                 // Nếu là Supporter, cho phép cập nhật TicketStatusId
                 oldTicket.TicketStatusId = editTicket.TicketStatusId;
+                oldTicket.ModifiedDate = dateTime;
+                oldTicket.feedback = editTicket.feedback;
             }
 
             // Lưu thay đổi vào cơ sở dữ liệu

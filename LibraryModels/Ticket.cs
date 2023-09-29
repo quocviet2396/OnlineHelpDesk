@@ -16,7 +16,7 @@ namespace LibraryModels
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime? CreateDate { get; set; } = DateTime.Now;
+        public DateTime? CreateDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public string? Attachment { get; set; }
 
@@ -37,5 +37,8 @@ namespace LibraryModels
         // Mối quan hệ một-nhiều với Users (Người hỗ trợ yêu cầu - Supporter)
         public int? SupporterId { get; set; }
         public Users? Supporter { get; set; }
+        public string? feedback { get; set; }
+        public int? PriorityId { get; set; }
+        public Priority? Priority { get; set; }
     }
 }

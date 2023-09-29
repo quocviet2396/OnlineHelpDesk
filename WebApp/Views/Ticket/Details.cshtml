@@ -1,77 +1,104 @@
 ﻿@model LibraryModels.Ticket
 @{
-    Layout = "_BackendLayout";
+    int i = 1;
+    Layout = ViewData["Layout"]?.ToString() ?? "_DefaultLayout";
 }
 @{
     ViewData["Title"] = "Detail";
 }
 
-<div class="container">
+<div class="container ">
+
     <h1>Detail</h1>
 
     <div>
         <h4>Ticket</h4>
         <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-            <dd class="col-sm-10">
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Title)</strong>
+            </div>
+            <div class="col-md-10">
                 @Html.DisplayFor(model => model.Title)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class="col-sm-10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Description)</strong>
+            </div>
+            <div class="col-md-10">
                 @Html.DisplayFor(model => model.Description)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </dt>
-            <dd class="col-sm-10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.CreateDate)</strong>
+            </div>
+            <div class="col-md-10">
                 @Html.DisplayFor(model => model.CreateDate)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ModifiedDate)
-            </dt>
-            <dd class="col-sm-10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.ModifiedDate)</strong>
+            </div>
+            <div class="col-md-10">
                 @Html.DisplayFor(model => model.ModifiedDate)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Attachment)
-            </dt>
-            <dd class="col-sm-10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Attachment)</strong>
+            </div>
+            <div class="col-md-10">
                 @if (!string.IsNullOrEmpty(Model.Attachment))
                 {
                     <img src="~/images/attachment/@Model.Attachment" class="img-thumbnail" width="200" height="200" />
                 }
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.TicketStatus)
-            </dt>
-            <dd class="col-sm-10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.TicketStatus)</strong>
+            </div>
+            <div class="col-md-10">
                 @Html.DisplayFor(model => model.TicketStatus.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Category)
-            </dt>
-            <dd class="col-sm-10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>Category</strong>
+            </div>
+            <div class="col-md-10">
                 @Html.DisplayFor(model => model.Category.Description)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Creator)
-            </dt>
-            <dd class="col-sm-10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Creator)</strong>
+            </div>
+            <div class="col-md-10">
                 @Html.DisplayFor(model => model.Creator.Email)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Supporter)
-            </dt>
-            <dd class="col-sm-10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Supporter)</strong>
+            </div>
+            <div class="col-md-10">
                 @Html.DisplayFor(model => model.Supporter.Email)
-            </dd>
-        </dl>
+            </div>
+        </div>
     </div>
+
     <div>
         <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a> |
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>

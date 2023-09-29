@@ -1,7 +1,8 @@
 ﻿@{
-    Layout = "_BackendLayout";
     int i = 1;
+    Layout = ViewData["Layout"]?.ToString() ?? "_DefaultLayout";
 }
+
 @model IEnumerable<LibraryModels.Ticket>
 @if (TempData["Message"] != null)
 {
@@ -43,19 +44,20 @@
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.TicketStatus)</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Category)</h6>
-                                    <div class="category-filter">
-                                        <input type="text" id="categorySearch" class="category-search" placeholder="Search category...">
-                                        <button id="searchCategory" class="category-search-button">
-                                            Search
-                                        </button>
-                                    </div>
+                                    <h6 class="fw-semibold mb-0">Category</h6>
+                                    
                                 </th>
                                  <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Creator)</h6>
+                                    <h6 @ViewBag.us class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Creator)</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Supporter)</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Supporter @Html.DisplayNameFor(model => model.feedback)</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Priority)</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Action</h6>
@@ -96,10 +98,16 @@
                                         <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Category.Name)</h6>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Creator.Email)</h6>
+                                        <h6 @ViewBag.us class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Creator.Email)</h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Supporter.Email)</h6>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.feedback)</h6>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Priority.Name)</h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2" style="justify-content:center">

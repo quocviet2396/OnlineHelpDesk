@@ -1,6 +1,7 @@
 ﻿@model LibraryModels.Ticket
 @{
-    Layout = "_BackendLayout";
+    int i = 1;
+    Layout = ViewData["Layout"]?.ToString() ?? "_DefaultLayout";
 }
 @{
     ViewData["Title"] = "Delete";

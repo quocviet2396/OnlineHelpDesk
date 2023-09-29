@@ -62,6 +62,8 @@ namespace WebApp.Services
             existingTicket.CategoryId = newTicket.CategoryId;
             existingTicket.CreatorId = newTicket.CreatorId;
             existingTicket.SupporterId = newTicket.SupporterId;
+            existingTicket.PriorityId = newTicket.PriorityId;
+            existingTicket.feedback = newTicket.feedback;
 
             await db.SaveChangesAsync();
             return true; // Ticket updated successfully.

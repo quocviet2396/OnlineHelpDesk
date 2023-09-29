@@ -33,7 +33,7 @@ namespace WebApp.Controllers
             }
             else if (authenService.IsUserLoggedIn())
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Frontend");
             }
             return View();
         }
@@ -89,7 +89,7 @@ namespace WebApp.Controllers
                 {
                     user.Role = "User";
                     HttpContext.Session.SetString("accRole", user.Role);
-                    return RedirectToAction("Index", "Home"); // Chuyển hướng đến trang frontend
+                    return RedirectToAction("Index", "Frontend"); // Chuyển hướng đến trang frontend
                 }
             }
             else

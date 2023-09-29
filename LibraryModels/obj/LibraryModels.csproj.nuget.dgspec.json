@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {}
+    "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {
+    "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
+        "projectUniqueName": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
         "projectName": "LibraryModels",
-        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\obj\\",
+        "projectPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
+        "packagesPath": "C:\\Users\\T490\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\T490\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

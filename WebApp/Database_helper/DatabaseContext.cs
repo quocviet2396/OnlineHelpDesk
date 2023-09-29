@@ -107,10 +107,9 @@ namespace WebApp.Database_helper
                             .RuleFor(u => u.FirstName, (f, u) => f.Name.FirstName())
                             .RuleFor(u => u.LastName, (f, u) => f.Name.LastName())
                             .RuleFor(u => u.FullName, (f, u) => u.FirstName + " " + u.LastName)
-                            .RuleFor(u => u.Email, (f, u) => f.Internet.Email(u.FirstName, u.LastName))
+                            .RuleFor(u => u.Email, (f, u) => $"onhdexmapletest199{ids++}@gmail.com")
                             .RuleFor(u => u.Student_code, f => $"Student{_helper.randomString(8)}")
                             .RuleFor(u => u.DateOfBirth, f => f.Date.Past())
-                            .RuleFor(u => u.Photo, f => f.Internet.Avatar())
                             .RuleFor(u => u.Phone, f => f.Phone.PhoneNumber())
                             .RuleFor(u => u.Address, f => f.Address.FullAddress())
                             .RuleFor(u => u.City, f => f.Address.City());

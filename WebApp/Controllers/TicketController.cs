@@ -191,7 +191,6 @@ namespace WebApp.Controllers
             var idUser = context.Users.Where(x => x.Email == test).FirstOrDefault().Id;
             try
             {
-
                 var facilities = context.Facilities.Select(f => new SelectListItem
                 {
                     Value = f.Id.ToString(),

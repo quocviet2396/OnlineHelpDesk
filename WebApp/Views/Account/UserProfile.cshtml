@@ -381,16 +381,27 @@
                     cache: false,
                     success: (res) => {
                         var data = JSON.parse(res);
-                        Swal.fire({
-                            icon: data.Success ? "success" : "error",
-                            title: data.Success ? "Success" : "Oops",
-                            text: data.Msg,
-                            customClass: {
-                                container: 'my-swal'
-                            }
-                        }).then((result) => {
-                            result.isConfirmed ? window.location.href("/Authen/Login") : ""
-                        })
+                        if (data.Success) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            }).then((result) => {
+                                result.isConfirmed ? window.location.href = "/Authen/Login" : ""
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            })
+                        }
                     },
                     error: err => console.log(err)
                 });

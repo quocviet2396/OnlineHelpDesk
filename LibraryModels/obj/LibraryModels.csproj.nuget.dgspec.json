@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {}
+    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {}
   },
   "projects": {
-    "D:\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {
+    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
         "projectName": "LibraryModels",
-        "projectPath": "D:\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
+        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\OnlineHelpDesk\\LibraryModels\\obj\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

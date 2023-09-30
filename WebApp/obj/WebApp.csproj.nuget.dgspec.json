@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {}
+    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "D:\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {
+    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "D:\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
+        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\OnlineHelpDesk\\WebApp\\obj\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

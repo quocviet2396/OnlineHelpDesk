@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LibraryModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using WebApp.Authorize;
 using WebApp.Repositories;
 using WebApp.Ultils;
 
@@ -12,6 +13,7 @@ using WebApp.Ultils;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class DataController : Controller
     {
         private readonly IDataService _data;
@@ -47,14 +49,6 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-
-        [HttpPost]
-        public async Task<JsonResult> CreateAccount(IFormCollection data)
-        {
-            var res = await _data.CreateAccount(data);
-            var result = JsonConvert.SerializeObject(res);
-            return Json(result);
-        }
     }
 }
 

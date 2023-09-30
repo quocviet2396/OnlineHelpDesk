@@ -12,6 +12,8 @@
     <None Remove="Ultils\" />
     <None Remove="Views\Data\" />
     <None Remove="Views\Account\" />
+    <None Remove="Authorize\" />
+    <None Remove="Signal\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
@@ -529,12 +531,9 @@
     <Folder Include="Ultils\" />
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="LibraryModels">
-      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
-    </Reference>
+    <Folder Include="wwwroot\images\avatars\" />
+    <Folder Include="Authorize\" />
+    <Folder Include="Signal\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -542,4 +541,12 @@
     <TypeScriptCompile Include="wwwroot\backend\libs\simplebar\dist\simplebar.d.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\images\avatars\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

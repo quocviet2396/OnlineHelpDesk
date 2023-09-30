@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using WebApp.Authorize;
 using WebApp.Repositories;
 using WebApp.Ultils;
 
@@ -14,15 +15,18 @@ using WebApp.Ultils;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
 
         private readonly Helper _helper;
         private readonly IAccountService _account;
-        public AccountController(IAccountService account, Helper helper)
+        private readonly IAuthenService _authen;
+        public AccountController(IAccountService account, Helper helper, IAuthenService authen)
         {
             _account = account;
             _helper = helper;
+            _authen = authen;
         }
 
         public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort)
@@ -44,26 +48,38 @@ namespace WebApp.Controllers
         public async Task<IActionResult> UserProfile()
         {
             var stucode = HttpContext.Session.GetString("accCode");
+            var stuRole = HttpContext.Session.GetString("accRole");
+            TempData["AccRole"] = stuRole == "Admin" || stuRole == "Supporter" ? "_BackendLayout" : "_Layout";
             var model = _account.UserInfo(stucode);
-            UserInfoDTO result = new UserInfoDTO()
+            if (model != null)
             {
-                Id = model.Id,
-                Email = _helper.AnEmail(model.Email, 4),
-                UserName = model.UserName,
-                Password = model.Password,
-                Code = model.Code,
-                Role = model.Role,
-                DateOfBirth = model.DateOfBirth,
-                Status = model.Status,
-                Gender = model.Gender,
-                Phone = model.Phone,
-                Photo = model.Photo,
-                Address = model.Address,
-                City = model.City
-            };
-            ViewData["UserProfile"] = result;
-            //var result = JsonConvert.DeserializeObject(user);
-            return View();
+                UserInfoDTO result = new UserInfoDTO()
+                {
+                    Id = model.Id,
+                    Email = _helper.AnEmail(model.Email, 4),
+                    UserName = model.UserName,
+                    Password = model.Password,
+                    Code = model.Code,
+                    Role = model.Role,
+                    DateOfBirth = model.DateOfBirth,
+                    Status = model.Status,
+                    Gender = model.Gender,
+                    Phone = model.Phone,
+                    Photo = model.Photo,
+                    Address = model.Address,
+                    City = model.City
+                };
+                ViewData["UserDtoProfile"] = result;
+                //var result = JsonConvert.DeserializeObject(user);
+                return View();
+            }
+            else
+            {
+                var user = _account.users(stucode);
+                ViewData["UserProfile"] = user;
+                //var result = JsonConvert.DeserializeObject(user);
+                return View();
+            }
         }
 
 
@@ -121,7 +137,8 @@ namespace WebApp.Controllers
         {
             var additionalValue = data["additionalValue"];
             var inputValue = data["inputValue"];
-            var accCode = data["accCode"];
+            var code = HttpContext.Session.GetString("emailForgot");
+            var accCode = data["accCode"].FirstOrDefault() != null ? data["accCode"].FirstOrDefault() : code;
             var newPas = data["newPass"];
             var conPas = data["conPass"];
             var res = await _account.CheckPassword(inputValue, additionalValue, accCode, newPas, conPas);
@@ -136,6 +153,72 @@ namespace WebApp.Controllers
             var accCode = newPassword["accCode"];
             var newPas = newPassword["newPass"];
             var res = await _account.ChangePassword(newPas, accCode);
+            if (res.Success)
+            {
+                HttpContext.Session.Remove("accCode");
+                HttpContext.Session.Remove("accEmail");
+            }
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> CreateAccount(IFormCollection data)
+        {
+            var res = await _account.CreateAccount(data);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
+        }
+
+
+        [HttpPost]
+        public async Task<JsonResult> CheckPhoto(IFormCollection data)
+        {
+            var res = await _account.CheckPhoto(data.Files["Photo"]);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> InfoChange(IFormCollection form)
+        {
+            var res = await _account.InfoChange(form);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
+        }
+
+        [HttpGet]
+        [Route("/ForgotPass")]
+        public IActionResult ForgotPassword()
+        { return View(); }
+
+        [HttpGet]
+        [Route("/ChangePassword")]
+        public IActionResult ChangePassword()
+        { return View(); }
+
+        [HttpPost]
+        [Route("/ForgotPass")]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            var result = await _account.ForgotPassword(email);
+            if (result.Success)
+            {
+
+                HttpContext.Session.SetString("emailForgot", result.Data);
+                return RedirectToAction("ChangePassword");
+            }
+            else
+            {
+                TempData["res"] = JsonConvert.SerializeObject(result);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ChangeAvatar(IFormCollection avatar)
+        {
+            var res = await _account.ChangeAvatar(avatar);
             var result = JsonConvert.SerializeObject(res);
             return Json(result);
         }

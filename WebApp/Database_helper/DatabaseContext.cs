@@ -1,4 +1,4 @@
-﻿using Bogus;
+using Bogus;
 using LibraryModels;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
@@ -10,7 +10,6 @@ namespace WebApp.Database_helper
 {
     public class DatabaseContext : DbContext
     {
-        private string formatDate = "dd/MM/yyyy";
         private readonly Helper _helper;
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options, Helper helper) : base(options) { _helper = helper; }
@@ -22,11 +21,13 @@ namespace WebApp.Database_helper
         public DbSet<TicketStatus> TicketStatus { get; set; }
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<News> News { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=DESKTOP-F4OHHB4\\MSSQLSERVER01; database=OHDDb1; Trusted_Connection=true; TrustServerCertificate=true";
+            string str = "server=localhost; database=OHDDb; uid=sa; pwd=ngoc@2906mysql; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 
@@ -45,7 +46,6 @@ namespace WebApp.Database_helper
                  .WithMany()
                  .HasForeignKey(t => t.SupporterId)
                  .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Ticket>().HasOne(i=>i.Priority).WithMany(o=>o.Ticket).HasForeignKey(t => t.PriorityId).OnDelete(DeleteBehavior.NoAction); ;
 
             modelBuilder.Entity<Discussion>()
                  .HasOne(d => d.Ticket)
@@ -95,7 +95,7 @@ namespace WebApp.Database_helper
                 new TicketStatus { Id = 4, Name = "On hold" },
                 new TicketStatus { Id = 5, Name = "Rejected" },
                 new TicketStatus { Id = 6, Name = "Completed" },
-                new TicketStatus { Id = 7, Name = "Closed"}
+                new TicketStatus { Id = 7, Name = "Closed" }
             );
 
             var ids = 0;
@@ -106,10 +106,9 @@ namespace WebApp.Database_helper
                             .RuleFor(u => u.FirstName, (f, u) => f.Name.FirstName())
                             .RuleFor(u => u.LastName, (f, u) => f.Name.LastName())
                             .RuleFor(u => u.FullName, (f, u) => u.FirstName + " " + u.LastName)
-                            .RuleFor(u => u.Email, (f, u) => f.Internet.Email(u.FirstName, u.LastName))
+                            .RuleFor(u => u.Email, (f, u) => $"onhdexmapletest199{ids++}@gmail.com")
                             .RuleFor(u => u.Student_code, f => $"Student{_helper.randomString(8)}")
                             .RuleFor(u => u.DateOfBirth, f => f.Date.Past())
-                            .RuleFor(u => u.Photo, f => f.Internet.Avatar())
                             .RuleFor(u => u.Phone, f => f.Phone.PhoneNumber())
                             .RuleFor(u => u.Address, f => f.Address.FullAddress())
                             .RuleFor(u => u.City, f => f.Address.City());

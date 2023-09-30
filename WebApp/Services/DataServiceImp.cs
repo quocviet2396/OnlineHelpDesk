@@ -15,13 +15,17 @@ namespace WebApp.Services
         private readonly DatabaseContext _db;
         private readonly Helper _helper;
         private readonly Mailultil _mailultil;
+        [Obsolete]
+        private readonly IHostEnvironment _environment;
         public Response<string> res = new Response<string>();
 
-        public DataServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil)
+        [Obsolete]
+        public DataServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil, IHostEnvironment environment)
         {
             _db = db;
             _helper = helper;
             _mailultil = mailultil;
+            _environment = environment;
         }
 
         public async Task<ICollection<UsersInfo>> AllUser(int pageNumber, int? Limit, string currentSort)
@@ -69,15 +73,17 @@ namespace WebApp.Services
                         UserInfo userInfo = new UserInfo()
                         {
                             Address = userinfo.Address,
-                            DateOfBirth = DateTime.ParseExact(userinfo.DateOfBirth.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture),
+                            DateOfBirth = DateTime.ParseExact(userinfo.DateOfBirth.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture),
                             Gender = userinfo.Gender,
                             Phone = userinfo.Phone,
+                            Photo = userinfo.Photo,
                             City = userinfo.City,
                             UserId = userId
                         };
                         _db.UserInfos.Add(userInfo);
                         _db.SaveChanges();
 
+                        Console.WriteLine(BCrypt.Net.BCrypt.Verify(pass, user.Password));
                         //string content = System.IO.File.ReadAllText("Mail/account.html");
                         //content = content.Replace("{{email}}", user.Email);
                         //content = content.Replace("{{password}}", pass);
@@ -94,6 +100,70 @@ namespace WebApp.Services
             }
         }
 
+
+        public async Task<Response<string>> CreateAccount(IFormCollection users)
+        {
+            try
+            {
+
+                long fileSize = users.Files["photo"].Length;
+                long maxSize = 2 * 1024 * 1024;
+                if (fileSize > maxSize)
+                {
+                    return res = _helper.CreateResponse<string>("File size must be less than 2MB. Please choose a smaller file.", false);
+                }
+                var fileName = users.Files["photo"].FileName;
+                var filePath = Path.Combine(_environment.ContentRootPath, "wwwroot/assets/img/avatars", fileName);
+
+                // Kiểm tra tệp trùng lặp
+                if (!System.IO.File.Exists(filePath))
+                {
+                    using (var fileSteam = new FileStream(filePath, FileMode.Create))
+                    {
+                        await users.Files["photo"].CopyToAsync(fileSteam);
+                    }
+                }
+                var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(users["Email"].FirstOrDefault()));
+                if (hasEmail != null)
+                {
+                    return res = _helper.CreateResponse<string>("Email has already", false);
+                }
+
+                Users user = new Users()
+                {
+                    Email = users["Email"].FirstOrDefault(),
+                    Password = BCrypt.Net.BCrypt.HashPassword(users["Password"]),
+                    Status = true,
+                    UserName = users["Username"].FirstOrDefault(),
+                    Role = users["Role"],
+                    Code = $"{users["Role"]}{_helper.randomString(10)}",
+                };
+
+                _db.Add(user);
+                _db.SaveChanges();
+                int userId = user.Id;
+                UserInfo userInfo = new UserInfo()
+                {
+                    Address = users["Address"].FirstOrDefault() ?? "",
+                    City = users["City"].FirstOrDefault() ?? "",
+                    Gender = bool.Parse(users["Gender"].FirstOrDefault()),
+                    DateOfBirth = DateTime.ParseExact(users["DateOfBirth"].FirstOrDefault().ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture),
+                    Phone = users["Phone"].FirstOrDefault() ?? "",
+                    Photo = filePath,
+                    UserId = userId
+                };
+
+                _db.UserInfos.Add(userInfo);
+                _db.SaveChanges();
+
+
+                return res = _helper.CreateResponse<string>("Successfully", true);
+            }
+            catch (Exception ex)
+            {
+                return res = _helper.CreateResponse<string>(ex.Message, false);
+            }
+        }
     }
 }
 

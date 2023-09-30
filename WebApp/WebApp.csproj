@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -12,8 +12,6 @@
     <None Remove="Ultils\" />
     <None Remove="Views\Data\" />
     <None Remove="Views\Account\" />
-    <None Remove="Authorize\" />
-    <None Remove="Signal\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
@@ -522,7 +520,8 @@
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.11" />
     <PackageReference Include="Bogus" Version="34.0.2" />
-    <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
+    <PackageReference Include="X.PagedList" Version="8.4.7" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -531,9 +530,12 @@
     <Folder Include="Ultils\" />
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />
-    <Folder Include="wwwroot\images\avatars\" />
-    <Folder Include="Authorize\" />
-    <Folder Include="Signal\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LibraryModels">
+      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -541,12 +543,4 @@
     <TypeScriptCompile Include="wwwroot\backend\libs\simplebar\dist\simplebar.d.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="wwwroot\images\avatars\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

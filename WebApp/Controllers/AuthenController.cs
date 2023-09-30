@@ -33,7 +33,7 @@ namespace WebApp.Controllers
             }
             else if (authenService.IsUserLoggedIn())
             {
-                return RedirectToAction("Index", "Frontend");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
@@ -69,8 +69,8 @@ namespace WebApp.Controllers
             {
 
                 HttpContext.Session.SetString("accEmail", user.Email);
+                Console.WriteLine(IsLoginValid(user.Email, user.Password).Data.Code);
                 HttpContext.Session.SetString("accCode", IsLoginValid(user.Email, user.Password).Data.Code);
-                HttpContext.Session.SetString("accRole", IsLoginValid(user.Email, user.Password).Data.Role);
 
                 // Chuyển trang theo role
                 if (authenService.IsAdmin())
@@ -89,7 +89,7 @@ namespace WebApp.Controllers
                 {
                     user.Role = "User";
                     HttpContext.Session.SetString("accRole", user.Role);
-                    return RedirectToAction("Index", "Frontend"); // Chuyển hướng đến trang frontend
+                    return RedirectToAction("Index", "Home"); // Chuyển hướng đến trang frontend
                 }
             }
             else

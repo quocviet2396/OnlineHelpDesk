@@ -12,12 +12,23 @@ namespace WebApp.Services
         {
             this.db = db;
         }
-        public async Task<bool> create(Ticket newTicket)
+        public bool create(Ticket newTicket)
         {
-            await db.AddAsync(newTicket);
-            await db.SaveChangesAsync();
-            return true;
+            try
+            {
+                db.Add(newTicket);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có
+                // Ví dụ: Ghi log lỗi
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
         }
+
 
         public async Task<bool> delete(int id)
         {
@@ -37,7 +48,10 @@ namespace WebApp.Services
                 .ToListAsync();
         }
 
-
+        public int GetTotalTicketCount()
+        {
+            return db.Ticket.Count();
+        }
 
         public async Task<Ticket> GetTicketById(int id)
         {

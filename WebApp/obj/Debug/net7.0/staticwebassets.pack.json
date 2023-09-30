@@ -3433,6 +3433,10 @@
       "PackagePath": "staticwebassets/images/user.jpg"
     },
     {
+      "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/js/Notification.js",
+      "PackagePath": "staticwebassets/js/Notification.js"
+    },
+    {
       "Id": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/js/bootstrap.js",
       "PackagePath": "staticwebassets/js/bootstrap.js"
     },

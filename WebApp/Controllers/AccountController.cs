@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using WebApp.Authorize;
 using WebApp.Repositories;
 using WebApp.Ultils;
 
@@ -14,18 +15,20 @@ using WebApp.Ultils;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
 
         private readonly Helper _helper;
         private readonly IAccountService _account;
-        public AccountController(IAccountService account, Helper helper)
+        private readonly IAuthenService _authen;
+        public AccountController(IAccountService account, Helper helper, IAuthenService authen)
         {
             _account = account;
             _helper = helper;
+            _authen = authen;
         }
 
-        [Route("/Backend/Account")]
         public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort)
         {
             var Limit = limit ?? 7;
@@ -45,6 +48,8 @@ namespace WebApp.Controllers
         public async Task<IActionResult> UserProfile()
         {
             var stucode = HttpContext.Session.GetString("accCode");
+            var stuRole = HttpContext.Session.GetString("accRole");
+            TempData["AccRole"] = stuRole == "Admin" || stuRole == "Supporter" ? "_BackendLayout" : "_Layout";
             var model = _account.UserInfo(stucode);
             if (model != null)
             {

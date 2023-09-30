@@ -2,7 +2,7 @@
 @using System.Globalization;
 @{
     ViewData["Title"] = "Student";
-    Layout = "_Layout";
+    Layout = TempData["AccRole"] as string;
 
     var user = ViewData["UserProfile"] as LibraryModels.Users;
     var userDto = ViewData["UserDtoProfile"] as LibraryModels.UserInfoDTO;

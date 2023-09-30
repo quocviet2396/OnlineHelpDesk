@@ -9,19 +9,24 @@ using WebApp.Database_helper;
 using Microsoft.EntityFrameworkCore;
 
 using System.Drawing.Printing;
+using WebApp.Authorize;
+using WebApp.Signal;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class TicketController : Controller
     {
         private readonly ITicket ticketService;
         private readonly DatabaseContext context;
         private readonly IAuthenService authService;
-        public TicketController(ITicket ticketService, DatabaseContext context, IAuthenService authService)
+        private readonly SignalConfig _notifi;
+        public TicketController(ITicket ticketService, DatabaseContext context, IAuthenService authService, SignalConfig notifi)
         {
             this.ticketService = ticketService;
             this.context = context;
             this.authService = authService;
+            _notifi = notifi;
         }
 
 
@@ -450,6 +455,7 @@ namespace WebApp.Controllers
                 oldTicket.SupporterId = editTicket.SupporterId;
                 oldTicket.ModifiedDate = dateTime;
                 oldTicket.PriorityId = editTicket.PriorityId;
+                await _notifi.SendNoti(oldTicket.SupporterId.ToString(), "You have a new notification", $"/Ticket/{oldTicket.Id}");
             }
             else if (authService.IsSupporter())
             {
@@ -457,6 +463,7 @@ namespace WebApp.Controllers
                 oldTicket.TicketStatusId = editTicket.TicketStatusId;
                 oldTicket.ModifiedDate = dateTime;
                 oldTicket.feedback = editTicket.feedback;
+                await _notifi.SendNoti(oldTicket.CreatorId.ToString(), "You have a new notification", $"/Ticket/{oldTicket.Id}");
             }
 
             // Lưu thay đổi vào cơ sở dữ liệu

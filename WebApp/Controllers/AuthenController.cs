@@ -69,8 +69,8 @@ namespace WebApp.Controllers
             {
 
                 HttpContext.Session.SetString("accEmail", user.Email);
-                Console.WriteLine(IsLoginValid(user.Email, user.Password).Data.Code);
                 HttpContext.Session.SetString("accCode", IsLoginValid(user.Email, user.Password).Data.Code);
+                HttpContext.Session.SetString("accRole", IsLoginValid(user.Email, user.Password).Data.Role);
 
                 // Chuyển trang theo role
                 if (authenService.IsAdmin())

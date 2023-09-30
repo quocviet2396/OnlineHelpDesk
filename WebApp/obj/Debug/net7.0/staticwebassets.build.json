@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bwNi6mgX+Idln/AbuM+r7Agx3wSXMLIaw7XrKJOntzU=",
+  "Hash": "q3iZwSr7xp/QVG28afy5tByEyQwl24YzOJV5IFRQr6M=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -14669,6 +14669,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/menu.js"
+    },
+    {
+      "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/js/Notification.js",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "js/Notification.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/Notification.js"
     },
     {
       "Identity": "/Users/mac/Desktop/OnlineHelpDesk/WebApp/wwwroot/js/site.js",

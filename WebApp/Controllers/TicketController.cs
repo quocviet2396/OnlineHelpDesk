@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApp.Database_helper;
 using Microsoft.EntityFrameworkCore;
-
+using PagedList;
 using System.Drawing.Printing;
 
 namespace WebApp.Controllers
@@ -25,9 +25,12 @@ namespace WebApp.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
+            int pageSize = 3;
+
             
+            int pageNumber = (page ?? 1);
 
             if (!authService.IsUserLoggedIn())
             {
@@ -37,10 +40,10 @@ namespace WebApp.Controllers
             if (authService.IsAdmin())
             {
                 ViewData["Layout"] = "_BackendLayout";
-                var tickets = await context.Ticket
+                var tickets =  context.Ticket
                     .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp=>sp.Supporter).Include(pr=>pr.Priority)
                 .OrderByDescending(t => t.CreateDate)
-                    .ToListAsync();
+                    .ToPagedList(pageNumber, pageSize);
 
                 return View(tickets);
             }

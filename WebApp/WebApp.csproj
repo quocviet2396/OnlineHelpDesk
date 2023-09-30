@@ -533,17 +533,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="LibraryModels">
-      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <TypeScriptCompile Include="wwwroot\backend\libs\apexcharts\types\apexcharts.d.ts" />
     <TypeScriptCompile Include="wwwroot\backend\libs\simplebar\dist\simplebar.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="wwwroot\images\avatars\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

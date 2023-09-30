@@ -10,7 +10,6 @@ namespace WebApp.Database_helper
 {
     public class DatabaseContext : DbContext
     {
-        private string formatDate = "dd/MM/yyyy";
         private readonly Helper _helper;
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options, Helper helper) : base(options) { _helper = helper; }
@@ -23,12 +22,12 @@ namespace WebApp.Database_helper
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
-       
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=DESKTOP-T6R536I\\SQLEXPRESS01; database=OHDDb; uid=sa; pwd=123; TrustServerCertificate=true";
+            string str = "server=localhost; database=OHDDb; uid=sa; pwd=ngoc@2906mysql; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 

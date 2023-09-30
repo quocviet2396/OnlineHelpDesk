@@ -10,6 +10,7 @@
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
           "Bogus": "34.0.2",
+          "LibraryModels": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "7.0.11",
           "Microsoft.EntityFrameworkCore": "7.0.11",
           "Microsoft.EntityFrameworkCore.Design": "7.0.11",
@@ -18,8 +19,7 @@
           "Microsoft.TypeScript.MSBuild": "5.2.2",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.10",
           "Newtonsoft.Json": "13.0.3",
-          "PagedList.Mvc": "4.5.0",
-          "LibraryModels": "1.0.0.0"
+          "PagedList.Mvc": "4.5.0"
         },
         "runtime": {
           "WebApp.dll": {}
@@ -1153,22 +1153,22 @@
           "runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-arm",
             "assetType": "native",
-            "fileVersion": "5.1.0.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "5.1.0.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "5.1.0.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "5.1.0.0"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -2574,12 +2574,9 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "LibraryModels/1.0.0.0": {
+      "LibraryModels/1.0.0": {
         "runtime": {
-          "LibraryModels.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "LibraryModels.dll": {}
         }
       }
     }
@@ -4200,8 +4197,8 @@
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
-    "LibraryModels/1.0.0.0": {
-      "type": "reference",
+    "LibraryModels/1.0.0": {
+      "type": "project",
       "serviceable": false,
       "sha512": ""
     }

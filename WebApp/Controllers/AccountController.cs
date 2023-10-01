@@ -29,16 +29,20 @@ namespace WebApp.Controllers
             _authen = authen;
         }
 
-        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort)
+        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort, string? currentFilter)
         {
             var Limit = limit ?? 7;
+
+            var filter = string.IsNullOrEmpty(currentFilter) ? null : currentFilter;
+
+            ViewData["currentFilter"] = filter;
 
             var propertySort = string.IsNullOrEmpty(currentSort) ? null : currentSort.Split("_")[0] == "desc" ? $"asc_{currentSort.Split("_")[1]}" : $"desc_{currentSort.Split("_")[1]}";
             ViewData["propertySort"] = propertySort;
             ViewData["nameSort"] = propertySort?.Split("_")[1];
 
             var pageNumber = pageIndex <= 0 ? 1 : pageIndex;
-            var result = await _account.AllUsers(pageNumber, Limit, propertySort) as Paginated<Users>;
+            var result = await _account.AllUsers(pageNumber, Limit, propertySort, filter) as Paginated<Users>;
             ViewData["totalPages"] = result.TotalPages;
             ViewData["Count"] = result.Count;
             return View(result);
@@ -48,8 +52,9 @@ namespace WebApp.Controllers
         public async Task<IActionResult> UserProfile()
         {
             var stucode = HttpContext.Session.GetString("accCode");
+            var stuEmail = HttpContext.Session.GetString("accEmail");
             var stuRole = HttpContext.Session.GetString("accRole");
-            TempData["AccRole"] = stuRole == "Admin" || stuRole == "Supporter" ? "_BackendLayout" : "_Layout";
+            TempData["AccRole"] = stuRole == "Admin" || stuRole == "Supporter" ? "_BackendLayout" : "_";
             var model = _account.UserInfo(stucode);
             if (model != null)
             {
@@ -75,7 +80,7 @@ namespace WebApp.Controllers
             }
             else
             {
-                var user = _account.users(stucode);
+                var user = await _account.users(stuEmail);
                 ViewData["UserProfile"] = user;
                 //var result = JsonConvert.DeserializeObject(user);
                 return View();

@@ -39,9 +39,9 @@
                     <thead class=" table-primary">
                         <tr class="text-center">
                             <th>Id</th>
-                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Email","Email")">Email</a></th>
-                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_UserName","UserName")">Username</a></th>
-                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Code","Code")">Code</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Email","Email")" asp-route-currentFilter="@ViewData["currentFilter"]">Email</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_UserName","UserName")" asp-route-currentFilter="@ViewData["currentFilter"]">Username</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Code","Code")" asp-route-currentFilter="@ViewData["currentFilter"]">Code</a></th>
                             <th>Status</th>
                             <th>Role</th>
                             <th colspan="2"></th>

@@ -1,5 +1,6 @@
 ﻿using WebApp.Database_helper;
 using WebApp.Repositories;
+using WebApp.Signal;
 
 namespace WebApp.Services
 {

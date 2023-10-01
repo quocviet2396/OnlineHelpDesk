@@ -24,10 +24,21 @@ namespace WebApp.Signal
             return base.OnConnectedAsync();
         }
 
-        public async Task SendNoti(string userId, string mess, string url)
+        public override Task OnDisconnectedAsync(Exception? exception)
+        {
+            var connectionId = Context.ConnectionId;
+
+            var user = _db.userConn.FirstOrDefault(e => e.ConnectionId == connectionId);
+            user.Connected = false;
+            _db.SaveChanges();
+
+            return base.OnDisconnectedAsync(exception);
+        }
+
+        public async Task SendNoti(string userId, string mess)
         {
 
-            await Clients.Client(userId).SendAsync("NotifyMessage", mess, url);
+            await Clients.Client(userId).SendAsync("NotifyMessage", mess);
         }
 
         public async Task saveUser(string email)
@@ -41,6 +52,7 @@ namespace WebApp.Signal
             if (ConnId != null && connectionId != ConnId.ConnectionId)
             {
                 ConnId.ConnectionId = connectionId;
+                ConnId.Connected = true;
                 _db.SaveChanges();
             }
             else
@@ -48,6 +60,7 @@ namespace WebApp.Signal
                 UserConn userconn = new UserConn()
                 {
                     UserId = userId.Id,
+                    Connected = true,
                     ConnectionId = connectionId,
                 };
                 _db.userConn.Add(userconn);

@@ -54,7 +54,7 @@ namespace WebApp.Controllers
             var stucode = HttpContext.Session.GetString("accCode");
             var stuEmail = HttpContext.Session.GetString("accEmail");
             var stuRole = HttpContext.Session.GetString("accRole");
-            TempData["AccRole"] = stuRole == "Admin" || stuRole == "Supporter" ? "_BackendLayout" : "_";
+            TempData["AccRole"] = stuRole == "Admin" || stuRole == "Supporter" ? "_BackendLayout" : "_BackendLayout";
             var model = _account.UserInfo(stucode);
             if (model != null)
             {

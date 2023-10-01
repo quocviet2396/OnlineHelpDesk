@@ -22,11 +22,13 @@ namespace WebApp.Services
         public async Task<bool> delete(int id)
         {
             var model = db.Ticket.SingleOrDefault(t => t.Id == id);
-            if (model != null) {
-            db.Ticket.Remove(model);
+            if (model != null)
+            {
+                db.Ticket.Remove(model);
                 await db.SaveChangesAsync();
                 return true;
-            }else return false;
+            }
+            else return false;
         }
 
         public async Task<IEnumerable<Ticket>> GetAll()
@@ -56,7 +58,7 @@ namespace WebApp.Services
             // Update the properties of the existing ticket with the new values.
             existingTicket.Title = newTicket.Title;
             existingTicket.Description = newTicket.Description;
-            existingTicket.ModifiedDate =newTicket.ModifiedDate;
+            existingTicket.ModifiedDate = newTicket.ModifiedDate;
             existingTicket.Attachment = newTicket.Attachment;
             existingTicket.TicketStatusId = newTicket.TicketStatusId;
             existingTicket.CategoryId = newTicket.CategoryId;
@@ -68,6 +70,23 @@ namespace WebApp.Services
             await db.SaveChangesAsync();
             return true; // Ticket updated successfully.
         }
+
+
+        public async Task<List<Ticket>> Tickets(string email, string role)
+        {
+            var query = await db.Ticket
+                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter).Include(pr => pr.Priority)
+                .OrderByDescending(t => t.CreateDate).ToListAsync();
+
+            if (!string.IsNullOrEmpty(email) && role != Role.Admin)
+            {
+                query = query.Where(a =>
+                        (a.Creator != null && a.Creator.Email.Equals(email)) ||
+                        (a.Supporter != null && a.Supporter.Email.Equals(email))).ToList();
+            }
+            return query;
+        }
+
 
     }
 }

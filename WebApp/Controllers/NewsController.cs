@@ -120,13 +120,14 @@ namespace WebApp.Controllers
             return View(allNews);
         }
     }
-}
-*/
+}*/
+
 
 using LibraryModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Sockets;
+using WebApp.Authorize;
 using WebApp.Database_helper;
 using WebApp.Repositories;
 using static WebApp.Services.NewsServiceImp;
@@ -134,6 +135,7 @@ using static WebApp.Services.NewsServiceImp;
 
 namespace ProjectSoccerClubApp.Controllers
 {
+    [Authorize]
     public class NewsController : Controller
     {
         private IAuthenService _authenService;
@@ -147,6 +149,13 @@ namespace ProjectSoccerClubApp.Controllers
         {
             var news = await service.GetNewsList();
             return View(news);
+        }
+
+        public async Task<IActionResult> News()
+        {
+            var allNews = await service.GetNewsList();
+
+            return View(allNews);
         }
 
         [HttpGet]
@@ -249,6 +258,8 @@ namespace ProjectSoccerClubApp.Controllers
             TempData["msg"] = "Congratulation !!! Edit Success";
             return RedirectToAction("Index");
         }
-    }
+
+        
+    }  
 }
 

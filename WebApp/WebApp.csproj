@@ -546,4 +546,8 @@
   <ItemGroup>
     <Content Remove="wwwroot\images\avatars\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj" />
+  </ItemGroup>
 </Project>

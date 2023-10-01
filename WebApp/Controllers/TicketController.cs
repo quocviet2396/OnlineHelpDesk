@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApp.Database_helper;
 using Microsoft.EntityFrameworkCore;
-
+using PagedList;
 using System.Drawing.Printing;
 
 namespace WebApp.Controllers
@@ -25,9 +25,12 @@ namespace WebApp.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
+            int pageSize = 3;
 
+            
+            int pageNumber = (page ?? 1);
 
             if (!authService.IsUserLoggedIn())
             {
@@ -37,10 +40,10 @@ namespace WebApp.Controllers
             if (authService.IsAdmin())
             {
                 ViewData["Layout"] = "_BackendLayout";
-                var tickets = await context.Ticket
-                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter).Include(pr => pr.Priority)
+                var tickets =  context.Ticket
+                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp=>sp.Supporter).Include(pr=>pr.Priority)
                 .OrderByDescending(t => t.CreateDate)
-                    .ToListAsync();
+                    .ToPagedList(pageNumber, pageSize);
 
                 return View(tickets);
             }
@@ -113,7 +116,7 @@ namespace WebApp.Controllers
                 ViewData["Layout"] = "Frontend";
             }
 
-            var ticket = await ticketService.GetTicketById(id);
+                var ticket = await ticketService.GetTicketById(id);
 
             if (ticket == null)
             {
@@ -181,16 +184,17 @@ namespace WebApp.Controllers
             ViewBag.CategoryId = facilities;
 
             return View();
-
+          
         }
 
         [HttpPost]
         public IActionResult Create(Ticket NewTicket, IFormFile? file)
         {
             var test = (HttpContext.Session.GetString("accEmail")).ToString();
-            var idUser = context.Users.Where(x => x.Email == test).FirstOrDefault().Id;
+            var idUser = context.Users.Where(x=>x.Email == test).FirstOrDefault().Id;
             try
             {
+
                 var facilities = context.Facilities.Select(f => new SelectListItem
                 {
                     Value = f.Id.ToString(),
@@ -212,32 +216,40 @@ namespace WebApp.Controllers
 
                 // Gán danh sách tùy chọn cho ViewBag.TicketStatusId
                 ViewBag.TicketStatusId = ticketStatusOptions;
-                if (file != null && file.Length > 0)
+
+                if (ModelState.IsValid)
                 {
-                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/attachment");
-                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    if (file != null && file.Length > 0)
                     {
-                        file.CopyTo(stream);
+                        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/attachment");
+                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                        }
+
+                        NewTicket.Attachment = uniqueFileName;
+
+                        // Kiểm tra xem ngày tạo đã được cung cấp hay chưa
+                        if (NewTicket.CreateDate == null)
+                        {
+                            NewTicket.CreateDate = DateTime.Now; // Gán giá trị ngày và giờ tạo (ngày hiện tại)
+                        }
+
+                        // Lưu phiếu mới vào cơ sở dữ liệu
+                        NewTicket.CreatorId = idUser;
+                        ticketService.create(NewTicket);
+
+                        return RedirectToAction("Index"); // Chuyển hướng về trang danh sách phiếu sau khi tạo thành công.
                     }
-
-                    NewTicket.Attachment = uniqueFileName;
-
-                    // Kiểm tra xem ngày tạo đã được cung cấp hay chưa
-                    if (NewTicket.CreateDate == null)
+                    else
                     {
-                        NewTicket.CreateDate = DateTime.Now; // Gán giá trị ngày và giờ tạo (ngày hiện tại)
+                        ModelState.AddModelError(string.Empty, "Please select a file for attachment.");
                     }
-
-                    // Lưu phiếu mới vào cơ sở dữ liệu
-                    NewTicket.CreatorId = idUser;
-                    ticketService.create(NewTicket);
-
-                    return RedirectToAction("Index"); // Chuyển hướng về trang danh sách phiếu sau khi tạo thành công.
+                
                 }
-
             }
             catch (Exception ex)
             {
@@ -388,7 +400,7 @@ namespace WebApp.Controllers
                     Text = u.Email
                 }).ToList();
             suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
-            ViewBag.SupporterEmails = suporter;
+            ViewBag.SupporterEmails=suporter;
 
             var pro = context.Priority.Select(p => new SelectListItem
             {
@@ -440,7 +452,7 @@ namespace WebApp.Controllers
             oldTicket.Title = editTicket.Title;
             oldTicket.Description = editTicket.Description;
             oldTicket.CategoryId = editTicket.CategoryId;
-
+            
 
             // Kiểm tra xem người dùng có phải là admin không
             if (authService.IsAdmin())

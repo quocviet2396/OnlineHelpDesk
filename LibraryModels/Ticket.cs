@@ -38,6 +38,7 @@ namespace LibraryModels
         public int? SupporterId { get; set; }
         public Users? Supporter { get; set; }
         public string? feedback { get; set; }
+        public bool? readed { get; set; } = false;
         public int? PriorityId { get; set; }
         public Priority? Priority { get; set; }
     }

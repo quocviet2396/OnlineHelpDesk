@@ -28,10 +28,10 @@ namespace WebApp.Services
             _environment = environment;
         }
 
-        public async Task<ICollection<UsersInfo>> AllUser(int pageNumber, int? Limit, string currentSort)
+        public async Task<ICollection<UsersInfo>> AllUser(int pageNumber, int? Limit, string currentSort, string? currentFilter)
         {
             currentSort = string.IsNullOrEmpty(currentSort) ? "asc_Id" : currentSort;
-            var sort = await Sort<UsersInfo>.SortAsync(_db.UsersInfo.ToList(), currentSort);
+            var sort = await Sort<UsersInfo>.SortAsync(_db.UsersInfo.ToList(), currentSort, currentFilter);
             //goi phuong thuc paginate de phan chia trang                csdl       skip     lay bao nhieu   orderby
             var result = await Paginated<UsersInfo>.CreatePaginate(sort.ToList(), pageNumber, (int)Limit, x => x.Id);
             return result;

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Database_helper;
 using WebApp.Repositories;
+using WebApp.Signal;
 using WebApp.Ultils;
 
 namespace WebApp.Controllers
@@ -12,12 +13,14 @@ namespace WebApp.Controllers
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly Helper _helper;
         private IAuthenService authenService;
-        public AuthenController(DatabaseContext db, IHttpContextAccessor httpContextAccessor, IAuthenService authenService, Helper helper)
+        private readonly SignalConfig _sign;
+        public AuthenController(DatabaseContext db, IHttpContextAccessor httpContextAccessor, IAuthenService authenService, Helper helper, SignalConfig sign)
         {
             this.db = db;
             this.httpContextAccessor = httpContextAccessor;
             this.authenService = authenService;
             _helper = helper;
+            _sign = sign;
         }
 
         [HttpGet]
@@ -33,7 +36,7 @@ namespace WebApp.Controllers
             }
             else if (authenService.IsUserLoggedIn())
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Frontend");
             }
             return View();
         }
@@ -69,9 +72,8 @@ namespace WebApp.Controllers
             {
 
                 HttpContext.Session.SetString("accEmail", user.Email);
-                Console.WriteLine(IsLoginValid(user.Email, user.Password).Data.Code);
                 HttpContext.Session.SetString("accCode", IsLoginValid(user.Email, user.Password).Data.Code);
-
+                HttpContext.Session.SetString("accRole", IsLoginValid(user.Email, user.Password).Data.Role);
                 // Chuyển trang theo role
                 if (authenService.IsAdmin())
                 {
@@ -89,7 +91,7 @@ namespace WebApp.Controllers
                 {
                     user.Role = "User";
                     HttpContext.Session.SetString("accRole", user.Role);
-                    return RedirectToAction("Index", "Home"); // Chuyển hướng đến trang frontend
+                    return RedirectToAction("Index", "Frontend"); // Chuyển hướng đến trang frontend
                 }
             }
             else

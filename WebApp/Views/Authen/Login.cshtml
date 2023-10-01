@@ -1,7 +1,6 @@
 ﻿@model LibraryModels.Users
 @{
     ViewBag.Title = "Login";
-    Layout = "Frontend";
 }
 
 <!DOCTYPE html>
@@ -125,7 +124,7 @@
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="email"
+                                       id="hubemail"
                                        name="email"
                                        placeholder="Enter your email"
                                        autofocus />
@@ -154,7 +153,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                <button class="btn btn-primary d-grid w-100" type="submit" id="sign_inHub">Sign in</button>
                             </div>
                         </form>
 
@@ -191,6 +190,12 @@
     <!-- Vendors JS -->
     <!-- Main JS -->
     <script src="~/assets/js/main.js"></script>
+    <script>$(document).ready(() => {
+            $("#sign_inHub").on("click", () => {
+                var email = $("#hubemail").val()
+                localStorage.setItem("email", email);
+            })
+        })</script>
 
     <!-- Page JS -->
     <!-- Place this tag in your head or just before your close body tag. -->

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApp.Database_helper;
 using Microsoft.EntityFrameworkCore;
-using PagedList;
+using X.PagedList;
 using System.Drawing.Printing;
 
 namespace WebApp.Controllers
@@ -25,79 +25,113 @@ namespace WebApp.Controllers
         }
 
 
-        public async Task<IActionResult> Index(int? page)
+     
+
+public async Task<IActionResult> Index(int? page)
+    {
+        int pageSize = 10;
+        int pageNumber = page ?? 1;
+
+        if (!authService.IsUserLoggedIn())
         {
-            int pageSize = 3;
+            return RedirectToAction("Login", "Authen");
+        }
 
-            
-            int pageNumber = (page ?? 1);
+        if (authService.IsAdmin())
+        {
+            ViewData["Layout"] = "_BackendLayout";
 
-            if (!authService.IsUserLoggedIn())
+            int totalTicketCount = await context.Ticket.CountAsync();
+            ViewBag.AccountName = HttpContext.Session.GetString("accEmail");
+
+            var tickets = await context.Ticket
+                .Include(t => t.Creator)
+                .Include(f => f.Category)
+                .Include(ts => ts.TicketStatus)
+                .Include(sp => sp.Supporter)
+                .Include(pr => pr.Priority)
+                .OrderByDescending(t => t.CreateDate)
+                .ToPagedListAsync(pageNumber, pageSize);
+
+            ViewBag.CurrentPage = pageNumber;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItemCount = totalTicketCount;
+
+            return View(tickets);
+        }
+        else if (authService.IsSupporter())
+        {
+            ViewData["Layout"] = "_BackendLayout";
+            string supporterEmail = HttpContext.Session.GetString("accEmail");
+
+            if (string.IsNullOrEmpty(supporterEmail))
             {
                 return RedirectToAction("Login", "Authen");
             }
 
-            if (authService.IsAdmin())
-            {
-                ViewData["Layout"] = "_BackendLayout";
-                var tickets =  context.Ticket
-                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp=>sp.Supporter).Include(pr=>pr.Priority)
+            ViewBag.AccountName = supporterEmail;
+            int totalTicketCount = await context.Ticket
+                .Where(t => t.Supporter.Email == supporterEmail)
+                .CountAsync();
+
+            var tickets = await context.Ticket
+                .Include(t => t.Creator)
+                .Include(f => f.Category)
+                .Include(ts => ts.TicketStatus)
+                .Include(sp => sp.Supporter)
+                .Include(pr => pr.Priority)
+                .Where(t => t.Supporter.Email == supporterEmail)
                 .OrderByDescending(t => t.CreateDate)
-                    .ToPagedList(pageNumber, pageSize);
+                .ToPagedListAsync(pageNumber, pageSize);
 
-                return View(tickets);
-            }
-            else if (authService.IsSupporter())
-            {
-                ViewData["Layout"] = "_BackendLayout";
-                string supporterEmail = HttpContext.Session.GetString("accEmail");
+            ViewBag.CurrentPage = pageNumber;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItemCount = totalTicketCount;
 
-                if (string.IsNullOrEmpty(supporterEmail))
-                {
-                    // Xử lý trường hợp email không hợp lệ.
-                    return RedirectToAction("Login", "Authen");
-                }
-
-                ViewBag.AccountName = supporterEmail;
-
-                var tickets = await context.Ticket
-                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter).Include(pr => pr.Priority)
-                    .Where(t => t.Supporter.Email == supporterEmail)
-                    .OrderByDescending(t => t.CreateDate)
-                    .ToListAsync();
-
-                return View(tickets);
-            }
-            else
-            {
-                ViewBag.us = "hidden";
-                ViewData["Layout"] = "Frontend";
-                // Nếu người dùng không phải là "admin" hoặc "supporter", chỉ hiển thị danh sách ticket của họ
-                string userEmail = HttpContext.Session.GetString("accEmail");
-
-                if (string.IsNullOrEmpty(userEmail))
-                {
-                    // Xử lý trường hợp email không hợp lệ.
-                    return RedirectToAction("Login", "Authen");
-                }
-
-                ViewBag.AccountName = userEmail;
-
-                var tickets = await context.Ticket
-                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter).Include(pr => pr.Priority)
-                    .Where(t => t.Creator.Email == userEmail)
-                    .OrderByDescending(t => t.CreateDate)
-                    .ToListAsync();
-
-                return View(tickets);
-            }
-
+            return View(tickets);
         }
+        else
+        {
+            ViewBag.us = "hidden";
+            ViewData["Layout"] = "Frontend";
+            string userEmail = HttpContext.Session.GetString("accEmail");
+
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                return RedirectToAction("Login", "Authen");
+            }
+
+            ViewBag.AccountName = userEmail;
+
+            int totalTicketCount = await context.Ticket
+                .Where(t => t.Creator.Email == userEmail)
+                .CountAsync();
+
+            var tickets = await context.Ticket
+                .Include(t => t.Creator)
+                .Include(f => f.Category)
+                .Include(ts => ts.TicketStatus)
+                .Include(sp => sp.Supporter)
+                .Include(pr => pr.Priority)
+                .Where(t => t.Creator.Email == userEmail)
+                .OrderByDescending(t => t.CreateDate)
+                .ToPagedListAsync(pageNumber, pageSize);
+
+            ViewBag.CurrentPage = pageNumber;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItemCount = totalTicketCount;
+
+            return View(tickets);
+        }
+    }
 
 
 
 
-        public async Task<IActionResult> Details(int id)
+
+
+
+    public async Task<IActionResult> Details(int id)
         {
             if (!authService.IsUserLoggedIn())
             {

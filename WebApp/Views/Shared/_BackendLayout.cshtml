@@ -43,7 +43,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.11/signalr.min.js" integrity="sha512-BmbgtaebZ4BB5jiHMIauI5fFKc7dXo0Hqm7nmkHnoq63qBaYQWg1bhcNoaIBkfpw5bymrPEM8ap2fCB6ObSK4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Page CSS -->
     <!-- Helpers -->
     <script src="~/assets/vendor/js/helpers.js"></script>
@@ -136,32 +135,32 @@
                             <div data-i18n="Layouts">News/Blogs</div>
                         </a>
                         @*<ul class="menu-sub">
-                                <li class="menu-item">
-                                    <a href="layouts-without-menu.html" class="menu-link">
-                                        <div data-i18n="Without menu">Without menu</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-without-navbar.html" class="menu-link">
-                                        <div data-i18n="Without navbar">Without navbar</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-container.html" class="menu-link">
-                                        <div data-i18n="Container">Container</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-fluid.html" class="menu-link">
-                                        <div data-i18n="Fluid">Fluid</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="layouts-blank.html" class="menu-link">
-                                        <div data-i18n="Blank">Blank</div>
-                                    </a>
-                                </li>
-                            </ul>*@
+                            <li class="menu-item">
+                                <a href="layouts-without-menu.html" class="menu-link">
+                                    <div data-i18n="Without menu">Without menu</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="layouts-without-navbar.html" class="menu-link">
+                                    <div data-i18n="Without navbar">Without navbar</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="layouts-container.html" class="menu-link">
+                                    <div data-i18n="Container">Container</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="layouts-fluid.html" class="menu-link">
+                                    <div data-i18n="Fluid">Fluid</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="layouts-blank.html" class="menu-link">
+                                    <div data-i18n="Blank">Blank</div>
+                                </a>
+                            </li>
+                        </ul>*@
                     </li>
                     <!-- Components Of Admin -->
                     @if (Context.Session.GetString("accRole") == "Admin")
@@ -212,12 +211,30 @@
                     </div>
 
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <!-- Search -->
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item d-flex align-items-center">
+                                <i class="bx bx-toggle-right fs-4 lh-0"></i>
+                                <label class="form-control border-0 shadow-none">Welcome to Dashboard Online HelpDesk Management</label>
+                                <i class="bx bx-toggle-left fs-4 lh-0"></i>
+                            </div>
+                        </div>
+                        <!-- /Search -->
+
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <!-- Place this tag where you want the button to render. -->
+                            <li class="nav-item lh-1 me-3">
+                                <a class="github-button"
+                                   href="https://github.com/themeselection/sneat-html-admin-template-free"
+                                   data-icon="octicon-star"
+                                   data-size="large"
+                                   data-show-count="true"
+                                   aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
+                            </li>
 
                             <!-- User -->
                             @if (Context.Session.GetString("accEmail") != null)
                             {
-                                <li class="menu-item"><i class="fa-solid fa-bell"></i></li>
                                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                         <div class="avatar avatar-online">
@@ -230,7 +247,7 @@
                                                 <div class="d-flex">
                                                     <div class="flex-shrink-0 me-3">
                                                         <div class="avatar avatar-online">
-                                                            <img src="~/images/avatars/avatar_default.jpeg" alt class="w-px-40 h-auto rounded-circle" />
+                                                            <img src="~/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                                                         </div>
                                                     </div>
                                                     <div class="flex-grow-1">
@@ -354,8 +371,6 @@
 
     <!-- Page JS -->
     <script src="~/assets/js/dashboards-analytics.js"></script>
-
-    <script src="~/js/Notification.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

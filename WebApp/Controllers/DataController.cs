@@ -22,19 +22,16 @@ namespace WebApp.Controllers
             _hideemail = hideemail;
         }
 
-        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort, string? currentFilter)
+        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort)
         {
             var Limit = limit ?? 7;
-            var filter = string.IsNullOrEmpty(currentFilter) ? null : currentFilter;
-
-            ViewData["currentFilter"] = filter;
 
             var propertySort = string.IsNullOrEmpty(currentSort) ? null : currentSort.Split("_")[0] == "desc" ? $"asc_{currentSort.Split("_")[1]}" : $"desc_{currentSort.Split("_")[1]}";
             ViewData["propertySort"] = propertySort;
             ViewData["nameSort"] = propertySort?.Split("_")[1];
 
             var pageNumber = pageIndex <= 0 ? 1 : pageIndex;
-            var result = await _data.AllUser(pageNumber, Limit, propertySort, filter) as Paginated<UsersInfo>;
+            var result = await _data.AllUser(pageNumber, Limit, propertySort) as Paginated<UsersInfo>;
             ViewData["totalPages"] = result.TotalPages;
             ViewData["Count"] = result.Count;
             ViewData["AccCode"] = _data.AccCode().GetAwaiter().GetResult();

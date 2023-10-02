@@ -10,7 +10,6 @@
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
           "Bogus": "34.0.2",
-          "LibraryModels": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "7.0.11",
           "Microsoft.EntityFrameworkCore": "7.0.11",
           "Microsoft.EntityFrameworkCore.Design": "7.0.11",
@@ -19,8 +18,9 @@
           "Microsoft.TypeScript.MSBuild": "5.2.2",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.10",
           "Newtonsoft.Json": "13.0.3",
-          "PagedList.Mvc": "4.5.0",
-          "LibraryModels.Reference": "1.0.0.0"
+          "X.PagedList": "8.4.7",
+          "X.PagedList.Mvc.Core": "8.4.7",
+          "LibraryModels": "1.0.0.0"
         },
         "runtime": {
           "WebApp.dll": {}
@@ -613,6 +613,14 @@
         "resources": {
           "lib/net6.0/zh-Hant/Humanizer.resources.dll": {
             "locale": "zh-Hant"
+          }
+        }
+      },
+      "JetBrains.Annotations/2022.3.1": {
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "assemblyVersion": "4242.42.42.42",
+            "fileVersion": "2022.3.1.0"
           }
         }
       },
@@ -1724,25 +1732,6 @@
           }
         }
       },
-      "PagedList/1.17.0": {
-        "runtime": {
-          "lib/net40/PagedList.dll": {
-            "assemblyVersion": "1.17.0.0",
-            "fileVersion": "1.17.0.0"
-          }
-        }
-      },
-      "PagedList.Mvc/4.5.0": {
-        "dependencies": {
-          "PagedList": "1.17.0"
-        },
-        "runtime": {
-          "lib/net40/PagedList.Mvc.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
-          }
-        }
-      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
@@ -2575,7 +2564,29 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "LibraryModels.Reference/1.0.0.0": {
+      "X.PagedList/8.4.7": {
+        "dependencies": {
+          "JetBrains.Annotations": "2022.3.1"
+        },
+        "runtime": {
+          "lib/net7.0/X.PagedList.dll": {
+            "assemblyVersion": "8.4.7.0",
+            "fileVersion": "8.4.7.0"
+          }
+        }
+      },
+      "X.PagedList.Mvc.Core/8.4.7": {
+        "dependencies": {
+          "X.PagedList": "8.4.7"
+        },
+        "runtime": {
+          "lib/net7.0/X.PagedList.Mvc.Core.dll": {
+            "assemblyVersion": "8.4.7.0",
+            "fileVersion": "8.4.7.0"
+          }
+        }
+      },
+      "LibraryModels/1.0.0.0": {
         "runtime": {
           "LibraryModels.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -2968,6 +2979,13 @@
       "sha512": "sha512-VIXB7HCUC34OoaGnO3HJVtSv2/wljPhjV7eKH4+TFPgQdJj2lvHNKY41Dtg0Bphu7X5UaXFR4zrYYyo+GNOjbA==",
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
+    },
+    "JetBrains.Annotations/2022.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-11nsS3+lFICGkztVs9PP2NRItxf9fF+qD6xEW/T0YGto52zj07wseUeBdMAU1ah9HNVTDZyRC1u4NWdtJScwhw==",
+      "path": "jetbrains.annotations/2022.3.1",
+      "hashPath": "jetbrains.annotations.2022.3.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.JsonPatch/7.0.11": {
       "type": "package",
@@ -3486,20 +3504,6 @@
       "sha512": "sha512-Wm/AOFICTIrCgbVxv9dNWusraTzcggbo5W4ao7hD8NNVq911an9TGwW+uNuYc8I5PkpTeMuSXneV2u6hbi1P4w==",
       "path": "nuget.versioning/6.6.1",
       "hashPath": "nuget.versioning.6.6.1.nupkg.sha512"
-    },
-    "PagedList/1.17.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Ou6F3WKXh49hOo0TxWM+SkIGuKllYPuPPvnSYOlQ1sTrtuEyuDUhYbSJd5Sdb06i/sWUJZTjiUecEs3Ht/Hx3g==",
-      "path": "pagedlist/1.17.0",
-      "hashPath": "pagedlist.1.17.0.nupkg.sha512"
-    },
-    "PagedList.Mvc/4.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-D0M4qW2g4a9cwG8ozIKUnJheCrm5GpFTceqUl63AXWaAVnTgk+TysZYUOGMsBRuzid8aF+/E8b0bXM6+90jiEw==",
-      "path": "pagedlist.mvc/4.5.0",
-      "hashPath": "pagedlist.mvc.4.5.0.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",
@@ -4201,7 +4205,21 @@
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
-    "LibraryModels.Reference/1.0.0.0": {
+    "X.PagedList/8.4.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZA1WcyNviMUhivCgwKAm/5/YsNP3Yf/n81SzrPaHSJOcFzavA9MrXTT8M+ZX4fvHwLCL1bY6BPXvwZF5pRtgTg==",
+      "path": "x.pagedlist/8.4.7",
+      "hashPath": "x.pagedlist.8.4.7.nupkg.sha512"
+    },
+    "X.PagedList.Mvc.Core/8.4.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dS8sJr/aT3AoV9ePaqmF4wijh/2vqS9rxpOvzjPPStkQcR8rUaGPVezPgY/kJwWCZ2hdgKNralbU08So0otNxw==",
+      "path": "x.pagedlist.mvc.core/8.4.7",
+      "hashPath": "x.pagedlist.mvc.core.8.4.7.nupkg.sha512"
+    },
+    "LibraryModels/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

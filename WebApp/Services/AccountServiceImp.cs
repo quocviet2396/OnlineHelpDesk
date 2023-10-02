@@ -22,10 +22,10 @@ namespace WebApp.Services
             _mailultil = mailultil;
         }
 
-        public async Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort, string? currentFilter)
+        public async Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort)
         {
             currentSort = string.IsNullOrEmpty(currentSort) ? "asc_Id" : currentSort;
-            var sort = await Sort<Users>.SortAsync(_db.Users.ToList(), currentSort, currentFilter);
+            var sort = await Sort<Users>.SortAsync(_db.Users.ToList(), currentSort);
             //goi phuong thuc paginate de phan chia trang           goi csdl de phan trang      skip     lay bao nhieu   orderby
             var result = await Paginated<Users>.CreatePaginate(sort.ToList(), pageNumber, (int)Limit, x => x.Id);
             return result;
@@ -53,9 +53,9 @@ namespace WebApp.Services
             return user;
         }
 
-        public async Task<Users> users(string stuEmail)
+        public async Task<Users> users(string stuCodeId)
         {
-            var user = _db.Users.FirstOrDefault(u => u.Email == stuEmail);
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Code == stuCodeId);
             return user;
         }
 
@@ -126,6 +126,7 @@ namespace WebApp.Services
             return res = _helper.CreateResponse<string>("fail", false);
         }
 
+
         public async Task<Response<string>> ChangePassword(string pass, string code)
         {
             try
@@ -168,6 +169,7 @@ namespace WebApp.Services
                 return res = _helper.CreateResponse<string>("Please enter email!! ", false);
             }
         }
+
 
         public async Task<Response<string>> CheckPhoto(IFormFile photo)
         {
@@ -235,8 +237,8 @@ namespace WebApp.Services
                 {
                     Address = users["Address"].FirstOrDefault() ?? null,
                     City = users["City"].FirstOrDefault() ?? null,
-                    Gender = bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
-                    DateOfBirth = DateTime.TryParseExact(users["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
+                    Gender = (bool)(bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null),
+                    DateOfBirth = (DateTime)(DateTime.TryParseExact(users["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null),
                     Phone = users["Phone"].FirstOrDefault() ?? null,
                     Photo = filePath,
                     UserId = userId
@@ -254,6 +256,7 @@ namespace WebApp.Services
             }
         }
 
+
         public async Task<Response<string>> InfoChange(IFormCollection form)
         {
             try
@@ -265,9 +268,9 @@ namespace WebApp.Services
                 if (form["ValueBtn"].FirstOrDefault() == "update" && infoUser != null)
                 {
                     infoUser.Address = form["Address"].FirstOrDefault() ?? null;
-                    infoUser.DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth1) ? (DateTime?)parsedDateOfBirth1 : null;
+                    infoUser.DateOfBirth = (DateTime)(DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth1) ? (DateTime?)parsedDateOfBirth1 : null);
                     infoUser.City = form["City"].FirstOrDefault() ?? null;
-                    infoUser.Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender1) ? (bool?)parsedGender1 : null;
+                    infoUser.Gender = (bool)(bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender1) ? (bool?)parsedGender1 : null);
                     infoUser.Phone = form["Phone"].FirstOrDefault() ?? null;
                     _db.SaveChanges();
                     return res = _helper.CreateResponse<string>("Update infomation successfully", true);
@@ -277,9 +280,9 @@ namespace WebApp.Services
                     UserInfo userinfo = new UserInfo()
                     {
                         Address = form["Address"].FirstOrDefault() ?? null,
-                        DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
+                        DateOfBirth = (DateTime)(DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null),
                         City = form["City"].FirstOrDefault() ?? null,
-                        Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
+                        Gender = (bool)(bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null),
                         Phone = form["Phone"].FirstOrDefault() ?? null,
                         UserId = int.Parse(form["AccId"].FirstOrDefault()),
                     };
@@ -294,6 +297,7 @@ namespace WebApp.Services
                 return res = _helper.CreateResponse<string>(ex.Message, false);
             }
         }
+
 
         public async Task<Response<string>> ChangeAvatar(IFormCollection avatar)
         {

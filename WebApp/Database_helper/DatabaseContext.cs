@@ -23,7 +23,6 @@ namespace WebApp.Database_helper
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<UserConn> userConn { get; set; }
        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -56,7 +55,6 @@ namespace WebApp.Database_helper
                  .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Users>().HasOne(_ => _.userConn).WithOne(a => a.Users).HasForeignKey<UserConn>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbUsers"
             modelBuilder.Entity<Users>().HasData(

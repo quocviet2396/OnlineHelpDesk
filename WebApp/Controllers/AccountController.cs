@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using WebApp.Authorize;
 using WebApp.Repositories;
 using WebApp.Ultils;
 
@@ -15,34 +14,28 @@ using WebApp.Ultils;
 
 namespace WebApp.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
 
         private readonly Helper _helper;
         private readonly IAccountService _account;
-        private readonly IAuthenService _authen;
-        public AccountController(IAccountService account, Helper helper, IAuthenService authen)
+        public AccountController(IAccountService account, Helper helper)
         {
             _account = account;
             _helper = helper;
-            _authen = authen;
         }
 
-        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort, string? currentFilter)
+        [Route("/Backend/Account")]
+        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort)
         {
             var Limit = limit ?? 7;
-
-            var filter = string.IsNullOrEmpty(currentFilter) ? null : currentFilter;
-
-            ViewData["currentFilter"] = filter;
 
             var propertySort = string.IsNullOrEmpty(currentSort) ? null : currentSort.Split("_")[0] == "desc" ? $"asc_{currentSort.Split("_")[1]}" : $"desc_{currentSort.Split("_")[1]}";
             ViewData["propertySort"] = propertySort;
             ViewData["nameSort"] = propertySort?.Split("_")[1];
 
             var pageNumber = pageIndex <= 0 ? 1 : pageIndex;
-            var result = await _account.AllUsers(pageNumber, Limit, propertySort, filter) as Paginated<Users>;
+            var result = await _account.AllUsers(pageNumber, Limit, propertySort) as Paginated<Users>;
             ViewData["totalPages"] = result.TotalPages;
             ViewData["Count"] = result.Count;
             return View(result);
@@ -52,9 +45,6 @@ namespace WebApp.Controllers
         public async Task<IActionResult> UserProfile()
         {
             var stucode = HttpContext.Session.GetString("accCode");
-            var stuEmail = HttpContext.Session.GetString("accEmail");
-            var stuRole = HttpContext.Session.GetString("accRole");
-            TempData["AccRole"] = stuRole == "Admin" || stuRole == "Supporter" ? "_BackendLayout" : "_";
             var model = _account.UserInfo(stucode);
             if (model != null)
             {
@@ -80,7 +70,7 @@ namespace WebApp.Controllers
             }
             else
             {
-                var user = await _account.users(stuEmail);
+                var user = _account.users(stucode);
                 ViewData["UserProfile"] = user;
                 //var result = JsonConvert.DeserializeObject(user);
                 return View();

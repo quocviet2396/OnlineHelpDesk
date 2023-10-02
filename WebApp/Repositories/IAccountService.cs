@@ -5,7 +5,7 @@ namespace WebApp.Repositories
 {
     public interface IAccountService
     {
-        Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort, string? currentFilter);
+        Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort);
         UserInfoDTO UserInfo(string stuCodeTd);
 
         Task<Users> users(string stuCodeId);
@@ -25,7 +25,6 @@ namespace WebApp.Repositories
         Task<Response<string>> ForgotPassword(string email);
 
         Task<Response<string>> ChangeAvatar(IFormCollection avatar);
-
     }
 }
 

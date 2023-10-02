@@ -30,7 +30,5 @@ namespace LibraryModels
 
         public UserInfo? userInfo { get; set; }
 
-        public UserConn? userConn { get; set; }
-
     }
 }

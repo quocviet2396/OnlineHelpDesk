@@ -23,13 +23,13 @@ namespace WebApp.Database_helper
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
-       
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=DESKTOP-T6R536I\\SQLEXPRESS01; database=OHDDb; uid=sa; pwd=123; TrustServerCertificate=true";
-            optionsBuilder.UseSqlServer(str);
+            string url = "server=localhost;database=OHDDb;uid=sa; pwd=123456aA@$;TrustServerCertificate=true";
+            optionsBuilder.UseSqlServer(url);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

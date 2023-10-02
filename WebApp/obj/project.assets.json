@@ -3969,6 +3969,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "LibraryModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/LibraryModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LibraryModels.dll": {}
+        }
       }
     }
   },
@@ -11584,12 +11594,18 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "LibraryModels/1.0.0": {
+      "type": "project",
+      "path": "../LibraryModels/LibraryModels.csproj",
+      "msbuildProject": "../LibraryModels/LibraryModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "BCrypt.Net-Next >= 4.0.3",
       "Bogus >= 34.0.2",
+      "LibraryModels >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 7.0.11",
       "Microsoft.EntityFrameworkCore >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.11",
@@ -11602,32 +11618,36 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\T490\\.nuget\\packages\\": {}
+    "/Users/mac/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
+      "projectUniqueName": "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/WebApp.csproj",
       "projectName": "WebApp",
-      "projectPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
-      "packagesPath": "C:\\Users\\T490\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\obj\\",
+      "projectPath": "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/WebApp.csproj",
+      "packagesPath": "/Users/mac/.nuget/packages/",
+      "outputPath": "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\T490\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/mac/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "/usr/local/share/dotnet/library-packs": {},
+        "/usr/local/share/dotnet/sdk/7.0.308/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/mac/Documents/GitHub/OnlineHelpDesk/LibraryModels/LibraryModels.csproj": {
+              "projectPath": "/Users/mac/Documents/GitHub/OnlineHelpDesk/LibraryModels/LibraryModels.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -11710,7 +11730,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
       }
     }
   },

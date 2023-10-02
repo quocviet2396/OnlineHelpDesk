@@ -110,7 +110,7 @@ namespace WebApp.Controllers
             {
                 HttpContext.Session.Remove("accEmail");
                 /*Chỗ này rồi sẽ sửa thành frontend home*/
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Frontend");
             }
         }
     }

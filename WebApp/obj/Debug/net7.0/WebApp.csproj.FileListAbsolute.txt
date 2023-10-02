@@ -511,7 +511,6 @@ C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\staticweba
 C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\staticwebassets.pack.json
 C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\staticwebassets.development.json
-C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\scopedcss\Views\Shared\Frontend.cshtml.rz.scp.css
 C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\scopedcss\bundle\WebApp.styles.css
 C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\scopedcss\projectbundle\WebApp.bundle.scp.css
@@ -521,3 +520,7 @@ C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\refint\Web
 C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\WebApp.pdb
 C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\WebApp.genruntimeconfig.cache
 C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\ref\WebApp.dll
+C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\obj\Debug\net7.0\WebApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\bin\Debug\net7.0\JetBrains.Annotations.dll
+C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\bin\Debug\net7.0\X.PagedList.dll
+C:\Users\T490\Documents\GitHub\OnlineHelpDesk\WebApp\bin\Debug\net7.0\X.PagedList.Mvc.Core.dll

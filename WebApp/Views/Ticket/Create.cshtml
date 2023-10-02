@@ -1,6 +1,6 @@
 ﻿@model LibraryModels.Ticket
 @{
-    Layout = "Frontend";
+    Layout = "_Layout";
 }
 @{
     ViewData["Title"] = "Create";
@@ -13,7 +13,7 @@
                 <h5 class="card-title fw-semibold mb-4">Send Ticket</h5>
                 <div class="card">
                     <div class="card-body">
-                        <form asp-action="Create" asp-controller="Ticket">
+                        <form asp-action="Create" method="post" asp-controller="Ticket" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
                                 <label asp-for="Title" class="control-label"></label>
@@ -25,12 +25,12 @@
                                 <input asp-for="Description" class="form-control" />
                                 <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label asp-for="CreateDate" hidden class="control-label"></label>
                                 <input asp-for="CreateDate" hidden class="form-control" />
                                 <span asp-validation-for="CreateDate" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label asp-for="ModifiedDate" hidden class="control-label"></label>
                                 <input asp-for="ModifiedDate" hidden class="form-control" />
                                 <span asp-validation-for="ModifiedDate" class="text-danger"></span>
@@ -40,7 +40,7 @@
                                 <input asp-for="Attachment" type="file" name="file" class="form-control" />
                                 <span asp-validation-for="Attachment" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label asp-for="TicketStatusId" hidden class="control-label"></label>
                                 <select asp-for="TicketStatusId" hidden class="form-control" asp-items="ViewBag.TicketStatusId"></select>
                             </div>
@@ -48,15 +48,15 @@
                                 <label asp-for="CategoryId" class="control-label"></label>
                                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label asp-for="CreatorId" hidden class="control-label"></label>
                                 <select asp-for="CreatorId" hidden class="form-control" asp-items="ViewBag.CreatorId"></select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label asp-for="SupporterId" hidden class="control-label"></label>
                                 <select asp-for="SupporterId" hidden class="form-control" asp-items="ViewBag.SupporterId"></select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label asp-for="PriorityId" hidden class="control-label"></label>
                                 <select asp-for="PriorityId" hidden class="form-control" asp-items="ViewBag.Pro"></select>
                             </div>

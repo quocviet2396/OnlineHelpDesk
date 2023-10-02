@@ -19,8 +19,7 @@
           "Microsoft.TypeScript.MSBuild": "5.2.2",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.10",
           "Newtonsoft.Json": "13.0.3",
-          "PagedList.Mvc": "4.5.0",
-          "LibraryModels.Reference": "1.0.0.0"
+          "PagedList.Mvc": "4.5.0"
         },
         "runtime": {
           "WebApp.dll": {}
@@ -2575,12 +2574,9 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "LibraryModels.Reference/1.0.0.0": {
+      "LibraryModels/1.0.0": {
         "runtime": {
-          "LibraryModels.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "LibraryModels.dll": {}
         }
       }
     }
@@ -4201,8 +4197,8 @@
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
-    "LibraryModels.Reference/1.0.0.0": {
-      "type": "reference",
+    "LibraryModels/1.0.0": {
+      "type": "project",
       "serviceable": false,
       "sha512": ""
     }

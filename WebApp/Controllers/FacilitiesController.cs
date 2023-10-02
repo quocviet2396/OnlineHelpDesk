@@ -89,7 +89,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Facilities facilities)
+        public async Task<IActionResult> Edit(int id,  Facilities facilities)
         {
             if (id != facilities.Id)
             {

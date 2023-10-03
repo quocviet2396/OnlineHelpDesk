@@ -54,11 +54,6 @@
     <script src="~/assets/js/config.js"></script>
 </head>
 
-@{
-    var email = Context.Session.GetString("accEmail");
-    var result = await INotifi.Notifications(email);
-    var count = result != null ? result.Where(a => a.status == false).Count() : 0;
-}
 
 <body>
     <style>
@@ -239,16 +234,11 @@
                                 <li class="menu-item">
                                     <div id="notification-icon" style="width:50px;height:50px;position:relative;display:inline-block">
                                         <i class="fa-solid fa-bell" style="font-size:35px"></i>
-                                        <span class="rounded-circle" style="position: absolute; top: 0; right: 0; background-color: red; color: white; padding: 4px 8px; font-size: 12px;">@count</span>
+                                        <span class="rounded-circle" id="hubCount" hidden style="position: absolute; top: 0; right: 0; background-color: red; color: white; padding: 4px 8px; font-size: 12px;"></span>
                                     </div>
                                     <div id="notification-content">
-                                        @if (count == 0)
-                                        {
-                                            <span>You dont have a notification</span>
-                                        }
-                                        else
-                                        {
-                                            <span>aaa</span>}
+                                        <ul id="notification-list">
+                                        </ul>
                                     </div>
                                 </li>
                                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -405,22 +395,7 @@
                     $('#notification-content').hide();
                 }
             });
-
-    const originalTitle = document.title;
-            var count = @Json.Serialize(count);
-
-    const intervalId = setInterval(() => {
-        if (count === 0) { document.title = `You have ${count} new notifications`; }
-        setTimeout(() => {
-            document.title = originalTitle; // Khôi phục title ban đầu
-        }, 1000);
-    }, 3000);
-})
-        setTimeout(() => {
-            clearInterval(intervalId);
-            document.title = originalTitle; // Khôi phục title ban đầu
-        }, 150000);
-    </script>
+        })</script>
 </body>
 
 </html>

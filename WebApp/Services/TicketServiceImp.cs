@@ -14,8 +14,8 @@ namespace WebApp.Services
         }
         public async Task<bool> create(Ticket newTicket)
         {
-            await db.AddAsync(newTicket);
-            await db.SaveChangesAsync();
+            db.Add(newTicket);
+            db.SaveChanges();
             return true;
         }
 
@@ -87,6 +87,42 @@ namespace WebApp.Services
             return query;
         }
 
+
+        public async Task<List<TicketDTO>> TicketNonCate(string email, string role)
+        {
+            var user = db.Users.FirstOrDefault(u => u.Email.Equals(email));
+            var query = await db.Ticket
+                        .Include(t => t.Creator)
+                        .Include(f => f.Category)
+                        .Include(ts => ts.TicketStatus)
+                        .Include(sp => sp.Supporter)
+                        .Select(c => new TicketDTO()
+                        {
+                            TicketId = c.Id,
+                            Title = c.Title,
+                            Decription = c.Description,
+                            PhotoPerson = c.Creator.userInfo.Photo,
+                            UserNameCreator = c.Creator.UserName,
+                            UserNameSupporter = c.Supporter != null ? c.Supporter.UserName : null,
+                            EmailCreator = c.Creator.Email,
+                            EmailSupporter = c.Supporter != null ? c.Supporter.Email : null,
+                            TicketStatus = c.TicketStatus != null ? c.TicketStatus.Name : null,
+                        }).ToListAsync();
+
+
+
+            if (!string.IsNullOrEmpty(email) && role != Role.Admin)
+            {
+                query = query.Where(a =>
+                        (a.EmailCreator != null && a.EmailCreator.Equals(email)) ||
+                        (a.EmailSupporter != null && a.EmailSupporter.Equals(email))).ToList();
+            }
+            else if (role == Role.Admin)
+            {
+                query = query.Where(a => a.TicketStatus == null).ToList();
+            }
+            return query;
+        }
 
     }
 }

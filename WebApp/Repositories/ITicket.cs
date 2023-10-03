@@ -11,5 +11,6 @@ namespace WebApp.Repositories
         Task<Ticket> GetTicketById(int id);
 
         Task<List<Ticket>> Tickets(string email, string role);
+        Task<List<TicketDTO>> TicketNonCate(string email, string role);
     }
 }

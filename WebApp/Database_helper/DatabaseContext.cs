@@ -24,6 +24,7 @@ namespace WebApp.Database_helper
         public DbSet<News> News { get; set; }
         public DbSet<UserConn> userConn { get; set; }
         public DbSet<Notifications> Notifications { get; set; }
+        public DbSet<TicketDTO> TickdetDTOs { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -64,9 +65,9 @@ namespace WebApp.Database_helper
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbUsers"
             modelBuilder.Entity<Users>().HasData(
-                new Users { Id = 1, Email = "superadmin@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Admin", Status = true, UserName = "SuperAdmin", Code = _helper.randomString(8) },
-                new Users { Id = 2, Email = "supporter@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Supporter", Status = true, UserName = "Supporter", Code = _helper.randomString(8) },
-                new Users { Id = 3, Email = "user@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "User", Status = true, UserName = "User", Code = _helper.randomString(8) }
+                new Users { Id = 1, Email = "superadmin@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Admin", Status = true, UserName = "SuperAdmin", Code = _helper.randomString(8), EmailToConfirm = null },
+                new Users { Id = 2, Email = "supporter@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Supporter", Status = true, UserName = "Supporter", Code = _helper.randomString(8), EmailToConfirm = null },
+                new Users { Id = 3, Email = "user@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "User", Status = true, UserName = "User", Code = _helper.randomString(8), EmailToConfirm = null }
             );
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbPriority"

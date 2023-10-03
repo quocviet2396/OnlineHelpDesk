@@ -1,6 +1,6 @@
 ﻿@{
     int i = 1;
-    Layout = ViewData["Layout"]?.ToString() ?? "_DefaultLayout";
+    Layout = "_BackendLayout";
 }
 
 @model IEnumerable<LibraryModels.Ticket>
@@ -10,14 +10,14 @@
         @TempData["Message"]
     </div>
 }
-<div >
+<div>
     <!-- Change this content if you need to modify -->
     <div class="d-flex align-items-stretch">
         <div class="card w-100">
             <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-4">Ticket Status</h5>
                 <a class="btn btn-info" asp-action="Create" asp-controller="Ticket">Create New Ticket</a>
-              
+
                 <div class="table-responsive">
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
@@ -28,16 +28,16 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Title)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Description)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.CreateDate)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.ModifiedDate)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Attachment)</h6>
                                 </th>
                                 <th class="border-bottom-0">
@@ -45,9 +45,9 @@
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Category</h6>
-                                    
+
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 @ViewBag.us class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Creator)</h6>
                                 </th>
                                 <th class="border-bottom-0">
@@ -111,9 +111,9 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2" style="justify-content:center">
-                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-gear"></i></a>
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-gear"></i></a>
                                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-info-circle"></i></a>
-                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -130,8 +130,7 @@
 </div>
 
 
-<script>
-    // Lắng nghe sự kiện thay đổi của dropdown
+<script>// Lắng nghe sự kiện thay đổi của dropdown
     document.getElementById('categoryFilter').addEventListener('change', function () {
         var selectedCategoryId = this.value; // Lấy giá trị đã chọn
 
@@ -153,5 +152,4 @@
                 alert('Error occurred while filtering.');
             }
         });
-    });
-</script>
+    });</script>

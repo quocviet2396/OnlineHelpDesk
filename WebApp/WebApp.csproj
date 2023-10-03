@@ -14,6 +14,7 @@
     <None Remove="Views\Account\" />
     <None Remove="Authorize\" />
     <None Remove="Signal\" />
+    <None Remove="Mail\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
@@ -523,6 +524,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.11" />
     <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
+    <PackageReference Include="SqlTableDependency" Version="8.5.8" />
   </ItemGroup>
 
   <ItemGroup>
@@ -534,6 +536,7 @@
     <Folder Include="wwwroot\images\avatars\" />
     <Folder Include="Authorize\" />
     <Folder Include="Signal\" />
+    <Folder Include="Mail\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -73,6 +73,27 @@ namespace WebApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "tbTicketDTO",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TicketId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Decription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhotoPerson = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserNameCreator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserNameSupporter = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmailCreator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmailSupporter = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TicketStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbTicketDTO", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "tbTicketStatus",
                 columns: table => new
                 {
@@ -93,6 +114,7 @@ namespace WebApp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmailToConfirm = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
@@ -164,7 +186,6 @@ namespace WebApp.Migrations
                     CreatorId = table.Column<int>(type: "int", nullable: true),
                     SupporterId = table.Column<int>(type: "int", nullable: true),
                     feedback = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    readed = table.Column<bool>(type: "bit", nullable: true),
                     PriorityId = table.Column<int>(type: "int", nullable: true),
                     UsersId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -210,7 +231,7 @@ namespace WebApp.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ConnectionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Connected = table.Column<bool>(type: "bit", nullable: true),
+                    Connected = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     NotiId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -334,12 +355,12 @@ namespace WebApp.Migrations
 
             migrationBuilder.InsertData(
                 table: "tbUsers",
-                columns: new[] { "Id", "Code", "Email", "Password", "Role", "Status", "UserName" },
+                columns: new[] { "Id", "Code", "Email", "EmailToConfirm", "Password", "Role", "Status", "UserName" },
                 values: new object[,]
                 {
-                    { 1, "itj2DlfG", "superadmin@gmail.com", "$2a$11$nNkQJmN.K4JKxYZC/qY0xOMMUEH.TyZbaHLMiObtDZWvYzoPronTG", "Admin", true, "SuperAdmin" },
-                    { 2, "RS4ofJIq", "supporter@gmail.com", "$2a$11$CUvx.JWNfz8UAOzyFQRH8eJLGXvOF39StEvSpxmM/e.FlRudzgDfq", "Supporter", true, "Supporter" },
-                    { 3, "nsQTZCG7", "user@gmail.com", "$2a$11$3X9SIL1cP/pFvde6WRKRROPFKF9.97hVtmzOBc4tag6grM7SqOa2y", "User", true, "User" }
+                    { 1, "1oGXfw1g", "superadmin@gmail.com", null, "$2a$11$NqtwQPA2e4SmFxyyYgqef.TRNrmhnO98QsDs1z/ZEF64gFg0kEtfW", "Admin", true, "SuperAdmin" },
+                    { 2, "rS3TyrsS", "supporter@gmail.com", null, "$2a$11$i7wOz2jDqwWDlLf6H2JALeVX9IuOkJSzb4Xrl0moU8Gvu15CLkHKi", "Supporter", true, "Supporter" },
+                    { 3, "psYDeVbO", "user@gmail.com", null, "$2a$11$LHpYHxMrmrJrihDJrm6kkO4tLudEQmtKXCV9o.nMNPj9x8YKfCeN2", "User", true, "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -347,56 +368,56 @@ namespace WebApp.Migrations
                 columns: new[] { "Id", "Address", "City", "DateOfBirth", "Email", "FirstName", "FullName", "Gender", "LastName", "Phone", "Student_code" },
                 values: new object[,]
                 {
-                    { 1, "93210 Herman Park, North Dawsonborough, Democratic People's Republic of Korea", "Hollismouth", new DateTime(2023, 4, 13, 15, 10, 37, 997, DateTimeKind.Local).AddTicks(5441), "onhdexmapletest1991@gmail.com", "Allen", "Allen Bernier", false, "Bernier", "561.551.4426", "Student1Xu4S3zt" },
-                    { 3, "10279 Cody Keys, South Emelieside, Svalbard & Jan Mayen Islands", "Port Ebonyshire", new DateTime(2022, 10, 27, 19, 36, 32, 365, DateTimeKind.Local).AddTicks(9672), "onhdexmapletest1993@gmail.com", "Angeline", "Angeline Wiza", true, "Wiza", "1-641-436-4586", "StudentsXYWPVqG" },
-                    { 5, "473 Emmy Ways, Deronport, Macedonia", "West Gilesberg", new DateTime(2023, 4, 19, 13, 46, 51, 475, DateTimeKind.Local).AddTicks(6536), "onhdexmapletest1995@gmail.com", "Katelynn", "Katelynn Conroy", false, "Conroy", "943.322.1951 x4767", "Student9DyE3se5" },
-                    { 7, "617 Macejkovic Ramp, Port Fionaberg, Luxembourg", "North Wallace", new DateTime(2023, 3, 12, 8, 5, 43, 154, DateTimeKind.Local).AddTicks(7946), "onhdexmapletest1997@gmail.com", "Judy", "Judy Kunde", true, "Kunde", "(973) 598-0191", "StudentwyHX6kTW" },
-                    { 9, "670 Shyann Wells, Lake Delfina, Burkina Faso", "Lake Henrifurt", new DateTime(2022, 10, 4, 0, 11, 7, 77, DateTimeKind.Local).AddTicks(8137), "onhdexmapletest1999@gmail.com", "Vivianne", "Vivianne Marquardt", false, "Marquardt", "1-909-506-9100 x29339", "StudenttcI2B8lv" },
-                    { 11, "80572 Fay Mews, East Willis, Bahamas", "North Leonora", new DateTime(2023, 7, 9, 11, 50, 24, 236, DateTimeKind.Local).AddTicks(8509), "onhdexmapletest19911@gmail.com", "Aaliyah", "Aaliyah Heller", true, "Heller", "328.576.7853", "StudentszgEjeCH" },
-                    { 13, "383 Barbara Island, Charlenehaven, Canada", "North Trystan", new DateTime(2023, 1, 24, 1, 44, 34, 181, DateTimeKind.Local).AddTicks(787), "onhdexmapletest19913@gmail.com", "Louisa", "Louisa Larkin", false, "Larkin", "(551) 998-2745", "StudenteIxe37UN" },
-                    { 15, "9795 Marks Station, Lake Reid, Suriname", "Randalmouth", new DateTime(2023, 3, 22, 4, 25, 8, 961, DateTimeKind.Local).AddTicks(7859), "onhdexmapletest19915@gmail.com", "Kenton", "Kenton Paucek", true, "Paucek", "520.335.6458 x55192", "Studentxnm2Pwue" },
-                    { 17, "605 Lily Courts, Kennedymouth, Guinea", "Lake Ilianaport", new DateTime(2023, 6, 17, 1, 56, 42, 497, DateTimeKind.Local).AddTicks(7258), "onhdexmapletest19917@gmail.com", "Deborah", "Deborah Beatty", false, "Beatty", "226-523-6826 x25228", "StudentBsOammz8" },
-                    { 19, "0317 Ernest Points, Mariabury, Burkina Faso", "South Holliechester", new DateTime(2023, 2, 13, 20, 40, 13, 92, DateTimeKind.Local).AddTicks(1040), "onhdexmapletest19919@gmail.com", "Damien", "Damien Luettgen", true, "Luettgen", "1-612-657-6087", "Studento6lmwB9t" },
-                    { 21, "9535 Nader Wall, West Alfreda, Aruba", "South Amaya", new DateTime(2023, 8, 10, 22, 49, 49, 507, DateTimeKind.Local).AddTicks(3074), "onhdexmapletest19921@gmail.com", "Colin", "Colin Bartoletti", true, "Bartoletti", "1-915-479-1266 x2224", "StudentojbvCceO" },
-                    { 23, "7939 Juliana Flat, Yostshire, Lesotho", "Lake Fredrick", new DateTime(2023, 9, 25, 13, 40, 27, 77, DateTimeKind.Local).AddTicks(3961), "onhdexmapletest19923@gmail.com", "Laurence", "Laurence Nitzsche", false, "Nitzsche", "646-961-6072 x0050", "Studentg5PfmSvZ" },
-                    { 25, "2186 Crystel Loaf, Ellismouth, British Indian Ocean Territory (Chagos Archipelago)", "North Kiarrashire", new DateTime(2022, 12, 7, 17, 45, 4, 705, DateTimeKind.Local).AddTicks(7707), "onhdexmapletest19925@gmail.com", "Estrella", "Estrella Lehner", false, "Lehner", "(843) 936-0000 x9000", "Student8GzhXvXz" },
-                    { 27, "1421 Patrick Motorway, Shieldsmouth, Cape Verde", "West Keenanville", new DateTime(2023, 9, 23, 1, 59, 16, 130, DateTimeKind.Local).AddTicks(3218), "onhdexmapletest19927@gmail.com", "Guy", "Guy Beatty", true, "Beatty", "1-237-669-0456 x06262", "StudentzhsxqWqO" },
-                    { 29, "39483 Hermiston Stream, Lake Karen, Gibraltar", "Batztown", new DateTime(2023, 9, 28, 11, 10, 33, 306, DateTimeKind.Local).AddTicks(450), "onhdexmapletest19929@gmail.com", "Stacey", "Stacey Block", false, "Block", "495.270.0835", "StudentwXEAbFJg" },
-                    { 31, "9232 Block Lodge, Mooreville, Guatemala", "Rolfsonton", new DateTime(2023, 1, 14, 23, 25, 53, 152, DateTimeKind.Local).AddTicks(428), "onhdexmapletest19931@gmail.com", "Lane", "Lane Gleason", true, "Gleason", "(728) 873-1296 x9480", "StudentXTjwdqal" },
-                    { 33, "372 Marlen Villages, South Caleb, Ethiopia", "Hackettland", new DateTime(2023, 7, 31, 21, 13, 3, 329, DateTimeKind.Local).AddTicks(1382), "onhdexmapletest19933@gmail.com", "Retha", "Retha Considine", false, "Considine", "677.504.6643 x61060", "StudentN0vxEcCM" },
-                    { 35, "2553 Ova Pines, West Cayla, Portugal", "Hickleside", new DateTime(2023, 8, 29, 13, 36, 17, 634, DateTimeKind.Local).AddTicks(5088), "onhdexmapletest19935@gmail.com", "Coty", "Coty King", false, "King", "(882) 583-5573 x374", "StudentBrT8qu5c" },
-                    { 37, "260 Kenneth Mills, Kossborough, Germany", "Millerport", new DateTime(2023, 3, 31, 8, 48, 52, 160, DateTimeKind.Local).AddTicks(9513), "onhdexmapletest19937@gmail.com", "Kylie", "Kylie Dibbert", false, "Dibbert", "681.395.3199", "Student4RE1g0VY" },
-                    { 39, "119 Marks Overpass, Ortizborough, Gambia", "Port Kobe", new DateTime(2023, 4, 19, 8, 54, 40, 38, DateTimeKind.Local).AddTicks(7816), "onhdexmapletest19939@gmail.com", "Darby", "Darby Luettgen", true, "Luettgen", "(679) 679-3805 x980", "Student9UJsJhBC" },
-                    { 41, "94296 Lang Trail, South Jamey, Oman", "Gleasonmouth", new DateTime(2023, 2, 12, 15, 38, 5, 974, DateTimeKind.Local).AddTicks(9154), "onhdexmapletest19941@gmail.com", "Charlotte", "Charlotte Dooley", true, "Dooley", "(659) 423-4458 x16733", "StudentAMI73lZe" },
-                    { 43, "559 Blanca Cliff, Colebury, Hungary", "Bednarbury", new DateTime(2023, 1, 23, 0, 37, 29, 514, DateTimeKind.Local).AddTicks(8430), "onhdexmapletest19943@gmail.com", "Jarrett", "Jarrett Goodwin", false, "Goodwin", "451.341.9606", "StudentisJV03to" },
-                    { 45, "2675 Fahey Land, East Michealbury, Kuwait", "Lake Vena", new DateTime(2023, 3, 2, 21, 30, 29, 307, DateTimeKind.Local).AddTicks(5704), "onhdexmapletest19945@gmail.com", "Gillian", "Gillian Gutkowski", false, "Gutkowski", "474.538.1040 x9611", "StudentsqKDNNtL" },
-                    { 47, "832 Gusikowski Stravenue, East Sarina, Syrian Arab Republic", "Lake Kaci", new DateTime(2023, 1, 29, 9, 17, 12, 34, DateTimeKind.Local).AddTicks(8584), "onhdexmapletest19947@gmail.com", "Clarabelle", "Clarabelle Hoeger", false, "Hoeger", "(535) 231-0572 x1808", "Studentif5xeF3p" },
-                    { 49, "275 Torphy Lodge, Fayside, French Guiana", "Labadiehaven", new DateTime(2023, 5, 15, 4, 54, 5, 900, DateTimeKind.Local).AddTicks(180), "onhdexmapletest19949@gmail.com", "Waino", "Waino Corwin", true, "Corwin", "811-752-5964", "Student4ywbRaXC" },
-                    { 51, "44060 Strosin Glens, Reymundohaven, Indonesia", "North Davon", new DateTime(2023, 4, 10, 16, 22, 19, 596, DateTimeKind.Local).AddTicks(4076), "onhdexmapletest19951@gmail.com", "Samanta", "Samanta Rohan", false, "Rohan", "(274) 416-7869 x4933", "StudentXKP7V6Zh" },
-                    { 53, "23878 Barrows Pines, Denesikbury, Palestinian Territory", "Champlinland", new DateTime(2023, 5, 6, 3, 38, 3, 684, DateTimeKind.Local).AddTicks(6224), "onhdexmapletest19953@gmail.com", "Shanelle", "Shanelle Mueller", true, "Mueller", "1-660-825-6087 x578", "StudentiNcDdDG3" },
-                    { 55, "334 Cyril Freeway, New Birdieport, Palau", "Kerlukeview", new DateTime(2023, 5, 2, 14, 37, 25, 714, DateTimeKind.Local).AddTicks(6909), "onhdexmapletest19955@gmail.com", "Terence", "Terence Adams", true, "Adams", "1-442-210-0873 x957", "StudentEGqtGkN4" },
-                    { 57, "9134 Clotilde Way, Jazmintown, Latvia", "Nienowfurt", new DateTime(2023, 7, 20, 0, 37, 15, 825, DateTimeKind.Local).AddTicks(2956), "onhdexmapletest19957@gmail.com", "Lowell", "Lowell Marquardt", false, "Marquardt", "567.579.6159 x953", "StudentMtFmlZeZ" },
-                    { 59, "24262 Ledner Route, Franciscomouth, Peru", "West Jeromyside", new DateTime(2023, 3, 6, 0, 8, 12, 795, DateTimeKind.Local).AddTicks(6640), "onhdexmapletest19959@gmail.com", "Diego", "Diego Greenholt", false, "Greenholt", "(929) 943-4361", "StudentirhoeArq" },
-                    { 61, "755 Kiana Garden, South Haydenberg, Mali", "New Nadia", new DateTime(2023, 4, 21, 0, 41, 7, 984, DateTimeKind.Local).AddTicks(3594), "onhdexmapletest19961@gmail.com", "Chanel", "Chanel Abshire", true, "Abshire", "(370) 357-7926 x8311", "StudentPzgn2vpL" },
-                    { 63, "70059 Bauch Plain, Monserratside, Ukraine", "Ludiehaven", new DateTime(2023, 7, 23, 23, 36, 38, 918, DateTimeKind.Local).AddTicks(2492), "onhdexmapletest19963@gmail.com", "Pierce", "Pierce Stracke", false, "Stracke", "466-316-7600 x3320", "StudentoPvFIV8y" },
-                    { 65, "47981 Marks Plaza, Naderchester, Jordan", "East Waltonchester", new DateTime(2022, 11, 29, 3, 30, 26, 141, DateTimeKind.Local).AddTicks(3711), "onhdexmapletest19965@gmail.com", "Leila", "Leila Feeney", false, "Feeney", "1-731-409-5314 x82700", "Student9Q47k3a0" },
-                    { 67, "1304 Gislason Union, West Roelfurt, Republic of Korea", "Torpview", new DateTime(2023, 1, 29, 12, 50, 44, 714, DateTimeKind.Local).AddTicks(5448), "onhdexmapletest19967@gmail.com", "Tiana", "Tiana Thompson", false, "Thompson", "1-552-537-8190 x087", "Studentzt8tKaWI" },
-                    { 69, "3380 Jayme Falls, Chaunceystad, Moldova", "East Alaina", new DateTime(2023, 9, 24, 9, 38, 23, 682, DateTimeKind.Local).AddTicks(9610), "onhdexmapletest19969@gmail.com", "Libbie", "Libbie Schuppe", true, "Schuppe", "662-872-6543 x943", "Student1TQtXMEr" },
-                    { 71, "18595 Keyon Center, Watsicaburgh, Netherlands", "East Twila", new DateTime(2023, 5, 13, 6, 26, 17, 884, DateTimeKind.Local).AddTicks(6184), "onhdexmapletest19971@gmail.com", "Robyn", "Robyn Goldner", false, "Goldner", "(403) 664-8254 x2131", "StudentZTJavVyS" },
-                    { 73, "281 Izaiah Lodge, South Josephine, Sierra Leone", "Carterfort", new DateTime(2023, 1, 3, 0, 37, 2, 681, DateTimeKind.Local).AddTicks(5936), "onhdexmapletest19973@gmail.com", "Desiree", "Desiree Stokes", false, "Stokes", "586-315-7426 x6550", "StudentMdxxY4Ll" },
-                    { 75, "09420 Eliza Forks, Georgianaport, Namibia", "Johathanstad", new DateTime(2023, 7, 28, 21, 54, 38, 100, DateTimeKind.Local).AddTicks(1380), "onhdexmapletest19975@gmail.com", "Melyssa", "Melyssa Kreiger", false, "Kreiger", "756.653.2242", "Studentu0nl1WNd" },
-                    { 77, "7164 McLaughlin Row, Port Cleve, Jamaica", "Sengershire", new DateTime(2022, 10, 15, 17, 21, 52, 992, DateTimeKind.Local).AddTicks(8347), "onhdexmapletest19977@gmail.com", "Gracie", "Gracie Collier", false, "Collier", "(573) 273-7956 x54085", "Student2KkRaaHD" },
-                    { 79, "7928 Deron Isle, Port Kayley, Gibraltar", "Reesetown", new DateTime(2023, 6, 30, 11, 49, 19, 460, DateTimeKind.Local).AddTicks(9468), "onhdexmapletest19979@gmail.com", "Nicholas", "Nicholas Mraz", true, "Mraz", "1-691-406-2383 x353", "Studentist0vAB5" },
-                    { 81, "8217 Colleen Greens, Port Angela, Belarus", "East Jeanne", new DateTime(2023, 3, 13, 19, 39, 37, 303, DateTimeKind.Local).AddTicks(805), "onhdexmapletest19981@gmail.com", "Rashawn", "Rashawn Swift", true, "Swift", "(418) 538-3927", "StudentqeOK5tOa" },
-                    { 83, "78556 Ivah Drives, East Eldred, Gibraltar", "Desireeville", new DateTime(2023, 2, 18, 6, 54, 9, 103, DateTimeKind.Local).AddTicks(68), "onhdexmapletest19983@gmail.com", "Madalyn", "Madalyn Koch", true, "Koch", "430-378-8216 x1647", "StudentBTN2ZjuH" },
-                    { 85, "7183 Hertha Plaza, Florianside, Guadeloupe", "South Emmitt", new DateTime(2022, 11, 22, 6, 23, 7, 909, DateTimeKind.Local).AddTicks(5026), "onhdexmapletest19985@gmail.com", "Brennon", "Brennon Blick", false, "Blick", "766.487.5384 x936", "StudentY38yugcC" },
-                    { 87, "29432 Littel Canyon, Giachester, Sierra Leone", "Nealside", new DateTime(2023, 2, 25, 19, 49, 32, 949, DateTimeKind.Local).AddTicks(4860), "onhdexmapletest19987@gmail.com", "Bulah", "Bulah Ondricka", true, "Ondricka", "(600) 412-0725 x7389", "StudentqBNAZdVt" },
-                    { 89, "670 Lynch Village, Elysehaven, Mauritius", "Lake Claudiaberg", new DateTime(2023, 3, 7, 4, 30, 35, 340, DateTimeKind.Local).AddTicks(6165), "onhdexmapletest19989@gmail.com", "Arjun", "Arjun Goldner", false, "Goldner", "723.588.4340 x3151", "StudentNGb1k9lo" },
-                    { 91, "3613 Abagail Underpass, South Lydiaview, Lithuania", "West Eusebiomouth", new DateTime(2023, 9, 13, 18, 8, 49, 670, DateTimeKind.Local).AddTicks(1787), "onhdexmapletest19991@gmail.com", "Elise", "Elise Lemke", true, "Lemke", "1-948-948-9400 x362", "StudentFBW98yXn" },
-                    { 93, "392 Loraine Falls, Runtestad, Trinidad and Tobago", "Darehaven", new DateTime(2023, 9, 21, 20, 22, 17, 712, DateTimeKind.Local).AddTicks(5669), "onhdexmapletest19993@gmail.com", "Marisa", "Marisa Huel", false, "Huel", "(308) 696-3074 x88839", "Studentb2nShYm7" },
-                    { 95, "79321 Pete Extension, South Brenda, Mauritania", "Kelsiton", new DateTime(2022, 12, 16, 18, 53, 27, 424, DateTimeKind.Local).AddTicks(9304), "onhdexmapletest19995@gmail.com", "Geo", "Geo Considine", true, "Considine", "806-974-1243", "StudentGAlfDodo" },
-                    { 97, "3957 Jarrod Causeway, South Kennyhaven, Lebanon", "Gusikowskiland", new DateTime(2022, 11, 29, 21, 39, 22, 983, DateTimeKind.Local).AddTicks(5334), "onhdexmapletest19997@gmail.com", "Tate", "Tate Zieme", true, "Zieme", "635.452.2481 x40666", "StudentcLfWzpZu" },
-                    { 99, "24325 Hartmann Locks, South Margie, Bangladesh", "North Cristobal", new DateTime(2023, 1, 30, 22, 36, 57, 309, DateTimeKind.Local).AddTicks(7955), "onhdexmapletest19999@gmail.com", "Dora", "Dora Becker", true, "Becker", "853.324.3521", "StudentCtEAd4qC" }
+                    { 1, "7307 Hollis Lodge, Norbertbury, Armenia", "New Reannafurt", new DateTime(2023, 9, 25, 5, 7, 7, 378, DateTimeKind.Local).AddTicks(6895), "onhdexmapletest1991@gmail.com", "Andreane", "Andreane Kihn", true, "Kihn", "561.311.5210 x5091", "StudentzWY11aa8" },
+                    { 3, "35768 Kunze Court, Port Royal, Sweden", "Loganburgh", new DateTime(2023, 7, 31, 22, 48, 56, 958, DateTimeKind.Local).AddTicks(7752), "onhdexmapletest1993@gmail.com", "Gordon", "Gordon McClure", true, "McClure", "526.411.3359 x34177", "StudentMzxfU00V" },
+                    { 5, "9255 Roy Mission, Citlalliport, Turkey", "New Herthachester", new DateTime(2022, 10, 3, 23, 1, 25, 466, DateTimeKind.Local).AddTicks(679), "onhdexmapletest1995@gmail.com", "Ressie", "Ressie Auer", true, "Auer", "716-464-0723", "StudentzjMFRyT2" },
+                    { 7, "06440 Herman Trafficway, East Carey, Mauritania", "Larsonborough", new DateTime(2022, 10, 14, 1, 7, 37, 831, DateTimeKind.Local).AddTicks(850), "onhdexmapletest1997@gmail.com", "Arvid", "Arvid Kassulke", false, "Kassulke", "768-948-9944 x9878", "StudentPYdHbZgW" },
+                    { 9, "6492 Hills Crescent, Port Dwighttown, Burundi", "Gaylordmouth", new DateTime(2023, 9, 15, 3, 27, 25, 961, DateTimeKind.Local).AddTicks(3389), "onhdexmapletest1999@gmail.com", "Joana", "Joana Douglas", false, "Douglas", "274.556.9551 x850", "StudentVCHdjkuB" },
+                    { 11, "96646 Strosin Circle, Angelotown, Djibouti", "Port Victor", new DateTime(2023, 5, 29, 13, 33, 54, 742, DateTimeKind.Local).AddTicks(850), "onhdexmapletest19911@gmail.com", "Magali", "Magali Romaguera", true, "Romaguera", "(952) 258-4915 x55200", "StudentqxYPFzYM" },
+                    { 13, "370 Brendon Ranch, Purdymouth, Yemen", "Lake Daniella", new DateTime(2022, 11, 23, 0, 16, 32, 578, DateTimeKind.Local).AddTicks(4170), "onhdexmapletest19913@gmail.com", "Danielle", "Danielle Buckridge", true, "Buckridge", "816-264-6342 x627", "StudentOFZJWXWv" },
+                    { 15, "5536 Moen Neck, North Colinberg, Democratic People's Republic of Korea", "New Nellieport", new DateTime(2022, 12, 17, 1, 54, 9, 562, DateTimeKind.Local).AddTicks(8123), "onhdexmapletest19915@gmail.com", "Rowland", "Rowland Glover", false, "Glover", "1-823-857-7162 x3342", "Student9DgEbT3A" },
+                    { 17, "02891 Christiansen Land, Tristonburgh, Grenada", "Zemlakport", new DateTime(2023, 5, 23, 0, 0, 53, 543, DateTimeKind.Local).AddTicks(4235), "onhdexmapletest19917@gmail.com", "Ubaldo", "Ubaldo Watsica", true, "Watsica", "840.514.7732 x91568", "StudentSg89U4XA" },
+                    { 19, "64237 Chet Spur, Armstrongbury, Finland", "Pollichburgh", new DateTime(2023, 1, 15, 0, 48, 36, 449, DateTimeKind.Local).AddTicks(2573), "onhdexmapletest19919@gmail.com", "Pearl", "Pearl Schneider", true, "Schneider", "(807) 865-6849 x715", "Student4ke1UzvG" },
+                    { 21, "74847 Lemke Fords, New Isabellechester, Malawi", "Lake Karlitown", new DateTime(2023, 8, 31, 8, 18, 56, 841, DateTimeKind.Local).AddTicks(5386), "onhdexmapletest19921@gmail.com", "Gabrielle", "Gabrielle Glover", true, "Glover", "671.380.2823", "StudentYQc7XSmU" },
+                    { 23, "681 Mills Ridge, Deronton, Bahamas", "Port Marisol", new DateTime(2023, 3, 21, 4, 5, 13, 95, DateTimeKind.Local).AddTicks(4367), "onhdexmapletest19923@gmail.com", "Marielle", "Marielle Goldner", false, "Goldner", "(856) 682-3421", "StudentvtwbwVNH" },
+                    { 25, "1661 Jermey Dale, Daneshire, Malta", "Venaburgh", new DateTime(2023, 9, 7, 15, 25, 36, 828, DateTimeKind.Local).AddTicks(9531), "onhdexmapletest19925@gmail.com", "Chanel", "Chanel Mayer", true, "Mayer", "535-496-3491", "Student8WvF7cbI" },
+                    { 27, "5447 Mann Falls, Dickensmouth, Turkey", "Pacochatown", new DateTime(2022, 10, 30, 22, 6, 42, 782, DateTimeKind.Local).AddTicks(5136), "onhdexmapletest19927@gmail.com", "Hettie", "Hettie Hermiston", true, "Hermiston", "827-425-5640", "StudentMI89PKv6" },
+                    { 29, "537 Keebler Unions, Paolofort, Armenia", "Bartolettiland", new DateTime(2023, 7, 25, 23, 43, 34, 201, DateTimeKind.Local).AddTicks(2050), "onhdexmapletest19929@gmail.com", "Dennis", "Dennis Kihn", true, "Kihn", "(726) 302-5890", "Student6xrq6pOC" },
+                    { 31, "98116 Lola Throughway, New Codyborough, Republic of Korea", "Zionhaven", new DateTime(2023, 2, 2, 20, 0, 20, 717, DateTimeKind.Local).AddTicks(349), "onhdexmapletest19931@gmail.com", "Naomie", "Naomie Crist", false, "Crist", "333-663-9783 x274", "StudentaL0KdlPy" },
+                    { 33, "07382 Alejandrin Forge, Florenceborough, New Zealand", "East Janie", new DateTime(2023, 4, 28, 18, 19, 7, 152, DateTimeKind.Local).AddTicks(5258), "onhdexmapletest19933@gmail.com", "Burley", "Burley Bins", false, "Bins", "(912) 748-1404 x2410", "StudentVhn7fpR7" },
+                    { 35, "246 Rosenbaum Forest, Calihaven, Moldova", "North Suzanne", new DateTime(2023, 8, 16, 11, 46, 9, 486, DateTimeKind.Local).AddTicks(1925), "onhdexmapletest19935@gmail.com", "Arjun", "Arjun Casper", false, "Casper", "(585) 594-0677 x59598", "StudentHpNBv08L" },
+                    { 37, "838 Hilll Plaza, West Jessicaside, Peru", "Port Marian", new DateTime(2023, 6, 4, 9, 15, 36, 935, DateTimeKind.Local).AddTicks(9886), "onhdexmapletest19937@gmail.com", "Raphael", "Raphael West", false, "West", "614.481.0964", "StudentrwFzvBgO" },
+                    { 39, "75005 Nader Bypass, Hammeschester, Cook Islands", "North Camryn", new DateTime(2023, 3, 26, 19, 23, 28, 76, DateTimeKind.Local).AddTicks(9701), "onhdexmapletest19939@gmail.com", "Eunice", "Eunice Upton", false, "Upton", "1-736-846-4237 x93061", "StudentuaXfVMQG" },
+                    { 41, "49782 Brain Keys, Schulistport, Argentina", "West Jaylenport", new DateTime(2023, 6, 12, 13, 22, 54, 517, DateTimeKind.Local).AddTicks(7856), "onhdexmapletest19941@gmail.com", "Agnes", "Agnes Hegmann", false, "Hegmann", "(708) 826-1993", "Studentf68RKayB" },
+                    { 43, "133 Billie Islands, Jeraldfort, Northern Mariana Islands", "West Ericachester", new DateTime(2023, 2, 2, 18, 50, 0, 469, DateTimeKind.Local).AddTicks(1315), "onhdexmapletest19943@gmail.com", "Domingo", "Domingo Haley", true, "Haley", "(546) 790-7873", "StudentY1Iqma3W" },
+                    { 45, "0613 Chance Island, Elfriedachester, Bahrain", "Heathcotemouth", new DateTime(2023, 7, 28, 7, 2, 46, 863, DateTimeKind.Local).AddTicks(6267), "onhdexmapletest19945@gmail.com", "Myrtle", "Myrtle Tremblay", true, "Tremblay", "1-381-604-3022 x445", "StudentxTi2XaRm" },
+                    { 47, "608 Reinger Glens, South Rashawnhaven, Bulgaria", "Stephenchester", new DateTime(2023, 4, 14, 8, 33, 31, 344, DateTimeKind.Local).AddTicks(7394), "onhdexmapletest19947@gmail.com", "Fannie", "Fannie Mante", true, "Mante", "(288) 406-1013 x1525", "StudentTKDZNhKI" },
+                    { 49, "74141 Kulas Shore, Strosintown, Mauritius", "Roobstad", new DateTime(2023, 3, 16, 14, 14, 11, 664, DateTimeKind.Local).AddTicks(9346), "onhdexmapletest19949@gmail.com", "Russ", "Russ Erdman", false, "Erdman", "649-346-7951 x284", "StudentRtCh3L7Z" },
+                    { 51, "1873 Howell Groves, Marquardtchester, Bouvet Island (Bouvetoya)", "Cormierberg", new DateTime(2023, 3, 26, 12, 47, 44, 527, DateTimeKind.Local).AddTicks(7545), "onhdexmapletest19951@gmail.com", "Providenci", "Providenci Rath", false, "Rath", "1-497-476-1794", "StudentIzuYk6Xj" },
+                    { 53, "69824 Cecile Keys, South Anissa, Montserrat", "Fisherhaven", new DateTime(2023, 4, 29, 4, 32, 48, 641, DateTimeKind.Local).AddTicks(1538), "onhdexmapletest19953@gmail.com", "Bertrand", "Bertrand Shields", true, "Shields", "622-558-0897", "Student4B2eESfu" },
+                    { 55, "3083 Langosh Prairie, Guymouth, Cameroon", "West Guyport", new DateTime(2023, 9, 29, 16, 42, 45, 135, DateTimeKind.Local).AddTicks(2621), "onhdexmapletest19955@gmail.com", "Dandre", "Dandre Howe", true, "Howe", "526.447.9578 x379", "StudentH06izTLU" },
+                    { 57, "2729 Stamm Roads, Jeffreyside, Sri Lanka", "Port Berneicestad", new DateTime(2023, 6, 12, 5, 25, 22, 561, DateTimeKind.Local).AddTicks(4375), "onhdexmapletest19957@gmail.com", "Percival", "Percival Kutch", false, "Kutch", "(333) 791-7398", "StudentiiVyKbeq" },
+                    { 59, "24038 Krajcik Vista, Uniqueshire, Micronesia", "East Jillianborough", new DateTime(2023, 6, 22, 10, 39, 0, 293, DateTimeKind.Local).AddTicks(7021), "onhdexmapletest19959@gmail.com", "Ernesto", "Ernesto Mante", true, "Mante", "994-791-4384 x37393", "StudentzORhoUUr" },
+                    { 61, "8251 Stiedemann Views, Port Marcosville, Tanzania", "Matildebury", new DateTime(2023, 2, 21, 9, 51, 35, 730, DateTimeKind.Local).AddTicks(1033), "onhdexmapletest19961@gmail.com", "Emerson", "Emerson Koepp", false, "Koepp", "723.948.0217", "Student3ME5Ow1k" },
+                    { 63, "387 Lukas Points, Port Lauryshire, Namibia", "East Lesley", new DateTime(2023, 8, 15, 6, 27, 57, 559, DateTimeKind.Local).AddTicks(375), "onhdexmapletest19963@gmail.com", "Janae", "Janae Homenick", true, "Homenick", "1-660-286-3148", "StudentseSqVZYz" },
+                    { 65, "268 Christop Parkway, Walterstad, Malaysia", "North Eveline", new DateTime(2023, 5, 26, 19, 59, 20, 663, DateTimeKind.Local).AddTicks(9798), "onhdexmapletest19965@gmail.com", "Izabella", "Izabella MacGyver", true, "MacGyver", "1-531-229-1035 x51093", "StudentNuJIorcj" },
+                    { 67, "6513 Shawn Viaduct, Brownview, Lesotho", "North Sandrine", new DateTime(2023, 7, 6, 0, 20, 34, 547, DateTimeKind.Local).AddTicks(6349), "onhdexmapletest19967@gmail.com", "Bettie", "Bettie Fahey", false, "Fahey", "(480) 267-4044", "StudentYgC7GDMR" },
+                    { 69, "8998 Keeling Circle, Ludwigshire, Mongolia", "Sporerfurt", new DateTime(2023, 3, 15, 12, 9, 48, 487, DateTimeKind.Local).AddTicks(9828), "onhdexmapletest19969@gmail.com", "Mitchell", "Mitchell Gorczany", false, "Gorczany", "(668) 757-3470 x714", "StudentR6lDtw13" },
+                    { 71, "952 Langosh Corner, Lake Joannieside, Bangladesh", "South Dangelo", new DateTime(2023, 8, 30, 17, 43, 45, 888, DateTimeKind.Local).AddTicks(7936), "onhdexmapletest19971@gmail.com", "Krystal", "Krystal Hermiston", true, "Hermiston", "838.978.7661 x10118", "StudentuLhqbJHz" },
+                    { 73, "3587 Fausto Square, Sharonfort, Paraguay", "Camrenton", new DateTime(2023, 3, 26, 9, 58, 56, 641, DateTimeKind.Local).AddTicks(9492), "onhdexmapletest19973@gmail.com", "Carolanne", "Carolanne Douglas", false, "Douglas", "725-229-5463 x2594", "Student3AjKwqUZ" },
+                    { 75, "61924 Conn Mill, Port Laury, Congo", "Camilleview", new DateTime(2023, 3, 29, 12, 46, 55, 576, DateTimeKind.Local).AddTicks(1696), "onhdexmapletest19975@gmail.com", "Cali", "Cali Cassin", true, "Cassin", "877-982-0928", "StudentFXqQNZ8o" },
+                    { 77, "646 Reva Crescent, Corbinchester, Lesotho", "West Melisa", new DateTime(2022, 10, 13, 19, 58, 7, 166, DateTimeKind.Local).AddTicks(266), "onhdexmapletest19977@gmail.com", "Jeffrey", "Jeffrey Bruen", true, "Bruen", "640-406-8093", "StudentpTY8V4ij" },
+                    { 79, "7148 Murphy Mountains, New Jace, Netherlands Antilles", "South Mckayla", new DateTime(2023, 4, 18, 0, 50, 27, 572, DateTimeKind.Local).AddTicks(4059), "onhdexmapletest19979@gmail.com", "Jillian", "Jillian Gulgowski", false, "Gulgowski", "(267) 615-0597", "Student0UKI8qRH" },
+                    { 81, "9368 Tina Parks, North Antonietta, Thailand", "South Osbaldo", new DateTime(2023, 2, 1, 19, 48, 56, 729, DateTimeKind.Local).AddTicks(1271), "onhdexmapletest19981@gmail.com", "Rosalinda", "Rosalinda Cronin", false, "Cronin", "870-924-5574 x315", "StudentdK9g7Cr5" },
+                    { 83, "43684 Ella Fords, Torpton, Faroe Islands", "New Annette", new DateTime(2023, 8, 30, 1, 13, 26, 876, DateTimeKind.Local).AddTicks(7952), "onhdexmapletest19983@gmail.com", "Santina", "Santina Greenfelder", false, "Greenfelder", "1-436-615-4300 x90543", "StudentM5krXl24" },
+                    { 85, "52747 Mueller Mount, Mayershire, Taiwan", "Port Syble", new DateTime(2023, 4, 17, 2, 48, 45, 956, DateTimeKind.Local).AddTicks(5038), "onhdexmapletest19985@gmail.com", "Aniyah", "Aniyah Hilll", false, "Hilll", "1-445-542-7426 x4762", "StudentGCsPsF3r" },
+                    { 87, "15974 Hillary Island, Bernierburgh, Indonesia", "Lake Beverly", new DateTime(2022, 11, 23, 10, 19, 32, 549, DateTimeKind.Local).AddTicks(1800), "onhdexmapletest19987@gmail.com", "Quinn", "Quinn Weissnat", true, "Weissnat", "1-319-683-9436", "Students9KEiK7R" },
+                    { 89, "6634 Hintz Trace, West Lacy, Antigua and Barbuda", "Ernserville", new DateTime(2023, 1, 10, 21, 26, 17, 335, DateTimeKind.Local).AddTicks(9578), "onhdexmapletest19989@gmail.com", "Araceli", "Araceli Purdy", false, "Purdy", "536-633-2862 x39790", "StudentI2SpM05p" },
+                    { 91, "28711 Shayne Place, East Heleneburgh, Guernsey", "South Jovanton", new DateTime(2023, 6, 10, 20, 47, 3, 680, DateTimeKind.Local).AddTicks(7295), "onhdexmapletest19991@gmail.com", "Peggie", "Peggie Bailey", false, "Bailey", "907.892.6766 x985", "StudentPJYHprBI" },
+                    { 93, "933 Cedrick Greens, North Maxine, Ecuador", "Altenwerthburgh", new DateTime(2023, 1, 1, 23, 37, 36, 91, DateTimeKind.Local).AddTicks(6270), "onhdexmapletest19993@gmail.com", "Jimmy", "Jimmy Denesik", false, "Denesik", "861-361-4758 x563", "StudentEC17j28x" },
+                    { 95, "01159 Jacey Heights, Lake Ryannside, Bosnia and Herzegovina", "South Oran", new DateTime(2023, 6, 2, 6, 7, 15, 908, DateTimeKind.Local).AddTicks(8779), "onhdexmapletest19995@gmail.com", "Hassan", "Hassan Lang", false, "Lang", "827.694.9328 x3453", "Studenth0BaSW4y" },
+                    { 97, "92025 Daugherty Springs, West Lola, Malaysia", "North Nya", new DateTime(2023, 9, 27, 22, 39, 17, 808, DateTimeKind.Local).AddTicks(8730), "onhdexmapletest19997@gmail.com", "Marcelina", "Marcelina O'Conner", false, "O'Conner", "353.957.9886 x6168", "StudentY6G3DsHK" },
+                    { 99, "90671 Casey Mountains, Maggiemouth, Netherlands Antilles", "North Arvel", new DateTime(2022, 12, 16, 11, 53, 23, 567, DateTimeKind.Local).AddTicks(4400), "onhdexmapletest19999@gmail.com", "Chloe", "Chloe Kautzer", true, "Kautzer", "1-588-434-8983 x448", "StudentbhnrYG3n" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -479,6 +500,9 @@ namespace WebApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "tbDiscussion");
+
+            migrationBuilder.DropTable(
+                name: "tbTicketDTO");
 
             migrationBuilder.DropTable(
                 name: "tbUserConn");

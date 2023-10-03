@@ -14,6 +14,8 @@ namespace LibraryModels
 
         public string Email { get; set; }
 
+        public string? EmailToConfirm { get; set; }
+
         public string Code { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -31,6 +33,5 @@ namespace LibraryModels
         public UserInfo? userInfo { get; set; }
 
         public UserConn? userConn { get; set; }
-
     }
 }

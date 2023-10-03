@@ -14,12 +14,14 @@ namespace WebApp.Services
         private readonly DatabaseContext _db;
         private readonly Helper _helper;
         private readonly Mailultil _mailultil;
+        private readonly IHttpContextAccessor _httpContext;
         public Response<string> res = new Response<string>();
-        public AccountServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil)
+        public AccountServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil, IHttpContextAccessor httpContext)
         {
             _db = db;
             _helper = helper;
             _mailultil = mailultil;
+            _httpContext = httpContext;
         }
 
         public async Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort, string? currentFilter)
@@ -205,23 +207,20 @@ namespace WebApp.Services
         {
             try
             {
-                if (string.IsNullOrEmpty(users["Email"]) || string.IsNullOrEmpty(users["Role"]) || string.IsNullOrEmpty(users["Password"]) || string.IsNullOrEmpty(users["Username"]))
-                {
-                    return res = _helper.CreateResponse<string>("Field is not blank", false);
-                }
 
                 var checkphoto = await CheckPhoto(users.Files["Photo"]);
                 var filePath = checkphoto.Data;
-                var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(users["Email"].FirstOrDefault()));
+                var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.EmailToConfirm.Equals(users["Email"].FirstOrDefault()));
                 if (hasEmail != null)
                 {
                     return res = _helper.CreateResponse<string>("Email has already", false);
                 }
-
+                var password = _helper.randomString(10);
                 Users user = new Users()
                 {
-                    Email = users["Email"].FirstOrDefault(),
-                    Password = BCrypt.Net.BCrypt.HashPassword(users["Password"]),
+                    Email = _helper.CreateEmail(users["fName"].FirstOrDefault(), users["lName"].FirstOrDefault()),
+                    EmailToConfirm = users["Email"].FirstOrDefault(),
+                    Password = BCrypt.Net.BCrypt.HashPassword(password),
                     Status = true,
                     UserName = users["Username"].FirstOrDefault(),
                     Role = users["Role"],
@@ -245,6 +244,11 @@ namespace WebApp.Services
                 _db.UserInfos.Add(userInfo);
                 _db.SaveChanges();
 
+                //string content = System.IO.File.ReadAllText("Mail/account.html");
+                //content = content.Replace("{{email}}", user.Email);
+                //content = content.Replace("{{password}}", password);
+
+                //_mailultil.SendMailGoogle(users["Email"].FirstOrDefault(), "Create account", content, Role.Admin);
 
                 return res = _helper.CreateResponse<string>("Successfully", true);
             }
@@ -325,6 +329,19 @@ namespace WebApp.Services
             {
                 return res = _helper.CreateResponse<string>(ex.Message, false);
             }
+        }
+
+        public async Task<Users> usersConn()
+        {
+            var email = _httpContext.HttpContext.Session.GetString("accEmail");
+            var User = await _db.Users.FirstOrDefaultAsync(a => a.Email == email);
+            return User;
+        }
+
+        public async Task<string> userConnId(int? userId)
+        {
+            var userConnid = _db.userConn.FirstOrDefault(a => a.UserId == userId).ConnectionId;
+            return userConnid;
         }
 
     }

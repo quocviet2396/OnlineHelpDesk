@@ -1,6 +1,6 @@
 ﻿@model LibraryModels.Ticket
 @{
-    Layout = "Frontend";
+    Layout = "_BackendLayout";
 }
 @{
     ViewData["Title"] = "Create";
@@ -13,7 +13,7 @@
                 <h5 class="card-title fw-semibold mb-4">Send Ticket</h5>
                 <div class="card">
                     <div class="card-body">
-                        <form asp-action="Create" asp-controller="Ticket">
+                        <form asp-action="Create" asp-controller="Ticket" enctype="multipart/form-data">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
                                 <label asp-for="Title" class="control-label"></label>

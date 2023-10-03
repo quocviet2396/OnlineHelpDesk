@@ -111,9 +111,15 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2" style="justify-content:center">
-                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-gear"></i></a>
+                                            @if (item.feedback == null)
+                                            {
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-gear"></i></a>
+                                            }
                                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-info-circle"></i></a>
-                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                            @if (item.TicketStatusId == null && item.feedback == null && item.PriorityId == null && item.SupporterId ==null)
+                                                                        {
+                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                            }
                                         </div>
                                     </td>
                                 </tr>

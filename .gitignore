@@ -1,3 +1,45 @@
+# Visual Studio / Visual Studio Code
+.vs/
+.vscode/
+
+# NuGet
+*.nuget.props
+*.nuget.targets
+project.lock.json
+packages/
+*.nupkg
+*.pfx
+*.snk
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Oo]bj/
+[Ll]og/
+[Bb]in/
+[Oo]ut/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# .NET Core
+project.assets.json
+
 # Compiled source #
 ###################
 *.com

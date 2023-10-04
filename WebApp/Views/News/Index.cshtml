@@ -36,6 +36,9 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">PublishDate</h6>
                                 </th>
+                                <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Images</h6>
+                                    </th
                             </tr>
                         </thead>
                         <tbody>
@@ -57,10 +60,17 @@
                                             <p class="mb-0 fw-normal">@Html.DisplayFor(modelItem => item.PublishDate)</p>
                                         </div>
                                     </td>
+                                    <td class="border-bottom-0">
+                                            <p class="mb-0 fw-normal">
+
+                                                <img src="@Url.Content("~/images/News/"+item.Img)" width="50" height="50">
+
+                                            </p>
+                                        </td>
 
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2">
-                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Delete</a>
+                                            <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-primary">Delete</a>
                                         </div>
                                     </td>
                                 </tr>

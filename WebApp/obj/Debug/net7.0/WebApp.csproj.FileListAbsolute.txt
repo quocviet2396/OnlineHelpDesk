@@ -258,6 +258,7 @@
 /Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/WebApp.pdb
 /Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/WebApp.genruntimeconfig.cache
 /Users/mac/Desktop/OnlineHelpDesk/WebApp/obj/Debug/net7.0/ref/WebApp.dll
+<<<<<<< HEAD
 C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/bin/Debug/net7.0/appsettings.Development.json
 C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/bin/Debug/net7.0/appsettings.json
 C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/bin/Debug/net7.0/WebApp.staticwebassets.runtime.json
@@ -784,3 +785,5 @@ C:/Users/T490/Documents/GitHub/OnlineHelpDesk/WebApp/obj/Debug/net7.0/ref/WebApp
 /Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/obj/Debug/net7.0/WebApp.pdb
 /Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/obj/Debug/net7.0/WebApp.genruntimeconfig.cache
 /Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/obj/Debug/net7.0/ref/WebApp.dll
+=======
+>>>>>>> Viet

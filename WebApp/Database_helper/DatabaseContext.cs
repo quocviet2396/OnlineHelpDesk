@@ -10,7 +10,6 @@ namespace WebApp.Database_helper
 {
     public class DatabaseContext : DbContext
     {
-        private string formatDate = "dd/MM/yyyy";
         private readonly Helper _helper;
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options, Helper helper) : base(options) { _helper = helper; }
@@ -23,6 +22,12 @@ namespace WebApp.Database_helper
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
+<<<<<<< HEAD
+=======
+        public DbSet<UserConn> userConn { get; set; }
+        public DbSet<Notifications> Notifications { get; set; }
+        public DbSet<TicketDTO> TickdetDTOs { get; set; }
+>>>>>>> Viet
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -48,6 +53,12 @@ namespace WebApp.Database_helper
                  .HasForeignKey(t => t.SupporterId)
                  .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<Facilities>()
+                 .HasOne(t => t.Supporter)
+                 .WithMany()
+                 .HasForeignKey(t => t.SupporterId)
+                 .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<Discussion>()
                  .HasOne(d => d.Ticket)
                  .WithMany()
@@ -56,11 +67,16 @@ namespace WebApp.Database_helper
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<Users>().HasOne(_ => _.userConn).WithOne(a => a.Users).HasForeignKey<UserConn>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Notifications>().HasOne(_ => _.userConn).WithOne(a => a.Notifications).HasForeignKey<UserConn>(a => a.NotiId).OnDelete(DeleteBehavior.NoAction);
+
+
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbUsers"
             modelBuilder.Entity<Users>().HasData(
-                new Users { Id = 1, Email = "superadmin@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Admin", Status = true, UserName = "SuperAdmin", Code = _helper.randomString(8) },
-                new Users { Id = 2, Email = "supporter@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Supporter", Status = true, UserName = "Supporter", Code = _helper.randomString(8) },
-                new Users { Id = 3, Email = "user@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "User", Status = true, UserName = "User", Code = _helper.randomString(8) }
+                new Users { Id = 1, Email = "superadmin@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Admin", Status = true, UserName = "SuperAdmin", Code = _helper.randomString(8), EmailToConfirm = null },
+                new Users { Id = 2, Email = "supporter@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Supporter", Status = true, UserName = "Supporter", Code = _helper.randomString(8), EmailToConfirm = null },
+                new Users { Id = 3, Email = "user@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "User", Status = true, UserName = "User", Code = _helper.randomString(8), EmailToConfirm = null }
             );
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbPriority"

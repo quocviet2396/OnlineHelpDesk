@@ -1,254 +1,91 @@
 ﻿@model LibraryModels.Users;
-@using System.Globalization;
 @{
     ViewData["Title"] = "Student";
     Layout = "_Layout";
 
     var user = ViewData["UserProfile"] as LibraryModels.Users;
-    var userDto = ViewData["UserDtoProfile"] as LibraryModels.UserInfoDTO;
-    var date = userDto?.DateOfBirth != null
-    ? DateTime.TryParseExact(userDto?.DateOfBirth.ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth)
-        ? (DateTime?)parsedDateOfBirth
-        : (DateTime?)null
-    : (DateTime?)null;
 }
 
 <style>
     .my-swal {
         z-index: 99999999;
     }
-
-    .profile-picture-container {
-        position: relative;
-    }
-
-    #avatar-input {
-        position: absolute;
-        bottom: 0;
-        left: 58%;
-        border: none;
-        background-color: black;
-        opacity: 0.7;
-        transition: transform 0.3s ease;
-    }
-
-    .fa-camera {
-        position: absolute;
-        bottom: 20px;
-        transform: translate(-50%,35%);
-        font-size: xx-large;
-        color: white;
-        cursor: pointer;
-    }
-
-    #avatar-input:hover {
-        transform: scale(1.2);
-    }
-
-
-
-    .preview-image {
-        width: 300px;
-        height: 300px;
-        border: 2px solid #ccc;
-    }
 </style>
 <div class="container mt-5">
-    <div class="row">
-        @if (userDto != null)
-        {
+    <div class="container mt-3">
+        <div class="row">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <div class="profile-picture-container">
-                            <img src="~/images/avatars/@(userDto.Photo!=null ? userDto.Photo :"avatar_default.jpeg" )" alt="profile picture" class="rounded-circle"
-                                 style="width: 150px; height: 150px">
-                            <div id="avatar-input" class=" rounded-circle " style="width:50px;height:50px;" data-bs-toggle="modal" data-bs-target="#changeavatar">
-                                <i class="fa-solid fa-camera"></i>
-                            </div>
-                        </div>
-
-                        <p class="card-title mt-2">Username: <b>@userDto?.UserName</b></p>
-                        <p class="card-title  mt-2">Email: @userDto?.Email</p>
-                        <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="Change password" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title col-md-4" style="white-space: nowrap;"><b>Infomation</b> </h4>
                         <div>
-                            <form enctype="multipart/form-data">
-                                <input hidden name="accId" value="@userDto?.Id" />
-                                <div class="form-group">
-                                    <label>Gender:</label>
-                                    @if (userDto?.Gender == true)
-                                    {
-                                        <div class="form-check">
-                                            <input type="radio" id="Male" name="Gender" checked value="true" class="form-check-input" required />
-                                            <label for="Male" class="form-check-label">Male</label>
-                                        </div><div class="form-check">
-                                            <input type="radio" id="Female" name="Gender" value="false" class="form-check-input" required />
-                                            <label for="Female" class="form-check-label">Female</label>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="form-check">
-                                            <input type="radio" id="Male" name="Gender" value="true" class="form-check-input" required />
-                                            <label for="Male" class="form-check-label">Male</label>
-                                        </div><div class="form-check">
-                                            <input type="radio" id="Female" name="Gender" checked value="false" class="form-check-input" required />
-                                            <label for="Female" class="form-check-label">Female</label>
-                                        </div>}
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="DateOfBirth">Date of Birth:</label>
-                                    <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" value="@date" required />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Phone">Phone:</label>
-                                    <input type="tel" class="form-control" value="@userDto?.Phone" id="Phone" name="Phone" required />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Address">Address:</label>
-                                    <input type="text" class="form-control" value="@userDto?.Address" id="Address" name="Address" required />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="City">City:</label>
-                                    <input type="text" class="form-control" id="City" value="@userDto?.City" name="City" required />
-                                </div>
-
-                                <button type="submit" id="Info_create" value="update" class="btn btn-primary mt-3">Create</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        else
-        {
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="profile-picture-container">
-                            <img src="~/images/avatars/avatar_default.jpeg" alt="profile picture" class="rounded-circle"
+                            <img src="~/assets/img/avatars/avatar_default.jpeg" alt="profile picture" class="rounded-circle"
                                  style="width: 150px; height: 150px">
-                            <div id="avatar-input" class=" rounded-circle " style="width:50px;height:50px;" data-bs-toggle="modal" data-bs-target="#changeavatar">
-                                <i class="fa-solid fa-camera"></i>
-                            </div>
-
                         </div>
                         <p class="card-title mt-2">Username: <b>@user?.UserName</b></p>
                         <p class="card-title  mt-2">Email: @user?.Email</p>
+                        <p class="card-title  mt-2">
+                        </p>
+                        <p class="card-text text-left">
+                        </p>
+
                         <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" value="Change password" />
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Change password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-group" method="post" asp-action="ChangePassword">
+                                <input hidden name="accCode" value="Studentn88RZIqd" />
+                                <div class="mb-3">
+                                    <label for="oldPassword" class="form-label">Old password</label>
+                                    <input type="password" class="form-control" id="oldPassword" aria-describedby="emailHelp">
+                                    <span class="alert" id="alert-old" hidden role="alert"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label">New password</label>
+                                    <input type="password" class="form-control" id="newPassword">
+                                    <span class="alert" id="alert-new" hidden role="alert"></span>
+                                </div>
+                                <div class="mb-3 ">
+                                    <label for="confirmPassword" class="form-label">Confirm password</label>
+                                    <input type="password" class="form-control" id="confirmPassword">
+                                    <span class="alert" id="alert-con" hidden role="alert"></span>
+                                </div>
+                                <input type="submit" id="ChangePass" value="Change" class="btn btn-secondary" disabled />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title col-md-4" style="white-space: nowrap;"><b>Infomation</b> </h4>
-                        <div>
-                            <form enctype="multipart/form-data">
-                                <input hidden name="accId" value="@user?.Id" />
-                                <div class="form-group">
-                                    <label>Gender:</label>
-                                    <div class="form-check">
-                                        <input type="radio" id="Male" name="Gender" value="true" class="form-check-input" required />
-                                        <label for="Male" class="form-check-label">Male</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" id="Female" name="Gender" value="false" class="form-check-input" required />
-                                        <label for="Female" class="form-check-label">Female</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="DateOfBirth">Date of Birth:</label>
-                                    <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" required />
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="Phone">Phone:</label>
-                                    <input type="tel" class="form-control" id="Phone" name="Phone" required />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="Address">Address:</label>
-                                    <input type="text" class="form-control" id="Address" name="Address" required />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="City">City:</label>
-                                    <input type="text" class="form-control" id="City" name="City" required />
-                                </div>
-
-                                <button type="submit" id="Info_create" value="Create" class="btn btn-primary mt-3">Create</button>
-                            </form>
+                        <h4 class="card-title col-md-4" style="white-space: nowrap;"><b>Other</b> </h4>
+                        <div class="row col-md-8">
+                            <div class="col-md-6">
+                                <p class="card-text">
+                                    <strong>All request:</strong>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-text"><strong>Role:@user?.Role</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-text">
+                                    <strong>Status: </strong>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        }
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Change password</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-group" method="post" asp-action="ChangePassword">
-                            <input hidden name="accCode" value="@(userDto !=null ? @userDto?.Code : @user?.Code)" />
-                            <div class="mb-3">
-                                <label for="oldPassword" class="form-label">Old password</label>
-                                <input type="password" class="form-control" id="oldPassword" aria-describedby="emailHelp">
-                                <div class="invalid-feedback p-2" id="alert-old" role="alert"></div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="newPassword" class="form-label">New password</label>
-                                <input type="password" class="form-control" id="newPassword">
-                                <div class="invalid-feedback p-2" id="alert-new" role="alert"></div>
-                            </div>
-                            <div class="mb-3 ">
-                                <label for="confirmPassword" class="form-label">Confirm password</label>
-                                <input type="password" class="form-control" id="confirmPassword">
-                                <div class="invalid-feedback p-2" id="alert-con" role="alert"></div>
-                            </div>
-                            <input type="submit" id="ChangePass" value="Change" class="btn btn-secondary" disabled />
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="changeavatar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel1">Change avatar</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body ">
-                        <div class="card">
-                            <img class="preview-image m-auto" id="preview" />
-                            <input type="file" class="my-5 form-control" id="new-avatar">
-                            <button class="btn btn-primary" id="change-avatar">Change avatar</button>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -262,11 +99,11 @@
             var old = $("#oldPassword")
             var con = $("#confirmPassword")
             var accCode = $("input[name='accCode']")
-            var accId = $("input[name='accId']")
             var alert_old = $("#alert-old")
             var newPas = "";
             var conPas = ""
             var url = `/Account/CheckPassword`
+
 
 
             $("#oldPassword").on("change", () => {
@@ -284,10 +121,9 @@
                     success: (res) => {
                         var data = JSON.parse(res)
                         if (!data.Success) {
-                            console.log($("#alert-old"))
-                            $("#alert-old").show()
                             $("#alert-old").text(data.Msg)
                             $("#alert-old").addClass("alert-danger")
+                            $("#alert-old").show()
                         }
                         else {
                             $("#alert-old").hide()
@@ -389,145 +225,14 @@
                                 container: 'my-swal'
                             }
                         }).then((result) => {
+<<<<<<< HEAD
+                            result.isConfirmed ? window.location.reload() : ""
+=======
                             result.isConfirmed ? window.location.href("/Authen/Login") : ""
+>>>>>>> parent of 1b9fdd6 (up)
                         })
                     },
                     error: err => console.log(err)
-                });
-            })
-
-            //Create new account
-            $("#Info_create").on("click", function (event) {
-                event.preventDefault();
-                var valueBtn = $("#Info_create").val();
-                var gender = $("input[name='Gender']:checked").val();
-                var dateOfBirth = $("#DateOfBirth").val();
-                var phone = $("#Phone").val();
-                var address = $("#Address").val();
-                var city = $("#City").val();
-
-                var parts = dateOfBirth.split("-");
-                var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
-
-                var formData = new FormData();
-
-                formData.append("ValueBtn", valueBtn);
-                formData.append("AccId", accId.val());
-                formData.append("Gender", gender);
-                formData.append("DateOfBirth", formattedDate);
-                formData.append("Phone", phone);
-                formData.append("Address", address);
-                formData.append("City", city);
-
-                $.ajax({
-                    url: "/Account/InfoChange",
-                    method: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (response) {
-                        var data = JSON.parse(response)
-                        if (data.Success) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Success",
-                                text: data.Msg,
-                                customClass: {
-                                    container: 'my-swal'
-                                }
-                            }).then((result) => {
-                                result.isConfirmed ? window.location.reload() : ""
-                            })
-                        } else {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Oops",
-                                text: data.Msg,
-                                customClass: {
-                                    container: 'my-swal'
-                                }
-                            })
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
-                    }
-                });
-            });
-
-            $("#new-avatar").on("change", () => {
-                var src = $("#new-avatar")[0].files[0]
-                var formData = new FormData();
-                formData.append("Photo", src);
-                $.ajax({
-                    url: "/Account/CheckPhoto",
-                    method: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: async function (response) {
-                        var data = JSON.parse(response)
-                        if (data.Success) {
-
-                            document.getElementById('preview').src = await window.URL.createObjectURL(src)
-                        } else {
-                            document.getElementById('preview').src = ""
-                            Swal.fire({
-                                icon: "error",
-                                title: "Oops",
-                                text: data.Msg,
-                                customClass: {
-                                    container: 'my-swal'
-                                }
-                            })
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
-                    }
-                });
-
-            })
-
-            $("#change-avatar").on("click", () => {
-                var src = $("#new-avatar")[0].files[0]
-                var formData = new FormData();
-                formData.append("Photo", src);
-                formData.append("AccId", accId.val());
-
-                $.ajax({
-                    url: "/Account/ChangeAvatar",
-                    method: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: async function (response) {
-                        var data = JSON.parse(response)
-                        if (data.Success) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Success",
-                                text: data.Msg,
-                                customClass: {
-                                    container: 'my-swal'
-                                }
-                            }).then((result) => {
-                                result.isConfirmed ? window.location.reload() : ""
-                            })
-                        } else {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Oops",
-                                text: data.Msg,
-                                customClass: {
-                                    container: 'my-swal'
-                                }
-                            })
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
-                    }
                 });
             })
         });

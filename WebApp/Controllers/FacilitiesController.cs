@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.Database_helper;
 using WebApp.Repositories;
 using LibraryModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -36,7 +37,7 @@ namespace WebApp.Controllers
             {
                 return RedirectToAction("Login", "Authen");
             }
-            var facilities = await _context.Facilities.ToListAsync();
+            var facilities = await _context.Facilities.Include(sp=>sp.Supporter).ToListAsync();
             return View(facilities);
         }
 
@@ -59,14 +60,29 @@ namespace WebApp.Controllers
 
         public IActionResult Create()
         {
+            var suporter = _context.Users.
+                Where(u => u.Role == "Supporter").Select(u => new SelectListItem
+                {
+                    Value = u.Id.ToString(),
+                    Text = u.Email
+                }).ToList();
+            suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
+            ViewBag.SupporterEmails = suporter;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Facilities facilities)
+        public async Task<IActionResult> Create(Facilities facilities)
         {
-
+            var suporter = _context.Users.
+                Where(u => u.Role == "Supporter").Select(u => new SelectListItem
+                {
+                    Value = u.Id.ToString(),
+                    Text = u.Email
+                }).ToList();
+            suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
+            ViewBag.SupporterEmails = suporter;
             _context.Add(facilities);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -78,7 +94,14 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-
+            var suporter = _context.Users.
+                Where(u => u.Role == "Supporter").Select(u => new SelectListItem
+                {
+                    Value = u.Id.ToString(),
+                    Text = u.Email
+                }).ToList();
+            suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
+            ViewBag.SupporterEmails = suporter;
             var facilities = await _context.Facilities.FindAsync(id);
             if (facilities == null)
             {
@@ -89,7 +112,11 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public async Task<IActionResult> Edit(int id,  Facilities facilities)
+=======
+        public async Task<IActionResult> Edit(int id, Facilities facilities)
+>>>>>>> Viet
         {
             if (id != facilities.Id)
             {
@@ -98,6 +125,14 @@ namespace WebApp.Controllers
 
             try
             {
+                var suporter = _context.Users.
+                Where(u => u.Role == "Supporter").Select(u => new SelectListItem
+                {
+                    Value = u.Id.ToString(),
+                    Text = u.Email
+                }).ToList();
+                suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
+                ViewBag.SupporterEmails = suporter;
                 _context.Update(facilities);
                 await _context.SaveChangesAsync();
             }

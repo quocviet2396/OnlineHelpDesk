@@ -1,7 +1,9 @@
 using WebApp.Database_helper;
 using WebApp.Repositories;
 using WebApp.Services;
+using WebApp.Signal;
 using WebApp.Ultils;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,7 @@ builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
 builder.Services.AddDbContext<DatabaseContext>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddSignalR();
 
 
 // Add DI
@@ -25,8 +28,10 @@ builder.Services.AddScoped<IDataService, DataServiceImp>();
 builder.Services.AddScoped<IAccountService, AccountServiceImp>();
 builder.Services.AddScoped<ITicket, TicketServiceImp>();
 builder.Services.AddScoped<INewsService, NewsServiceImp>();
+builder.Services.AddScoped<INotificationService, NotificationServiceImp>();
 builder.Services.AddScoped<Helper>();
 builder.Services.AddScoped<Mailultil>();
+builder.Services.AddScoped<SignalConfig>();
 
 
 var app = builder.Build();
@@ -44,8 +49,11 @@ app.UseSession();
 
 app.UseAuthorization();
 
+app.MapHub<SignalConfig>("/Notification");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Frontend}/{action=Index}/{id?}");
+
 
 app.Run();

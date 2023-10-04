@@ -534,7 +534,6 @@
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\images\avatars\" />
-    <Folder Include="Authorize\" />
     <Folder Include="Signal\" />
     <Folder Include="Views\Mail\" />
   </ItemGroup>

@@ -1,0 +1,56 @@
+﻿@model LibraryModels.Facilities
+
+@{
+    ViewData["Title"] = "Edit Facilities";
+    Layout = "_BackendLayout";
+}
+@*
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">*@
+<div class="body-wrapper">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Edit Facilities</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="Edit" asp-controller="Facilities">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+<<<<<<< HEAD
+                            <div class="form-group">
+                                <label asp-for="SpId" class="control-label"></label>
+                                <input asp-for="SpId" class="form-control" />
+                                <span asp-validation-for="SpId" class="text-danger"></span>
+=======
+                            <div class="form-group" @ViewBag.us @ViewBag.sp>
+                                <label asp-for="SupporterId" class="control-label"></label>
+                                <select asp-for="SupporterId" class="form-control" asp-items="ViewBag.SupporterEmails"></select>
+                                <span asp-validation-for="SupporterId" class="text-danger"></span>
+>>>>>>> Viet
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@*</div>*@
+

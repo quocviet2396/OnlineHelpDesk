@@ -1,0 +1,35 @@
+﻿@model LibraryModels.TicketStatus
+
+@{
+    ViewData["Title"] = "Create Ticket Status";
+    Layout = "_BackendLayout";
+}
+
+<div class="body-wrapper">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add new TicketStatus</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="Create" asp-controller="TicketStatus">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

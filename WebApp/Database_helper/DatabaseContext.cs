@@ -53,12 +53,6 @@ namespace WebApp.Database_helper
                  .HasForeignKey(t => t.SupporterId)
                  .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Facilities>()
-                 .HasOne(t => t.Supporter)
-                 .WithMany()
-                 .HasForeignKey(t => t.SupporterId)
-                 .OnDelete(DeleteBehavior.NoAction);
-
             modelBuilder.Entity<Discussion>()
                  .HasOne(d => d.Ticket)
                  .WithMany()

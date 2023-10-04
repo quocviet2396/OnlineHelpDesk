@@ -12,11 +12,15 @@ using WebApp.Database_helper;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
     [Migration("20231002021154_project")]
     partial class project
 ========
     [Migration("20231004113942_NewInit")]
+=======
+    [Migration("20231004093441_NewInit")]
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
     partial class NewInit
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
     {
@@ -117,6 +121,7 @@ namespace WebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                     b.Property<string>("SpId")
                         .HasColumnType("nvarchar(max)");
@@ -125,9 +130,9 @@ namespace WebApp.Migrations
                         .HasColumnType("int");
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 
+=======
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                     b.HasKey("Id");
-
-                    b.HasIndex("SupporterId");
 
                     b.ToTable("tbFacilities");
 
@@ -576,6 +581,7 @@ namespace WebApp.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Code = "I4xfeCHY",
                             Email = "superadmin@gmail.com",
@@ -585,6 +591,11 @@ namespace WebApp.Migrations
                             Email = "superadmin@gmail.com",
                             Password = "$2a$11$GplMA8ihdJPV9KdyoQN9GeA.iRYWSCuct8ebGvGJsMfmCtOWqun.O",
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Code = "2hXDzNyV",
+                            Email = "superadmin@gmail.com",
+                            Password = "$2a$11$XwtbfDoe4tHGYgIs5FRHPOJ5lvVBuqczp.3JkBZKh0gMHyOf6TIPi",
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Role = "Admin",
                             Status = true,
                             UserName = "SuperAdmin"
@@ -592,6 +603,7 @@ namespace WebApp.Migrations
                         new
                         {
                             Id = 2,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Code = "WobSeu7q",
                             Email = "supporter@gmail.com",
@@ -601,6 +613,11 @@ namespace WebApp.Migrations
                             Email = "supporter@gmail.com",
                             Password = "$2a$11$YzEwnSmYZmpXepwSAglXhOoj8E8Tn058jVhYE03pLqfw71QWkTuFu",
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Code = "BIQLjC7P",
+                            Email = "supporter@gmail.com",
+                            Password = "$2a$11$.IN5OEK2A0uj3xbjsMiQOuewMds0dOEeoAAKiQCPu8i69FYQ2EXay",
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Role = "Supporter",
                             Status = true,
                             UserName = "Supporter"
@@ -608,6 +625,7 @@ namespace WebApp.Migrations
                         new
                         {
                             Id = 3,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Code = "HD1cfIwo",
                             Email = "user@gmail.com",
@@ -617,6 +635,11 @@ namespace WebApp.Migrations
                             Email = "user@gmail.com",
                             Password = "$2a$11$MjBvuXErzMLoiHPtbVm/D.bgZtIevg6xfYVoSqJCSoeNwwsYo.YfW",
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Code = "fAe05WiL",
+                            Email = "user@gmail.com",
+                            Password = "$2a$11$ubnNOLel94.39eNjI0ZvOe/8wN3ySKLVTpvd1TFrz8B.lLx3W/wqW",
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Role = "User",
                             Status = true,
                             UserName = "User"
@@ -677,6 +700,7 @@ namespace WebApp.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "60773 Deja Forest, Jovannyborough, Bhutan",
                             City = "Balistrerifurt",
@@ -692,18 +716,30 @@ namespace WebApp.Migrations
                             Address = "3889 Gabriel Fork, Lake Martinaport, Macedonia",
                             City = "West Albin",
                             DateOfBirth = new DateTime(2023, 2, 21, 16, 6, 18, 157, DateTimeKind.Local).AddTicks(3814),
+=======
+                            Address = "18211 Hilpert Meadows, Littleville, Japan",
+                            City = "West Aldentown",
+                            DateOfBirth = new DateTime(2023, 9, 17, 8, 45, 10, 46, DateTimeKind.Local).AddTicks(892),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest1991@gmail.com",
-                            FirstName = "Melany",
-                            FullName = "Melany Gislason",
+                            FirstName = "Everett",
+                            FullName = "Everett Rempel",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Gislason",
                             Phone = "244.569.3925 x95106",
                             Student_code = "StudentGAbWR8Uz"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Rempel",
+                            Phone = "1-386-320-5665 x9442",
+                            Student_code = "StudentX2cE66ai"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 3,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "4922 Malachi Haven, New Mauriciostad, Uzbekistan",
                             City = "Keaganshire",
@@ -719,18 +755,30 @@ namespace WebApp.Migrations
                             Address = "93611 Von Rue, Feliciafort, French Guiana",
                             City = "Strosinshire",
                             DateOfBirth = new DateTime(2023, 8, 18, 21, 24, 0, 59, DateTimeKind.Local).AddTicks(6067),
+=======
+                            Address = "339 Samanta Run, Koeppport, Spain",
+                            City = "Cristtown",
+                            DateOfBirth = new DateTime(2023, 5, 7, 9, 13, 58, 140, DateTimeKind.Local).AddTicks(5940),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest1993@gmail.com",
-                            FirstName = "Demarco",
-                            FullName = "Demarco Heller",
+                            FirstName = "Berry",
+                            FullName = "Berry Buckridge",
                             Gender = false,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Heller",
                             Phone = "(505) 396-2868 x606",
                             Student_code = "StudentDIqjmNBx"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Buckridge",
+                            Phone = "(676) 328-6177",
+                            Student_code = "Student0ATNCYzy"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 5,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "00286 Haley Green, Kossbury, Chile",
                             City = "New Carter",
@@ -746,18 +794,30 @@ namespace WebApp.Migrations
                             Address = "3784 Wintheiser Place, Quentinchester, Syrian Arab Republic",
                             City = "New Madilyn",
                             DateOfBirth = new DateTime(2023, 10, 3, 9, 22, 14, 34, DateTimeKind.Local).AddTicks(7495),
+=======
+                            Address = "1359 Russel Loop, Port Torrance, Belgium",
+                            City = "Spencerberg",
+                            DateOfBirth = new DateTime(2023, 8, 13, 15, 5, 27, 67, DateTimeKind.Local).AddTicks(4223),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest1995@gmail.com",
-                            FirstName = "Alaina",
-                            FullName = "Alaina Klocko",
+                            FirstName = "Javier",
+                            FullName = "Javier Ratke",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Klocko",
                             Phone = "833.690.5958 x76935",
                             Student_code = "StudentYQzTVd72"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Ratke",
+                            Phone = "435.945.0726",
+                            Student_code = "StudentKbRF4jON"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 7,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "906 Ziemann Key, South Reginaldbury, Antarctica (the territory South of 60 deg S)",
                             City = "Kulasborough",
@@ -781,10 +841,23 @@ namespace WebApp.Migrations
                             Phone = "779.303.9828 x3801",
                             Student_code = "StudentNqqwS4pk"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "3877 Baumbach Rue, Schmidtton, Antarctica (the territory South of 60 deg S)",
+                            City = "West Arnulfo",
+                            DateOfBirth = new DateTime(2023, 5, 9, 8, 10, 24, 458, DateTimeKind.Local).AddTicks(2919),
+                            Email = "onhdexmapletest1997@gmail.com",
+                            FirstName = "Lina",
+                            FullName = "Lina Rowe",
+                            Gender = false,
+                            LastName = "Rowe",
+                            Phone = "(857) 944-4107 x85922",
+                            Student_code = "StudentwN9Vie9J"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 9,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "7942 Sophie Cliffs, Lottieborough, Nepal",
                             City = "Quigleyburgh",
@@ -808,10 +881,23 @@ namespace WebApp.Migrations
                             Phone = "736-669-5721",
                             Student_code = "StudenthdGQo0Vt"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "23774 Eloise Brook, Mayertview, Argentina",
+                            City = "Loweshire",
+                            DateOfBirth = new DateTime(2022, 11, 17, 4, 59, 50, 787, DateTimeKind.Local).AddTicks(9505),
+                            Email = "onhdexmapletest1999@gmail.com",
+                            FirstName = "Austen",
+                            FullName = "Austen Feil",
+                            Gender = true,
+                            LastName = "Feil",
+                            Phone = "662.717.1844 x13493",
+                            Student_code = "StudentHIZyiiBZ"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 11,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "5773 Jacobs Route, Jacobsonfurt, Kazakhstan",
                             City = "North Kobymouth",
@@ -835,10 +921,23 @@ namespace WebApp.Migrations
                             Phone = "946-376-6721",
                             Student_code = "Student2nrSC1Kd"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "741 King Road, Bartolettiside, Norfolk Island",
+                            City = "Zulauftown",
+                            DateOfBirth = new DateTime(2023, 3, 1, 4, 3, 5, 292, DateTimeKind.Local).AddTicks(2220),
+                            Email = "onhdexmapletest19911@gmail.com",
+                            FirstName = "Theo",
+                            FullName = "Theo Rolfson",
+                            Gender = true,
+                            LastName = "Rolfson",
+                            Phone = "1-894-218-3880 x328",
+                            Student_code = "Student4XQemNLa"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 13,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "952 Eveline Wall, Lake Nathaniel, Kuwait",
                             City = "Flatleyview",
@@ -862,10 +961,23 @@ namespace WebApp.Migrations
                             Phone = "(796) 458-4439 x5492",
                             Student_code = "Student6MKlsd2g"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "4483 Ford Extensions, West Carlifurt, Equatorial Guinea",
+                            City = "Veldaborough",
+                            DateOfBirth = new DateTime(2023, 4, 24, 7, 22, 0, 445, DateTimeKind.Local).AddTicks(5375),
+                            Email = "onhdexmapletest19913@gmail.com",
+                            FirstName = "Granville",
+                            FullName = "Granville Mraz",
+                            Gender = true,
+                            LastName = "Mraz",
+                            Phone = "871.970.4364 x8887",
+                            Student_code = "StudentzLYLa4EC"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 15,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "8800 Caroline Stravenue, West Jefferey, Spain",
                             City = "North Liana",
@@ -881,18 +993,30 @@ namespace WebApp.Migrations
                             Address = "35926 Gutmann Hollow, West Deonte, Maldives",
                             City = "West Nadia",
                             DateOfBirth = new DateTime(2023, 5, 26, 20, 27, 2, 765, DateTimeKind.Local).AddTicks(1249),
+=======
+                            Address = "255 Tessie Mews, South Alverta, United Arab Emirates",
+                            City = "East Alphonso",
+                            DateOfBirth = new DateTime(2023, 2, 20, 18, 2, 35, 141, DateTimeKind.Local).AddTicks(8752),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19915@gmail.com",
-                            FirstName = "Leanna",
-                            FullName = "Leanna Quitzon",
+                            FirstName = "Lavada",
+                            FullName = "Lavada Schiller",
                             Gender = false,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Quitzon",
                             Phone = "1-449-309-3662 x1998",
                             Student_code = "Student6dCown88"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Schiller",
+                            Phone = "998.374.6552",
+                            Student_code = "StudentY9MGPW1F"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 17,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "1207 Brendon Manor, South Naomiehaven, Tokelau",
                             City = "Sandrahaven",
@@ -916,10 +1040,23 @@ namespace WebApp.Migrations
                             Phone = "427.464.3036 x4695",
                             Student_code = "Student3RnnrwMc"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "9303 Arden Heights, West Lola, Iceland",
+                            City = "New Michaelville",
+                            DateOfBirth = new DateTime(2023, 7, 20, 21, 53, 52, 858, DateTimeKind.Local).AddTicks(3851),
+                            Email = "onhdexmapletest19917@gmail.com",
+                            FirstName = "Jackeline",
+                            FullName = "Jackeline Haley",
+                            Gender = true,
+                            LastName = "Haley",
+                            Phone = "687-447-1417",
+                            Student_code = "StudentCwSc7oug"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 19,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "658 Balistreri Cliffs, East Jayneville, Guinea-Bissau",
                             City = "North Gideonburgh",
@@ -935,18 +1072,30 @@ namespace WebApp.Migrations
                             Address = "405 Tillman Garden, East Rachelburgh, Trinidad and Tobago",
                             City = "New Arvidchester",
                             DateOfBirth = new DateTime(2023, 9, 22, 21, 36, 29, 504, DateTimeKind.Local).AddTicks(2808),
+=======
+                            Address = "1160 Rau Walks, Archibaldland, Azerbaijan",
+                            City = "Sauerborough",
+                            DateOfBirth = new DateTime(2022, 12, 20, 9, 14, 38, 783, DateTimeKind.Local).AddTicks(9109),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19919@gmail.com",
-                            FirstName = "Marcelle",
-                            FullName = "Marcelle Lebsack",
+                            FirstName = "Helmer",
+                            FullName = "Helmer Bogisich",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Lebsack",
                             Phone = "731.331.8682 x036",
                             Student_code = "StudentErW8vZL6"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Bogisich",
+                            Phone = "1-779-785-0089",
+                            Student_code = "StudentUNjMSb60"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 21,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "5831 Spencer Cliffs, Josephinefort, Swaziland",
                             City = "East Corinetown",
@@ -970,10 +1119,23 @@ namespace WebApp.Migrations
                             Phone = "278-500-5506",
                             Student_code = "StudentJsaPp0b2"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "5777 Legros Rapids, Jaydaside, Burundi",
+                            City = "Port Johnnieview",
+                            DateOfBirth = new DateTime(2023, 2, 12, 16, 40, 23, 978, DateTimeKind.Local).AddTicks(5071),
+                            Email = "onhdexmapletest19921@gmail.com",
+                            FirstName = "Jarod",
+                            FullName = "Jarod Bruen",
+                            Gender = false,
+                            LastName = "Bruen",
+                            Phone = "741.244.6988 x122",
+                            Student_code = "Student87pVkQr9"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 23,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "5605 Derrick Prairie, New Pinkie, Guadeloupe",
                             City = "Langhaven",
@@ -989,18 +1151,30 @@ namespace WebApp.Migrations
                             Address = "4570 Rowe Creek, Gloverton, Botswana",
                             City = "New Xavier",
                             DateOfBirth = new DateTime(2022, 11, 7, 19, 56, 5, 429, DateTimeKind.Local).AddTicks(7198),
+=======
+                            Address = "8666 Boyer Gardens, South Nelleview, Tanzania",
+                            City = "Kertzmannchester",
+                            DateOfBirth = new DateTime(2023, 7, 9, 15, 29, 14, 543, DateTimeKind.Local).AddTicks(1551),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19923@gmail.com",
-                            FirstName = "Winnifred",
-                            FullName = "Winnifred Conroy",
+                            FirstName = "Anahi",
+                            FullName = "Anahi Rohan",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Conroy",
                             Phone = "1-628-504-4681",
                             Student_code = "Student2JHAIqyh"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Rohan",
+                            Phone = "272-863-8633 x4463",
+                            Student_code = "StudentGb4kOgMb"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 25,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "4663 Kihn Mills, Kesslerhaven, Madagascar",
                             City = "Port Abdullahland",
@@ -1024,10 +1198,23 @@ namespace WebApp.Migrations
                             Phone = "1-455-665-0239",
                             Student_code = "Student2ZsJQMuh"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "663 Addie Burg, Port Tyrastad, Cape Verde",
+                            City = "Lake Garfieldborough",
+                            DateOfBirth = new DateTime(2022, 10, 14, 0, 20, 59, 573, DateTimeKind.Local).AddTicks(3761),
+                            Email = "onhdexmapletest19925@gmail.com",
+                            FirstName = "Luna",
+                            FullName = "Luna Beatty",
+                            Gender = true,
+                            LastName = "Beatty",
+                            Phone = "1-352-249-1853",
+                            Student_code = "Studentl9Nb7JoR"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 27,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "6479 Kyler Lights, Kingborough, Dominican Republic",
                             City = "Wunschchester",
@@ -1051,10 +1238,23 @@ namespace WebApp.Migrations
                             Phone = "1-897-235-9433 x860",
                             Student_code = "StudentNLsGR2qF"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "59042 Walter Hollow, Carolineshire, Uganda",
+                            City = "East Keltonchester",
+                            DateOfBirth = new DateTime(2023, 5, 5, 4, 56, 29, 578, DateTimeKind.Local).AddTicks(2725),
+                            Email = "onhdexmapletest19927@gmail.com",
+                            FirstName = "Kiley",
+                            FullName = "Kiley Skiles",
+                            Gender = false,
+                            LastName = "Skiles",
+                            Phone = "1-927-456-6808",
+                            Student_code = "StudentfIp3g07f"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 29,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "961 Billie Well, West Ashtyn, Libyan Arab Jamahiriya",
                             City = "North Ally",
@@ -1078,10 +1278,23 @@ namespace WebApp.Migrations
                             Phone = "1-805-344-2635 x415",
                             Student_code = "Studentbylsdr5D"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "55984 Jaylin Stream, Cameronland, Myanmar",
+                            City = "Bennytown",
+                            DateOfBirth = new DateTime(2023, 9, 9, 22, 47, 48, 583, DateTimeKind.Local).AddTicks(5699),
+                            Email = "onhdexmapletest19929@gmail.com",
+                            FirstName = "Ashley",
+                            FullName = "Ashley Stokes",
+                            Gender = false,
+                            LastName = "Stokes",
+                            Phone = "555-798-9526",
+                            Student_code = "StudentW0PRQjez"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 31,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "741 Fay Valleys, North Mathew, Isle of Man",
                             City = "Lake Arlo",
@@ -1097,18 +1310,30 @@ namespace WebApp.Migrations
                             Address = "04575 Daugherty Plain, Bentonmouth, Spain",
                             City = "West Addie",
                             DateOfBirth = new DateTime(2022, 10, 25, 22, 49, 6, 35, DateTimeKind.Local).AddTicks(2832),
+=======
+                            Address = "260 Mossie Views, Gonzaloborough, Tajikistan",
+                            City = "Zitaborough",
+                            DateOfBirth = new DateTime(2023, 4, 12, 4, 41, 15, 234, DateTimeKind.Local).AddTicks(8222),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19931@gmail.com",
-                            FirstName = "Myrtice",
-                            FullName = "Myrtice Zulauf",
+                            FirstName = "Etha",
+                            FullName = "Etha Murray",
                             Gender = false,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Zulauf",
                             Phone = "513.257.2522",
                             Student_code = "StudentevOHzDgE"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Murray",
+                            Phone = "1-288-752-5673",
+                            Student_code = "StudentbZE26DFn"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 33,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "5123 Leanne Centers, Dakotaville, Pakistan",
                             City = "Bartellville",
@@ -1124,18 +1349,30 @@ namespace WebApp.Migrations
                             Address = "33490 Runte Isle, Amaraside, Svalbard & Jan Mayen Islands",
                             City = "West Maribel",
                             DateOfBirth = new DateTime(2023, 1, 25, 23, 51, 21, 227, DateTimeKind.Local).AddTicks(4422),
+=======
+                            Address = "2154 Rico Points, Donnellyberg, Ghana",
+                            City = "South Daron",
+                            DateOfBirth = new DateTime(2023, 3, 23, 10, 28, 55, 911, DateTimeKind.Local).AddTicks(8771),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19933@gmail.com",
-                            FirstName = "Ronny",
-                            FullName = "Ronny Bradtke",
+                            FirstName = "Minerva",
+                            FullName = "Minerva Mitchell",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Bradtke",
                             Phone = "(925) 911-7087",
                             Student_code = "Studentp5rHvV2p"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Mitchell",
+                            Phone = "(726) 973-1810",
+                            Student_code = "StudentUqAEH0zs"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 35,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "623 Volkman Ridges, South Alitown, Armenia",
                             City = "New Carissamouth",
@@ -1151,18 +1388,30 @@ namespace WebApp.Migrations
                             Address = "9342 Cordell Crossing, East Mattshire, Japan",
                             City = "Abelardomouth",
                             DateOfBirth = new DateTime(2023, 7, 5, 10, 31, 12, 542, DateTimeKind.Local).AddTicks(926),
+=======
+                            Address = "5389 Schiller Orchard, Spinkamouth, Guinea-Bissau",
+                            City = "Cicerohaven",
+                            DateOfBirth = new DateTime(2023, 10, 1, 16, 33, 39, 778, DateTimeKind.Local).AddTicks(3465),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19935@gmail.com",
-                            FirstName = "Mavis",
-                            FullName = "Mavis Harvey",
+                            FirstName = "Corrine",
+                            FullName = "Corrine Streich",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Harvey",
                             Phone = "943.794.7592 x893",
                             Student_code = "StudentKyliH2Kl"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Streich",
+                            Phone = "977-404-5506 x6292",
+                            Student_code = "StudentQsYb525V"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 37,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "18477 Ahmad Center, South Bradley, Cambodia",
                             City = "West Raina",
@@ -1186,10 +1435,23 @@ namespace WebApp.Migrations
                             Phone = "786.835.8403",
                             Student_code = "Student8uT57EaD"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "6271 Stoltenberg Walks, South Antone, Bouvet Island (Bouvetoya)",
+                            City = "New Bria",
+                            DateOfBirth = new DateTime(2023, 6, 17, 21, 59, 7, 754, DateTimeKind.Local).AddTicks(6791),
+                            Email = "onhdexmapletest19937@gmail.com",
+                            FirstName = "Jaime",
+                            FullName = "Jaime Fisher",
+                            Gender = false,
+                            LastName = "Fisher",
+                            Phone = "(878) 207-2641",
+                            Student_code = "StudentTSta8h4H"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 39,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "873 Hobart Ridges, East Saul, Gibraltar",
                             City = "Mrazmouth",
@@ -1213,10 +1475,23 @@ namespace WebApp.Migrations
                             Phone = "(668) 962-4340 x718",
                             Student_code = "Student1beR2bw2"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "489 Jerry Track, West Eldon, Kuwait",
+                            City = "West Kennedi",
+                            DateOfBirth = new DateTime(2022, 10, 27, 7, 25, 16, 477, DateTimeKind.Local).AddTicks(4490),
+                            Email = "onhdexmapletest19939@gmail.com",
+                            FirstName = "Domenick",
+                            FullName = "Domenick Green",
+                            Gender = true,
+                            LastName = "Green",
+                            Phone = "(830) 821-8504",
+                            Student_code = "StudentIkMJfQMG"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 41,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "0201 Anissa Circle, Wilfridmouth, Tanzania",
                             City = "South Reinholdland",
@@ -1240,10 +1515,23 @@ namespace WebApp.Migrations
                             Phone = "908-217-9776",
                             Student_code = "StudentDve9ZIrb"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "042 Lorna Alley, South Kamryntown, Zimbabwe",
+                            City = "North Michel",
+                            DateOfBirth = new DateTime(2023, 7, 14, 15, 41, 16, 474, DateTimeKind.Local).AddTicks(2480),
+                            Email = "onhdexmapletest19941@gmail.com",
+                            FirstName = "Hilton",
+                            FullName = "Hilton Little",
+                            Gender = true,
+                            LastName = "Little",
+                            Phone = "925-224-1286",
+                            Student_code = "StudentCtrlny8B"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 43,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "70096 Huels Brooks, Budmouth, Afghanistan",
                             City = "South Bennie",
@@ -1267,10 +1555,23 @@ namespace WebApp.Migrations
                             Phone = "647.911.4799 x2268",
                             Student_code = "StudentidYZeDZf"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "136 Cedrick Hill, Pricebury, Gabon",
+                            City = "Lake Hannah",
+                            DateOfBirth = new DateTime(2022, 11, 8, 9, 38, 29, 718, DateTimeKind.Local).AddTicks(8999),
+                            Email = "onhdexmapletest19943@gmail.com",
+                            FirstName = "Rusty",
+                            FullName = "Rusty Feeney",
+                            Gender = true,
+                            LastName = "Feeney",
+                            Phone = "(502) 237-2503 x6055",
+                            Student_code = "StudentMwJKFSBT"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 45,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "775 Queen Highway, New Emily, Saint Barthelemy",
                             City = "Wavaville",
@@ -1286,18 +1587,30 @@ namespace WebApp.Migrations
                             Address = "1263 Pink Radial, South Zola, Cocos (Keeling) Islands",
                             City = "Walkerland",
                             DateOfBirth = new DateTime(2023, 1, 20, 4, 41, 0, 688, DateTimeKind.Local).AddTicks(1209),
+=======
+                            Address = "74714 Titus Trafficway, Lisetteville, Estonia",
+                            City = "Volkmanshire",
+                            DateOfBirth = new DateTime(2023, 6, 14, 14, 50, 24, 104, DateTimeKind.Local).AddTicks(7284),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19945@gmail.com",
-                            FirstName = "Autumn",
-                            FullName = "Autumn Crona",
+                            FirstName = "Zander",
+                            FullName = "Zander Stokes",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Crona",
                             Phone = "953.254.6791",
                             Student_code = "Student6QBDbOmZ"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Stokes",
+                            Phone = "997-317-2881 x5879",
+                            Student_code = "StudentSjIUGrWY"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 47,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "0302 Samson Ridge, Lake Scottyville, Zambia",
                             City = "Pouroshaven",
@@ -1313,18 +1626,30 @@ namespace WebApp.Migrations
                             Address = "2921 Blanca Point, Halvorsonchester, Maldives",
                             City = "Isaiahville",
                             DateOfBirth = new DateTime(2022, 11, 2, 22, 47, 36, 455, DateTimeKind.Local).AddTicks(6878),
+=======
+                            Address = "854 Delpha Canyon, Lake Lottie, Reunion",
+                            City = "Elissaland",
+                            DateOfBirth = new DateTime(2023, 3, 3, 9, 16, 23, 767, DateTimeKind.Local).AddTicks(7194),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19947@gmail.com",
-                            FirstName = "Rogelio",
-                            FullName = "Rogelio Sporer",
+                            FirstName = "Carson",
+                            FullName = "Carson Haag",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Sporer",
                             Phone = "243.536.1457",
                             Student_code = "StudentumnTLTIY"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Haag",
+                            Phone = "1-399-310-9376 x613",
+                            Student_code = "StudentKbvrPF8l"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 49,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "928 Justen Courts, Port Maynardburgh, Mauritania",
                             City = "West Kenya",
@@ -1340,18 +1665,30 @@ namespace WebApp.Migrations
                             Address = "0684 Tamara Mission, West Catherine, Turkmenistan",
                             City = "Feestport",
                             DateOfBirth = new DateTime(2022, 10, 25, 16, 2, 46, 997, DateTimeKind.Local).AddTicks(4547),
+=======
+                            Address = "9954 Rey Plaza, Tiabury, Bosnia and Herzegovina",
+                            City = "South Cameron",
+                            DateOfBirth = new DateTime(2023, 9, 11, 5, 15, 3, 394, DateTimeKind.Local).AddTicks(6279),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19949@gmail.com",
-                            FirstName = "Favian",
-                            FullName = "Favian Bernhard",
+                            FirstName = "Rhiannon",
+                            FullName = "Rhiannon Runolfsson",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Bernhard",
                             Phone = "1-572-963-2478 x905",
                             Student_code = "StudentlJ9IXlfQ"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Runolfsson",
+                            Phone = "927-808-5903 x14452",
+                            Student_code = "StudentHbDdbmPR"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 51,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "615 Pasquale Orchard, Osbaldostad, Netherlands Antilles",
                             City = "Isaiberg",
@@ -1375,10 +1712,23 @@ namespace WebApp.Migrations
                             Phone = "413.851.2481 x3114",
                             Student_code = "Student6cDMLnzl"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "05520 Ova Port, Braunmouth, Poland",
+                            City = "Guidoburgh",
+                            DateOfBirth = new DateTime(2023, 7, 13, 22, 54, 3, 872, DateTimeKind.Local).AddTicks(4477),
+                            Email = "onhdexmapletest19951@gmail.com",
+                            FirstName = "Tanya",
+                            FullName = "Tanya Larson",
+                            Gender = true,
+                            LastName = "Larson",
+                            Phone = "(978) 292-4939 x5127",
+                            Student_code = "StudentxCweH6ss"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 53,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "206 Huel Parkways, North Cheyanne, Albania",
                             City = "Port Maybelletown",
@@ -1402,10 +1752,23 @@ namespace WebApp.Migrations
                             Phone = "503-964-1594 x89607",
                             Student_code = "StudentSA02t9az"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "067 Ezequiel Pike, South Robertview, Colombia",
+                            City = "East Fanny",
+                            DateOfBirth = new DateTime(2023, 6, 28, 22, 35, 46, 218, DateTimeKind.Local).AddTicks(4427),
+                            Email = "onhdexmapletest19953@gmail.com",
+                            FirstName = "Wyman",
+                            FullName = "Wyman Torphy",
+                            Gender = true,
+                            LastName = "Torphy",
+                            Phone = "902-438-9295 x841",
+                            Student_code = "Studentw4QoDw0c"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 55,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "66378 Eugene Orchard, Runolfsdottirfurt, Moldova",
                             City = "Jailynfort",
@@ -1429,10 +1792,23 @@ namespace WebApp.Migrations
                             Phone = "(500) 254-5144",
                             Student_code = "StudentwiVDJwuq"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "866 Edwin Court, West Luciousfort, Madagascar",
+                            City = "Armandport",
+                            DateOfBirth = new DateTime(2022, 11, 13, 11, 41, 55, 752, DateTimeKind.Local).AddTicks(7131),
+                            Email = "onhdexmapletest19955@gmail.com",
+                            FirstName = "Katlyn",
+                            FullName = "Katlyn Haag",
+                            Gender = false,
+                            LastName = "Haag",
+                            Phone = "(543) 446-0884 x490",
+                            Student_code = "StudentZ6EKNNSp"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 57,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "7376 Alia Pike, North Jensenport, Bhutan",
                             City = "Port Nikolas",
@@ -1448,18 +1824,30 @@ namespace WebApp.Migrations
                             Address = "55487 Martina Parks, Titoland, Singapore",
                             City = "Groverchester",
                             DateOfBirth = new DateTime(2023, 6, 28, 16, 52, 59, 642, DateTimeKind.Local).AddTicks(5669),
+=======
+                            Address = "0874 Armstrong Points, Port Alessandrastad, Ghana",
+                            City = "Collinsland",
+                            DateOfBirth = new DateTime(2023, 6, 8, 20, 47, 33, 505, DateTimeKind.Local).AddTicks(3684),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19957@gmail.com",
-                            FirstName = "Geraldine",
-                            FullName = "Geraldine Schmidt",
+                            FirstName = "Denis",
+                            FullName = "Denis Gottlieb",
                             Gender = false,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Schmidt",
                             Phone = "915.898.0448",
                             Student_code = "StudentuTaTpdKA"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Gottlieb",
+                            Phone = "560-556-2365",
+                            Student_code = "StudentC1Yi10jK"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 59,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "5745 Eduardo Junctions, Armstrongstad, Anguilla",
                             City = "East Luisabury",
@@ -1483,10 +1871,23 @@ namespace WebApp.Migrations
                             Phone = "571-992-3430 x594",
                             Student_code = "StudenttjUvcD4r"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "7026 Nicolas Mountain, Port Meta, Sweden",
+                            City = "East Jerod",
+                            DateOfBirth = new DateTime(2023, 3, 25, 19, 6, 10, 707, DateTimeKind.Local).AddTicks(5528),
+                            Email = "onhdexmapletest19959@gmail.com",
+                            FirstName = "Marjorie",
+                            FullName = "Marjorie Paucek",
+                            Gender = false,
+                            LastName = "Paucek",
+                            Phone = "(224) 699-1214 x48825",
+                            Student_code = "Studenti6bF97u4"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 61,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "93632 Mayer Well, Port Jennie, Lao People's Democratic Republic",
                             City = "East Tyson",
@@ -1510,10 +1911,23 @@ namespace WebApp.Migrations
                             Phone = "(417) 547-9422",
                             Student_code = "Studentiq13Y2GU"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "7714 Hiram Ville, Missourishire, Namibia",
+                            City = "Weberburgh",
+                            DateOfBirth = new DateTime(2022, 11, 1, 1, 3, 58, 393, DateTimeKind.Local).AddTicks(1331),
+                            Email = "onhdexmapletest19961@gmail.com",
+                            FirstName = "Alicia",
+                            FullName = "Alicia Auer",
+                            Gender = false,
+                            LastName = "Auer",
+                            Phone = "802.204.3379",
+                            Student_code = "StudentUJ5fvvDt"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 63,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "9277 Palma Way, East Julesville, Belize",
                             City = "Port Rosie",
@@ -1537,10 +1951,23 @@ namespace WebApp.Migrations
                             Phone = "(556) 366-7881 x674",
                             Student_code = "StudentXn7mOgCn"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "59347 Greyson Plaza, Herthafurt, Tokelau",
+                            City = "North Karina",
+                            DateOfBirth = new DateTime(2022, 12, 8, 14, 5, 42, 315, DateTimeKind.Local).AddTicks(9447),
+                            Email = "onhdexmapletest19963@gmail.com",
+                            FirstName = "River",
+                            FullName = "River Labadie",
+                            Gender = true,
+                            LastName = "Labadie",
+                            Phone = "238-543-3134 x307",
+                            Student_code = "Student8byvxPLU"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 65,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "04452 Heathcote Corner, Electaberg, Tokelau",
                             City = "New Monserrat",
@@ -1556,18 +1983,30 @@ namespace WebApp.Migrations
                             Address = "2850 Satterfield Mill, East Marjolaine, Guyana",
                             City = "Schummton",
                             DateOfBirth = new DateTime(2023, 9, 5, 4, 38, 25, 289, DateTimeKind.Local).AddTicks(9953),
+=======
+                            Address = "114 Morton Grove, Dooleyhaven, Senegal",
+                            City = "New Judy",
+                            DateOfBirth = new DateTime(2023, 1, 13, 6, 29, 34, 476, DateTimeKind.Local).AddTicks(8251),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19965@gmail.com",
-                            FirstName = "Ryann",
-                            FullName = "Ryann Luettgen",
+                            FirstName = "Dorcas",
+                            FullName = "Dorcas Jerde",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Luettgen",
                             Phone = "(538) 781-6710 x63732",
                             Student_code = "StudentWHftCZse"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Jerde",
+                            Phone = "(353) 472-4643",
+                            Student_code = "Studentt4wAds8i"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 67,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "357 Stokes Centers, Kaceyhaven, Guam",
                             City = "Mooreland",
@@ -1591,10 +2030,23 @@ namespace WebApp.Migrations
                             Phone = "958-945-8849 x24045",
                             Student_code = "StudenthBHWPstS"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "3865 Cierra Harbors, Ivafurt, Uruguay",
+                            City = "Port Shania",
+                            DateOfBirth = new DateTime(2022, 10, 10, 22, 0, 38, 651, DateTimeKind.Local).AddTicks(2845),
+                            Email = "onhdexmapletest19967@gmail.com",
+                            FirstName = "Justyn",
+                            FullName = "Justyn Feest",
+                            Gender = true,
+                            LastName = "Feest",
+                            Phone = "(827) 911-3907",
+                            Student_code = "StudentmPUzqqxj"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 69,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "98987 Jaylen Viaduct, South Zoila, Tajikistan",
                             City = "Emmieport",
@@ -1618,10 +2070,23 @@ namespace WebApp.Migrations
                             Phone = "1-764-957-8106 x710",
                             Student_code = "StudentbCRODBmJ"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "441 Greenholt Courts, Elsachester, Lithuania",
+                            City = "Port Erinbury",
+                            DateOfBirth = new DateTime(2022, 10, 27, 13, 53, 14, 839, DateTimeKind.Local).AddTicks(882),
+                            Email = "onhdexmapletest19969@gmail.com",
+                            FirstName = "Carroll",
+                            FullName = "Carroll Spinka",
+                            Gender = true,
+                            LastName = "Spinka",
+                            Phone = "1-468-867-9069",
+                            Student_code = "StudentuvxeVnKK"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 71,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "933 Daniel Summit, New Della, Barbados",
                             City = "West Erwin",
@@ -1645,10 +2110,23 @@ namespace WebApp.Migrations
                             Phone = "706-681-1229 x417",
                             Student_code = "StudentgPby1GoG"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "92273 Emmerich Oval, Johnstonberg, Grenada",
+                            City = "West Ricardo",
+                            DateOfBirth = new DateTime(2023, 2, 9, 18, 49, 51, 361, DateTimeKind.Local).AddTicks(4136),
+                            Email = "onhdexmapletest19971@gmail.com",
+                            FirstName = "Jacky",
+                            FullName = "Jacky Predovic",
+                            Gender = true,
+                            LastName = "Predovic",
+                            Phone = "(319) 227-8579 x70591",
+                            Student_code = "StudentPlZNjRQc"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 73,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "996 Bode Tunnel, Quigleyland, Marshall Islands",
                             City = "New Golda",
@@ -1664,18 +2142,30 @@ namespace WebApp.Migrations
                             Address = "8074 Hipolito Meadow, New Genesisfurt, Guadeloupe",
                             City = "West Arthur",
                             DateOfBirth = new DateTime(2023, 7, 3, 23, 38, 48, 4, DateTimeKind.Local).AddTicks(724),
+=======
+                            Address = "9131 Bruen Bridge, New Travon, Latvia",
+                            City = "East Ryanview",
+                            DateOfBirth = new DateTime(2022, 12, 24, 9, 43, 25, 92, DateTimeKind.Local).AddTicks(1907),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19973@gmail.com",
-                            FirstName = "Reta",
-                            FullName = "Reta Waters",
+                            FirstName = "Gladys",
+                            FullName = "Gladys Jacobson",
                             Gender = false,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Waters",
                             Phone = "375-585-5203 x1674",
                             Student_code = "StudentIR8Y3u0z"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Jacobson",
+                            Phone = "1-268-936-7807 x0431",
+                            Student_code = "Studentbnpj1jfM"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 75,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "72500 Donato Prairie, Lake Orlandberg, Slovakia (Slovak Republic)",
                             City = "Zoeymouth",
@@ -1699,10 +2189,23 @@ namespace WebApp.Migrations
                             Phone = "991.532.7137 x972",
                             Student_code = "StudentkbSMkG4O"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "73391 Abernathy Islands, Robertsside, Antarctica (the territory South of 60 deg S)",
+                            City = "Braunmouth",
+                            DateOfBirth = new DateTime(2023, 9, 3, 20, 44, 42, 77, DateTimeKind.Local).AddTicks(26),
+                            Email = "onhdexmapletest19975@gmail.com",
+                            FirstName = "Alice",
+                            FullName = "Alice Johnson",
+                            Gender = true,
+                            LastName = "Johnson",
+                            Phone = "(203) 895-0714 x2276",
+                            Student_code = "StudentlQt22yOQ"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 77,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "70503 Zulauf Camp, West Chadburgh, French Guiana",
                             City = "North Mauricio",
@@ -1718,18 +2221,30 @@ namespace WebApp.Migrations
                             Address = "93776 Considine Junction, West Yeseniastad, Japan",
                             City = "East Zander",
                             DateOfBirth = new DateTime(2022, 11, 7, 13, 26, 28, 283, DateTimeKind.Local).AddTicks(1955),
+=======
+                            Address = "9062 Schimmel Neck, Heidenreichfurt, Lesotho",
+                            City = "East Dannyland",
+                            DateOfBirth = new DateTime(2023, 3, 20, 20, 14, 26, 622, DateTimeKind.Local).AddTicks(9496),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19977@gmail.com",
-                            FirstName = "Ruby",
-                            FullName = "Ruby Labadie",
+                            FirstName = "Clemens",
+                            FullName = "Clemens Welch",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Labadie",
                             Phone = "(972) 705-5553 x4953",
                             Student_code = "StudentV5L4mOmw"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Welch",
+                            Phone = "630-508-8511 x56248",
+                            Student_code = "Studentk2mFHzrK"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 79,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "889 Leslie Mills, Port Rethabury, Hong Kong",
                             City = "West D'angelo",
@@ -1745,18 +2260,30 @@ namespace WebApp.Migrations
                             Address = "9287 Madyson Centers, West Deronhaven, Ecuador",
                             City = "Runolfsdottirburgh",
                             DateOfBirth = new DateTime(2022, 10, 23, 22, 36, 29, 275, DateTimeKind.Local).AddTicks(9915),
+=======
+                            Address = "98311 Lenore Divide, Mauriciostad, Slovenia",
+                            City = "Langtown",
+                            DateOfBirth = new DateTime(2023, 2, 4, 4, 8, 35, 222, DateTimeKind.Local).AddTicks(3489),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19979@gmail.com",
-                            FirstName = "Joe",
-                            FullName = "Joe Rolfson",
+                            FirstName = "Timothy",
+                            FullName = "Timothy Armstrong",
                             Gender = false,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Rolfson",
                             Phone = "275.555.6718 x76364",
                             Student_code = "Student8pOeeUJB"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Armstrong",
+                            Phone = "(716) 583-5297",
+                            Student_code = "StudentuV6uNeaL"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 81,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "707 Spencer Plain, Port Brantview, Romania",
                             City = "Zulaufview",
@@ -1772,18 +2299,30 @@ namespace WebApp.Migrations
                             Address = "4204 Werner Light, Ocietown, Hungary",
                             City = "West Montyhaven",
                             DateOfBirth = new DateTime(2023, 5, 8, 5, 16, 3, 796, DateTimeKind.Local).AddTicks(8321),
+=======
+                            Address = "3982 Aditya Drive, Lake Jeffrey, Afghanistan",
+                            City = "Port Ayla",
+                            DateOfBirth = new DateTime(2023, 7, 8, 5, 12, 52, 235, DateTimeKind.Local).AddTicks(8994),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19981@gmail.com",
-                            FirstName = "Edmund",
-                            FullName = "Edmund Aufderhar",
+                            FirstName = "Vernie",
+                            FullName = "Vernie Christiansen",
                             Gender = false,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Aufderhar",
                             Phone = "500-563-6290",
                             Student_code = "StudentKcxDKcZu"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Christiansen",
+                            Phone = "(464) 563-4076",
+                            Student_code = "Student38eYL3En"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 83,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "96679 Hauck Pass, Cynthiaburgh, British Indian Ocean Territory (Chagos Archipelago)",
                             City = "West Veda",
@@ -1799,18 +2338,30 @@ namespace WebApp.Migrations
                             Address = "38479 Johnny Springs, Gustton, Bulgaria",
                             City = "Walterville",
                             DateOfBirth = new DateTime(2023, 6, 6, 13, 29, 3, 684, DateTimeKind.Local).AddTicks(1277),
+=======
+                            Address = "7977 Reilly Burg, New Tomas, Slovenia",
+                            City = "New Jeffreyfurt",
+                            DateOfBirth = new DateTime(2023, 2, 2, 20, 14, 9, 231, DateTimeKind.Local).AddTicks(7964),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19983@gmail.com",
-                            FirstName = "Belle",
-                            FullName = "Belle Collins",
+                            FirstName = "Caesar",
+                            FullName = "Caesar Sawayn",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Collins",
                             Phone = "891.585.7775 x14248",
                             Student_code = "StudentEYB2fTMi"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Sawayn",
+                            Phone = "(885) 543-6971 x6618",
+                            Student_code = "Studentd2X0Odwg"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 85,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "185 Grayce Lane, New Isidro, Latvia",
                             City = "Angelicaburgh",
@@ -1834,10 +2385,23 @@ namespace WebApp.Migrations
                             Phone = "746.785.5862 x814",
                             Student_code = "StudentJB6AJfSE"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "03642 Johnson Roads, Friesenchester, Finland",
+                            City = "Stanleychester",
+                            DateOfBirth = new DateTime(2023, 4, 30, 3, 26, 4, 743, DateTimeKind.Local).AddTicks(6376),
+                            Email = "onhdexmapletest19985@gmail.com",
+                            FirstName = "Verner",
+                            FullName = "Verner Trantow",
+                            Gender = false,
+                            LastName = "Trantow",
+                            Phone = "(697) 322-8915 x3231",
+                            Student_code = "Student0yNg4RRd"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 87,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "701 Elmer Ranch, Port Arno, Wallis and Futuna",
                             City = "Lake Ravenshire",
@@ -1861,10 +2425,23 @@ namespace WebApp.Migrations
                             Phone = "356.292.6263",
                             Student_code = "StudentNRYQl7wg"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "206 Emard Ways, East Maribelberg, Burkina Faso",
+                            City = "Lake Karinastad",
+                            DateOfBirth = new DateTime(2023, 5, 23, 0, 39, 7, 358, DateTimeKind.Local).AddTicks(3102),
+                            Email = "onhdexmapletest19987@gmail.com",
+                            FirstName = "Carlo",
+                            FullName = "Carlo Marquardt",
+                            Gender = false,
+                            LastName = "Marquardt",
+                            Phone = "1-522-544-8287 x026",
+                            Student_code = "Student7DZidKCh"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 89,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "63267 Roberto Motorway, East Joannieshire, Trinidad and Tobago",
                             City = "West Jaiden",
@@ -1880,18 +2457,30 @@ namespace WebApp.Migrations
                             Address = "420 Jones View, Benedictbury, Ecuador",
                             City = "Port Ransomburgh",
                             DateOfBirth = new DateTime(2023, 3, 5, 19, 50, 12, 558, DateTimeKind.Local).AddTicks(9190),
+=======
+                            Address = "6662 Macey Street, Shirleyberg, Slovakia (Slovak Republic)",
+                            City = "Port Damianborough",
+                            DateOfBirth = new DateTime(2023, 5, 5, 12, 40, 49, 468, DateTimeKind.Local).AddTicks(576),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19989@gmail.com",
-                            FirstName = "Reba",
-                            FullName = "Reba Von",
+                            FirstName = "Reyna",
+                            FullName = "Reyna Waters",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Von",
                             Phone = "440-893-9959 x919",
                             Student_code = "StudentovFCv3NH"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Waters",
+                            Phone = "(333) 236-9946",
+                            Student_code = "Studentfmp1O3hM"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 91,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "8504 Russel Manors, New Jailynville, Venezuela",
                             City = "North Olgashire",
@@ -1915,10 +2504,23 @@ namespace WebApp.Migrations
                             Phone = "597.814.5975 x1071",
                             Student_code = "StudentmXto2WL7"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "09793 Jewel Avenue, Tianamouth, United Kingdom",
+                            City = "East Jordane",
+                            DateOfBirth = new DateTime(2023, 7, 12, 7, 50, 39, 270, DateTimeKind.Local).AddTicks(5699),
+                            Email = "onhdexmapletest19991@gmail.com",
+                            FirstName = "Theron",
+                            FullName = "Theron Zboncak",
+                            Gender = false,
+                            LastName = "Zboncak",
+                            Phone = "(960) 526-6163 x8197",
+                            Student_code = "StudentfEyHubFO"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 93,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "423 Brielle Tunnel, Lake Katrina, Malaysia",
                             City = "Strackebury",
@@ -1942,10 +2544,23 @@ namespace WebApp.Migrations
                             Phone = "985.432.5527 x03367",
                             Student_code = "StudentWvDWxBj0"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "2997 Ila Haven, Lynchhaven, Solomon Islands",
+                            City = "Davefort",
+                            DateOfBirth = new DateTime(2022, 10, 17, 12, 32, 55, 937, DateTimeKind.Local).AddTicks(888),
+                            Email = "onhdexmapletest19993@gmail.com",
+                            FirstName = "Lue",
+                            FullName = "Lue Kovacek",
+                            Gender = true,
+                            LastName = "Kovacek",
+                            Phone = "(938) 380-5578 x48901",
+                            Student_code = "Student1OpkCkgY"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 95,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "410 Williamson Parkways, Port Mariahchester, Equatorial Guinea",
                             City = "Lake Aiden",
@@ -1961,18 +2576,30 @@ namespace WebApp.Migrations
                             Address = "295 Alverta Passage, New Wilfordmouth, Zimbabwe",
                             City = "Kuphalside",
                             DateOfBirth = new DateTime(2023, 3, 29, 0, 6, 23, 263, DateTimeKind.Local).AddTicks(8146),
+=======
+                            Address = "6643 Arvid Avenue, South Christineshire, Mali",
+                            City = "New Ron",
+                            DateOfBirth = new DateTime(2022, 12, 17, 9, 5, 19, 544, DateTimeKind.Local).AddTicks(6614),
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                             Email = "onhdexmapletest19995@gmail.com",
-                            FirstName = "Donald",
-                            FullName = "Donald Botsford",
+                            FirstName = "Eli",
+                            FullName = "Eli Hirthe",
                             Gender = true,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
                             LastName = "Botsford",
                             Phone = "787-427-8551",
                             Student_code = "StudentvbrkSv8B"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            LastName = "Hirthe",
+                            Phone = "741-581-3891 x69047",
+                            Student_code = "StudentNePrJrmY"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 97,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "7925 Sonia Isle, New Lavonberg, Peru",
                             City = "West Vernonborough",
@@ -1996,10 +2623,23 @@ namespace WebApp.Migrations
                             Phone = "310-209-8987 x92956",
                             Student_code = "Student1sNB4s4T"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "60702 Jeremie Lights, South Enamouth, Palau",
+                            City = "North Orvillefurt",
+                            DateOfBirth = new DateTime(2023, 4, 18, 16, 18, 16, 208, DateTimeKind.Local).AddTicks(8715),
+                            Email = "onhdexmapletest19997@gmail.com",
+                            FirstName = "Edward",
+                            FullName = "Edward Morar",
+                            Gender = false,
+                            LastName = "Morar",
+                            Phone = "(360) 498-1491",
+                            Student_code = "StudentET2JzsFj"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         },
                         new
                         {
                             Id = 99,
+<<<<<<< HEAD:WebApp/Migrations/20231004113942_NewInit.Designer.cs
 <<<<<<<< HEAD:WebApp/Migrations/20231002021154_project.Designer.cs
                             Address = "82070 Oberbrunner Mall, New Zander, Pakistan",
                             City = "West Keshawn",
@@ -2023,6 +2663,18 @@ namespace WebApp.Migrations
                             Phone = "1-513-397-4285 x1905",
                             Student_code = "StudentkxK9AFdS"
 >>>>>>>> Viet:WebApp/Migrations/20231004113942_NewInit.Designer.cs
+=======
+                            Address = "96681 Solon Branch, North Everettmouth, Guadeloupe",
+                            City = "Lake Kennethfort",
+                            DateOfBirth = new DateTime(2022, 10, 7, 17, 21, 31, 821, DateTimeKind.Local).AddTicks(3530),
+                            Email = "onhdexmapletest19999@gmail.com",
+                            FirstName = "Rosetta",
+                            FullName = "Rosetta Rice",
+                            Gender = false,
+                            LastName = "Rice",
+                            Phone = "(515) 914-4007",
+                            Student_code = "Student5DpQWBB6"
+>>>>>>> parent of 52d6791 (Xong facilities + hiển thị avatar lúc login):WebApp/Migrations/20231004093441_NewInit.Designer.cs
                         });
                 });
 
@@ -2062,16 +2714,6 @@ namespace WebApp.Migrations
                     b.Navigation("Ticket");
 
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("LibraryModels.Facilities", b =>
-                {
-                    b.HasOne("LibraryModels.Users", "Supporter")
-                        .WithMany()
-                        .HasForeignKey("SupporterId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("Supporter");
                 });
 
             modelBuilder.Entity("LibraryModels.Ticket", b =>

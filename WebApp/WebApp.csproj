@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -520,8 +520,8 @@
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.11" />
     <PackageReference Include="Bogus" Version="34.0.2" />
-    <PackageReference Include="X.PagedList" Version="8.4.7" />
-    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.7" />
+    <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="9.0.0-prerelease" />
   </ItemGroup>
 
   <ItemGroup>
@@ -530,12 +530,7 @@
     <Folder Include="Ultils\" />
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="LibraryModels">
-      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
-    </Reference>
+    <Folder Include="wwwroot\images\avatars\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -543,4 +538,11 @@
     <TypeScriptCompile Include="wwwroot\backend\libs\simplebar\dist\simplebar.d.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\images\avatars\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj" />
+  </ItemGroup>
 </Project>

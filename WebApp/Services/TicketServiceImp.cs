@@ -29,7 +29,6 @@ namespace WebApp.Services
             }
         }
 
-
         public async Task<bool> delete(int id)
         {
             var model = db.Ticket.SingleOrDefault(t => t.Id == id);
@@ -48,10 +47,7 @@ namespace WebApp.Services
                 .ToListAsync();
         }
 
-        public int GetTotalTicketCount()
-        {
-            return db.Ticket.Count();
-        }
+
 
         public async Task<Ticket> GetTicketById(int id)
         {

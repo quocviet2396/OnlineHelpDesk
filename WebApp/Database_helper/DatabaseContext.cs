@@ -10,6 +10,7 @@ namespace WebApp.Database_helper
 {
     public class DatabaseContext : DbContext
     {
+        private string formatDate = "dd/MM/yyyy";
         private readonly Helper _helper;
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options, Helper helper) : base(options) { _helper = helper; }
@@ -22,13 +23,12 @@ namespace WebApp.Database_helper
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<UserConn> userConn { get; set; }
-
+       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=localhost; database=OHDDb; uid=sa; pwd=ngoc@2906mysql; TrustServerCertificate=true";
+            string str = "server=DESKTOP-F4OHHB4\\MSSQLSERVER01; database=OHDDb2; Trusted_Connection=true; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 
@@ -55,9 +55,6 @@ namespace WebApp.Database_helper
                  .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Users>().HasOne(_ => _.userConn).WithOne(a => a.Users).HasForeignKey<UserConn>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
-
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbUsers"
             modelBuilder.Entity<Users>().HasData(

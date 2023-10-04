@@ -9,6 +9,5 @@ namespace WebApp.Repositories
         Task<bool> update(Ticket newTicket);
         Task<bool> delete(int id);
         Task<Ticket> GetTicketById(int id);
-        int GetTotalTicketCount();
     }
 }

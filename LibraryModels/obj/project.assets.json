@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\LibraryModels.csproj",
       "projectName": "LibraryModels",
-      "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
+      "projectPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\LibraryModels.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\obj\\",
+      "outputPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

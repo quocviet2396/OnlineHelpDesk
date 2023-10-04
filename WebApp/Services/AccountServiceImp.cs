@@ -175,8 +175,14 @@ namespace WebApp.Services
         {
             if (photo != null)
             {
+                var FileExtension = Path.GetExtension(photo.FileName).ToLowerInvariant();
+                if (FileExtension != ".png" || FileExtension != ".jpeg" || FileExtension != ".jpg")
+                {
+                    return res = _helper.CreateResponse<string>("File must be png jpeg or jpg", false);
+                }
                 long fileSize = photo.Length;
                 long maxSize = 2 * 1024 * 1024;
+
                 if (fileSize > maxSize)
                 {
                     return res = _helper.CreateResponse<string>("File size must be less than 2MB. Please choose a smaller file.", false);
@@ -243,12 +249,10 @@ namespace WebApp.Services
 
                 _db.UserInfos.Add(userInfo);
                 _db.SaveChanges();
+                string content = _mailultil.formEmail(user.Email, password);
 
-                //string content = System.IO.File.ReadAllText("Mail/account.html");
-                //content = content.Replace("{{email}}", user.Email);
-                //content = content.Replace("{{password}}", password);
+                _mailultil.SendMailGoogle(users["Email"].FirstOrDefault(), "Create account", content, Role.Admin);
 
-                //_mailultil.SendMailGoogle(users["Email"].FirstOrDefault(), "Create account", content, Role.Admin);
 
                 return res = _helper.CreateResponse<string>("Successfully", true);
             }
@@ -329,19 +333,6 @@ namespace WebApp.Services
             {
                 return res = _helper.CreateResponse<string>(ex.Message, false);
             }
-        }
-
-        public async Task<Users> usersConn()
-        {
-            var email = _httpContext.HttpContext.Session.GetString("accEmail");
-            var User = await _db.Users.FirstOrDefaultAsync(a => a.Email == email);
-            return User;
-        }
-
-        public async Task<string> userConnId(int? userId)
-        {
-            var userConnid = _db.userConn.FirstOrDefault(a => a.UserId == userId).ConnectionId;
-            return userConnid;
         }
 
     }

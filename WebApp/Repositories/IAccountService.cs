@@ -26,9 +26,6 @@ namespace WebApp.Repositories
 
         Task<Response<string>> ChangeAvatar(IFormCollection avatar);
 
-        Task<Users> usersConn();
-
-        Task<string> userConnId(int? userId);
     }
 }
 

@@ -10,11 +10,13 @@ namespace LibraryModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string? UserName { get; set; }
+        public string UserName { get; set; }
 
         public string Email { get; set; }
 
-        public string? Code { get; set; }
+        public string? EmailToConfirm { get; set; }
+
+        public string Code { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public bool Status { get; set; }
@@ -30,5 +32,6 @@ namespace LibraryModels
 
         public UserInfo? userInfo { get; set; }
 
+        public UserConn? userConn { get; set; }
     }
 }

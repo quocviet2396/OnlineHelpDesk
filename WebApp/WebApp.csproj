@@ -12,6 +12,9 @@
     <None Remove="Ultils\" />
     <None Remove="Views\Data\" />
     <None Remove="Views\Account\" />
+    <None Remove="Authorize\" />
+    <None Remove="Signal\" />
+    <None Remove="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
@@ -521,7 +524,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.11" />
     <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
-    <PackageReference Include="X.PagedList.Mvc.Core" Version="9.0.0-prerelease" />
+    <PackageReference Include="SqlTableDependency" Version="8.5.8" />
   </ItemGroup>
 
   <ItemGroup>
@@ -531,12 +534,9 @@
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\images\avatars\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="LibraryModels">
-      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
-    </Reference>
+    <Folder Include="Authorize\" />
+    <Folder Include="Signal\" />
+    <Folder Include="Views\Mail\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -546,5 +546,10 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\images\avatars\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

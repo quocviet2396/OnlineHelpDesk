@@ -14,12 +14,14 @@ namespace WebApp.Services
         private readonly DatabaseContext _db;
         private readonly Helper _helper;
         private readonly Mailultil _mailultil;
+        private readonly IHttpContextAccessor _httpContext;
         public Response<string> res = new Response<string>();
-        public AccountServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil)
+        public AccountServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil, IHttpContextAccessor httpContext)
         {
             _db = db;
             _helper = helper;
             _mailultil = mailultil;
+            _httpContext = httpContext;
         }
 
         public async Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort)
@@ -175,8 +177,14 @@ namespace WebApp.Services
         {
             if (photo != null)
             {
+                var FileExtension = Path.GetExtension(photo.FileName).ToLowerInvariant();
+                if (FileExtension != ".png" || FileExtension != ".jpeg" || FileExtension != ".jpg")
+                {
+                    return res = _helper.CreateResponse<string>("File must be png jpeg or jpg", false);
+                }
                 long fileSize = photo.Length;
                 long maxSize = 2 * 1024 * 1024;
+
                 if (fileSize > maxSize)
                 {
                     return res = _helper.CreateResponse<string>("File size must be less than 2MB. Please choose a smaller file.", false);
@@ -207,23 +215,20 @@ namespace WebApp.Services
         {
             try
             {
-                if (string.IsNullOrEmpty(users["Email"]) || string.IsNullOrEmpty(users["Role"]) || string.IsNullOrEmpty(users["Password"]) || string.IsNullOrEmpty(users["Username"]))
-                {
-                    return res = _helper.CreateResponse<string>("Field is not blank", false);
-                }
 
                 var checkphoto = await CheckPhoto(users.Files["Photo"]);
                 var filePath = checkphoto.Data;
-                var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(users["Email"].FirstOrDefault()));
+                var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.EmailToConfirm.Equals(users["Email"].FirstOrDefault()));
                 if (hasEmail != null)
                 {
                     return res = _helper.CreateResponse<string>("Email has already", false);
                 }
-
+                var password = _helper.randomString(10);
                 Users user = new Users()
                 {
-                    Email = users["Email"].FirstOrDefault(),
-                    Password = BCrypt.Net.BCrypt.HashPassword(users["Password"]),
+                    Email = _helper.CreateEmail(users["fName"].FirstOrDefault(), users["lName"].FirstOrDefault()),
+                    EmailToConfirm = users["Email"].FirstOrDefault(),
+                    Password = BCrypt.Net.BCrypt.HashPassword(password),
                     Status = true,
                     UserName = users["Username"].FirstOrDefault(),
                     Role = users["Role"],
@@ -246,6 +251,9 @@ namespace WebApp.Services
 
                 _db.UserInfos.Add(userInfo);
                 _db.SaveChanges();
+                string content = _mailultil.formEmail(user.Email, password);
+
+                _mailultil.SendMailGoogle(users["Email"].FirstOrDefault(), "Create account", content, Role.Admin);
 
 
                 return res = _helper.CreateResponse<string>("Successfully", true);

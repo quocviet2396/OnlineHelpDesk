@@ -546,9 +546,10 @@
   <ItemGroup>
     <Content Remove="wwwroot\images\avatars\" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
+    <Reference Include="LibraryModels">
+      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

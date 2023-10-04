@@ -27,6 +27,9 @@
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Name)</h6>
                                 </th>
                                 <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Description/h6>
+                                </th>
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Support ID</h6>
                                 </th>
                                 <th class="border-bottom-0">
@@ -50,6 +53,9 @@
                                     <td class="fw-semibold mb-0">
                                         <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Description)</h6>
                                     </td>
+                                    <td class="fw-semibold mb-0">
+                                        <h6 class="fw-semibold mb-0">Lát sửa</h6>
+                                    </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2" style="justify-content:center">
                                             <form asp-action="Delete" asp-controller="Facilities" method="post" enctype="multipart/form-data">
@@ -72,7 +78,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="3"></td>
+                                <td colspan="5"></td>
                                 <td colspan="1">
                                     <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
                                         <form asp-action="Delete" asp-controller="Facilities" method="post" enctype="multipart/form-data">

@@ -10,4 +10,3 @@ namespace WebApp.Repositories
         Task<List<Notifications>> Notifications(string email);
     }
 }
-

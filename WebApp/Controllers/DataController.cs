@@ -47,6 +47,14 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpPost]
+        public async Task<JsonResult> CreateAccount(IFormCollection data)
+        {
+            var res = await _data.CreateAccount(data);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
+        }
     }
 }
 

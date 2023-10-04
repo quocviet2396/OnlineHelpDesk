@@ -237,8 +237,8 @@ namespace WebApp.Services
                 {
                     Address = users["Address"].FirstOrDefault() ?? null,
                     City = users["City"].FirstOrDefault() ?? null,
-                    Gender = bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
-                    DateOfBirth = DateTime.TryParseExact(users["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
+                    Gender = (bool)(bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null),
+                    DateOfBirth = (DateTime)(DateTime.TryParseExact(users["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null),
                     Phone = users["Phone"].FirstOrDefault() ?? null,
                     Photo = filePath,
                     UserId = userId
@@ -268,9 +268,9 @@ namespace WebApp.Services
                 if (form["ValueBtn"].FirstOrDefault() == "update" && infoUser != null)
                 {
                     infoUser.Address = form["Address"].FirstOrDefault() ?? null;
-                    infoUser.DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth1) ? (DateTime?)parsedDateOfBirth1 : null;
+                    infoUser.DateOfBirth = (DateTime)(DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth1) ? (DateTime?)parsedDateOfBirth1 : null);
                     infoUser.City = form["City"].FirstOrDefault() ?? null;
-                    infoUser.Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender1) ? (bool?)parsedGender1 : null;
+                    infoUser.Gender = (bool)(bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender1) ? (bool?)parsedGender1 : null);
                     infoUser.Phone = form["Phone"].FirstOrDefault() ?? null;
                     _db.SaveChanges();
                     return res = _helper.CreateResponse<string>("Update infomation successfully", true);
@@ -280,9 +280,9 @@ namespace WebApp.Services
                     UserInfo userinfo = new UserInfo()
                     {
                         Address = form["Address"].FirstOrDefault() ?? null,
-                        DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
+                        DateOfBirth = (DateTime)(DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null),
                         City = form["City"].FirstOrDefault() ?? null,
-                        Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
+                        Gender = (bool)(bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null),
                         Phone = form["Phone"].FirstOrDefault() ?? null,
                         UserId = int.Parse(form["AccId"].FirstOrDefault()),
                     };

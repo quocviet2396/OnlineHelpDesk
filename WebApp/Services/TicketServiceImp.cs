@@ -12,23 +12,32 @@ namespace WebApp.Services
         {
             this.db = db;
         }
-        public async Task<bool> create(Ticket newTicket)
+        public bool create(Ticket newTicket)
         {
-            db.Add(newTicket);
-            db.SaveChanges();
-            return true;
+            try
+            {
+                db.Add(newTicket);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có
+                // Ví dụ: Ghi log lỗi
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
         }
+
 
         public async Task<bool> delete(int id)
         {
             var model = db.Ticket.SingleOrDefault(t => t.Id == id);
-            if (model != null)
-            {
-                db.Ticket.Remove(model);
+            if (model != null) {
+            db.Ticket.Remove(model);
                 await db.SaveChangesAsync();
                 return true;
-            }
-            else return false;
+            }else return false;
         }
 
         public async Task<IEnumerable<Ticket>> GetAll()
@@ -39,7 +48,10 @@ namespace WebApp.Services
                 .ToListAsync();
         }
 
-
+        public int GetTotalTicketCount()
+        {
+            return db.Ticket.Count();
+        }
 
         public async Task<Ticket> GetTicketById(int id)
         {
@@ -58,7 +70,7 @@ namespace WebApp.Services
             // Update the properties of the existing ticket with the new values.
             existingTicket.Title = newTicket.Title;
             existingTicket.Description = newTicket.Description;
-            existingTicket.ModifiedDate = newTicket.ModifiedDate;
+            existingTicket.ModifiedDate =newTicket.ModifiedDate;
             existingTicket.Attachment = newTicket.Attachment;
             existingTicket.TicketStatusId = newTicket.TicketStatusId;
             existingTicket.CategoryId = newTicket.CategoryId;
@@ -69,59 +81,6 @@ namespace WebApp.Services
 
             await db.SaveChangesAsync();
             return true; // Ticket updated successfully.
-        }
-
-
-        public async Task<List<Ticket>> Tickets(string email, string role)
-        {
-            var query = await db.Ticket
-                    .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter).Include(pr => pr.Priority)
-                .OrderByDescending(t => t.CreateDate).ToListAsync();
-
-            if (!string.IsNullOrEmpty(email) && role != Role.Admin)
-            {
-                query = query.Where(a =>
-                        (a.Creator != null && a.Creator.Email.Equals(email)) ||
-                        (a.Supporter != null && a.Supporter.Email.Equals(email))).ToList();
-            }
-            return query;
-        }
-
-
-        public async Task<List<TicketDTO>> TicketNonCate(string email, string role)
-        {
-            var user = db.Users.FirstOrDefault(u => u.Email.Equals(email));
-            var query = await db.Ticket
-                        .Include(t => t.Creator)
-                        .Include(f => f.Category)
-                        .Include(ts => ts.TicketStatus)
-                        .Include(sp => sp.Supporter)
-                        .Select(c => new TicketDTO()
-                        {
-                            TicketId = c.Id,
-                            Title = c.Title,
-                            Decription = c.Description,
-                            PhotoPerson = c.Creator.userInfo.Photo,
-                            UserNameCreator = c.Creator.UserName,
-                            UserNameSupporter = c.Supporter != null ? c.Supporter.UserName : null,
-                            EmailCreator = c.Creator.Email,
-                            EmailSupporter = c.Supporter != null ? c.Supporter.Email : null,
-                            TicketStatus = c.TicketStatus != null ? c.TicketStatus.Name : null,
-                        }).ToListAsync();
-
-
-
-            if (!string.IsNullOrEmpty(email) && role != Role.Admin)
-            {
-                query = query.Where(a =>
-                        (a.EmailCreator != null && a.EmailCreator.Equals(email)) ||
-                        (a.EmailSupporter != null && a.EmailSupporter.Equals(email))).ToList();
-            }
-            else if (role == Role.Admin)
-            {
-                query = query.Where(a => a.TicketStatus == null).ToList();
-            }
-            return query;
         }
 
     }

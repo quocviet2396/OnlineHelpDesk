@@ -62,8 +62,6 @@
     <link rel="stylesheet" href="~/assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="~/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="~/assets/css/demo.css" />
-    <link rel="stylesheet" href="~/backend/css/styles.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -1542,8 +1540,8 @@
                         <div class="clear"></div>
 
                     <!-- .container-->
-@*                    <div class="clear"></div>*@
-                    <div class="header-nav body-wrapper">
+                    <div class="clear"></div>
+                    <div class="header-nav">
                         <div class="container">
                             <div class="toggle">
                                 <a class="toggleMenu" href="#">
@@ -1595,7 +1593,7 @@
             </div>
 
             <!-- .logonavi -->
-                <div class="container">
+                <div class="content-wrapper">
                     <!-- Content -->
                     @RenderBody()
 
@@ -1839,9 +1837,19 @@
     /* ]]> */
 </script>
 <script type='text/javascript' src='https://yesbud.online/wp-content/plugins/wedevs-project-manager/src/Pusher/views/assets/vendor/pusher-jquery.js?ver=1695760650' id='pm-pusher-jquery-js'></script>
-<script type="text/javascript">
-    window.$crisp=[];window.CRISP_WEBSITE_ID="c79fed5f-c2be-4669-ad64-65aadf65397e";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+<script id="crisp-js-before" type="text/javascript">
+    window.$crisp = [];
+    if (!window.CRISP_RUNTIME_CONFIG) {
+        window.CRISP_RUNTIME_CONFIG = {}
+    }
+
+    if (!window.CRISP_RUNTIME_CONFIG.locale) {
+        window.CRISP_RUNTIME_CONFIG.locale = 'en-us'
+    }
+
+    CRISP_WEBSITE_ID = 'e9b73321-1033-45f2-9af8-566e37b40dfa';
 </script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script type='text/javascript' async src='https://client.crisp.chat/l.js?ver=6.3.1' id='crisp-js'></script>
 @await RenderSectionAsync("Scripts", required: false)

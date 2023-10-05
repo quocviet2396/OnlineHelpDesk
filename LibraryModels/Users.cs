@@ -14,8 +14,11 @@ namespace LibraryModels
 
         public string Email { get; set; }
 
+<<<<<<< HEAD
         public string? EmailToConfirm { get; set; }
 
+=======
+>>>>>>> origin/bao
         public string Code { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -32,6 +35,9 @@ namespace LibraryModels
 
         public UserInfo? userInfo { get; set; }
 
+<<<<<<< HEAD
         public UserConn? userConn { get; set; }
+=======
+>>>>>>> origin/bao
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using WebApp.Repositories;
 using System.Linq;
 using LibraryModels;
@@ -25,6 +26,7 @@ namespace WebApp.Controllers
         }
 
 
+<<<<<<< HEAD
         public async Task<IActionResult> Index(int? page)
         {
             int pageSize = 3;
@@ -32,6 +34,15 @@ namespace WebApp.Controllers
 
             int pageNumber = (page ?? 1);
 
+=======
+
+
+        public async Task<IActionResult> Index(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
+
+>>>>>>> origin/bao
             if (!authService.IsUserLoggedIn())
             {
                 return RedirectToAction("Login", "Authen");
@@ -40,6 +51,7 @@ namespace WebApp.Controllers
             if (authService.IsAdmin())
             {
                 ViewData["Layout"] = "_BackendLayout";
+<<<<<<< HEAD
                 var tickets = context.Ticket
                     .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter).Include(pr => pr.Priority)
                 .OrderByDescending(t => t.CreateDate)
@@ -88,15 +100,105 @@ namespace WebApp.Controllers
                     .Where(t => t.Creator.Email == userEmail)
                     .OrderByDescending(t => t.CreateDate)
                     .ToListAsync();
+=======
+
+                int totalTicketCount = await context.Ticket.CountAsync();
+                ViewBag.AccountName = HttpContext.Session.GetString("accEmail");
+
+                var tickets = await context.Ticket
+                    .Include(t => t.Creator)
+                    .Include(f => f.Category)
+                    .Include(ts => ts.TicketStatus)
+                    .Include(sp => sp.Supporter)
+                    .Include(pr => pr.Priority)
+                    .OrderByDescending(t => t.CreateDate)
+                    .ToPagedListAsync(pageNumber, pageSize);
+
+                ViewBag.CurrentPage = pageNumber;
+                ViewBag.PageSize = pageSize;
+                ViewBag.TotalItemCount = totalTicketCount;
+>>>>>>> origin/bao
 
                 return View(tickets);
             }
+            else if (authService.IsSupporter())
+            {
+                ViewData["Layout"] = "_BackendLayout";
+                string supporterEmail = HttpContext.Session.GetString("accEmail");
 
+<<<<<<< HEAD
+=======
+                if (string.IsNullOrEmpty(supporterEmail))
+                {
+                    return RedirectToAction("Login", "Authen");
+                }
+
+                ViewBag.AccountName = supporterEmail;
+                int totalTicketCount = await context.Ticket
+                    .Where(t => t.Supporter.Email == supporterEmail)
+                    .CountAsync();
+
+                var tickets = await context.Ticket
+                    .Include(t => t.Creator)
+                    .Include(f => f.Category)
+                    .Include(ts => ts.TicketStatus)
+                    .Include(sp => sp.Supporter)
+                    .Include(pr => pr.Priority)
+                    .Where(t => t.Supporter.Email == supporterEmail)
+                    .OrderByDescending(t => t.CreateDate)
+                    .ToPagedListAsync(pageNumber, pageSize);
+
+                ViewBag.CurrentPage = pageNumber;
+                ViewBag.PageSize = pageSize;
+                ViewBag.TotalItemCount = totalTicketCount;
+
+                return View(tickets);
+            }
+            else
+            {
+                ViewBag.us = "hidden";
+                ViewData["Layout"] = "_Layout";
+                string userEmail = HttpContext.Session.GetString("accEmail");
+
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return RedirectToAction("Login", "Authen");
+                }
+
+                ViewBag.AccountName = userEmail;
+
+                int totalTicketCount = await context.Ticket
+                    .Where(t => t.Creator.Email == userEmail)
+                    .CountAsync();
+
+                var tickets = await context.Ticket
+                    .Include(t => t.Creator)
+                    .Include(f => f.Category)
+                    .Include(ts => ts.TicketStatus)
+                    .Include(sp => sp.Supporter)
+                    .Include(pr => pr.Priority)
+                    .Where(t => t.Creator.Email == userEmail)
+                    .OrderByDescending(t => t.CreateDate)
+                    .ToPagedListAsync(pageNumber, pageSize);
+
+                ViewBag.CurrentPage = pageNumber;
+                ViewBag.PageSize = pageSize;
+                ViewBag.TotalItemCount = totalTicketCount;
+
+                return View(tickets);
+            }
+>>>>>>> origin/bao
         }
 
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin/bao
         public async Task<IActionResult> Details(int id)
         {
             if (!authService.IsUserLoggedIn())

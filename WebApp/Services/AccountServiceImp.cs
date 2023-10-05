@@ -24,10 +24,10 @@ namespace WebApp.Services
             _httpContext = httpContext;
         }
 
-        public async Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort, string? currentFilter)
+        public async Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort)
         {
             currentSort = string.IsNullOrEmpty(currentSort) ? "asc_Id" : currentSort;
-            var sort = await Sort<Users>.SortAsync(_db.Users.ToList(), currentSort, currentFilter);
+            var sort = await Sort<Users>.SortAsync(_db.Users.ToList(), currentSort);
             //goi phuong thuc paginate de phan chia trang           goi csdl de phan trang      skip     lay bao nhieu   orderby
             var result = await Paginated<Users>.CreatePaginate(sort.ToList(), pageNumber, (int)Limit, x => x.Id);
             return result;
@@ -55,9 +55,9 @@ namespace WebApp.Services
             return user;
         }
 
-        public async Task<Users> users(string stuEmail)
+        public async Task<Users> users(string stuCodeId)
         {
-            var user = _db.Users.FirstOrDefault(u => u.Email == stuEmail);
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Code == stuCodeId);
             return user;
         }
 
@@ -128,6 +128,7 @@ namespace WebApp.Services
             return res = _helper.CreateResponse<string>("fail", false);
         }
 
+
         public async Task<Response<string>> ChangePassword(string pass, string code)
         {
             try
@@ -170,6 +171,7 @@ namespace WebApp.Services
                 return res = _helper.CreateResponse<string>("Please enter email!! ", false);
             }
         }
+
 
         public async Task<Response<string>> CheckPhoto(IFormFile photo)
         {
@@ -262,6 +264,7 @@ namespace WebApp.Services
             }
         }
 
+
         public async Task<Response<string>> InfoChange(IFormCollection form)
         {
             try
@@ -302,6 +305,7 @@ namespace WebApp.Services
                 return res = _helper.CreateResponse<string>(ex.Message, false);
             }
         }
+
 
         public async Task<Response<string>> ChangeAvatar(IFormCollection avatar)
         {

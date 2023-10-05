@@ -10,6 +10,7 @@ namespace WebApp.Database_helper
 {
     public class DatabaseContext : DbContext
     {
+        private string formatDate = "dd/MM/yyyy";
         private readonly Helper _helper;
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options, Helper helper) : base(options) { _helper = helper; }
@@ -22,15 +23,23 @@ namespace WebApp.Database_helper
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
+<<<<<<< HEAD
         public DbSet<UserConn> userConn { get; set; }
         public DbSet<Notifications> Notifications { get; set; }
         public DbSet<TicketDTO> TickdetDTOs { get; set; }
 
+=======
+       
+>>>>>>> origin/bao
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
+<<<<<<< HEAD
             string str = "server=DESKTOP-T6R536I\\SQLEXPRESS01; database=OHDDb; uid=sa; pwd=123; TrustServerCertificate=true";
+=======
+            string str = "server=DESKTOP-F4OHHB4\\MSSQLSERVER01; database=OHDDb2; Trusted_Connection=true; TrustServerCertificate=true";
+>>>>>>> origin/bao
             optionsBuilder.UseSqlServer(str);
         }
 
@@ -64,11 +73,14 @@ namespace WebApp.Database_helper
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
 
+<<<<<<< HEAD
             modelBuilder.Entity<Users>().HasOne(_ => _.userConn).WithOne(a => a.Users).HasForeignKey<UserConn>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Notifications>().HasOne(_ => _.userConn).WithOne(a => a.Notifications).HasForeignKey<UserConn>(a => a.NotiId).OnDelete(DeleteBehavior.NoAction);
 
 
+=======
+>>>>>>> origin/bao
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbUsers"
             modelBuilder.Entity<Users>().HasData(
                 new Users { Id = 1, Email = "superadmin@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Admin", Status = true, UserName = "SuperAdmin", Code = _helper.randomString(8), EmailToConfirm = null },

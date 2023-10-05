@@ -20,7 +20,7 @@ namespace LibraryModels
         public string? Author { get; set; }
         public DateTime PublishDate { get; set; }
         public List<Comments> Comments { get; set; }
-        public string Img { get; set; }
+        public string? Img { get; set; }
     }
 }
  

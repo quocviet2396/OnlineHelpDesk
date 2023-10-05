@@ -29,7 +29,7 @@ namespace WebApp.Database_helper
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=localhost; database=OHDDb; uid=sa; pwd=ngoc@2906mysql; TrustServerCertificate=true";
+            string str = "server=ADMIN-PC\\SQLEXPRESS04; database=OHDDb; uid=sa; pwd=123; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 
@@ -58,6 +58,7 @@ namespace WebApp.Database_helper
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userConn).WithOne(a => a.Users).HasForeignKey<UserConn>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
+
 
             modelBuilder.Entity<Notifications>().HasOne(_ => _.userConn).WithOne(a => a.Notifications).HasForeignKey<UserConn>(a => a.NotiId).OnDelete(DeleteBehavior.NoAction);
 

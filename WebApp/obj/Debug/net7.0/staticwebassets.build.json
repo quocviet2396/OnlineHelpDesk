@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "L/LKck15YKVIiMi13fYjI/IvLFFuYbIpL+/4XcHgB48=",
+  "Hash": "zRxO7WQzAa0Fz0etQTMBv+MrsayX/7CUQIxnhHEdgkw=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -12427,6 +12427,23 @@
       "OriginalItemSpec": "wwwroot\\images\\attachment\\10422f06-3566-4d66-885f-5a2b074dca48_gaudemo.png"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\126845cd-98cf-40d6-b805-5b0d5e0e3a34_Anh_ngay_dung_xuat_ban.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/attachment/126845cd-98cf-40d6-b805-5b0d5e0e3a34_Anh_ngay_dung_xuat_ban.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\attachment\\126845cd-98cf-40d6-b805-5b0d5e0e3a34_Anh_ngay_dung_xuat_ban.png"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\145d7161-1982-4b3b-af73-d8e2dcd4aad4_Screenshot 2023-08-20 125504.png",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
@@ -13685,6 +13702,23 @@
       "OriginalItemSpec": "wwwroot\\images\\attachment\\c3169fa3-2a3a-4cd1-b8dd-8de44a029deb_Screenshot 2023-08-20 122119.png"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\c3e66ad3-dc79-4e83-8db1-2d82ab530b9b_Anh_ngay_dung_xuat_ban.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/attachment/c3e66ad3-dc79-4e83-8db1-2d82ab530b9b_Anh_ngay_dung_xuat_ban.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\attachment\\c3e66ad3-dc79-4e83-8db1-2d82ab530b9b_Anh_ngay_dung_xuat_ban.png"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\c56605a8-5082-4bfc-bb55-3b471835acc3_Screenshot 2023-08-20 122119.png",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
@@ -14671,6 +14705,23 @@
       "OriginalItemSpec": "wwwroot\\images\\avatars\\logo-apple-1.png"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\Anh_ngay_dung_xuat_ban.png",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/News/Anh_ngay_dung_xuat_ban.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\News\\Anh_ngay_dung_xuat_ban.png"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\testimonial-1.jpg",
       "SourceId": "WebApp",
       "SourceType": "Discovered",
@@ -14771,6 +14822,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\menu.js"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\js\\Notification.js",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "js/Notification.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Notification.js"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\js\\site.js",

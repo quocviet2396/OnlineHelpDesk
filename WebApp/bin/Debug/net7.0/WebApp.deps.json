@@ -10,6 +10,7 @@
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
           "Bogus": "34.0.2",
+          "LibraryModels": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "7.0.11",
           "Microsoft.EntityFrameworkCore": "7.0.11",
           "Microsoft.EntityFrameworkCore.Design": "7.0.11",
@@ -20,7 +21,7 @@
           "Newtonsoft.Json": "13.0.3",
           "X.PagedList": "8.4.7",
           "X.PagedList.Mvc.Core": "8.4.7",
-          "LibraryModels": "1.0.0.0"
+          "LibraryModels.Reference": "1.0.0.0"
         },
         "runtime": {
           "WebApp.dll": {}
@@ -2586,7 +2587,7 @@
           }
         }
       },
-      "LibraryModels/1.0.0.0": {
+      "LibraryModels.Reference/1.0.0.0": {
         "runtime": {
           "LibraryModels.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -4219,7 +4220,7 @@
       "path": "x.pagedlist.mvc.core/8.4.7",
       "hashPath": "x.pagedlist.mvc.core.8.4.7.nupkg.sha512"
     },
-    "LibraryModels/1.0.0.0": {
+    "LibraryModels.Reference/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

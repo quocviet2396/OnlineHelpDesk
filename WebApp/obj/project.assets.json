@@ -3980,6 +3980,16 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "LibraryModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/LibraryModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LibraryModels.dll": {}
+        }
       }
     }
   },
@@ -11618,12 +11628,18 @@
         "x.pagedlist.mvc.core.8.4.7.nupkg.sha512",
         "x.pagedlist.mvc.core.nuspec"
       ]
+    },
+    "LibraryModels/1.0.0": {
+      "type": "project",
+      "path": "../LibraryModels/LibraryModels.csproj",
+      "msbuildProject": "../LibraryModels/LibraryModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "BCrypt.Net-Next >= 4.0.3",
       "Bogus >= 34.0.2",
+      "LibraryModels >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 7.0.11",
       "Microsoft.EntityFrameworkCore >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.11",
@@ -11663,7 +11679,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

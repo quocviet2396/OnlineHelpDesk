@@ -42,7 +42,7 @@ namespace WebApp.Controllers
             ViewData["nameSort"] = propertySort?.Split("_")[1];
 
             var pageNumber = pageIndex <= 0 ? 1 : pageIndex;
-            var result = await _account.AllUsers(pageNumber, Limit, propertySort, filter) as Paginated<Users>;
+            var result = await _account.AllUsers(pageNumber, Limit, propertySort) as Paginated<Users>;
             ViewData["totalPages"] = result.TotalPages;
             ViewData["Count"] = result.Count;
             return View(result);

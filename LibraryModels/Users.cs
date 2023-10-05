@@ -29,6 +29,7 @@ namespace LibraryModels
         public ICollection<Ticket>? Tickets { get; set; }
 
         public UserInfo? userInfo { get; set; }
+        public UserConn? userConn { get; set; }
 
     }
 }

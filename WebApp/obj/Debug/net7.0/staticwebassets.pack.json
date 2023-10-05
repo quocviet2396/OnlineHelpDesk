@@ -2885,6 +2885,10 @@
       "PackagePath": "staticwebassets\\images\\82e1b487-f553-404a-95f7-05004d924309_Screenshot 2023-07-26 093629.png"
     },
     {
+      "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\Anh_ngay_dung_xuat_ban.png",
+      "PackagePath": "staticwebassets\\images\\News\\Anh_ngay_dung_xuat_ban.png"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\anhtruong.png",
       "PackagePath": "staticwebassets\\images\\anhtruong.png"
     },
@@ -2915,6 +2919,10 @@
     {
       "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\10422f06-3566-4d66-885f-5a2b074dca48_gaudemo.png",
       "PackagePath": "staticwebassets\\images\\attachment\\10422f06-3566-4d66-885f-5a2b074dca48_gaudemo.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\126845cd-98cf-40d6-b805-5b0d5e0e3a34_Anh_ngay_dung_xuat_ban.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\126845cd-98cf-40d6-b805-5b0d5e0e3a34_Anh_ngay_dung_xuat_ban.png"
     },
     {
       "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\145d7161-1982-4b3b-af73-d8e2dcd4aad4_Screenshot 2023-08-20 125504.png",
@@ -3225,6 +3233,10 @@
       "PackagePath": "staticwebassets\\images\\attachment\\c3169fa3-2a3a-4cd1-b8dd-8de44a029deb_Screenshot 2023-08-20 122119.png"
     },
     {
+      "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\c3e66ad3-dc79-4e83-8db1-2d82ab530b9b_Anh_ngay_dung_xuat_ban.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\c3e66ad3-dc79-4e83-8db1-2d82ab530b9b_Anh_ngay_dung_xuat_ban.png"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\c56605a8-5082-4bfc-bb55-3b471835acc3_Screenshot 2023-08-20 122119.png",
       "PackagePath": "staticwebassets\\images\\attachment\\c56605a8-5082-4bfc-bb55-3b471835acc3_Screenshot 2023-08-20 122119.png"
     },
@@ -3455,6 +3467,10 @@
     {
       "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\user.jpg",
       "PackagePath": "staticwebassets\\images\\user.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\js\\Notification.js",
+      "PackagePath": "staticwebassets\\js\\Notification.js"
     },
     {
       "Id": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\js\\bootstrap.js",

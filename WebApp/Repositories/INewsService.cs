@@ -11,5 +11,6 @@ namespace WebApp.Repositories
 
         Task<bool> removeNews(int id);
         Task<bool> updateNews(News newNews);
+        Task<bool> AddComment(News newNews);
     }
 }

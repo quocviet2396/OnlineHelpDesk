@@ -16,12 +16,13 @@
                         <div class="content">
                             @Html.Raw(Model.Content)
                         </div>
-                        <form>
+                        <form asp-action="AddComment" asp-controller="News" method="post">
                             <h3></h3>
+                            <input asp-for="@Model.ID" type="hidden" name="mewId" />
                             <div class="form-group">
-                                <textarea id="CommentText" name="CommentText" class="form-control" rows="3" placeholder="Write your comment here..."></textarea>
+                                <textarea asp-for="@Model.CommentText" class="form-control" rows="3" placeholder="Write your comment here..."></textarea>
                             </div>
-                            <button class="btn btn-success">Comment</button>
+                            <button type="submit" class="btn btn-success">Comment</button>
 
                         </form>
                     </div>

@@ -19,8 +19,12 @@ namespace LibraryModels
         public string Content { get; set; }
         public string? Author { get; set; }
         public DateTime PublishDate { get; set; }
-        public List<Comments> Comments { get; set; }
+        public List<Comment> Comments { get; set; }
         public string? Img { get; set; }
+        [NotMapped]  // Đánh dấu không ánh xạ vào cơ sở dữ liệu
+        public string CommentText { get; set; }
+        public int Status { get; set; }
+
     }
 }
  

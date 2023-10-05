@@ -13,7 +13,7 @@ namespace WebApp.Services
             this.db = db;
         }
 
-        public void CreateNews(News news, string email)
+        /*public void CreateNews(News news, string email)
         {
             try
             {
@@ -26,10 +26,12 @@ namespace WebApp.Services
             {
                 throw ex;
             }
-        }
+        }*/
         public async Task<bool> addNews(News newNews, string email)
         {
+            newNews.Status = 1;
             newNews.Author = email;
+            newNews.PublishDate = DateTime.Now;
             await db.News.AddAsync(newNews);
             await db.SaveChangesAsync();
             return true;
@@ -42,7 +44,7 @@ namespace WebApp.Services
 
         public async Task<IEnumerable<News>> GetNewsList()
         {
-            return await db.News.ToListAsync();
+            return await db.News.Where(i=>i.Status.Equals(1)).ToListAsync();
         }
 
         public async Task<bool> removeNews(int id)
@@ -67,11 +69,16 @@ namespace WebApp.Services
                 news.Author = newNews.Author;
                 news.PublishDate = newNews.PublishDate;
                 news.Img = newNews.Img;
-
+                news.Status = newNews.Status;
                 await db.SaveChangesAsync();
                 return true;
             }
             else { return false; }
+        }
+
+        public Task<bool> AddComment(News newNews)
+        {
+            throw new NotImplementedException();
         }
     }
 }

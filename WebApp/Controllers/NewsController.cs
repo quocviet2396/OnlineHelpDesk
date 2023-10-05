@@ -16,7 +16,7 @@ namespace WebApp.Controllers
         private IAuthenService _authenService;
         private INewsService service;
         private DatabaseContext dbContext;
-        public NewsController(INewsService service, IAuthenService authenService,DatabaseContext dbContext)
+        public NewsController(INewsService service, IAuthenService authenService, DatabaseContext dbContext)
         {
             this.dbContext = dbContext;
             this.service = service;
@@ -48,7 +48,7 @@ namespace WebApp.Controllers
                         newNews.Img = file.FileName;
                     }
                     var email = HttpContext.Session.GetString("accEmail") != null ? HttpContext.Session.GetString("accEmail") : "";
-                    await service.addNews(newNews,email);
+                    await service.addNews(newNews, email);
                     TempData["msg"] = "Congratulation !!! Create a news success";
                     return RedirectToAction("Index", "News");
                 }
@@ -57,7 +57,7 @@ namespace WebApp.Controllers
                     ViewBag.errormsg = "Create a news fail";
                     ModelState.AddModelError(String.Empty, ex.Message);
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "News");
             }
             return View();
         }
@@ -147,6 +147,43 @@ namespace WebApp.Controllers
             return View(newsItem);
         }
 
+        [HttpPost]
+        public IActionResult AddComment(News news)
+        {
+            var getnews = service.GetNewsById(news.ID);
+
+            if (getnews != null)
+            {
+                foreach (var item in news.Comments)
+                {
+                    news.Comments = new List<Comment>();
+                    var inputcomment = new Comment
+                    {
+                        Text = item.Text,
+                        Date = DateTime.Now,
+                        UserName = "User",  // Đây có thể là tên người dùng đã đăng nhập
+                        NewId = news.ID
+                    };
+                    dbContext.Add(inputcomment);
+                    dbContext.SaveChanges();
+                }
+                return RedirectToAction("Index");
+
+                // Lấy danh sách comment sau khi thêm mới
+                /*                news.Comments = service.Comments.Where(c => c.NewsId == newsId).ToList();*/
+            }
+
+            return View(); // Trả về PartialView chứa danh sách comment
+        }
+
+        [HttpGet]
+        public IActionResult Hidden(int id, News news)
+        {
+            service.GetNewsById(id);
+            news.Status = 0;
+            service.updateNews(news);
+            return RedirectToAction("Index");
+        }
     }
 }
 

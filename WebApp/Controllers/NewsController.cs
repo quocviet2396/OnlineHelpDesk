@@ -139,7 +139,11 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> NewsDetail(int id)
         {
+            var comments = service.GetCommentById(id);
+            ViewBag.Comments = comments;
+
             var newsItem = await service.GetNewsById(id);
+
             if (newsItem == null)
             {
                 return NotFound();
@@ -148,40 +152,40 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddComment(News news)
+        public IActionResult AddComment(int mewId, string cmt)
         {
-            var getnews = service.GetNewsById(news.ID);
-
-            if (getnews != null)
+            try
             {
-                foreach (var item in news.Comments)
+                var useremail = HttpContext.Session.GetString("accEmail");
+                var user = dbContext.Users.FirstOrDefault(a => a.Email.Equals(useremail));
+                Comment comment = new Comment()
                 {
-                    news.Comments = new List<Comment>();
-                    var inputcomment = new Comment
-                    {
-                        Text = item.Text,
-                        Date = DateTime.Now,
-                        UserName = "User",  // Đây có thể là tên người dùng đã đăng nhập
-                        NewId = news.ID
-                    };
-                    dbContext.Add(inputcomment);
-                    dbContext.SaveChanges();
-                }
-                return RedirectToAction("Index");
+                    Text = cmt,
+                    Date = DateTime.Now,
+                    UserName = user.UserName,
+                    NewId = mewId,
+                    
+                };
+                dbContext.Comments.Add(comment);
+                dbContext.SaveChanges();
 
-                // Lấy danh sách comment sau khi thêm mới
-                /*                news.Comments = service.Comments.Where(c => c.NewsId == newsId).ToList();*/
+                return RedirectToAction("NewsDetail");
+
+            }
+            catch (Exception)
+            {
+
+                return View("Index");
             }
 
-            return View(); // Trả về PartialView chứa danh sách comment
         }
 
         [HttpGet]
-        public IActionResult Hidden(int id, News news)
+        public async Task<IActionResult> Hidden(int id, News news)
         {
-            service.GetNewsById(id);
-            news.Status = 0;
-            service.updateNews(news);
+            var nws = await service.GetNewsById(id);
+            nws.Status = 0;
+            dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
     }

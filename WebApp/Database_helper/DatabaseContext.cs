@@ -22,6 +22,7 @@ namespace WebApp.Database_helper
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<UserConn> userConn { get; set; }
         public DbSet<Notifications> Notifications { get; set; }
 
@@ -53,6 +54,12 @@ namespace WebApp.Database_helper
                  .HasOne(d => d.Ticket)
                  .WithMany()
                  .HasForeignKey(d => d.TicketId)
+                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Comment>()
+                 .HasOne(d => d.News)
+                 .WithMany()
+                 .HasForeignKey(d => d.NewId)
                  .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);

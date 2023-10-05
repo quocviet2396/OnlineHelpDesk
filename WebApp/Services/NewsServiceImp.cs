@@ -13,20 +13,6 @@ namespace WebApp.Services
             this.db = db;
         }
 
-        /*public void CreateNews(News news, string email)
-        {
-            try
-            {
-                news.PublishDate = DateTime.Now;
-                news.Author = email;
-                db.News.Add(news);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }*/
         public async Task<bool> addNews(News newNews, string email)
         {
             newNews.Status = 1;
@@ -44,7 +30,7 @@ namespace WebApp.Services
 
         public async Task<IEnumerable<News>> GetNewsList()
         {
-            return await db.News.Where(i=>i.Status.Equals(1)).ToListAsync();
+            return await db.News.Where(i => i.Status.Equals(1)).ToListAsync();
         }
 
         public async Task<bool> removeNews(int id)
@@ -77,6 +63,20 @@ namespace WebApp.Services
         }
 
         public Task<bool> AddComment(News newNews)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<Comment>> GetCommentById(int id)
+        {
+            var comments = await db.Comments
+        .Where(c => c.Id == id)
+        .ToListAsync();
+
+            return comments;
+        }
+
+        Task<News> INewsService.GetCommentById(int id)
         {
             throw new NotImplementedException();
         }

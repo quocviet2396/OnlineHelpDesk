@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zRxO7WQzAa0Fz0etQTMBv+MrsayX/7CUQIxnhHEdgkw=",
+  "Hash": "BFIUVV2UPEibx4m25mgQzJaDGKXTI5/deVkfEjJ77kM=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
@@ -14720,6 +14720,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\News\\Anh_ngay_dung_xuat_ban.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\Holiday-Survey-768x432.webp",
+      "SourceId": "WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\",
+      "BasePath": "_content/WebApp",
+      "RelativePath": "images/News/Holiday-Survey-768x432.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\News\\Holiday-Survey-768x432.webp"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\testimonial-1.jpg",

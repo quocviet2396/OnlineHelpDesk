@@ -12,8 +12,8 @@ using WebApp.Database_helper;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231005135900_hekpdesk")]
-    partial class hekpdesk
+    [Migration("20231005174806_fekjpp")]
+    partial class fekjpp
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,7 @@ namespace WebApp.Migrations
                     b.Property<int>("NewId")
                         .HasColumnType("int");
 
-                    b.Property<int>("NewsID")
+                    b.Property<int?>("NewsID")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -51,6 +51,8 @@ namespace WebApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NewId");
 
                     b.HasIndex("NewsID");
 
@@ -511,9 +513,9 @@ namespace WebApp.Migrations
                         new
                         {
                             Id = 1,
-                            Code = "qvwdN58I",
+                            Code = "hqhYYkZK",
                             Email = "superadmin@gmail.com",
-                            Password = "$2a$11$YwokxByOb8K6D3Zxeh3Q.uYeVI2y5NZy.isx/eQWZGn0NSw332dRG",
+                            Password = "$2a$11$iSPo/sV6TuEBSC.VO8apBOYp.cxT7hIgHtXt4dYdSBYkHeN8IA5Pi",
                             Role = "Admin",
                             Status = true,
                             UserName = "SuperAdmin"
@@ -521,9 +523,9 @@ namespace WebApp.Migrations
                         new
                         {
                             Id = 2,
-                            Code = "tR0RmLPV",
+                            Code = "zV3YEkRr",
                             Email = "supporter@gmail.com",
-                            Password = "$2a$11$J7ktN4YWgIFDJm6HFCxky.zSuyPf6.Qs0FcGIhnZkdcafLn5RcxBW",
+                            Password = "$2a$11$SV97t9cQaOme0sYoOGO15eP35TRWPAcK28pgzW0xVDhQ0QpxdXk9.",
                             Role = "Supporter",
                             Status = true,
                             UserName = "Supporter"
@@ -531,9 +533,9 @@ namespace WebApp.Migrations
                         new
                         {
                             Id = 3,
-                            Code = "91UBfWES",
+                            Code = "peBz2vLf",
                             Email = "user@gmail.com",
-                            Password = "$2a$11$HQbib9hUn.QVLtmRit78MOvKI68FrHGvTXn4w5spSqQzPV6e4vdpa",
+                            Password = "$2a$11$YvbVMkiOyvJAb4YU/rvYeOAgyLngCeBBRKimj0y5P5cf0uGHvylg2",
                             Role = "User",
                             Status = true,
                             UserName = "User"
@@ -594,712 +596,716 @@ namespace WebApp.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "8401 Leilani Streets, South Raheemberg, Seychelles",
-                            City = "North Alexamouth",
-                            DateOfBirth = new DateTime(2022, 11, 9, 17, 2, 8, 490, DateTimeKind.Local).AddTicks(5449),
+                            Address = "376 Solon Point, Hollyberg, Taiwan",
+                            City = "Legrosfurt",
+                            DateOfBirth = new DateTime(2023, 2, 7, 21, 9, 46, 224, DateTimeKind.Local).AddTicks(4598),
                             Email = "onhdexmapletest1991@gmail.com",
-                            FirstName = "Myrtie",
-                            FullName = "Myrtie Walker",
+                            FirstName = "Modesta",
+                            FullName = "Modesta Frami",
                             Gender = true,
-                            LastName = "Walker",
-                            Phone = "858-245-2440",
-                            Student_code = "Student70q8dHAZ"
+                            LastName = "Frami",
+                            Phone = "463-272-1101 x343",
+                            Student_code = "Student8IIdwbhw"
                         },
                         new
                         {
                             Id = 3,
-                            Address = "066 Lemke Mews, East Alfordville, Heard Island and McDonald Islands",
-                            City = "North Annabelle",
-                            DateOfBirth = new DateTime(2023, 8, 28, 11, 10, 29, 130, DateTimeKind.Local).AddTicks(1338),
+                            Address = "9792 Mohr Common, Emardtown, Netherlands Antilles",
+                            City = "Mitchellport",
+                            DateOfBirth = new DateTime(2023, 5, 29, 16, 39, 51, 983, DateTimeKind.Local).AddTicks(2899),
                             Email = "onhdexmapletest1993@gmail.com",
-                            FirstName = "Daija",
-                            FullName = "Daija Gleason",
+                            FirstName = "Annette",
+                            FullName = "Annette Okuneva",
                             Gender = true,
-                            LastName = "Gleason",
-                            Phone = "378-428-4464 x90629",
-                            Student_code = "StudentUrasKYMK"
+                            LastName = "Okuneva",
+                            Phone = "815-809-5836 x184",
+                            Student_code = "Student8PoEUj1j"
                         },
                         new
                         {
                             Id = 5,
-                            Address = "4390 Gislason Mews, Terrillburgh, Uruguay",
-                            City = "Lake Arlo",
-                            DateOfBirth = new DateTime(2023, 7, 8, 13, 1, 36, 992, DateTimeKind.Local).AddTicks(8580),
+                            Address = "70210 Muller Stravenue, Aufderharburgh, Sweden",
+                            City = "New Carmelborough",
+                            DateOfBirth = new DateTime(2023, 3, 20, 12, 47, 15, 470, DateTimeKind.Local).AddTicks(2355),
                             Email = "onhdexmapletest1995@gmail.com",
-                            FirstName = "Zaria",
-                            FullName = "Zaria Windler",
+                            FirstName = "Katharina",
+                            FullName = "Katharina Cummings",
                             Gender = true,
-                            LastName = "Windler",
-                            Phone = "(339) 679-8163",
-                            Student_code = "StudentNFbLUbF1"
+                            LastName = "Cummings",
+                            Phone = "1-439-680-6590 x2864",
+                            Student_code = "Student9x3UpVxM"
                         },
                         new
                         {
                             Id = 7,
-                            Address = "2784 Ova Ports, Lake Joanie, Sri Lanka",
-                            City = "Lake Jalonmouth",
-                            DateOfBirth = new DateTime(2023, 7, 22, 6, 22, 56, 934, DateTimeKind.Local).AddTicks(602),
+                            Address = "009 Kub Villages, New Heidi, Mexico",
+                            City = "Port Margaret",
+                            DateOfBirth = new DateTime(2023, 1, 9, 7, 25, 7, 346, DateTimeKind.Local).AddTicks(3217),
                             Email = "onhdexmapletest1997@gmail.com",
-                            FirstName = "Julius",
-                            FullName = "Julius Heaney",
-                            Gender = true,
-                            LastName = "Heaney",
-                            Phone = "208.666.8067 x203",
-                            Student_code = "StudentW1Ae9Viv"
+                            FirstName = "Noe",
+                            FullName = "Noe Erdman",
+                            Gender = false,
+                            LastName = "Erdman",
+                            Phone = "514.561.0536 x488",
+                            Student_code = "StudenttksP30fd"
                         },
                         new
                         {
                             Id = 9,
-                            Address = "6433 Runte Lodge, East Cydneybury, British Indian Ocean Territory (Chagos Archipelago)",
-                            City = "Port Hillarymouth",
-                            DateOfBirth = new DateTime(2022, 10, 24, 5, 11, 15, 963, DateTimeKind.Local).AddTicks(1470),
+                            Address = "3701 Greyson Motorway, Donnellyland, Sudan",
+                            City = "Lake Ofelia",
+                            DateOfBirth = new DateTime(2023, 4, 29, 15, 24, 53, 587, DateTimeKind.Local).AddTicks(8740),
                             Email = "onhdexmapletest1999@gmail.com",
-                            FirstName = "Eugene",
-                            FullName = "Eugene Maggio",
+                            FirstName = "Layla",
+                            FullName = "Layla Schmidt",
                             Gender = false,
-                            LastName = "Maggio",
-                            Phone = "1-715-941-4988 x1526",
-                            Student_code = "StudentU6va2kFL"
+                            LastName = "Schmidt",
+                            Phone = "426.517.6708",
+                            Student_code = "StudentlT5Uavop"
                         },
                         new
                         {
                             Id = 11,
-                            Address = "298 Llewellyn Orchard, Kurtisburgh, Palau",
-                            City = "Port Naomieshire",
-                            DateOfBirth = new DateTime(2023, 4, 17, 6, 1, 20, 633, DateTimeKind.Local).AddTicks(4116),
+                            Address = "2632 Bruen Curve, Lake Shaylee, Monaco",
+                            City = "South Einohaven",
+                            DateOfBirth = new DateTime(2023, 4, 30, 20, 0, 35, 718, DateTimeKind.Local).AddTicks(9564),
                             Email = "onhdexmapletest19911@gmail.com",
-                            FirstName = "Hillary",
-                            FullName = "Hillary Hessel",
-                            Gender = false,
-                            LastName = "Hessel",
-                            Phone = "1-520-635-6693 x18226",
-                            Student_code = "Studentr0J2Jn7S"
+                            FirstName = "Jaiden",
+                            FullName = "Jaiden Waters",
+                            Gender = true,
+                            LastName = "Waters",
+                            Phone = "328.523.4153",
+                            Student_code = "StudentVB3nuloY"
                         },
                         new
                         {
                             Id = 13,
-                            Address = "71015 Dereck Junction, Port Lucinda, Georgia",
-                            City = "New Maximus",
-                            DateOfBirth = new DateTime(2023, 1, 27, 15, 12, 13, 993, DateTimeKind.Local).AddTicks(4272),
+                            Address = "839 Kenyatta Cliff, North Shaneland, Israel",
+                            City = "Rexstad",
+                            DateOfBirth = new DateTime(2022, 11, 9, 13, 47, 25, 661, DateTimeKind.Local).AddTicks(5080),
                             Email = "onhdexmapletest19913@gmail.com",
-                            FirstName = "Eryn",
-                            FullName = "Eryn Brown",
-                            Gender = true,
-                            LastName = "Brown",
-                            Phone = "1-483-393-2080 x3862",
-                            Student_code = "StudentOh4R9d7l"
+                            FirstName = "Eulalia",
+                            FullName = "Eulalia Tremblay",
+                            Gender = false,
+                            LastName = "Tremblay",
+                            Phone = "1-496-602-8783 x1458",
+                            Student_code = "StudentJkjSdPj6"
                         },
                         new
                         {
                             Id = 15,
-                            Address = "89643 Rafael Ville, West Tom, Hungary",
-                            City = "Lake Justinestad",
-                            DateOfBirth = new DateTime(2023, 7, 7, 15, 19, 29, 456, DateTimeKind.Local).AddTicks(3835),
+                            Address = "492 Vivianne Locks, Virgiemouth, Christmas Island",
+                            City = "New Vito",
+                            DateOfBirth = new DateTime(2023, 6, 17, 3, 12, 11, 708, DateTimeKind.Local).AddTicks(3584),
                             Email = "onhdexmapletest19915@gmail.com",
-                            FirstName = "Jensen",
-                            FullName = "Jensen Little",
+                            FirstName = "Johnpaul",
+                            FullName = "Johnpaul Mitchell",
                             Gender = false,
-                            LastName = "Little",
-                            Phone = "295-792-8880 x00029",
-                            Student_code = "StudentR7rC8smm"
+                            LastName = "Mitchell",
+                            Phone = "989.272.0920",
+                            Student_code = "StudentaNw0DZCB"
                         },
                         new
                         {
                             Id = 17,
-                            Address = "92147 Kassandra Club, Jacyntheshire, Lao People's Democratic Republic",
-                            City = "Reillyberg",
-                            DateOfBirth = new DateTime(2022, 11, 25, 11, 14, 21, 798, DateTimeKind.Local).AddTicks(9088),
+                            Address = "13110 Mueller Valleys, Port Norwoodtown, Iceland",
+                            City = "Port Mauriceton",
+                            DateOfBirth = new DateTime(2023, 9, 12, 3, 33, 39, 231, DateTimeKind.Local).AddTicks(9789),
                             Email = "onhdexmapletest19917@gmail.com",
-                            FirstName = "Alba",
-                            FullName = "Alba Conn",
-                            Gender = true,
-                            LastName = "Conn",
-                            Phone = "(265) 861-1812 x66903",
-                            Student_code = "StudentmVmSr8VU"
+                            FirstName = "Mylene",
+                            FullName = "Mylene Jones",
+                            Gender = false,
+                            LastName = "Jones",
+                            Phone = "(715) 554-1201 x03524",
+                            Student_code = "StudentSPDKQG1Q"
                         },
                         new
                         {
                             Id = 19,
-                            Address = "8196 Filiberto Port, West Chelsea, Palau",
-                            City = "Deborahborough",
-                            DateOfBirth = new DateTime(2023, 1, 20, 8, 20, 55, 656, DateTimeKind.Local).AddTicks(9011),
+                            Address = "6099 Hyatt Loop, East Bridieville, Romania",
+                            City = "Aleenland",
+                            DateOfBirth = new DateTime(2022, 10, 24, 0, 49, 35, 958, DateTimeKind.Local).AddTicks(7140),
                             Email = "onhdexmapletest19919@gmail.com",
-                            FirstName = "Krystina",
-                            FullName = "Krystina Cummerata",
+                            FirstName = "Oscar",
+                            FullName = "Oscar Hahn",
                             Gender = false,
-                            LastName = "Cummerata",
-                            Phone = "271-270-0355",
-                            Student_code = "StudentCbdMVSz0"
+                            LastName = "Hahn",
+                            Phone = "548.277.9358 x36819",
+                            Student_code = "StudentaJqce3VK"
                         },
                         new
                         {
                             Id = 21,
-                            Address = "690 Anjali Lights, East Turner, Paraguay",
-                            City = "East Malika",
-                            DateOfBirth = new DateTime(2023, 7, 30, 9, 38, 2, 513, DateTimeKind.Local).AddTicks(5517),
+                            Address = "939 Torp Greens, East Ardellaside, United States of America",
+                            City = "Maramouth",
+                            DateOfBirth = new DateTime(2023, 9, 7, 17, 3, 14, 124, DateTimeKind.Local).AddTicks(8000),
                             Email = "onhdexmapletest19921@gmail.com",
-                            FirstName = "Verla",
-                            FullName = "Verla Kris",
-                            Gender = false,
-                            LastName = "Kris",
-                            Phone = "324.790.1105",
-                            Student_code = "StudentblQc1Keq"
+                            FirstName = "Nyah",
+                            FullName = "Nyah Torphy",
+                            Gender = true,
+                            LastName = "Torphy",
+                            Phone = "(590) 592-4146 x2538",
+                            Student_code = "StudentEXYPGkQu"
                         },
                         new
                         {
                             Id = 23,
-                            Address = "1766 Dach Club, Leonieberg, Macao",
-                            City = "Ritchieton",
-                            DateOfBirth = new DateTime(2023, 3, 22, 2, 21, 31, 61, DateTimeKind.Local).AddTicks(7959),
+                            Address = "838 Bahringer Route, West Dallasview, Malta",
+                            City = "South Angela",
+                            DateOfBirth = new DateTime(2023, 1, 6, 7, 49, 55, 924, DateTimeKind.Local).AddTicks(8897),
                             Email = "onhdexmapletest19923@gmail.com",
-                            FirstName = "Theresa",
-                            FullName = "Theresa Tremblay",
+                            FirstName = "Armand",
+                            FullName = "Armand Wunsch",
                             Gender = false,
-                            LastName = "Tremblay",
-                            Phone = "1-441-239-8950 x201",
-                            Student_code = "StudentqXp11Ule"
+                            LastName = "Wunsch",
+                            Phone = "461-689-7638 x179",
+                            Student_code = "StudentYmxges6W"
                         },
                         new
                         {
                             Id = 25,
-                            Address = "5665 Milton Turnpike, Hickletown, Vanuatu",
-                            City = "Port Hillarymouth",
-                            DateOfBirth = new DateTime(2022, 10, 15, 18, 45, 22, 65, DateTimeKind.Local).AddTicks(5532),
+                            Address = "3691 Nikolaus Fort, Hamillside, Isle of Man",
+                            City = "Violaton",
+                            DateOfBirth = new DateTime(2023, 7, 8, 17, 24, 58, 488, DateTimeKind.Local).AddTicks(2769),
                             Email = "onhdexmapletest19925@gmail.com",
-                            FirstName = "Thora",
-                            FullName = "Thora Littel",
+                            FirstName = "Lois",
+                            FullName = "Lois Kassulke",
                             Gender = true,
-                            LastName = "Littel",
-                            Phone = "587-945-8974 x81373",
-                            Student_code = "Studentxa9ZaGrz"
+                            LastName = "Kassulke",
+                            Phone = "586-709-7926 x752",
+                            Student_code = "Student5QzbGgj5"
                         },
                         new
                         {
                             Id = 27,
-                            Address = "35255 Meagan Squares, North Shanel, Bahrain",
-                            City = "South Jon",
-                            DateOfBirth = new DateTime(2022, 12, 19, 0, 33, 50, 360, DateTimeKind.Local).AddTicks(2477),
+                            Address = "701 Gorczany Freeway, Dimitriview, Burkina Faso",
+                            City = "Aronfort",
+                            DateOfBirth = new DateTime(2023, 3, 27, 19, 46, 41, 751, DateTimeKind.Local).AddTicks(8223),
                             Email = "onhdexmapletest19927@gmail.com",
-                            FirstName = "Kacey",
-                            FullName = "Kacey Crooks",
-                            Gender = true,
-                            LastName = "Crooks",
-                            Phone = "272.541.0897 x61129",
-                            Student_code = "Studenta4Uxj9rK"
+                            FirstName = "Adele",
+                            FullName = "Adele Emard",
+                            Gender = false,
+                            LastName = "Emard",
+                            Phone = "295.950.8314",
+                            Student_code = "StudentTvOmgPFS"
                         },
                         new
                         {
                             Id = 29,
-                            Address = "43403 Kreiger Fork, Niaport, Tokelau",
-                            City = "Anastacioton",
-                            DateOfBirth = new DateTime(2023, 8, 30, 1, 22, 26, 420, DateTimeKind.Local).AddTicks(3269),
+                            Address = "07130 Jerde Motorway, East Lyda, Vanuatu",
+                            City = "Lake Marta",
+                            DateOfBirth = new DateTime(2023, 1, 17, 5, 34, 1, 87, DateTimeKind.Local).AddTicks(5841),
                             Email = "onhdexmapletest19929@gmail.com",
-                            FirstName = "Shaniya",
-                            FullName = "Shaniya Okuneva",
+                            FirstName = "Margarette",
+                            FullName = "Margarette Padberg",
                             Gender = true,
-                            LastName = "Okuneva",
-                            Phone = "536.594.3495 x858",
-                            Student_code = "StudentFjdUFu1f"
+                            LastName = "Padberg",
+                            Phone = "(537) 383-9892",
+                            Student_code = "StudentfxKASh22"
                         },
                         new
                         {
                             Id = 31,
-                            Address = "952 Flatley Ridges, New Daltonland, Cayman Islands",
-                            City = "Port Mohammedstad",
-                            DateOfBirth = new DateTime(2023, 8, 18, 20, 15, 31, 634, DateTimeKind.Local).AddTicks(9405),
+                            Address = "7444 Madison Meadow, Ottiliemouth, Saint Vincent and the Grenadines",
+                            City = "Bergnaumburgh",
+                            DateOfBirth = new DateTime(2023, 7, 14, 17, 0, 6, 122, DateTimeKind.Local).AddTicks(5251),
                             Email = "onhdexmapletest19931@gmail.com",
-                            FirstName = "August",
-                            FullName = "August Turner",
-                            Gender = false,
-                            LastName = "Turner",
-                            Phone = "1-438-849-9264 x1025",
-                            Student_code = "Student1hwBldAi"
+                            FirstName = "Imogene",
+                            FullName = "Imogene Keeling",
+                            Gender = true,
+                            LastName = "Keeling",
+                            Phone = "398.437.8677 x10653",
+                            Student_code = "StudentTewVmytb"
                         },
                         new
                         {
                             Id = 33,
-                            Address = "42591 West Keys, Lake Cortneyton, Gabon",
-                            City = "Meghanshire",
-                            DateOfBirth = new DateTime(2023, 5, 5, 12, 44, 20, 983, DateTimeKind.Local).AddTicks(5999),
+                            Address = "3682 Jennifer Key, North Arianeberg, Papua New Guinea",
+                            City = "Port Angelo",
+                            DateOfBirth = new DateTime(2023, 5, 20, 1, 9, 50, 39, DateTimeKind.Local).AddTicks(7886),
                             Email = "onhdexmapletest19933@gmail.com",
-                            FirstName = "Zakary",
-                            FullName = "Zakary Littel",
-                            Gender = false,
-                            LastName = "Littel",
-                            Phone = "1-482-589-1628",
-                            Student_code = "StudentI8pLzCwa"
+                            FirstName = "Kaylie",
+                            FullName = "Kaylie Parker",
+                            Gender = true,
+                            LastName = "Parker",
+                            Phone = "343.561.4655",
+                            Student_code = "StudentvL43SDPM"
                         },
                         new
                         {
                             Id = 35,
-                            Address = "48711 Lakin Junction, Lake Lenorastad, Trinidad and Tobago",
-                            City = "New Clarabelle",
-                            DateOfBirth = new DateTime(2022, 10, 15, 3, 6, 1, 654, DateTimeKind.Local).AddTicks(7059),
+                            Address = "021 Osinski Inlet, Mosciskiborough, El Salvador",
+                            City = "Gislasonhaven",
+                            DateOfBirth = new DateTime(2022, 12, 5, 8, 11, 13, 600, DateTimeKind.Local).AddTicks(4568),
                             Email = "onhdexmapletest19935@gmail.com",
-                            FirstName = "Lafayette",
-                            FullName = "Lafayette Hahn",
-                            Gender = true,
-                            LastName = "Hahn",
-                            Phone = "1-406-328-6960",
-                            Student_code = "StudentiJ6jJvzj"
+                            FirstName = "Eric",
+                            FullName = "Eric Kozey",
+                            Gender = false,
+                            LastName = "Kozey",
+                            Phone = "1-646-460-4724",
+                            Student_code = "StudentV05xAqfh"
                         },
                         new
                         {
                             Id = 37,
-                            Address = "41522 Marcella Plaza, West Rhoda, Moldova",
-                            City = "Bellaville",
-                            DateOfBirth = new DateTime(2023, 8, 16, 10, 47, 55, 859, DateTimeKind.Local).AddTicks(9009),
+                            Address = "653 Stoltenberg Ridges, Karianemouth, Zambia",
+                            City = "South Hobartburgh",
+                            DateOfBirth = new DateTime(2022, 11, 15, 0, 14, 27, 557, DateTimeKind.Local).AddTicks(8365),
                             Email = "onhdexmapletest19937@gmail.com",
-                            FirstName = "Ally",
-                            FullName = "Ally Kerluke",
+                            FirstName = "Aubrey",
+                            FullName = "Aubrey Quitzon",
                             Gender = true,
-                            LastName = "Kerluke",
-                            Phone = "1-958-681-3685 x1050",
-                            Student_code = "StudentgnQPZxZj"
+                            LastName = "Quitzon",
+                            Phone = "246-788-7221 x5337",
+                            Student_code = "Student08tRAhEC"
                         },
                         new
                         {
                             Id = 39,
-                            Address = "9736 Jacobson Mall, Ashlynnburgh, Croatia",
-                            City = "Lake Stellachester",
-                            DateOfBirth = new DateTime(2023, 7, 5, 19, 23, 15, 72, DateTimeKind.Local).AddTicks(5591),
+                            Address = "499 Delpha Hollow, New Ophelia, American Samoa",
+                            City = "Generalton",
+                            DateOfBirth = new DateTime(2023, 4, 27, 22, 22, 53, 10, DateTimeKind.Local).AddTicks(5609),
                             Email = "onhdexmapletest19939@gmail.com",
-                            FirstName = "Dwight",
-                            FullName = "Dwight Ziemann",
-                            Gender = false,
-                            LastName = "Ziemann",
-                            Phone = "648-652-9782 x70941",
-                            Student_code = "StudentistSe0Yd"
+                            FirstName = "Estella",
+                            FullName = "Estella Lehner",
+                            Gender = true,
+                            LastName = "Lehner",
+                            Phone = "271-439-2405",
+                            Student_code = "StudentsqPOyGfh"
                         },
                         new
                         {
                             Id = 41,
-                            Address = "111 Gibson Track, Ovafort, American Samoa",
-                            City = "Lake Emmalee",
-                            DateOfBirth = new DateTime(2022, 11, 7, 10, 0, 58, 861, DateTimeKind.Local).AddTicks(9543),
+                            Address = "2628 Reymundo Extension, Beattyfurt, United States of America",
+                            City = "Tillmanchester",
+                            DateOfBirth = new DateTime(2023, 4, 27, 13, 4, 31, 451, DateTimeKind.Local).AddTicks(3260),
                             Email = "onhdexmapletest19941@gmail.com",
-                            FirstName = "Rahul",
-                            FullName = "Rahul Medhurst",
-                            Gender = false,
-                            LastName = "Medhurst",
-                            Phone = "823.316.7080",
-                            Student_code = "StudentHThIRvRA"
+                            FirstName = "Tiara",
+                            FullName = "Tiara Dickens",
+                            Gender = true,
+                            LastName = "Dickens",
+                            Phone = "1-526-220-6786",
+                            Student_code = "Studentsuluql1f"
                         },
                         new
                         {
                             Id = 43,
-                            Address = "64460 Zulauf Courts, Robertsbury, Turkey",
-                            City = "Port Beauland",
-                            DateOfBirth = new DateTime(2022, 11, 4, 19, 47, 54, 904, DateTimeKind.Local).AddTicks(5360),
+                            Address = "876 Tyree Motorway, Klingland, Kazakhstan",
+                            City = "Joannyhaven",
+                            DateOfBirth = new DateTime(2023, 4, 5, 18, 8, 24, 966, DateTimeKind.Local).AddTicks(8814),
                             Email = "onhdexmapletest19943@gmail.com",
-                            FirstName = "Andre",
-                            FullName = "Andre Heller",
+                            FirstName = "Baron",
+                            FullName = "Baron Bogisich",
                             Gender = false,
-                            LastName = "Heller",
-                            Phone = "1-727-732-9047 x4920",
-                            Student_code = "StudentGvphuIYK"
+                            LastName = "Bogisich",
+                            Phone = "741-801-4745 x6860",
+                            Student_code = "Student2pbnQ4gD"
                         },
                         new
                         {
                             Id = 45,
-                            Address = "481 Abshire Inlet, Hermannburgh, Turks and Caicos Islands",
-                            City = "Lake Courtney",
-                            DateOfBirth = new DateTime(2023, 8, 26, 12, 49, 23, 403, DateTimeKind.Local).AddTicks(7478),
+                            Address = "9682 Hoyt Mount, East Glennieburgh, Mali",
+                            City = "South Ulices",
+                            DateOfBirth = new DateTime(2023, 3, 20, 17, 4, 4, 366, DateTimeKind.Local).AddTicks(2717),
                             Email = "onhdexmapletest19945@gmail.com",
-                            FirstName = "Ariane",
-                            FullName = "Ariane Lockman",
-                            Gender = true,
-                            LastName = "Lockman",
-                            Phone = "1-778-333-4931",
-                            Student_code = "StudentpYNbhAG2"
+                            FirstName = "Marianne",
+                            FullName = "Marianne Collins",
+                            Gender = false,
+                            LastName = "Collins",
+                            Phone = "211.923.4175",
+                            Student_code = "StudentpARVIRtF"
                         },
                         new
                         {
                             Id = 47,
-                            Address = "872 Bertrand Fork, Paulborough, Christmas Island",
-                            City = "West Pascaleborough",
-                            DateOfBirth = new DateTime(2023, 5, 4, 22, 51, 6, 277, DateTimeKind.Local).AddTicks(3375),
+                            Address = "2209 Arturo Creek, Cassinville, Liberia",
+                            City = "Tracebury",
+                            DateOfBirth = new DateTime(2023, 1, 9, 7, 49, 36, 751, DateTimeKind.Local).AddTicks(6893),
                             Email = "onhdexmapletest19947@gmail.com",
-                            FirstName = "Julianne",
-                            FullName = "Julianne Gorczany",
-                            Gender = true,
-                            LastName = "Gorczany",
-                            Phone = "1-342-554-8331",
-                            Student_code = "Studentwd0ha4A2"
+                            FirstName = "Kareem",
+                            FullName = "Kareem Collins",
+                            Gender = false,
+                            LastName = "Collins",
+                            Phone = "1-500-473-6430",
+                            Student_code = "StudentEql0tnww"
                         },
                         new
                         {
                             Id = 49,
-                            Address = "0488 Bartholome Extension, Cyrilfurt, Ghana",
-                            City = "East Theron",
-                            DateOfBirth = new DateTime(2023, 1, 29, 13, 2, 14, 764, DateTimeKind.Local).AddTicks(1507),
+                            Address = "6050 Will Streets, East Jaunitahaven, Heard Island and McDonald Islands",
+                            City = "Quintenville",
+                            DateOfBirth = new DateTime(2023, 6, 14, 7, 23, 39, 849, DateTimeKind.Local).AddTicks(5175),
                             Email = "onhdexmapletest19949@gmail.com",
-                            FirstName = "Rosario",
-                            FullName = "Rosario Beer",
+                            FirstName = "Coy",
+                            FullName = "Coy Miller",
                             Gender = true,
-                            LastName = "Beer",
-                            Phone = "(533) 545-3670 x6930",
-                            Student_code = "StudentDPqAe0et"
+                            LastName = "Miller",
+                            Phone = "253.609.9847",
+                            Student_code = "StudentB6ihdq3v"
                         },
                         new
                         {
                             Id = 51,
-                            Address = "960 Daugherty Passage, Port Yessenia, Christmas Island",
-                            City = "Phyllisborough",
-                            DateOfBirth = new DateTime(2023, 9, 14, 14, 32, 53, 459, DateTimeKind.Local).AddTicks(3699),
+                            Address = "0616 Ebony Harbors, South Amelia, Ghana",
+                            City = "East Stefaniechester",
+                            DateOfBirth = new DateTime(2022, 10, 25, 16, 59, 4, 88, DateTimeKind.Local).AddTicks(2104),
                             Email = "onhdexmapletest19951@gmail.com",
-                            FirstName = "Joshuah",
-                            FullName = "Joshuah Sauer",
-                            Gender = true,
-                            LastName = "Sauer",
-                            Phone = "(784) 399-3170 x605",
-                            Student_code = "StudentQIXqndnH"
+                            FirstName = "Shanelle",
+                            FullName = "Shanelle Goldner",
+                            Gender = false,
+                            LastName = "Goldner",
+                            Phone = "453-902-2938",
+                            Student_code = "StudenttrCxexwF"
                         },
                         new
                         {
                             Id = 53,
-                            Address = "4106 Medhurst Canyon, Davinside, Djibouti",
-                            City = "North Lemuelview",
-                            DateOfBirth = new DateTime(2022, 12, 2, 10, 19, 32, 290, DateTimeKind.Local).AddTicks(2074),
+                            Address = "6565 Rath Highway, North Eldred, Botswana",
+                            City = "Xanderbury",
+                            DateOfBirth = new DateTime(2023, 3, 16, 0, 24, 49, 443, DateTimeKind.Local).AddTicks(5380),
                             Email = "onhdexmapletest19953@gmail.com",
-                            FirstName = "Tyrell",
-                            FullName = "Tyrell Pfannerstill",
+                            FirstName = "Savannah",
+                            FullName = "Savannah Hilpert",
                             Gender = false,
-                            LastName = "Pfannerstill",
-                            Phone = "(496) 742-6426",
-                            Student_code = "StudentOr15LLQY"
+                            LastName = "Hilpert",
+                            Phone = "1-315-688-1924 x080",
+                            Student_code = "Studentig0RuMV3"
                         },
                         new
                         {
                             Id = 55,
-                            Address = "05280 Rogahn Drive, New Marisol, Cayman Islands",
-                            City = "Larkinshire",
-                            DateOfBirth = new DateTime(2023, 8, 15, 21, 31, 34, 229, DateTimeKind.Local).AddTicks(9817),
+                            Address = "4869 Ziemann Gateway, North Emory, Guinea-Bissau",
+                            City = "Moenstad",
+                            DateOfBirth = new DateTime(2022, 10, 25, 23, 40, 1, 619, DateTimeKind.Local).AddTicks(8284),
                             Email = "onhdexmapletest19955@gmail.com",
-                            FirstName = "Jasen",
-                            FullName = "Jasen Kiehn",
+                            FirstName = "Llewellyn",
+                            FullName = "Llewellyn Schinner",
                             Gender = false,
-                            LastName = "Kiehn",
-                            Phone = "1-427-922-0827",
-                            Student_code = "StudentcWItK6t2"
+                            LastName = "Schinner",
+                            Phone = "413-491-0738 x868",
+                            Student_code = "StudentV5MikbNw"
                         },
                         new
                         {
                             Id = 57,
-                            Address = "9055 Margot Bypass, O'Konport, Ecuador",
-                            City = "Lake Serenity",
-                            DateOfBirth = new DateTime(2023, 6, 30, 20, 43, 39, 850, DateTimeKind.Local).AddTicks(6999),
+                            Address = "596 Rosendo Forge, Cummerataland, Niue",
+                            City = "Vitoview",
+                            DateOfBirth = new DateTime(2023, 4, 4, 7, 24, 23, 34, DateTimeKind.Local).AddTicks(6285),
                             Email = "onhdexmapletest19957@gmail.com",
-                            FirstName = "Toney",
-                            FullName = "Toney Grimes",
+                            FirstName = "Kadin",
+                            FullName = "Kadin Lemke",
                             Gender = false,
-                            LastName = "Grimes",
-                            Phone = "432.245.7466",
-                            Student_code = "StudentOVPxtu71"
+                            LastName = "Lemke",
+                            Phone = "1-628-763-2670 x333",
+                            Student_code = "StudentqkBHQISt"
                         },
                         new
                         {
                             Id = 59,
-                            Address = "891 Avery Land, Port Maria, Northern Mariana Islands",
-                            City = "East Consueloborough",
-                            DateOfBirth = new DateTime(2023, 1, 13, 3, 17, 32, 749, DateTimeKind.Local).AddTicks(8632),
+                            Address = "322 Johns Mews, Port Dejaburgh, Singapore",
+                            City = "Donatoland",
+                            DateOfBirth = new DateTime(2023, 4, 5, 9, 39, 55, 425, DateTimeKind.Local).AddTicks(4633),
                             Email = "onhdexmapletest19959@gmail.com",
-                            FirstName = "Ezequiel",
-                            FullName = "Ezequiel Hauck",
-                            Gender = true,
-                            LastName = "Hauck",
-                            Phone = "803-962-2771 x51591",
-                            Student_code = "StudentpWOkprUz"
+                            FirstName = "Sonia",
+                            FullName = "Sonia Dooley",
+                            Gender = false,
+                            LastName = "Dooley",
+                            Phone = "1-252-687-1162",
+                            Student_code = "Student4Wp2LbXw"
                         },
                         new
                         {
                             Id = 61,
-                            Address = "486 Koelpin Avenue, Schmidthaven, Romania",
-                            City = "Wymanchester",
-                            DateOfBirth = new DateTime(2023, 6, 16, 16, 13, 4, 62, DateTimeKind.Local).AddTicks(7565),
+                            Address = "609 Kuvalis Extension, West Mervin, Russian Federation",
+                            City = "Leeport",
+                            DateOfBirth = new DateTime(2023, 9, 4, 23, 9, 23, 688, DateTimeKind.Local).AddTicks(5576),
                             Email = "onhdexmapletest19961@gmail.com",
-                            FirstName = "Vernice",
-                            FullName = "Vernice McClure",
-                            Gender = false,
-                            LastName = "McClure",
-                            Phone = "1-331-868-0908 x18204",
-                            Student_code = "StudentMgw2bTxv"
+                            FirstName = "Elyse",
+                            FullName = "Elyse Cassin",
+                            Gender = true,
+                            LastName = "Cassin",
+                            Phone = "997-480-1477 x49020",
+                            Student_code = "StudentAElUqmoA"
                         },
                         new
                         {
                             Id = 63,
-                            Address = "2659 Cierra Via, North Anastad, Guatemala",
-                            City = "Emieberg",
-                            DateOfBirth = new DateTime(2023, 2, 19, 11, 27, 43, 92, DateTimeKind.Local).AddTicks(7413),
+                            Address = "792 Abshire Hills, New Prudenceberg, Cocos (Keeling) Islands",
+                            City = "Katelynnhaven",
+                            DateOfBirth = new DateTime(2023, 2, 26, 2, 1, 26, 256, DateTimeKind.Local).AddTicks(5860),
                             Email = "onhdexmapletest19963@gmail.com",
-                            FirstName = "Sam",
-                            FullName = "Sam Ferry",
-                            Gender = true,
-                            LastName = "Ferry",
-                            Phone = "835-844-5813",
-                            Student_code = "StudentnqIIRGSo"
+                            FirstName = "Leola",
+                            FullName = "Leola Swift",
+                            Gender = false,
+                            LastName = "Swift",
+                            Phone = "1-945-776-1468 x752",
+                            Student_code = "StudentZi3XivVN"
                         },
                         new
                         {
                             Id = 65,
-                            Address = "038 Daniel Branch, Hansenchester, Philippines",
-                            City = "New Hans",
-                            DateOfBirth = new DateTime(2023, 8, 3, 3, 39, 41, 778, DateTimeKind.Local).AddTicks(6902),
+                            Address = "810 McClure Street, Ibrahimhaven, Lao People's Democratic Republic",
+                            City = "Dickensstad",
+                            DateOfBirth = new DateTime(2023, 2, 10, 13, 57, 28, 291, DateTimeKind.Local).AddTicks(502),
                             Email = "onhdexmapletest19965@gmail.com",
-                            FirstName = "Darren",
-                            FullName = "Darren MacGyver",
+                            FirstName = "Bryana",
+                            FullName = "Bryana Gutmann",
                             Gender = false,
-                            LastName = "MacGyver",
-                            Phone = "1-992-752-8135",
-                            Student_code = "StudentbjNP02Bb"
+                            LastName = "Gutmann",
+                            Phone = "(427) 582-4478 x927",
+                            Student_code = "StudentNSwxNAHY"
                         },
                         new
                         {
                             Id = 67,
-                            Address = "7302 Carter Parkways, Pfannerstillton, Gambia",
-                            City = "Gulgowskiport",
-                            DateOfBirth = new DateTime(2023, 3, 19, 21, 28, 54, 263, DateTimeKind.Local).AddTicks(5283),
+                            Address = "6423 Reynolds Stream, MacGyverview, Vanuatu",
+                            City = "Port Macyfurt",
+                            DateOfBirth = new DateTime(2023, 5, 21, 19, 19, 58, 302, DateTimeKind.Local).AddTicks(752),
                             Email = "onhdexmapletest19967@gmail.com",
-                            FirstName = "Jewel",
-                            FullName = "Jewel Hessel",
-                            Gender = false,
-                            LastName = "Hessel",
-                            Phone = "(650) 454-4370 x08694",
-                            Student_code = "StudentlIeyv2H5"
+                            FirstName = "Grady",
+                            FullName = "Grady Gleason",
+                            Gender = true,
+                            LastName = "Gleason",
+                            Phone = "760-643-8578",
+                            Student_code = "Studentg0ZTHVrp"
                         },
                         new
                         {
                             Id = 69,
-                            Address = "716 Taya Oval, Port Kennith, Zimbabwe",
-                            City = "Grantmouth",
-                            DateOfBirth = new DateTime(2023, 5, 22, 22, 6, 7, 411, DateTimeKind.Local).AddTicks(277),
+                            Address = "0108 Rick Freeway, East Thurman, Tokelau",
+                            City = "New Rowena",
+                            DateOfBirth = new DateTime(2022, 10, 21, 1, 41, 30, 254, DateTimeKind.Local).AddTicks(8974),
                             Email = "onhdexmapletest19969@gmail.com",
-                            FirstName = "Marisa",
-                            FullName = "Marisa Oberbrunner",
-                            Gender = true,
-                            LastName = "Oberbrunner",
-                            Phone = "(620) 795-3776",
-                            Student_code = "Student2uBSxZWh"
+                            FirstName = "Stanton",
+                            FullName = "Stanton Renner",
+                            Gender = false,
+                            LastName = "Renner",
+                            Phone = "283.283.9832 x41384",
+                            Student_code = "Student7FkYj6S9"
                         },
                         new
                         {
                             Id = 71,
-                            Address = "2702 Consuelo Pines, West Seth, Mali",
-                            City = "Lake Jackyfurt",
-                            DateOfBirth = new DateTime(2023, 4, 15, 19, 2, 37, 572, DateTimeKind.Local).AddTicks(3828),
+                            Address = "22393 Jenkins Shore, North Jaden, Gambia",
+                            City = "North Scarlettton",
+                            DateOfBirth = new DateTime(2023, 7, 21, 19, 14, 33, 762, DateTimeKind.Local).AddTicks(5593),
                             Email = "onhdexmapletest19971@gmail.com",
-                            FirstName = "Chyna",
-                            FullName = "Chyna Brown",
-                            Gender = false,
-                            LastName = "Brown",
-                            Phone = "293-906-9458",
-                            Student_code = "StudenteOBnrd1U"
+                            FirstName = "Buck",
+                            FullName = "Buck Jacobs",
+                            Gender = true,
+                            LastName = "Jacobs",
+                            Phone = "(676) 861-9047 x66572",
+                            Student_code = "StudentJmXpDO1f"
                         },
                         new
                         {
                             Id = 73,
-                            Address = "7638 Jo Station, North Cassie, Slovakia (Slovak Republic)",
-                            City = "New Stefan",
-                            DateOfBirth = new DateTime(2023, 9, 24, 15, 1, 0, 942, DateTimeKind.Local).AddTicks(2518),
+                            Address = "238 Luettgen Gateway, West Gabrielville, Thailand",
+                            City = "Port Luis",
+                            DateOfBirth = new DateTime(2022, 10, 14, 5, 56, 16, 943, DateTimeKind.Local).AddTicks(2601),
                             Email = "onhdexmapletest19973@gmail.com",
-                            FirstName = "Ila",
-                            FullName = "Ila Barton",
+                            FirstName = "Mireille",
+                            FullName = "Mireille Durgan",
                             Gender = true,
-                            LastName = "Barton",
-                            Phone = "949.838.4119 x549",
-                            Student_code = "Student3dek43to"
+                            LastName = "Durgan",
+                            Phone = "(464) 206-7695 x302",
+                            Student_code = "StudentxFi31aDU"
                         },
                         new
                         {
                             Id = 75,
-                            Address = "6296 Hartmann Stravenue, Schmelerport, Iran",
-                            City = "Lake Bryceshire",
-                            DateOfBirth = new DateTime(2023, 2, 15, 6, 37, 55, 267, DateTimeKind.Local).AddTicks(283),
+                            Address = "723 Aryanna Expressway, Hermannport, Antigua and Barbuda",
+                            City = "Johnsonland",
+                            DateOfBirth = new DateTime(2023, 2, 22, 10, 38, 25, 137, DateTimeKind.Local).AddTicks(1412),
                             Email = "onhdexmapletest19975@gmail.com",
-                            FirstName = "Florian",
-                            FullName = "Florian Collins",
-                            Gender = false,
-                            LastName = "Collins",
-                            Phone = "891.580.6628",
-                            Student_code = "StudentKLARbbCp"
+                            FirstName = "Elody",
+                            FullName = "Elody Kautzer",
+                            Gender = true,
+                            LastName = "Kautzer",
+                            Phone = "1-545-651-7717 x278",
+                            Student_code = "StudentvJze4L3V"
                         },
                         new
                         {
                             Id = 77,
-                            Address = "28796 Connelly Cliff, Pacochachester, Lao People's Democratic Republic",
-                            City = "Hackettmouth",
-                            DateOfBirth = new DateTime(2023, 5, 12, 11, 1, 41, 424, DateTimeKind.Local).AddTicks(4697),
+                            Address = "890 Casper Estate, Salmatown, Tunisia",
+                            City = "Port Emmaleeside",
+                            DateOfBirth = new DateTime(2022, 12, 19, 22, 35, 45, 597, DateTimeKind.Local).AddTicks(5569),
                             Email = "onhdexmapletest19977@gmail.com",
-                            FirstName = "Adolfo",
-                            FullName = "Adolfo Leannon",
+                            FirstName = "Adonis",
+                            FullName = "Adonis DuBuque",
                             Gender = false,
-                            LastName = "Leannon",
-                            Phone = "671.937.8615 x6064",
-                            Student_code = "StudentYG5N0eu8"
+                            LastName = "DuBuque",
+                            Phone = "383.700.8550 x27096",
+                            Student_code = "Student86vAPC15"
                         },
                         new
                         {
                             Id = 79,
-                            Address = "43841 Golda Ranch, New Elfriedahaven, Lesotho",
-                            City = "McKenziestad",
-                            DateOfBirth = new DateTime(2023, 2, 17, 22, 16, 14, 313, DateTimeKind.Local).AddTicks(2306),
+                            Address = "64154 Ziemann Place, North Alexys, Libyan Arab Jamahiriya",
+                            City = "Gusikowskiberg",
+                            DateOfBirth = new DateTime(2023, 6, 2, 8, 50, 18, 138, DateTimeKind.Local).AddTicks(6794),
                             Email = "onhdexmapletest19979@gmail.com",
-                            FirstName = "Karley",
-                            FullName = "Karley Collier",
+                            FirstName = "Marjorie",
+                            FullName = "Marjorie Skiles",
                             Gender = true,
-                            LastName = "Collier",
-                            Phone = "(256) 553-2181",
-                            Student_code = "Student48UAqEJk"
+                            LastName = "Skiles",
+                            Phone = "771.225.4020",
+                            Student_code = "StudentgnDuF57u"
                         },
                         new
                         {
                             Id = 81,
-                            Address = "250 Kailyn Gardens, Wuckertside, Ethiopia",
-                            City = "Lake Erick",
-                            DateOfBirth = new DateTime(2023, 2, 21, 5, 26, 22, 722, DateTimeKind.Local).AddTicks(7142),
+                            Address = "86929 Shayna Mall, Lake Alf, Macedonia",
+                            City = "Lake Boydtown",
+                            DateOfBirth = new DateTime(2022, 12, 27, 1, 32, 8, 171, DateTimeKind.Local).AddTicks(9854),
                             Email = "onhdexmapletest19981@gmail.com",
-                            FirstName = "Dewayne",
-                            FullName = "Dewayne Kuvalis",
+                            FirstName = "Mireya",
+                            FullName = "Mireya Thiel",
                             Gender = false,
-                            LastName = "Kuvalis",
-                            Phone = "737.674.6586",
-                            Student_code = "StudentzkX8SFAk"
+                            LastName = "Thiel",
+                            Phone = "792.963.2899",
+                            Student_code = "StudentyVJuIahd"
                         },
                         new
                         {
                             Id = 83,
-                            Address = "9685 Perry Spurs, Schoenburgh, Pakistan",
-                            City = "Port Tessie",
-                            DateOfBirth = new DateTime(2023, 7, 18, 13, 15, 17, 787, DateTimeKind.Local).AddTicks(6351),
+                            Address = "267 Tillman Keys, Port Fritzmouth, Georgia",
+                            City = "Port Cory",
+                            DateOfBirth = new DateTime(2023, 10, 4, 1, 48, 20, 371, DateTimeKind.Local).AddTicks(1746),
                             Email = "onhdexmapletest19983@gmail.com",
-                            FirstName = "Anika",
-                            FullName = "Anika Leffler",
-                            Gender = true,
-                            LastName = "Leffler",
-                            Phone = "261-825-9249",
-                            Student_code = "StudentDJuvSKm0"
+                            FirstName = "Gregorio",
+                            FullName = "Gregorio Terry",
+                            Gender = false,
+                            LastName = "Terry",
+                            Phone = "1-462-906-1315 x33616",
+                            Student_code = "StudentY7njEQzO"
                         },
                         new
                         {
                             Id = 85,
-                            Address = "0060 Devin Extension, West Aidan, New Caledonia",
-                            City = "East Madelyn",
-                            DateOfBirth = new DateTime(2023, 8, 14, 2, 46, 38, 132, DateTimeKind.Local).AddTicks(4888),
+                            Address = "054 Lowe Shore, South Teresa, Thailand",
+                            City = "West Lora",
+                            DateOfBirth = new DateTime(2023, 2, 12, 10, 38, 48, 247, DateTimeKind.Local).AddTicks(745),
                             Email = "onhdexmapletest19985@gmail.com",
-                            FirstName = "Karlie",
-                            FullName = "Karlie Shanahan",
-                            Gender = true,
-                            LastName = "Shanahan",
-                            Phone = "1-776-264-8894",
-                            Student_code = "StudentTkcW8cQx"
+                            FirstName = "Kameron",
+                            FullName = "Kameron Moen",
+                            Gender = false,
+                            LastName = "Moen",
+                            Phone = "544-516-2602 x8292",
+                            Student_code = "StudentbWsM4Au6"
                         },
                         new
                         {
                             Id = 87,
-                            Address = "08573 Zemlak Stravenue, Faheybury, Slovakia (Slovak Republic)",
-                            City = "Mabelland",
-                            DateOfBirth = new DateTime(2022, 12, 24, 4, 25, 58, 713, DateTimeKind.Local).AddTicks(1224),
+                            Address = "4365 Leannon Springs, East Yvette, Guernsey",
+                            City = "East Macey",
+                            DateOfBirth = new DateTime(2023, 8, 17, 1, 24, 15, 242, DateTimeKind.Local).AddTicks(3722),
                             Email = "onhdexmapletest19987@gmail.com",
-                            FirstName = "Freddie",
-                            FullName = "Freddie Jacobs",
-                            Gender = true,
-                            LastName = "Jacobs",
-                            Phone = "1-306-962-2178 x86593",
-                            Student_code = "StudentOoH2su69"
+                            FirstName = "Hassan",
+                            FullName = "Hassan Stracke",
+                            Gender = false,
+                            LastName = "Stracke",
+                            Phone = "477.802.9142 x21743",
+                            Student_code = "Student1EeveqoW"
                         },
                         new
                         {
                             Id = 89,
-                            Address = "758 Mossie Lodge, Charityshire, Malawi",
-                            City = "D'Amoreport",
-                            DateOfBirth = new DateTime(2022, 10, 23, 5, 23, 16, 802, DateTimeKind.Local).AddTicks(1554),
+                            Address = "139 Schamberger Turnpike, Lake Ansleyland, Tonga",
+                            City = "Haroldland",
+                            DateOfBirth = new DateTime(2022, 10, 30, 0, 43, 31, 17, DateTimeKind.Local).AddTicks(9863),
                             Email = "onhdexmapletest19989@gmail.com",
-                            FirstName = "Raymond",
-                            FullName = "Raymond Luettgen",
-                            Gender = true,
-                            LastName = "Luettgen",
-                            Phone = "315.593.9581",
-                            Student_code = "Student4WlGnXrJ"
+                            FirstName = "Everett",
+                            FullName = "Everett Dicki",
+                            Gender = false,
+                            LastName = "Dicki",
+                            Phone = "740.842.4217 x14212",
+                            Student_code = "StudentLZ1N9mQc"
                         },
                         new
                         {
                             Id = 91,
-                            Address = "1279 Ebert Ranch, Bartellville, New Zealand",
-                            City = "East Leora",
-                            DateOfBirth = new DateTime(2022, 12, 3, 0, 13, 52, 978, DateTimeKind.Local).AddTicks(684),
+                            Address = "688 Freda Turnpike, Bruenstad, Cuba",
+                            City = "New Muriel",
+                            DateOfBirth = new DateTime(2023, 6, 22, 11, 42, 33, 445, DateTimeKind.Local).AddTicks(9724),
                             Email = "onhdexmapletest19991@gmail.com",
-                            FirstName = "Webster",
-                            FullName = "Webster Dickinson",
-                            Gender = true,
-                            LastName = "Dickinson",
-                            Phone = "926-890-5922",
-                            Student_code = "StudentzCpN5yPK"
+                            FirstName = "Jaylon",
+                            FullName = "Jaylon Borer",
+                            Gender = false,
+                            LastName = "Borer",
+                            Phone = "(603) 523-0236 x74946",
+                            Student_code = "StudentBaz2lQna"
                         },
                         new
                         {
                             Id = 93,
-                            Address = "479 Verona Neck, South Owenburgh, Thailand",
-                            City = "Ziemannton",
-                            DateOfBirth = new DateTime(2023, 3, 27, 13, 14, 37, 723, DateTimeKind.Local).AddTicks(3208),
+                            Address = "2900 Jones Street, Lake Dee, Uruguay",
+                            City = "Abdultown",
+                            DateOfBirth = new DateTime(2023, 3, 6, 6, 26, 47, 687, DateTimeKind.Local).AddTicks(1184),
                             Email = "onhdexmapletest19993@gmail.com",
-                            FirstName = "Christy",
-                            FullName = "Christy Jenkins",
+                            FirstName = "Juvenal",
+                            FullName = "Juvenal Koss",
                             Gender = true,
-                            LastName = "Jenkins",
-                            Phone = "966.597.9039",
-                            Student_code = "StudentDoqdlcOE"
+                            LastName = "Koss",
+                            Phone = "1-750-787-7497 x3126",
+                            Student_code = "StudentyatBQklu"
                         },
                         new
                         {
                             Id = 95,
-                            Address = "6032 Thad Cove, Port Erikaport, Macao",
-                            City = "Lake Arnoldmouth",
-                            DateOfBirth = new DateTime(2023, 6, 16, 9, 57, 25, 958, DateTimeKind.Local).AddTicks(6095),
+                            Address = "809 Marlene Street, South Skylarborough, Tokelau",
+                            City = "Lucieshire",
+                            DateOfBirth = new DateTime(2022, 10, 31, 0, 35, 15, 62, DateTimeKind.Local).AddTicks(4513),
                             Email = "onhdexmapletest19995@gmail.com",
-                            FirstName = "Josiah",
-                            FullName = "Josiah Hoppe",
+                            FirstName = "Brook",
+                            FullName = "Brook Von",
                             Gender = false,
-                            LastName = "Hoppe",
-                            Phone = "711-433-8726 x9609",
-                            Student_code = "Student0r32xSyI"
+                            LastName = "Von",
+                            Phone = "(209) 528-5786 x22126",
+                            Student_code = "StudentzODP1ses"
                         },
                         new
                         {
                             Id = 97,
-                            Address = "104 Dusty Keys, Howellchester, Chad",
-                            City = "Schmelerland",
-                            DateOfBirth = new DateTime(2023, 4, 24, 2, 59, 6, 115, DateTimeKind.Local).AddTicks(4126),
+                            Address = "99944 Conn Island, Volkmanside, Holy See (Vatican City State)",
+                            City = "Roxaneton",
+                            DateOfBirth = new DateTime(2023, 4, 17, 15, 23, 0, 734, DateTimeKind.Local).AddTicks(494),
                             Email = "onhdexmapletest19997@gmail.com",
-                            FirstName = "Austyn",
-                            FullName = "Austyn Ankunding",
-                            Gender = false,
-                            LastName = "Ankunding",
-                            Phone = "(966) 229-8319",
-                            Student_code = "StudentELqpsMy1"
+                            FirstName = "Jazmyn",
+                            FullName = "Jazmyn Hegmann",
+                            Gender = true,
+                            LastName = "Hegmann",
+                            Phone = "811-722-1399 x851",
+                            Student_code = "StudentwrnQKe8c"
                         },
                         new
                         {
                             Id = 99,
-                            Address = "38772 Betty Meadow, Port Edwardside, Germany",
-                            City = "Pagacborough",
-                            DateOfBirth = new DateTime(2023, 8, 22, 14, 57, 44, 7, DateTimeKind.Local).AddTicks(5249),
+                            Address = "01354 Bogan Street, Ryanport, Zambia",
+                            City = "Port Carole",
+                            DateOfBirth = new DateTime(2023, 9, 12, 4, 37, 5, 325, DateTimeKind.Local).AddTicks(5345),
                             Email = "onhdexmapletest19999@gmail.com",
-                            FirstName = "Janae",
-                            FullName = "Janae Paucek",
+                            FirstName = "Isaiah",
+                            FullName = "Isaiah Cassin",
                             Gender = false,
-                            LastName = "Paucek",
-                            Phone = "676.883.1733 x010",
-                            Student_code = "StudentGTe8A0ov"
+                            LastName = "Cassin",
+                            Phone = "(717) 770-9399",
+                            Student_code = "StudentrTQ6wMXx"
                         });
                 });
 
             modelBuilder.Entity("LibraryModels.Comment", b =>
                 {
                     b.HasOne("LibraryModels.News", "News")
-                        .WithMany("Comments")
-                        .HasForeignKey("NewsID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany()
+                        .HasForeignKey("NewId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.HasOne("LibraryModels.News", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("NewsID");
 
                     b.Navigation("News");
                 });

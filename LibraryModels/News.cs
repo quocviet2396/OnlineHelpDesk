@@ -21,8 +21,6 @@ namespace LibraryModels
         public DateTime PublishDate { get; set; }
         public List<Comment> Comments { get; set; }
         public string? Img { get; set; }
-        [NotMapped]  // Đánh dấu không ánh xạ vào cơ sở dữ liệu
-        public string CommentText { get; set; }
         public int Status { get; set; }
 
     }

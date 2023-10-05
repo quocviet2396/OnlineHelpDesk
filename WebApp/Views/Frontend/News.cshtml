@@ -22,18 +22,25 @@
         <div class="row mb-5">
             @foreach (var newsItem in Model)
             {
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="post-entry">
-                        <div class="image">
-                            <img src="@Url.Content("~/images/News/" + newsItem.Img)" alt="@newsItem.Title" class="img-fluid image rounded-circle">
+                <tr>
+                    @{
+                        string x = newsItem.Content;
+                        if (x != null && x.Length > 50)
+                            x = x.Substring(0, 100);
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="post-entry">
+                                <div class="image">
+                                    <img src="@Url.Content("~/images/News/" + newsItem.Img)" alt="@newsItem.Title" class="img-fluid image rounded-circle">
+                                </div>
+                                <div class="text p-4">
+                                    <h2 class="h5 text-black"><a href="@Url.Action("NewsDetail", new { id = newsItem.ID })">@newsItem.Title</a></h2>
+
+                                    <span class="text-uppercase date d-block mb-3"><small>@newsItem.PublishDate</small></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text p-4">
-                            <h2 class="h5 text-black"><a href="@Url.Action("NewsDetail", new { id = newsItem.ID })">@newsItem.Title</a></h2>
-                            <span class="text-uppercase date d-block mb-3"><small>@newsItem.PublishDate</small></span>
-                            <p class="mb-0">@newsItem.Content</p>
-                        </div>
-                    </div>
-                </div>
+                    }
+                </tr>
             }
         </div>
         <div class="row">
@@ -52,3 +59,10 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+

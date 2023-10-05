@@ -22,15 +22,15 @@ namespace WebApp.Database_helper
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<Comment> Comments { get; set; }
         public DbSet<UserConn> userConn { get; set; }
         public DbSet<Notifications> Notifications { get; set; }
+        public DbSet<TicketDTO> TickdetDTOs { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=ADMIN-PC\\SQLEXPRESS04; database=OHDDb; uid=sa; pwd=123; TrustServerCertificate=true";
+            string str = "server=DESKTOP-T6R536I\\SQLEXPRESS01; database=OHDDb; uid=sa; pwd=123; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 
@@ -50,31 +50,30 @@ namespace WebApp.Database_helper
                  .HasForeignKey(t => t.SupporterId)
                  .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<Facilities>()
+                 .HasOne(t => t.Supporter)
+                 .WithMany()
+                 .HasForeignKey(t => t.SupporterId)
+                 .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<Discussion>()
                  .HasOne(d => d.Ticket)
                  .WithMany()
                  .HasForeignKey(d => d.TicketId)
                  .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Comment>()
-                 .HasOne(d => d.News)
-                 .WithMany()
-                 .HasForeignKey(d => d.NewId)
-                 .OnDelete(DeleteBehavior.NoAction);
-
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userConn).WithOne(a => a.Users).HasForeignKey<UserConn>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
-
 
             modelBuilder.Entity<Notifications>().HasOne(_ => _.userConn).WithOne(a => a.Notifications).HasForeignKey<UserConn>(a => a.NotiId).OnDelete(DeleteBehavior.NoAction);
 
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbUsers"
             modelBuilder.Entity<Users>().HasData(
-                new Users { Id = 1, Email = "superadmin@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Admin", Status = true, UserName = "SuperAdmin", Code = _helper.randomString(8) },
-                new Users { Id = 2, Email = "supporter@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Supporter", Status = true, UserName = "Supporter", Code = _helper.randomString(8) },
-                new Users { Id = 3, Email = "user@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "User", Status = true, UserName = "User", Code = _helper.randomString(8) }
+                new Users { Id = 1, Email = "superadmin@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Admin", Status = true, UserName = "SuperAdmin", Code = _helper.randomString(8), EmailToConfirm = null },
+                new Users { Id = 2, Email = "supporter@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "Supporter", Status = true, UserName = "Supporter", Code = _helper.randomString(8), EmailToConfirm = null },
+                new Users { Id = 3, Email = "user@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("123456"), Role = "User", Status = true, UserName = "User", Code = _helper.randomString(8), EmailToConfirm = null }
             );
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbPriority"

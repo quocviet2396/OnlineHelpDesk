@@ -71,7 +71,13 @@ namespace WebApp.Controllers
                 HttpContext.Session.SetString("accEmail", user.Email);
                 Console.WriteLine(IsLoginValid(user.Email, user.Password).Data.Code);
                 HttpContext.Session.SetString("accCode", IsLoginValid(user.Email, user.Password).Data.Code);
-
+                string? avatarUrl = db.Users
+                    .Where(u => u.Email == user.Email && u.userInfo != null)
+                    .Select(u => u.userInfo.Photo)
+                    .FirstOrDefault();
+                string defaultAvatarPath = "/images/avatars/avatar_default.jpeg";
+                string accAvatarUrl = avatarUrl ?? defaultAvatarPath;
+                HttpContext.Session.SetString("accAvatarUrl", accAvatarUrl);
                 // Chuyển trang theo role
                 if (authenService.IsAdmin())
                 {
@@ -110,7 +116,7 @@ namespace WebApp.Controllers
             {
                 HttpContext.Session.Remove("accEmail");
                 /*Chỗ này rồi sẽ sửa thành frontend home*/
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Frontend");
             }
         }
     }

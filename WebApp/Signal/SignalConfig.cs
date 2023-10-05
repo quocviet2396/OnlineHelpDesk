@@ -12,15 +12,22 @@ namespace WebApp.Signal
     {
         private readonly IAccountService _account;
         private readonly DatabaseContext _db;
-        public SignalConfig(IAccountService account, DatabaseContext db)
+        protected IHubContext<SignalConfig> _Context;
+        private readonly ITicket _ticket;
+        public SignalConfig(IAccountService account, DatabaseContext db, IHubContext<SignalConfig> Context, ITicket ticket)
         {
             _account = account;
             _db = db;
+            _Context = Context;
+            _ticket = ticket;
         }
+
+
 
         public override Task OnConnectedAsync()
         {
             Clients.Caller.SendAsync("OnConnected");
+
             return base.OnConnectedAsync();
         }
 
@@ -37,8 +44,25 @@ namespace WebApp.Signal
 
         public async Task SendNoti(string userId, string mess)
         {
+            await _Context.Clients.Client(userId).SendAsync("NotifyMessage", mess);
+        }
 
-            await Clients.Client(userId).SendAsync("NotifyMessage", mess);
+        public async Task SendNotiToAdmin(string conId, TicketDTO tickets, string mess)
+        {
+            await Clients.Client(conId).SendAsync("SendNotiAdmin", tickets, mess);
+        }
+
+        public async Task SendNotiToSup(string email)
+        {
+            var user = _db.Users.Where(e => e.Email == email);
+            foreach (var item in user)
+            {
+                var tickets = _ticket.Tickets(email, item.Role);
+                var userConn = _db.userConn.Where(a => a.UserId == item.Id).FirstOrDefault();
+                await Clients.Client(userConn.ConnectionId).SendAsync("SendNotiToSup", tickets);
+
+            }
+
         }
 
         public async Task saveUser(string email)
@@ -70,4 +94,3 @@ namespace WebApp.Signal
 
     }
 }
-

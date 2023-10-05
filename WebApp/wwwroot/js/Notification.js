@@ -3,35 +3,19 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/Notification").build();
 
-var currentTickets = localStorage.getItem("tickets");
-var tickets = JSON.parse(currentTickets)
-connection.on("OnConnected", function () {
-    onConnected()
+
+
+connection.on("OnConnected", async function () {
+    await onConnected()
+
+    //var email = localStorage.getItem("email");
+    //await connection.invoke("CheckNoti", email).catch((err) => console.error(err))
 });
 
-connection.on("SendNotiAdmin", (tickets, mess) => {
-    if (!currentTickets) {
-        currentTickets = [];
-    } else {
-        currentTickets = JSON.parse(currentTickets);
-    }
-    var newTickets = JSON.parse(tickets);
-    newTickets.forEach(function (ticket) {
-        var isDuplicate = false;
+connection.on("SendNotiAdmin", async (tickets, mess) => {
+    changeUI(tickets)
+    console.log(tickets)
 
-        for (var i = 0; i < currentTickets.length; i++) {
-            if (currentTickets[i].TicketId === ticket.TicketId) {
-                isDuplicate = true;
-                break;
-            }
-        }
-        if (!isDuplicate) {
-            currentTickets.push(ticket);
-        }
-    });
-    localStorage.setItem("tickets", JSON.stringify(currentTickets));
-
-    changeUI(currentTickets)
 });
 
 const onConnected = () => {
@@ -46,34 +30,35 @@ connection.start().then(() => {
 });
 
 function changeUI(tickets) {
-
-    var ticketsWithNullStatus = tickets.filter(function (ticket) {
-        return ticket.TicketStatus === null;
-    });
-    console.log(ticketsWithNullStatus)
-    if (ticketsWithNullStatus.length >= 0) {
-        $("#hubCount").text(ticketsWithNullStatus.length)
-        $("#hubCount").attr("hidden", false)
-    } else {
-        $("#hubCount").hide()
-    }
-    tickets.forEach((item) => {
-        addNotification(item.UserNameCreator, item.Title, item.Decription)
-    })
+    addNotification(tickets.userNameCreator, tickets.title, tickets.decription)
 }
 
 function addNotification(userName, title, description) {
     var newNotification = `
-        <li class="notifications-item">
-            <strong><b>${userName}</b> send a new request</strong>
-            <div class="text">
-                <h4>${title}</h4>
-                <p>${description}</p>
+        <li class="card mt-2">
+            <div>
+                <strong><b>${userName}</b> send a new request</strong>
+                <div class="text">
+                    <h4>${title}</h4>
+                    <p>${description}</p>
+                </div>
             </div>
+            <div></div>
         </li>
     `;
 
     $("#notification-list").append(newNotification);
 }
 
-changeUI(tickets);
+$(document).ready(() => {
+    $("#notification-icon").on("click", (event) => {
+        event.stopPropagation();
+        $('#notification-content').toggle();
+    })
+
+    $(document).click(function (event) {
+        if (!$(event.target).closest('#notification-icon, #notification-content').length) {
+            $('#notification-content').hide();
+        }
+    });
+})

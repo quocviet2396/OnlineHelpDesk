@@ -23,7 +23,6 @@ namespace WebApp.Database_helper
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<UserConn> userConn { get; set; }
-        public DbSet<Notifications> Notifications { get; set; }
         public DbSet<TicketDTO> TickdetDTOs { get; set; }
 
 
@@ -59,8 +58,6 @@ namespace WebApp.Database_helper
             modelBuilder.Entity<Users>().HasOne(_ => _.userInfo).WithOne(a => a.users).HasForeignKey<UserInfo>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Users>().HasOne(_ => _.userConn).WithOne(a => a.Users).HasForeignKey<UserConn>(a => a.UserId).OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Notifications>().HasOne(_ => _.userConn).WithOne(a => a.Notifications).HasForeignKey<UserConn>(a => a.NotiId).OnDelete(DeleteBehavior.NoAction);
 
 
             // Định nghĩa các thông tin mô hình hóa cho bảng "tbUsers"

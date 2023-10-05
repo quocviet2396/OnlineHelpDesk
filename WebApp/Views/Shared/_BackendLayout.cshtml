@@ -53,7 +53,10 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="~/assets/js/config.js"></script>
 </head>
-
+@{
+    var email = Context.Session.GetString("accEmail");
+    var notifi = await INotifi.Notifications(email) as List<LibraryModels.TicketDTO>;
+}
 
 <body>
     <style>
@@ -65,6 +68,7 @@
             width: 500px;
             height: 300px;
             background-color: white;
+            border-radius: 10px;
             border: 1px solid #ccc;
             padding: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -237,7 +241,17 @@
                                         <span class="rounded-circle" id="hubCount" hidden style="position: absolute; top: 0; right: 0; background-color: red; color: white; padding: 4px 8px; font-size: 12px;"></span>
                                     </div>
                                     <div id="notification-content">
-                                        <ul id="notification-list">
+                                        <ul id="notification-list justify-content-center">
+                                            @foreach (var item in notifi)
+                                            {
+                                                <li class="card mt-1 p-3">
+                                                    <strong><b>@item.UserNameCreator</b> send a new request</strong>
+                                                    <div class="text">
+                                                        <h4>@item.Title</h4>
+                                                        <p>@item.Decription</p>
+                                                    </div>
+                                                </li>
+                                            }
                                         </ul>
                                     </div>
                                 </li>
@@ -384,18 +398,6 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-    <script>$(document).ready(() => {
-            $("#notification-icon").on("click", (event) => {
-                event.stopPropagation();
-                $('#notification-content').toggle();
-            })
-
-            $(document).click(function (event) {
-                if (!$(event.target).closest('#notification-icon, #notification-content').length) {
-                    $('#notification-content').hide();
-                }
-            });
-        })</script>
 </body>
 
 </html>

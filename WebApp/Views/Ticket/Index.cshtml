@@ -1,6 +1,23 @@
 ﻿@{
-    int i = 1;
-    Layout = ViewData["Layout"]?.ToString() ?? "_DefaultLayout";
+    int ids = 1;
+    Layout = ViewData["Layout"]?.ToString() ?? "_BackendLayout";
+    var status = ViewData["Status"] as IEnumerable<LibraryModels.TicketStatus>;
+    var priority = ViewData["Priority"] as IEnumerable<LibraryModels.Priority>;
+    var supp = ViewData["Supporter"] as IEnumerable<LibraryModels.Users>;
+    var cate = ViewData["Category"] as IEnumerable<LibraryModels.Facilities>;
+
+    var currentFilter = TempData["currentFilter"] as string;
+    var catego = TempData["category"] as string;
+    var prio = TempData["priority"] as string;
+    var sup = TempData["supporter"] as string;
+    var sta = TempData["status"] as string;
+    var date = TempData["date"] as string;
+}
+@functions {
+    public string GetSortDirection(string? propertySort, string? nameSort, string currentSort, string nameToSort)
+    {
+        return string.IsNullOrEmpty(propertySort) ? currentSort : (nameSort == nameToSort ? propertySort : currentSort);
+    }
 }
 
 @model IEnumerable<LibraryModels.Ticket>
@@ -17,7 +34,43 @@
             <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-4">Ticket Status</h5>
                 <a class="btn btn-info" asp-action="Create" asp-controller="Ticket">Create New Ticket</a>
-              
+
+                <div class="card p-4 mt-1">
+                    <h4 class="card-title">Filter</h4>
+                    <form id="filterForm" asp-controller="Ticket" asp-action="Index" method="get">
+                        <div class="d-flex card-body gap-3 justify-content-between align-items-center ">
+                            <select name="status" class="form-select">
+                                <option>--Select status--</option>
+                                @foreach (var item in status)
+                                {
+                                    <option value="TicketStatusId_@item.Id">@item.Name</option>
+                                }
+                            </select>
+                            <select name="priority" class="form-select">
+                                <option>--Select priority--</option>
+                                @foreach (var item in priority)
+                                {
+                                    <option value="PriorityId_@item.Id">@item.Name</option>
+                                }
+                            </select>
+                            <select name="supporter" class="form-select">
+                                <option>--Select Supporter--</option>
+                                @foreach (var item in supp)
+                                {
+                                    <option value="SupporterId_@item.Id">@item.Email</option>
+                                }
+                            </select>
+                            <select name="category" class="form-select">
+                                <option>--Select category--</option>
+                                @foreach (var item in cate)
+                                {
+                                    <option value="CategoryId_@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <button class="btn btn-primary mt-2" type="submit">Filter</button>
+                    </form>
+                </div>
                 <div class="table-responsive">
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
@@ -26,18 +79,21 @@
                                     <h4 class="fw-semibold mb-0">#</h4>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Title)</h6>
+                                    <h6 class="fw-semibold mb-0">
+                                        <a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Title","Title")"
+                                           asp-route-currentFilter="@ViewData["currentFilter"]"> @Html.DisplayNameFor(model => model.Title)</a>
+                                    </h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Description)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.CreateDate)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.ModifiedDate)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Attachment)</h6>
                                 </th>
                                 <th class="border-bottom-0">
@@ -45,9 +101,9 @@
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Category</h6>
-                                    
+
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 @ViewBag.us class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Creator)</h6>
                                 </th>
                                 <th class="border-bottom-0">
@@ -69,7 +125,7 @@
                             {
                                 <tr class="text-center">
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0"> @i </h6>
+                                        <h6 class="fw-semibold mb-0"> @ids </h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Title)</h6>
@@ -113,44 +169,42 @@
                                         <div class="d-flex align-items-center gap-2" style="justify-content:center">
                                             @if (item.feedback == null)
                                             {
-                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-gear"></i></a>
+                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-gear"></i></a>
                                             }
                                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-info-circle"></i></a>
-                                            @if (item.TicketStatusId == null && item.feedback == null && item.PriorityId == null && item.SupporterId ==null)
-                                                                        {
+                                            @if (item.TicketStatusId == null && item.feedback == null && item.PriorityId == null && item.SupporterId == null)
+                                            {
                                                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                             }
                                         </div>
                                     </td>
                                 </tr>
-                                i++;
+                                ids++;
                             }
                         </tbody>
                     </table>
-                    <div class="pagination justify-content-center">
-                        <ul class="pagination">
-                            @if (ViewBag.CurrentPage > 1)
+                    @{
+                        var Totalpage = (int)ViewData["totalPages"];
+                        var PanigationInfo = Model as WebApp.Ultils.Paginated<LibraryModels.Ticket>;
+                    }
+                    <div class=" mt-5 ">
+                        <div class="d-flex w-full items-center justify-content-center align-items-center gap-2">
+                            @if (PanigationInfo.PageIndex > 1)
                             {
-                                <li class="page-item"><a class="page-link" href="/Ticket/Index?page=1&pageSize=@ViewBag.PageSize">First</a></li>
-                                <li class="page-item"><a class="page-link" href="/Ticket/Index?page=@(ViewBag.CurrentPage - 1)&pageSize=@ViewBag.PageSize">Previous</a></li>
+                                <a class="btn btn-primary" asp-route-pageIndex="@(1)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">First</a>
+                                <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex -1)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">Prev</a>
                             }
-
-                            @for (int a = 1; a <= (int)Math.Ceiling((double)ViewBag.TotalItemCount / ViewBag.PageSize); a++)
+                            @for (int i = 1; i <= Totalpage; i++)
                             {
-                                <li class="page-item @(a == ViewBag.CurrentPage ? "active" : "")"><a class="page-link" href="/Ticket/Index?page=@a&pageSize=@ViewBag.PageSize">@a</a></li>
+                                <a class="btn btn-outline-primary @(PanigationInfo.PageIndex == i ? "active" : string.Empty)" asp-route-pageIndex="@(i)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">@(i)</a>
                             }
 
-                            @if (ViewBag.CurrentPage < (int)Math.Ceiling((double)ViewBag.TotalItemCount / ViewBag.PageSize))
+                            @if (PanigationInfo.PageIndex < PanigationInfo.TotalPages)
                             {
-                                <li class="page-item"><a class="page-link" href="/Ticket/Index?page=@(ViewBag.CurrentPage + 1)&pageSize=@ViewBag.PageSize">Next</a></li>
+                                <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex +1)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">Next</a>
+                                <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.TotalPages)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">Last</a>
                             }
-
-                            @{
-                                int totalPages = (int)Math.Ceiling((double)ViewBag.TotalItemCount / ViewBag.PageSize);
-                            }
-
-                            <li class="page-item"><a class="page-link" href="/Ticket/Index?page=@totalPages&pageSize=@ViewBag.PageSize">Last</a></li>
-                        </ul>
+                        </div>
                     </div>
 
                 </div>
@@ -162,28 +216,32 @@
 </div>
 
 
-<script>
-    // Lắng nghe sự kiện thay đổi của dropdown
-    document.getElementById('categoryFilter').addEventListener('change', function () {
-        var selectedCategoryId = this.value; // Lấy giá trị đã chọn
+@section Scripts{
 
-        // Gửi yêu cầu lọc đến máy chủ và cập nhật danh sách phiếu
-        // Sử dụng JavaScript/AJAX hoặc jQuery để thực hiện điều này
+    <script>// Lắng nghe sự kiện thay đổi của dropdown
 
-        // Ví dụ: Sử dụng jQuery
-        $.ajax({
-            url: '/Ticket/Index', // Điều hướng đến hành động Index để xử lý yêu cầu lọc
-            method: 'GET',
-            data: { categoryId: selectedCategoryId },
-            success: function (data) {
-                // Cập nhật bảng danh sách phiếu bằng dữ liệu trả về từ máy chủ
-                // data chứa dữ liệu phiếu đã được lọc
-                // Cập nhật bảng bằng cách thay thế nội dung tbody bằng dữ liệu mới
-                $('table tbody').html(data);
-            },
-            error: function () {
-                alert('Error occurred while filtering.');
+        var statusSelect = document.querySelector('select[name="status"]');
+        statusSelect.addEventListener("change", () => {
+            console.log(statusSelect.value)
+        })
+        document.getElementById('filterForm').addEventListener('submit', function (event) {
+            var statusSelect = document.querySelector('select[name="status"]');
+            var prioritySelect = document.querySelector('select[name="priority"]');
+            var supporterSelect = document.querySelector('select[name="supporter"]');
+            var categorySelect = document.querySelector('select[name="category"]');
+
+            // Kiểm tra từng select box và loại bỏ nếu không được chọn
+            if (statusSelect.value === "--Select status--") {
+                statusSelect.remove();
             }
-        });
-    });
-</script>
+            if (prioritySelect.value === "--Select priority--") {
+                prioritySelect.remove();
+            }
+            if (supporterSelect.value === "--Select Supporter--") {
+                supporterSelect.remove();
+            }
+            if (categorySelect.value === "--Select category--") {
+                categorySelect.remove();
+            }
+        });</script>
+}

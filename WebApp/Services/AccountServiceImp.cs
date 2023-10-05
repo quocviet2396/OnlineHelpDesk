@@ -240,7 +240,7 @@ namespace WebApp.Services
                 {
                     Address = users["Address"].FirstOrDefault() ?? null,
                     City = users["City"].FirstOrDefault() ?? null,
-                    Gender = bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
+                    Gender = bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? null : (bool?)parsedGender,
                     DateOfBirth = DateTime.TryParseExact(users["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
                     Phone = users["Phone"].FirstOrDefault() ?? null,
                     Photo = filePath,

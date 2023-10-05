@@ -9,153 +9,105 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebApp
 build_property.RootNamespace = WebApp
-build_property.ProjectDir = C:\Users\PC\Documents\GitHub\OnlineHelpDesk\WebApp\
+build_property.ProjectDir = /Users/mac/Desktop/OnlineHelpDesk/WebApp/
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\PC\Documents\GitHub\OnlineHelpDesk\WebApp
+build_property.MSBuildProjectDirectory = /Users/mac/Desktop/OnlineHelpDesk/WebApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Account/ChangePassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Account/ForgotPassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Account/UserProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Vc2VyUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Account/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Authen/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aGVuL0xvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Account/UserProfile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyUHJvZmlsZS5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Backend/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmFja2VuZC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Authen/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVuXExvZ2luLmNzaHRtbA==
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Chat/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhdC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Backend/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFja2VuZFxJbmRleC5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Data/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGF0YS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Data/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YVxJbmRleC5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Frontend/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnJvbnRlbmQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Facilities/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjaWxpdGllc1xDcmVhdGUuY3NodG1s
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Facilities/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjaWxpdGllc1xFZGl0LmNzaHRtbA==
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Facilities/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjaWxpdGllc1xJbmRleC5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Frontend/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJvbnRlbmRcSW5kZXguY3NodG1s
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Shared/_BackendLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19CYWNrZW5kTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Ticket/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/News/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xDcmVhdGUuY3NodG1s
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Ticket/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L0RlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/News/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xJbmRleC5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Ticket/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/News/News.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xOZXdzLmNzaHRtbA==
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Ticket/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/News/NewsDetail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xOZXdzRGV0YWlsLmNzaHRtbA==
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Ticket/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0L0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/News/UpdateNews.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xVcGRhdGVOZXdzLmNzaHRtbA==
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/TicketStatus/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0U3RhdHVzL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Priority/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpb3JpdHlcQ3JlYXRlLmNzaHRtbA==
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/TicketStatus/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0U3RhdHVzL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Priority/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpb3JpdHlcRWRpdC5jc2h0bWw=
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/TicketStatus/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGlja2V0U3RhdHVzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Priority/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpb3JpdHlcSW5kZXguY3NodG1s
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Shared/_BackendLayout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9CYWNrZW5kTGF5b3V0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Shared/Frontend.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Zyb250ZW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = b-bwhjwbmh1b
 
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/TicketStatus/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0U3RhdHVzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/TicketStatus/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0U3RhdHVzXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/TicketStatus/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0U3RhdHVzXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Ticket/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Ticket/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XERlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Ticket/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Ticket/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Ticket/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Shared/Frontend.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEZyb250ZW5kLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = b-hrzfz4rbxq
-
-[C:/Users/PC/Documents/GitHub/OnlineHelpDesk/WebApp/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-7882z672yd
+[/Users/mac/Desktop/OnlineHelpDesk/WebApp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-wrkb45jn1q

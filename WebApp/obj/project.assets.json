@@ -4315,46 +4315,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
-<<<<<<< HEAD
-=======
-      },
-      "X.PagedList/9.0.0-prerelease": {
-        "type": "package",
-        "dependencies": {
-          "JetBrains.Annotations": "2022.3.1"
-        },
-        "compile": {
-          "lib/net7.0/X.PagedList.dll": {}
-        },
-        "runtime": {
-          "lib/net7.0/X.PagedList.dll": {}
-        }
-      },
-      "X.PagedList.Mvc.Core/9.0.0-prerelease": {
-        "type": "package",
-        "dependencies": {
-          "X.PagedList": "9.0.0-prerelease"
-        },
-        "compile": {
-          "lib/net7.0/X.PagedList.Mvc.Core.dll": {}
-        },
-        "runtime": {
-          "lib/net7.0/X.PagedList.Mvc.Core.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
-      },
-      "LibraryModels/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/LibraryModels.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/LibraryModels.dll": {}
-        }
->>>>>>> origin/bao
       }
     }
   },
@@ -12556,49 +12516,12 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
-<<<<<<< HEAD
-=======
-    },
-    "X.PagedList/9.0.0-prerelease": {
-      "sha512": "X8g+0H+OvauZSd22qreeiBlGPI5gMw8R+TDacAplt7hnBBmWoqiJho6Hy2ROW8z7KjtAVqxhye/FoB9EX7wgvg==",
-      "type": "package",
-      "path": "x.pagedlist/9.0.0-prerelease",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net6.0/X.PagedList.dll",
-        "lib/net7.0/X.PagedList.dll",
-        "lib/netstandard2.0/X.PagedList.dll",
-        "lib/netstandard2.1/X.PagedList.dll",
-        "x.pagedlist.9.0.0-prerelease.nupkg.sha512",
-        "x.pagedlist.nuspec"
-      ]
-    },
-    "X.PagedList.Mvc.Core/9.0.0-prerelease": {
-      "sha512": "ixEd88gKHjHW1UJn9fmxcPr0bGx4iQXKhXyZ1chBpLPAWbcjZxAD0+F2U2hF5dGQGG/+0Ugs1B/C6m/7pzrJZA==",
-      "type": "package",
-      "path": "x.pagedlist.mvc.core/9.0.0-prerelease",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net6.0/X.PagedList.Mvc.Core.dll",
-        "lib/net7.0/X.PagedList.Mvc.Core.dll",
-        "x.pagedlist.mvc.core.9.0.0-prerelease.nupkg.sha512",
-        "x.pagedlist.mvc.core.nuspec"
-      ]
-    },
-    "LibraryModels/1.0.0": {
-      "type": "project",
-      "path": "../LibraryModels/LibraryModels.csproj",
-      "msbuildProject": "../LibraryModels/LibraryModels.csproj"
->>>>>>> origin/bao
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "BCrypt.Net-Next >= 4.0.3",
       "Bogus >= 34.0.2",
-      "LibraryModels >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 7.0.11",
       "Microsoft.EntityFrameworkCore >= 7.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.11",
@@ -12608,11 +12531,7 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.10",
       "Newtonsoft.Json >= 13.0.3",
       "PagedList.Mvc >= 4.5.0",
-<<<<<<< HEAD
       "SqlTableDependency >= 8.5.8"
-=======
-      "X.PagedList.Mvc.Core >= 9.0.0-prerelease"
->>>>>>> origin/bao
     ]
   },
   "packageFolders": {
@@ -12621,19 +12540,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
       "projectName": "WebApp",
       "projectPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
       "packagesPath": "C:\\Users\\T490\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\WebApp\\WebApp.csproj",
-      "projectName": "WebApp",
-      "projectPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\WebApp\\WebApp.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\WebApp\\obj\\",
->>>>>>> origin/bao
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\T490\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -12649,11 +12560,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\LibraryModels.csproj": {
-              "projectPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\LibraryModels.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -12718,11 +12625,7 @@
           },
           "SqlTableDependency": {
             "target": "Package",
-<<<<<<< HEAD
             "version": "[8.5.8, )"
-=======
-            "version": "[9.0.0-prerelease, )"
->>>>>>> origin/bao
           }
         },
         "imports": [

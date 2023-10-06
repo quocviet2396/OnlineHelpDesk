@@ -11,7 +11,7 @@ namespace WebApp.Repositories
         Task<Ticket> GetTicketById(int id);
         int GetTotalTicketCount();
 
-        Task<List<Ticket>> Tickets(string email, string role, int pageIndex, int? limit, string? currentSort, string? currentFilter, string? category, string? date, string? supporter, string? status, string? priority);
+        Task<List<Ticket>> Tickets(string email, string role, int pageIndex, int? limit, string? currentSort, string? currentFilter, string? category, string? supporter, string? status, string? priority, DateTime[] CDate, DateTime[] MDate);
         Task<TicketDTO> TicketNonCate(string email, string role, int? id = null);
 
         Task<bool> saveTicketDTo(TicketDTO ticketDTO);

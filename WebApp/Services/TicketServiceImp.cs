@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using LibraryModels;
+using Microsoft.AspNetCore.JsonPatch.Internal;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Database_helper;
 using WebApp.Repositories;
@@ -89,7 +91,7 @@ namespace WebApp.Services
         }
 
 
-        public async Task<List<Ticket>> Tickets(string email, string role, int pageIndex, int? limit, string? currentSort, string? currentFilter, string? category, string? date, string? supporter, string? status, string? priority)
+        public async Task<List<Ticket>> Tickets(string email, string role, int pageIndex, int? limit, string? currentSort, string? currentFilter, string? category, string? supporter, string? status, string? priority, DateTime[] CDate, DateTime[] MDate)
         {
             var pageNumber = pageIndex <= 0 ? 1 : pageIndex;
 
@@ -101,6 +103,8 @@ namespace WebApp.Services
                     .Include(t => t.Creator).Include(f => f.Category).Include(ts => ts.TicketStatus).Include(sp => sp.Supporter).Include(pr => pr.Priority)
                 .OrderByDescending(t => t.CreateDate).ToListAsync();
 
+
+
             if (!string.IsNullOrEmpty(email) && role != Role.Admin)
             {
                 query = query.Where(a =>
@@ -109,6 +113,24 @@ namespace WebApp.Services
             }
 
             var sort = await Sort<Ticket>.SortAsync(query, currentSort, currentFilter, category: category, status: status, supporter: supporter, priority: priority);
+
+
+            if (CDate.Length == 2)
+            {
+                sort = sort.Where(a => a.CreateDate.HasValue && a.CreateDate.Value.Date >= CDate[0].Date && a.CreateDate.Value.Date <= CDate[1].Date);
+            }
+            if (MDate.Length == 2)
+            {
+                sort = sort.Where(a => a.ModifiedDate.HasValue && a.ModifiedDate.Value.Date >= MDate[0].Date && a.ModifiedDate.Value.Date <= MDate[1].Date);
+            }
+            if (MDate.Length >= 1 && MDate[0] != null)
+            {
+                sort = sort.Where(a => a.ModifiedDate.HasValue && a.ModifiedDate.Value.Date == CDate[0].Date);
+            }
+            if (CDate.Length >= 1 && CDate[0] != null)
+            {
+                sort = sort.Where(a => a.CreateDate.HasValue && a.CreateDate.Value.Date == CDate[0].Date);
+            }
 
             var result = await Paginated<Ticket>.CreatePaginate(sort.ToList(), pageNumber, (int)Limit, x => x.CreateDate);
 

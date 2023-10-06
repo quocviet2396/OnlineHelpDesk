@@ -11,7 +11,6 @@
     var prio = TempData["priority"] as string;
     var sup = TempData["supporter"] as string;
     var sta = TempData["status"] as string;
-    var date = TempData["date"] as string;
 }
 @functions {
     public string GetSortDirection(string? propertySort, string? nameSort, string currentSort, string nameToSort)
@@ -68,6 +67,24 @@
                                 }
                             </select>
                         </div>
+
+                        <div class="d-flex justify-content-around">
+                            <div>
+                                <label>Select date CreateDate</label>
+                                <div class="d-flex gap-2">
+                                    <input type="date" name="CDate" class="form-control" />
+                                    <input type="date" name="CDate" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label>Select date ModifiDate</label>
+                                <div class="d-flex gap-2">
+                                    <input type="date" name="MDate" class="form-control" />
+                                    <input type="date" name="MDate" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
                         <button class="btn btn-primary mt-2" type="submit">Filter</button>
                     </form>
                 </div>
@@ -121,6 +138,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach (var item in Model)
                             {
                                 <tr class="text-center">
@@ -181,32 +199,37 @@
                                 </tr>
                                 ids++;
                             }
+
                         </tbody>
                     </table>
                     @{
                         var Totalpage = (int)ViewData["totalPages"];
                         var PanigationInfo = Model as WebApp.Ultils.Paginated<LibraryModels.Ticket>;
                     }
-                    <div class=" mt-5 ">
-                        <div class="d-flex w-full items-center justify-content-center align-items-center gap-2">
-                            @if (PanigationInfo.PageIndex > 1)
-                            {
-                                <a class="btn btn-primary" asp-route-pageIndex="@(1)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">First</a>
-                                <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex -1)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">Prev</a>
-                            }
-                            @for (int i = 1; i <= Totalpage; i++)
-                            {
-                                <a class="btn btn-outline-primary @(PanigationInfo.PageIndex == i ? "active" : string.Empty)" asp-route-pageIndex="@(i)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">@(i)</a>
-                            }
+                    @if (PanigationInfo != null)
+                    {
+                        <div class=" mt-5 ">
+                            <div class="d-flex w-full items-center justify-content-center align-items-center gap-2">
+                                @if (PanigationInfo.PageIndex > 1)
+                                {
+                                    <a class="btn btn-primary" asp-route-pageIndex="@(1)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">First</a>
 
-                            @if (PanigationInfo.PageIndex < PanigationInfo.TotalPages)
-                            {
-                                <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex +1)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">Next</a>
-                                <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.TotalPages)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">Last</a>
-                            }
+                                    <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex -1)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">Prev</a>
+                                }
+                                @for (int i = 1; i <= Totalpage; i++)
+                                {
+                                    <a class="btn btn-outline-primary @(PanigationInfo.PageIndex == i ? "active" : string.Empty)" asp-route-pageIndex="@(i)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">@(i)</a>
+                                }
+
+                                @if (PanigationInfo.PageIndex < PanigationInfo?.TotalPages)
+                                {
+                                    <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex +1)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">Next</a>
+
+                                    <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.TotalPages)" asp-route-currentFilter="@currentFilter" asp-route-category="@catego" asp-route-supporter="@sup" asp-route-status="@sta" asp-route-priority="@prio">Last</a>
+                                }
+                            </div>
                         </div>
-                    </div>
-
+                    }
                 </div>
             </div>
         </div>
@@ -229,6 +252,8 @@
             var prioritySelect = document.querySelector('select[name="priority"]');
             var supporterSelect = document.querySelector('select[name="supporter"]');
             var categorySelect = document.querySelector('select[name="category"]');
+            var CDate = document.querySelectorAll("input[name='CDate']")
+            var MDate = document.querySelectorAll("input[name='MDate']")
 
             // Kiểm tra từng select box và loại bỏ nếu không được chọn
             if (statusSelect.value === "--Select status--") {
@@ -242,6 +267,36 @@
             }
             if (categorySelect.value === "--Select category--") {
                 categorySelect.remove();
+            }
+            CDate.forEach((item) => {
+                if (item.value == "") {
+                    item.remove()
+                }
+
+                item.addEventListener('input', function () {
+                    formatInputDate(item);
+                });
+            })
+
+            MDate.forEach((item) => {
+                if (item.value == "") {
+                    item.remove()
+                }
+
+                item.addEventListener('input', function () {
+                    formatInputDate(item);
+                });
+            })
+
+            function formatInputDate(input) {
+                var dateValue = input.value;
+                if (dateValue) {
+                    var inputDate = new Date(dateValue);
+                    if (!isNaN(inputDate.getTime())) {
+                        var formattedDate = inputDate.toLocaleDateString('en-GB'); // Định dạng dd/MM/yyyy
+                        input.value = formattedDate;
+                    }
+                }
             }
         });</script>
 }

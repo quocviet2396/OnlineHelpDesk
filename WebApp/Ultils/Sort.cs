@@ -59,7 +59,15 @@ namespace WebApp.Ultils
             var filterResult = filter.Split("_");
             var filterPropertyName = filterResult[0];
             var filterValue = filterResult[1];
-            query = query.Where(item => item.GetType().GetProperty(filterPropertyName).GetValue(item).ToString().Equals(filterValue));
+            var property = typeof(T).GetProperty(filterPropertyName);
+            if (property != null)
+            {
+                query = query.Where(item =>
+         property.GetValue(item) != null &&
+         property.GetValue(item).ToString() == filterValue);
+
+                return query;
+            }
             return query;
         }
 

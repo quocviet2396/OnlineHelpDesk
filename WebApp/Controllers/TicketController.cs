@@ -35,29 +35,39 @@ namespace WebApp.Controllers
 
 
 
-        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort, string? currentFilter, string? category, string? date, string? supporter, string? status, string? priority)
+        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort, string? currentFilter, string? category, DateTime[] CDate, DateTime[] MDate, string? supporter, string? status, string? priority)
         {
 
             string userEmail = HttpContext.Session.GetString("accEmail");
             var userRole = context.Users.FirstOrDefault(e => e.Email == userEmail);
 
+            if (CDate.Length == 2 && CDate[0] > CDate[1] || MDate.Length == 2 && MDate[0] > MDate[1])
+            {
+                TempData["Message"] = "from date must less than to date ";
+                return RedirectToAction("Index");
+            }
+
+
             ViewData["Layout"] = authService.IsAdmin() || authService.IsSupporter() ? "_BackendLayout" : "_Layout";
             ViewBag.AccountName = userEmail;
 
-            var result = await ticketService.Tickets(userEmail, userRole.Role, pageIndex, limit, currentSort, currentFilter, category, date, supporter, status, priority) as Paginated<Ticket>;
+            var result = await ticketService.Tickets(userEmail, userRole.Role, pageIndex, limit, currentSort, currentFilter, category, supporter, status, priority, CDate, MDate) as Paginated<Ticket>;
             //sort
             var propertySort = string.IsNullOrEmpty(currentSort) ? null : currentSort.Split("_")[0] == "desc" ? $"asc_{currentSort.Split("_")[1]}" : $"desc_{currentSort.Split("_")[1]}";
             ViewData["propertySort"] = propertySort;
             ViewData["nameSort"] = propertySort?.Split("_")[1];
             //paginate
-            ViewData["totalPages"] = result.TotalPages;
-            ViewData["Count"] = result.Count;
+            ViewData["totalPages"] = result?.TotalPages;
+            ViewData["Count"] = result?.Count;
             //name filter
             TempData["currentFilter"] = string.IsNullOrEmpty(currentFilter) ? null : currentFilter;
             TempData["category"] = string.IsNullOrEmpty(category) ? null : category;
 
             TempData["priority"] = string.IsNullOrEmpty(priority) ? null : priority;
-            TempData["date"] = string.IsNullOrEmpty(date) ? null : date;
+            var a = CDate.ToList();
+            TempData["CDate"] = CDate.ToList();
+            TempData["MDate"] = MDate.ToList();
+
             TempData["supporter"] = string.IsNullOrEmpty(supporter) ? null : supporter;
             TempData["status"] = string.IsNullOrEmpty(status) ? null : status;
 

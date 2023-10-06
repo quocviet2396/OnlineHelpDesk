@@ -9,4 +9,3 @@ namespace WebApp.Repositories
         Task<List<TicketDTO>> Notifications(string email);
     }
 }
-

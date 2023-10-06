@@ -12,4 +12,3 @@ namespace WebApp.Repositories
         Task<List<string>> AccCode();
     }
 }
-

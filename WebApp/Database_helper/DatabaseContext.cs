@@ -29,7 +29,7 @@ namespace WebApp.Database_helper
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            string str = "server=localhost; database=OHDDb; uid=sa; pwd=ngoc@2906mysql; TrustServerCertificate=true";
+            string str = "server=DESKTOP-T6R536I\\SQLEXPRESS01; database=OHDDb; uid=sa; pwd=123; TrustServerCertificate=true";
             optionsBuilder.UseSqlServer(str);
         }
 
@@ -44,6 +44,12 @@ namespace WebApp.Database_helper
                  .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Ticket>()
+                 .HasOne(t => t.Supporter)
+                 .WithMany()
+                 .HasForeignKey(t => t.SupporterId)
+                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Facilities>()
                  .HasOne(t => t.Supporter)
                  .WithMany()
                  .HasForeignKey(t => t.SupporterId)

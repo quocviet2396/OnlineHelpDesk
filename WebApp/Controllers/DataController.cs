@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LibraryModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using WebApp.Authorize;
 using WebApp.Repositories;
 using WebApp.Ultils;
 
@@ -12,6 +13,7 @@ using WebApp.Ultils;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class DataController : Controller
     {
         private readonly IDataService _data;
@@ -52,4 +54,3 @@ namespace WebApp.Controllers
 
     }
 }
-

@@ -239,3 +239,4 @@ __pycache__/
 *.ap_
 *.aab
 *.ipa
+WebApp/.DS_Store

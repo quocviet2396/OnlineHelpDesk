@@ -29,7 +29,7 @@ namespace WebApp.Ultils
             string Fname = firstname.ToLower();
             string Lname = lastname.ToLower();
             Random random = new Random();
-            string randomNumber = random.Next(10000, 99999).ToString();
+            string randomNumber = random.Next(10, 99).ToString();
 
             string email = $"{Fname}{Lname}{randomNumber}@gmail.com";
 

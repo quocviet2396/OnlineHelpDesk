@@ -14,7 +14,7 @@
     <None Remove="Views\Account\" />
     <None Remove="Authorize\" />
     <None Remove="Signal\" />
-    <None Remove="Views\Mail\" />
+    <None Remove="Mail\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
@@ -535,7 +535,7 @@
     <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\images\avatars\" />
     <Folder Include="Signal\" />
-    <Folder Include="Views\Mail\" />
+    <Folder Include="Mail\" />
   </ItemGroup>
 
   <ItemGroup>

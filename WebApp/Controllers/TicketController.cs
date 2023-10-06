@@ -41,9 +41,9 @@ namespace WebApp.Controllers
             string userEmail = HttpContext.Session.GetString("accEmail");
             var userRole = context.Users.FirstOrDefault(e => e.Email == userEmail);
 
-            ViewData["Layout"] = authService.IsAdmin() || authService.IsSupporter() ? "_BackendLayout" : "_BackendLayout";
+            ViewData["Layout"] = authService.IsAdmin() || authService.IsSupporter() ? "_BackendLayout" : "_Layout";
             ViewBag.AccountName = userEmail;
-            //get all ticket with email
+
             var result = await ticketService.Tickets(userEmail, userRole.Role, pageIndex, limit, currentSort, currentFilter, category, date, supporter, status, priority) as Paginated<Ticket>;
             //sort
             var propertySort = string.IsNullOrEmpty(currentSort) ? null : currentSort.Split("_")[0] == "desc" ? $"asc_{currentSort.Split("_")[1]}" : $"desc_{currentSort.Split("_")[1]}";
@@ -61,6 +61,7 @@ namespace WebApp.Controllers
             TempData["supporter"] = string.IsNullOrEmpty(supporter) ? null : supporter;
             TempData["status"] = string.IsNullOrEmpty(status) ? null : status;
 
+            //query filter
             ViewData["Status"] = context.TicketStatus.ToList();
             ViewData["Priority"] = context.Priority.ToList();
             ViewData["Supporter"] = context.Users.Where(a => a.Role == "Supporter").ToList();
@@ -422,12 +423,6 @@ namespace WebApp.Controllers
                 oldTicket.SupporterId = editTicket.SupporterId;
                 oldTicket.ModifiedDate = dateTime;
                 oldTicket.PriorityId = editTicket.PriorityId;
-
-                var user = context.Users.FirstOrDefault(a => a.Id == editTicket.SupporterId);
-                var userConn = context.userConn.FirstOrDefault(a => a.UserId == editTicket.SupporterId);
-                var ticketNonCate = await ticketService.TicketNonCate(user.Email, user.Role);
-                ticketService.saveTicketDTo(ticketNonCate);
-                _hub.Clients.Client(userConn.ConnectionId).SendAsync("SendNotiAdmin", ticketNonCate, "success");
             }
             else if (authService.IsSupporter())
             {
@@ -435,24 +430,34 @@ namespace WebApp.Controllers
                 oldTicket.TicketStatusId = editTicket.TicketStatusId;
                 oldTicket.ModifiedDate = dateTime;
                 oldTicket.feedback = editTicket.feedback;
-
-                var user = context.Users.FirstOrDefault(a => a.Id == oldTicket.CreatorId);
-                var userConn = context.userConn.FirstOrDefault(a => a.UserId == oldTicket.CreatorId);
-                var ticketNonCate = await ticketService.TicketNonCate(user.Email, user.Role);
-                ticketService.saveTicketDTo(ticketNonCate);
-                _hub.Clients.Client(userConn.ConnectionId).SendAsync("SendNotiAdmin", ticketNonCate, "success");
             }
             else
             {
                 oldTicket.Title = editTicket.Title;
                 oldTicket.Description = editTicket.Description;
                 oldTicket.CategoryId = editTicket.CategoryId;
-
             }
 
 
             // Lưu thay đổi vào cơ sở dữ liệu
             await ticketService.update(oldTicket);
+            if ((editTicket.TicketStatusId == 5 || editTicket.TicketStatusId == 6) && !authService.IsAdmin())
+            {
+
+                var user = context.Users.FirstOrDefault(a => a.Id == oldTicket.CreatorId);
+                var userConn = context.userConn.FirstOrDefault(a => a.UserId == oldTicket.CreatorId);
+                var ticketNonCate = await ticketService.TicketNonCate(user.Email, user.Role, oldTicket.Id);
+                ticketService.saveTicketDTo(ticketNonCate);
+                _hub.Clients.Client(userConn.ConnectionId).SendAsync("SendNotiAdmin", ticketNonCate, "Suporter");
+            }
+            else
+            {
+                var user = context.Users.FirstOrDefault(a => a.Id == editTicket.SupporterId);
+                var userConn = context.userConn.FirstOrDefault(a => a.UserId == editTicket.SupporterId);
+                var ticketNonCate = await ticketService.TicketNonCate(user.Email, user.Role, oldTicket.Id);
+                ticketService.saveTicketDTo(ticketNonCate);
+                _hub.Clients.Client(userConn.ConnectionId).SendAsync("SendNotiAdmin", ticketNonCate, "Admin");
+            }
 
             TempData["Message"] = "Edit Ticket Success.";
             TempData["MessageType"] = "Success";

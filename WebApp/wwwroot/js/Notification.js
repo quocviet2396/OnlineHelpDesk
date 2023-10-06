@@ -3,8 +3,8 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/Notification").build();
 
-
-
+var hubCount = parseInt($("#hubCount").text());
+console.log(hubCount)
 connection.on("OnConnected", async function () {
     await onConnected()
 
@@ -15,9 +15,14 @@ connection.on("OnConnected", async function () {
 connection.on("SendNotiAdmin", async (tickets, mess) => {
     changeUI(tickets)
     console.log(tickets)
+    $("#hubCount").text(hubCount + 1)
 
 });
-
+if (hubCount > 0) {
+    $("#hubCount").attr("hidden", false)
+} else {
+    $("#hubCount").attr("hidden", true)
+}
 const onConnected = () => {
     var email = localStorage.getItem("email");
     connection.invoke("saveUser", email).catch((err) => console.error(err))
@@ -35,19 +40,16 @@ function changeUI(tickets) {
 
 function addNotification(userName, title, description) {
     var newNotification = `
-        <li class="card mt-2">
-            <div>
+            <li class="card mt-1 p-3">
                 <strong><b>${userName}</b> send a new request</strong>
                 <div class="text">
                     <h4>${title}</h4>
                     <p>${description}</p>
                 </div>
-            </div>
-            <div></div>
-        </li>
+            </li>
     `;
 
-    $("#notification-list").append(newNotification);
+    $("#notification-list").prepend(newNotification);
 }
 
 $(document).ready(() => {

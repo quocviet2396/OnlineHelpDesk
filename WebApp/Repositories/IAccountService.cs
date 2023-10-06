@@ -27,13 +27,6 @@ namespace WebApp.Repositories
         Task<Response<string>> ChangeAvatar(IFormCollection avatar);
 
         Task<Users> usersConn();
-<<<<<<< HEAD
-=======
-
-        Task<string> userConnId(int? userId);
-    }
-}
->>>>>>> parent of b80e2c6 (update send mail)
 
         Task<string> userConnId(int? userId);
     }

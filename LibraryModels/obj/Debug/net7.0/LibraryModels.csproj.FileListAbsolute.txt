@@ -46,3 +46,15 @@ C:\Users\PC\Desktop\OnlineHelpDesk-Viet\LibraryModels\obj\Debug\net7.0\LibraryMo
 C:\Users\PC\Desktop\OnlineHelpDesk-Viet\LibraryModels\obj\Debug\net7.0\refint\LibraryModels.dll
 C:\Users\PC\Desktop\OnlineHelpDesk-Viet\LibraryModels\obj\Debug\net7.0\LibraryModels.pdb
 C:\Users\PC\Desktop\OnlineHelpDesk-Viet\LibraryModels\obj\Debug\net7.0\ref\LibraryModels.dll
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\bin\Debug\net7.0\LibraryModels.deps.json
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\bin\Debug\net7.0\LibraryModels.dll
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\bin\Debug\net7.0\LibraryModels.pdb
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\obj\Debug\net7.0\LibraryModels.csproj.AssemblyReference.cache
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\obj\Debug\net7.0\LibraryModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\obj\Debug\net7.0\LibraryModels.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\obj\Debug\net7.0\LibraryModels.AssemblyInfo.cs
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\obj\Debug\net7.0\LibraryModels.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\obj\Debug\net7.0\LibraryModels.dll
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\obj\Debug\net7.0\refint\LibraryModels.dll
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\obj\Debug\net7.0\LibraryModels.pdb
+C:\Users\PC\Documents\GitHub\OnlineHelpDesk\LibraryModels\obj\Debug\net7.0\ref\LibraryModels.dll

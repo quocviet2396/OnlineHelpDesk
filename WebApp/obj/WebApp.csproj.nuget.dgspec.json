@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\WebApp\\WebApp.csproj": {}
+    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\LibraryModels.csproj": {
+    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\LibraryModels.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
         "projectName": "LibraryModels",
-        "projectPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\LibraryModels.csproj",
+        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\obj\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,14 +59,14 @@
         }
       }
     },
-    "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\WebApp\\WebApp.csproj": {
+    "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\WebApp\\WebApp.csproj",
+        "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\WebApp\\obj\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -83,8 +83,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\LibraryModels.csproj": {
-                "projectPath": "C:\\Users\\PC\\Desktop\\OnlineHelpDesk-Viet\\LibraryModels\\LibraryModels.csproj"
+              "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj": {
+                "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\OnlineHelpDesk\\LibraryModels\\LibraryModels.csproj"
               }
             }
           }

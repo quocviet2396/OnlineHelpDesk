@@ -1,0 +1,106 @@
+﻿@model LibraryModels.Ticket
+@{
+    int i = 1;
+    Layout = ViewData["Layout"]?.ToString() ?? "_DefaultLayout";
+}
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container ">
+
+    <h1>Detail</h1>
+
+    <div>
+        <h4>Ticket</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Title)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Title)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Description)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.CreateDate)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.CreateDate)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.ModifiedDate)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.ModifiedDate)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Attachment)</strong>
+            </div>
+            <div class="col-md-10">
+                @if (!string.IsNullOrEmpty(Model.Attachment))
+                {
+                    <img src="~/images/attachment/@Model.Attachment" class="img-thumbnail" width="200" height="200" />
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.TicketStatus)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.TicketStatus.Name)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>Category</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Category.Description)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Creator)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Creator.Email)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Supporter)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Supporter.Email)
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a> |
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

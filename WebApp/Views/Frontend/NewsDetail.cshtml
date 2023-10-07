@@ -1,0 +1,32 @@
+﻿@model LibraryModels.News
+@{
+    ViewData["Title"] = "NewsDetail";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <br />
+    <a class="btn btn-primary " style="text-align: left;" asp-action="News">News List</a>
+</div>
+
+<div class="container">
+    <div class="card card-outline-secondary my-4">
+        <div class="card-body">
+            <div class="row">
+                <h2 class="h3 text-black">@Model.Title</h2>
+                <span class="text-uppercase date d-block mb-3"><small>@Model.PublishDate</small></span>
+                <div class="image text-center">
+                    <img src="@Url.Content("~/images/News/" + Model.Img)" alt="@Model.Title" class="img-fluid image rounded">
+                </div>
+                <div class="content, form-control" style="text-align:justify; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+                    @Model.Content
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

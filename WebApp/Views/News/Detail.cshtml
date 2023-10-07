@@ -1,0 +1,63 @@
+﻿@model LibraryModels.News
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "_BackendLayout";
+}
+
+<a class="btn btn-primary" style="align-self" asp-action="News">News List</a>
+
+<div class="card card-outline-secondary my-4">
+    <div class="card-body">
+        <h2 class="h3 text-black">@Model.Title</h2>
+        <span class="text-uppercase date d-block mb-3"><small>@Model.PublishDate</small></span>
+        <div class="image text-center">
+            <img src="@Url.Content("~/images/News/" + Model.Img)" alt="@Model.Title" class="img-fluid image rounded">
+        </div>
+        <br />
+        <div class="content, form-control" style="text-align:justify; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+            @Model.Content
+        </div>
+        <div class="card-body">
+            <form asp-action="AddComment" asp-controller="News" method="post">
+                <h3></h3>
+                <input asp-for="@Model.ID" type="hidden" name="mewId" />
+                <div class="form-group">
+                    <textarea name="cmt" class="form-control" rows="3" placeholder="Write your comment here..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-success" style="font-weight:bold">Comment</button>
+                <br /><br />
+                @if (ViewBag.Reviews != null && ViewBag.Reviews.Count > 0)
+                {
+                    foreach (var item in ViewBag.Reviews)
+                    {
+                        <div class="form-group">
+                            <span class="user-name" style="font-weight:bold">@item.UserName</span>
+                            <small class="text-muted">@item.Date.ToString("dd/MM HH:mm")</small>
+                            <div class="form-control">
+                                <span><small class="comment-text" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">@item.Text</small></span>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="no-comment">No comments yet.</div>
+                }
+            </form>
+        </div>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+    </div>
+</div>
+
+

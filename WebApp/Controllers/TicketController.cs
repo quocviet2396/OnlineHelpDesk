@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Repositories;
 using System.Linq;
 using LibraryModels;
@@ -8,10 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApp.Database_helper;
 using Microsoft.EntityFrameworkCore;
-using PagedList;
+using X.PagedList;
 using System.Drawing.Printing;
-using WebApp.Models.ViewModels;
-using Newtonsoft.Json;
 
 namespace WebApp.Controllers
 {
@@ -28,114 +25,113 @@ namespace WebApp.Controllers
         }
 
 
+     
 
+public async Task<IActionResult> Index(int? page)
+    {
+        int pageSize = 10;
+        int pageNumber = page ?? 1;
 
-        public async Task<IActionResult> Index(int? page)
+        if (!authService.IsUserLoggedIn())
         {
-
-            int pageSize = 10;
-            int pageNumber = page ?? 1;
-
-            if (!authService.IsUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Authen");
-            }
-
-            if (authService.IsAdmin())
-            {
-                ViewData["Layout"] = "_BackendLayout";
-
-                int totalTicketCount = await context.Ticket.CountAsync();
-                ViewBag.AccountName = HttpContext.Session.GetString("accEmail");
-
-                var tickets =  context.Ticket
-                    .Include(t => t.Creator)
-                    .Include(f => f.Category)
-                    .Include(ts => ts.TicketStatus)
-                    .Include(sp => sp.Supporter)
-                    .Include(pr => pr.Priority)
-                    .OrderByDescending(t => t.CreateDate)
-                    .ToPagedList(pageNumber, pageSize);
-
-                ViewBag.CurrentPage = pageNumber;
-                ViewBag.PageSize = pageSize;
-                ViewBag.TotalItemCount = totalTicketCount;
-
-                return View(tickets);
-            }
-            else if (authService.IsSupporter())
-            {
-                ViewData["Layout"] = "_BackendLayout";
-                string supporterEmail = HttpContext.Session.GetString("accEmail");
-
-                if (string.IsNullOrEmpty(supporterEmail))
-                {
-                    return RedirectToAction("Login", "Authen");
-                }
-
-                ViewBag.AccountName = supporterEmail;
-                int totalTicketCount = await context.Ticket
-                    .Where(t => t.Supporter.Email == supporterEmail)
-                    .CountAsync();
-
-                var tickets = context.Ticket
-                    .Include(t => t.Creator)
-                    .Include(f => f.Category)
-                    .Include(ts => ts.TicketStatus)
-                    .Include(sp => sp.Supporter)
-                    .Include(pr => pr.Priority)
-                    .Where(t => t.Supporter.Email == supporterEmail)
-                    .OrderByDescending(t => t.CreateDate)
-                    .ToPagedList(pageNumber, pageSize);
-
-                ViewBag.CurrentPage = pageNumber;
-                ViewBag.PageSize = pageSize;
-                ViewBag.TotalItemCount = totalTicketCount;
-
-                return View(tickets);
-            }
-            else
-            {
-                ViewBag.us = "hidden";
-                ViewData["Layout"] = "_Layout";
-                string userEmail = HttpContext.Session.GetString("accEmail");
-
-                if (string.IsNullOrEmpty(userEmail))
-                {
-                    return RedirectToAction("Login", "Authen");
-                }
-
-                ViewBag.AccountName = userEmail;
-
-                int totalTicketCount = await context.Ticket
-                    .Where(t => t.Creator.Email == userEmail)
-                    .CountAsync();
-
-                var tickets = context.Ticket
-                    .Include(t => t.Creator)
-                    .Include(f => f.Category)
-                    .Include(ts => ts.TicketStatus)
-                    .Include(sp => sp.Supporter)
-                    .Include(pr => pr.Priority)
-                    .Where(t => t.Creator.Email == userEmail)
-                    .OrderByDescending(t => t.CreateDate)
-                    .ToPagedList(pageNumber, pageSize);
-
-                ViewBag.CurrentPage = pageNumber;
-                ViewBag.PageSize = pageSize;
-                ViewBag.TotalItemCount = totalTicketCount;
-
-                return View(tickets);
-            }
+            return RedirectToAction("Login", "Authen");
         }
 
+        if (authService.IsAdmin())
+        {
+            ViewData["Layout"] = "_BackendLayout";
+
+            int totalTicketCount = await context.Ticket.CountAsync();
+            ViewBag.AccountName = HttpContext.Session.GetString("accEmail");
+
+            var tickets = await context.Ticket
+                .Include(t => t.Creator)
+                .Include(f => f.Category)
+                .Include(ts => ts.TicketStatus)
+                .Include(sp => sp.Supporter)
+                .Include(pr => pr.Priority)
+                .OrderByDescending(t => t.CreateDate)
+                .ToPagedListAsync(pageNumber, pageSize);
+
+            ViewBag.CurrentPage = pageNumber;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItemCount = totalTicketCount;
+
+            return View(tickets);
+        }
+        else if (authService.IsSupporter())
+        {
+            ViewData["Layout"] = "_BackendLayout";
+            string supporterEmail = HttpContext.Session.GetString("accEmail");
+
+            if (string.IsNullOrEmpty(supporterEmail))
+            {
+                return RedirectToAction("Login", "Authen");
+            }
+
+            ViewBag.AccountName = supporterEmail;
+            int totalTicketCount = await context.Ticket
+                .Where(t => t.Supporter.Email == supporterEmail)
+                .CountAsync();
+
+            var tickets = await context.Ticket
+                .Include(t => t.Creator)
+                .Include(f => f.Category)
+                .Include(ts => ts.TicketStatus)
+                .Include(sp => sp.Supporter)
+                .Include(pr => pr.Priority)
+                .Where(t => t.Supporter.Email == supporterEmail)
+                .OrderByDescending(t => t.CreateDate)
+                .ToPagedListAsync(pageNumber, pageSize);
+
+            ViewBag.CurrentPage = pageNumber;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItemCount = totalTicketCount;
+
+            return View(tickets);
+        }
+        else
+        {
+            ViewBag.us = "hidden";
+            ViewData["Layout"] = "Frontend";
+            string userEmail = HttpContext.Session.GetString("accEmail");
+
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                return RedirectToAction("Login", "Authen");
+            }
+
+            ViewBag.AccountName = userEmail;
+
+            int totalTicketCount = await context.Ticket
+                .Where(t => t.Creator.Email == userEmail)
+                .CountAsync();
+
+            var tickets = await context.Ticket
+                .Include(t => t.Creator)
+                .Include(f => f.Category)
+                .Include(ts => ts.TicketStatus)
+                .Include(sp => sp.Supporter)
+                .Include(pr => pr.Priority)
+                .Where(t => t.Creator.Email == userEmail)
+                .OrderByDescending(t => t.CreateDate)
+                .ToPagedListAsync(pageNumber, pageSize);
+
+            ViewBag.CurrentPage = pageNumber;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItemCount = totalTicketCount;
+
+            return View(tickets);
+        }
+    }
 
 
 
 
 
 
-        public async Task<IActionResult> Details(int id)
+
+    public async Task<IActionResult> Details(int id)
         {
             if (!authService.IsUserLoggedIn())
             {
@@ -151,10 +147,10 @@ namespace WebApp.Controllers
             }
             else
             {
-                ViewData["Layout"] = "_Layout";
+                ViewData["Layout"] = "Frontend";
             }
 
-            var ticket = await ticketService.GetTicketById(id);
+                var ticket = await ticketService.GetTicketById(id);
 
             if (ticket == null)
             {
@@ -222,14 +218,14 @@ namespace WebApp.Controllers
             ViewBag.CategoryId = facilities;
 
             return View();
-
+          
         }
 
         [HttpPost]
         public IActionResult Create(Ticket NewTicket, IFormFile? file)
         {
             var test = (HttpContext.Session.GetString("accEmail")).ToString();
-            var idUser = context.Users.Where(x => x.Email == test).FirstOrDefault().Id;
+            var idUser = context.Users.Where(x=>x.Email == test).FirstOrDefault().Id;
             try
             {
 
@@ -286,7 +282,7 @@ namespace WebApp.Controllers
                     {
                         ModelState.AddModelError(string.Empty, "Please select a file for attachment.");
                     }
-
+                
                 }
             }
             catch (Exception ex)
@@ -317,7 +313,7 @@ namespace WebApp.Controllers
             }
             else
             {
-                ViewData["Layout"] = "_Layout";
+                ViewData["Layout"] = "Frontend";
             }
 
             var ticket = await ticketService.GetTicketById(id);
@@ -392,7 +388,7 @@ namespace WebApp.Controllers
             else
             {
                 ViewBag.us = "hidden";
-                ViewData["Layout"] = "_Layout";
+                ViewData["Layout"] = "Frontend";
             }
             var ticket = await ticketService.GetTicketById(id);
 
@@ -438,7 +434,7 @@ namespace WebApp.Controllers
                     Text = u.Email
                 }).ToList();
             suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
-            ViewBag.SupporterEmails = suporter;
+            ViewBag.SupporterEmails=suporter;
 
             var pro = context.Priority.Select(p => new SelectListItem
             {
@@ -455,8 +451,6 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Ticket editTicket, IFormFile file, DateTime dateTime)
         {
-
-
             // Lấy phiếu cũ từ cơ sở dữ liệu
             var oldTicket = await ticketService.GetTicketById(id);
             if (oldTicket == null)
@@ -489,8 +483,10 @@ namespace WebApp.Controllers
             }
 
             // Cập nhật thông tin phiếu từ form chỉnh sửa
-
-
+            oldTicket.Title = editTicket.Title;
+            oldTicket.Description = editTicket.Description;
+            oldTicket.CategoryId = editTicket.CategoryId;
+            
 
             // Kiểm tra xem người dùng có phải là admin không
             if (authService.IsAdmin())
@@ -508,12 +504,7 @@ namespace WebApp.Controllers
                 oldTicket.ModifiedDate = dateTime;
                 oldTicket.feedback = editTicket.feedback;
             }
-            else
-            {
-                oldTicket.Title = editTicket.Title;
-                oldTicket.Description = editTicket.Description;
-                oldTicket.CategoryId = editTicket.CategoryId;
-            }
+
             // Lưu thay đổi vào cơ sở dữ liệu
             await ticketService.update(oldTicket);
 
@@ -522,110 +513,14 @@ namespace WebApp.Controllers
             return RedirectToAction("Index", "Ticket");
         }
 
-        //chart by bao
-        public string GetTicketStatusData(DateTime? startDate, DateTime? endDate)
-        {
-            var query = context.Ticket.AsQueryable();
-
-            // Lọc theo ngày bắt đầu nếu có
-            if (startDate.HasValue)
-            {
-                query = query.Where(x => x.CreateDate >= startDate.Value);
-            }
-
-            // Lọc theo ngày kết thúc nếu có
-            if (endDate.HasValue)
-            {
-                query = query.Where(x => x.CreateDate <= endDate.Value);
-            }
-
-            var statusOpen = query.Count(x => x.TicketStatusId == 1);
-            var statustPending = query.Count(x => x.TicketStatusId == 3);
-            var statusOnhold = query.Count(x => x.TicketStatusId == 4);
-            var statusIn_progress = query.Count(x => x.TicketStatusId == 2);
-            var statusRejected = query.Count(x => x.TicketStatusId == 5);
-            var statusCompleted = query.Count(x => x.TicketStatusId == 2);
-            var statusIn_Close = query.Count(x => x.TicketStatusId == 7);
-
-            var data = new ModelForChart();
-            data.Open = statusOpen;
-            data.In_progress = statusIn_progress;
-            data.Pending = statustPending;
-            data.On_hold = statusOnhold;
-            data.Rejected = statusRejected;
-            data.Closed = statusIn_Close;
-
-            string json = JsonConvert.SerializeObject(data);
-            return json;
-        }
-
-
-        public string GetTicketCategoryData(DateTime? startDate, DateTime? endDate)
-        {
-            var query = context.Ticket.AsQueryable();
-
-            // Lọc theo ngày bắt đầu nếu có
-            if (startDate.HasValue)
-            {
-                query = query.Where(x => x.CreateDate >= startDate.Value);
-            }
-
-            // Lọc theo ngày kết thúc nếu có
-            if (endDate.HasValue)
-            {
-                query = query.Where(x => x.CreateDate <= endDate.Value);
-            }
-
-            var categories = query
-                .GroupBy(t => t.Category.Name)
-                .Select(group => new
-                {
-                    CategoryName = group.Key,
-                    Count = group.Count()
-                })
-                .ToList();
-            string json = JsonConvert.SerializeObject(categories);
-            return json;
-        }
 
 
 
-        public string GetTicketCreatorData(DateTime? startDate, DateTime? endDate)
-        {
-            var query = context.Ticket.AsQueryable();
-            if (startDate.HasValue)
-            {
-                query = query.Where(x => x.CreateDate >= startDate.Value);
-            }
 
-            // Lọc theo ngày kết thúc nếu có
-            if (endDate.HasValue)
-            {
-                query = query.Where(x => x.CreateDate <= endDate.Value);
-            }
-            var creators = query.GroupBy(x => x.Creator.UserName).Select(group => new { GroupName = group.Key, CreatorName = group.Key }).ToList();
-            string json = JsonConvert.SerializeObject(creators);
-            return json;
-        }
 
-        public string GetTicketSupportData(DateTime? startDate, DateTime? endDate)
-        {
-            var query = context.Ticket.AsQueryable();
-            if (startDate.HasValue)
-            {
-                query = query.Where(x => x.CreateDate >= startDate.Value);
-            }
 
-            // Lọc theo ngày kết thúc nếu có
-            if (endDate.HasValue)
-            {
-                query = query.Where(x => x.CreateDate <= endDate.Value);
-            }
-            var supporter = query.GroupBy(x => x.Supporter.UserName).Select(group => new { GroupName = group.Key, Count = group.Count() }).ToList();
 
-            string json = JsonConvert.SerializeObject(supporter);
-            return json;
-        }
+
 
 
         [HttpPost]

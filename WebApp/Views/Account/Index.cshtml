@@ -1,0 +1,381 @@
+﻿@model IEnumerable<LibraryModels.Users>
+@using WebApp.Services
+@using Newtonsoft.Json;
+@inject WebApp.Ultils.Helper HelperService
+
+
+@{
+    ViewData["Title"] = "Account User";
+    Layout = "_BackendLayout";
+    var ids = 1;
+    var resJson = TempData["res"] as string;
+    var res = resJson != null ? JsonConvert.DeserializeObject<LibraryModels.Response<string>>(resJson) : new LibraryModels.Response<string>() { Msg = "", Success = false };
+}
+
+@functions {
+    public string GetSortDirection(string? propertySort, string? nameSort, string currentSort, string nameToSort)
+    {
+        return string.IsNullOrEmpty(propertySort) ? currentSort : (nameSort == nameToSort ? propertySort : currentSort);
+    }
+}
+<style>
+    .my-swal {
+        z-index: 99999999;
+    }
+</style>
+
+<div class="body-wrapper container">
+    <div class="col-lg-12 ">
+        <div class="w-100">
+            <div class=" alert @(res.Success ==true ?"alert-success":"alert-danger")" @(res.Msg == "" ? "hidden" : "")>
+                <span class="text-black font-weight-bold h1 text-center text-uppercase ">@res.Msg</span>
+            </div>
+
+            <button type="button" class="btn btn-primary mt-5 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Create New Account
+            </button>
+            <form asp-controller="Account" method="post" class="border rounded card">
+                <table class="table table-hover table-responsive table-bordered" id="table_user">
+                    <thead class=" table-primary">
+                        <tr class="text-center">
+                            <th>Id</th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Email","Email")">Email</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_UserName","UserName")">Username</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Code","Code")">Code</a></th>
+                            <th>Status</th>
+                            <th>Role</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="get_data" id="user_@item.Code data-bs-target="#myModal">
+                                <td>@ids</td>
+                                <td class="text-left">@HelperService.AnEmail(@item.Email, 4)</td>
+                                <td>@item.UserName</td>
+                                <td id="stu_code">@item.Code</td>
+                                <td>@item.Status</td>
+                                <td>@item.Role</td>
+                                <td name="dont_click" colspan="2" class="text-center">
+                                    <input type="submit" asp-action="ResetPassword" asp-route-code="@item.Code" value="Reset password" class="btn btn-danger text-white" />
+                                    <input type="submit" class="btn btn-warning text-white " value="Ban account">
+                                </td>
+                            </tr>
+                            ids++;
+                        }
+                    </tbody>
+                </table>
+            </form>
+            @{
+                var Totalpage = (int)ViewData["totalPages"];
+                var PanigationInfo = Model as WebApp.Ultils.Paginated<LibraryModels.Users>;
+            }
+            <div class="mt-2">
+                <div class="flex w-full items-center justify-content-center align-items-center">
+                    @if (PanigationInfo.PageIndex > 1)
+                    {
+                        <a class="btn btn-primary" asp-route-pageIndex="@(1)">First</a>
+                        <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex -1)">Prev</a>
+                    }
+                    @for (int i = 1; i <= Totalpage; i++)
+                    {
+                        <a class="btn btn-outline-primary @(PanigationInfo.PageIndex == i ? "active" : string.Empty)" asp-route-pageIndex="@(i)">@(i)</a>
+                    }
+
+                    @if (PanigationInfo.PageIndex < PanigationInfo.TotalPages)
+                    {
+                        <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.PageIndex +1)">Next</a>
+                        <a class="btn btn-primary" asp-route-pageIndex="@(PanigationInfo.TotalPages)">Last</a>
+                    }
+                </div>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade modal2" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <button id="btn-new">
+                                Create new account with new infomation
+                            </button>
+                            <button id="btn-have">Create new account with available infomation</button>
+
+                            <form enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="Email">Email:</label>*
+                                    <input type="email" class="form-control" id="Email" name="Email" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="UserName">Username:</label>*
+                                    <input type="text" class="form-control" id="UserName" name="UserName" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Password">Password:</label>*
+                                    <input type="password" class="form-control" id="Password" name="Password" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Role">Role:</label>*
+                                    <select name="SelectedRole" id="Role" class="form-control" required>
+                                        <option value="">---Choose role---</option>
+                                        <option value="@LibraryModels.Role.Admin">@LibraryModels.Role.Admin</option>
+                                        <option value="@LibraryModels.Role.Student">@LibraryModels.Role.Student</option>
+                                        <option value="@LibraryModels.Role.FacilityHead">@LibraryModels.Role.FacilityHead</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Gender:</label>
+                                    <div class="form-check">
+                                        <input type="radio" id="Male" name="userInfo.Gender" value="true" class="form-check-input" required />
+                                        <label for="Male" class="form-check-label">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" id="Female" name="userInfo.Gender" value="false" class="form-check-input" required />
+                                        <label for="Female" class="form-check-label">Female</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="DateOfBirth">Date of Birth:</label>
+                                    <input type="date" class="form-control" id="DateOfBirth" name="userInfo.DateOfBirth" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Photo">Photo:</label>
+                                    <input type="file" class="form-control" id="Photo" name="userInfo.Photo" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Phone">Phone:</label>
+                                    <input type="tel" class="form-control" id="Phone" name="userInfo.Phone" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Address">Address:</label>
+                                    <input type="text" class="form-control" id="Address" name="userInfo.Address" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="City">City:</label>
+                                    <input type="text" class="form-control" id="City" name="userInfo.City" required />
+                                </div>
+
+                                <button type="submit" id="Create_avai" class="btn btn-primary">Create</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade modal1" tabindex="-1" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Infomation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img src="" alt="profile picture" class="rounded-circle "
+                                             style="width: 150px; height: 150px" id="avarta">
+                                    </div>
+                                    <br />
+                                    <p class="card-title mt-2">Username:  <b id="username"></b></p>
+                                    <p class="card-title mt-2" id="email"> </p>
+                                    <p class="card-title mt-2" id="phone"></p>
+                                    <p class="card-title mt-2" id="address"></p>
+                                    <p class="card-title mt-2" id="city"></p>
+                                    <p class="card-title mt-2" id="dob"></p>
+                                    <p class="card-title mt-2" id="phone"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>$(document).ready(function () {
+
+            var user_detail = $(".modal-body")
+            var username = $("#username")
+            var email = $("#email")
+            var avarta = $("#avarta")
+            var phone = $("#phone")
+            var address = $("#address")
+            var city = $("#city")
+            var dob = $("#dob")
+            var shouldOpenModal = true;
+            $('.get_data').click(async function () {
+                if (!shouldOpenModal) {
+                    return;
+                }
+                // Lấy hàng cha của nút đã nhấp (hàng tr)
+                var row = $(this).closest('tr');
+
+                // Lấy dữ liệu từ các ô trong hàng
+                var userMail = row.find('td:eq(1)').text();
+                var name = row.find('td:eq(2)').text();
+                var stuCodeId = row.find('td:eq(3)').text();
+
+                var modal = $('.modal1');
+
+
+                //Ajax get user info
+                $.ajax({
+                    type: 'GET',
+                    url: `/Account/UserInfo?stuCodeId=${stuCodeId}`,
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: async (res) => {
+                        var data = res.data ? JSON.parse(res.data) : null;
+                        if (data) {
+                            username.text(data.UserName)
+                            email.text("Email:  " + data.Email)
+                            avarta.attr("src", `~/images/avatars/data.Photo ? data.Photo : avatar_default.jpeg`)
+                            phone.text("Phone:  " + data.Phone)
+                            address.text("Address:  " + data.Address)
+                            city.text("City:  " + data.City)
+                            dob.text("Day of birth:  " + data.DateOfBirth)
+                        } else {
+                            username.text(name)
+                            email.text("Email:" + userMail)
+                            avarta.attr("src", `/images/avatars/avatar_default.jpeg`)
+                            phone.text("")
+                            address.text("")
+                            city.text("")
+                            dob.text("")
+                        }
+                    },
+                    error: err => console.log(err)
+                });
+                modal.attr('id', stuCodeId);
+                modal.modal('show');
+            });
+
+            //Create new account
+            $("#Create_avai").on("click", function (event) {
+                event.preventDefault();
+
+                var email = $("#Email").val();
+                var userName = $("#UserName").val();
+                var password = $("#Password").val();
+                var role = $("#Role").val();
+                var gender = $("input[name='userInfo.Gender']:checked").val();
+                var dateOfBirth = $("#DateOfBirth").val();
+                var photo = $("#Photo")[0].files[0];
+                var phone = $("#Phone").val();
+                var address = $("#Address").val();
+                var city = $("#City").val();
+
+                var parts = dateOfBirth.split("-");
+                var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
+
+                var formData = new FormData();
+                formData.append("Email", email);
+                formData.append("UserName", userName);
+                formData.append("Password", password);
+                formData.append("Role", role);
+                formData.append("Gender", gender);
+                formData.append("DateOfBirth", formattedDate);
+                formData.append("Photo", photo);
+                formData.append("Phone", phone);
+                formData.append("Address", address);
+                formData.append("City", city);
+
+                $.ajax({
+                    url: "/Account/CreateAccount",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response);
+                        var data = JSON.parse(response)
+                        if (data.Success) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            }).then((result) => {
+                                result.isConfirmed ? window.location.reload() : ""
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            })
+                        }
+
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
+                    }
+                });
+            });
+
+
+            $("#Photo").on("change", function () {
+                var photo = $("#Photo")[0].files[0];
+                var formData = new FormData();
+                formData.append("Photo", photo);
+
+
+                $.ajax({
+                    url: "/Account/CheckPhoto",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        var data = JSON.parse(response)
+                        if (!data.Success) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops",
+                                text: data.Msg,
+                                customClass: {
+                                    container: 'my-swal'
+                                }
+                            })
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
+                    }
+                });
+            });
+        });
+
+
+        $("td[name='dont_click']").on("click", function (event) {
+            event.stopPropagation(); // Ngăn chặn sự kiện click lan ra các phần tử cha
+            shouldOpenModal = false; // Đặt biến cờ thành false
+        });</script>
+}

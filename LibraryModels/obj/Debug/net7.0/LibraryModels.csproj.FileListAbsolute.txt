@@ -46,3 +46,15 @@ C:/Users/T490/Documents/GitHub/OnlineHelpDesk/LibraryModels/obj/Debug/net7.0/ref
 /Users/mac/Documents/GitHub/OnlineHelpDesk/LibraryModels/obj/Debug/net7.0/refint/LibraryModels.dll
 /Users/mac/Documents/GitHub/OnlineHelpDesk/LibraryModels/obj/Debug/net7.0/LibraryModels.pdb
 /Users/mac/Documents/GitHub/OnlineHelpDesk/LibraryModels/obj/Debug/net7.0/ref/LibraryModels.dll
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/bin/Debug/net7.0/LibraryModels.deps.json
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/bin/Debug/net7.0/LibraryModels.dll
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/bin/Debug/net7.0/LibraryModels.pdb
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/Debug/net7.0/LibraryModels.csproj.AssemblyReference.cache
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/Debug/net7.0/LibraryModels.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/Debug/net7.0/LibraryModels.AssemblyInfoInputs.cache
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/Debug/net7.0/LibraryModels.AssemblyInfo.cs
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/Debug/net7.0/LibraryModels.csproj.CoreCompileInputs.cache
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/Debug/net7.0/LibraryModels.dll
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/Debug/net7.0/refint/LibraryModels.dll
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/Debug/net7.0/LibraryModels.pdb
+/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/Debug/net7.0/ref/LibraryModels.dll

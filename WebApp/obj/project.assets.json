@@ -11623,11 +11623,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/WebApp.csproj",
+      "projectUniqueName": "/Users/mac/Desktop/OnlineHelpDesk /WebApp/WebApp.csproj",
       "projectName": "WebApp",
-      "projectPath": "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/WebApp.csproj",
+      "projectPath": "/Users/mac/Desktop/OnlineHelpDesk /WebApp/WebApp.csproj",
       "packagesPath": "/Users/mac/.nuget/packages/",
-      "outputPath": "/Users/mac/Documents/GitHub/OnlineHelpDesk/WebApp/obj/",
+      "outputPath": "/Users/mac/Desktop/OnlineHelpDesk /WebApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/mac/.nuget/NuGet/NuGet.Config"
@@ -11644,8 +11644,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/mac/Documents/GitHub/OnlineHelpDesk/LibraryModels/LibraryModels.csproj": {
-              "projectPath": "/Users/mac/Documents/GitHub/OnlineHelpDesk/LibraryModels/LibraryModels.csproj"
+            "/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/LibraryModels.csproj": {
+              "projectPath": "/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/LibraryModels.csproj"
             }
           }
         }

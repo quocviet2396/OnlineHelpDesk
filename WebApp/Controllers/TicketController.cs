@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApp.Database_helper;
 using Microsoft.EntityFrameworkCore;
-using X.PagedList;
+using PagedList;
 using System.Drawing.Printing;
 using WebApp.Models.ViewModels;
 using Newtonsoft.Json;
@@ -48,14 +48,14 @@ namespace WebApp.Controllers
                 int totalTicketCount = await context.Ticket.CountAsync();
                 ViewBag.AccountName = HttpContext.Session.GetString("accEmail");
 
-                var tickets = await context.Ticket
+                var tickets =  context.Ticket
                     .Include(t => t.Creator)
                     .Include(f => f.Category)
                     .Include(ts => ts.TicketStatus)
                     .Include(sp => sp.Supporter)
                     .Include(pr => pr.Priority)
                     .OrderByDescending(t => t.CreateDate)
-                    .ToPagedListAsync(pageNumber, pageSize);
+                    .ToPagedList(pageNumber, pageSize);
 
                 ViewBag.CurrentPage = pageNumber;
                 ViewBag.PageSize = pageSize;
@@ -78,7 +78,7 @@ namespace WebApp.Controllers
                     .Where(t => t.Supporter.Email == supporterEmail)
                     .CountAsync();
 
-                var tickets = await context.Ticket
+                var tickets = context.Ticket
                     .Include(t => t.Creator)
                     .Include(f => f.Category)
                     .Include(ts => ts.TicketStatus)
@@ -86,7 +86,7 @@ namespace WebApp.Controllers
                     .Include(pr => pr.Priority)
                     .Where(t => t.Supporter.Email == supporterEmail)
                     .OrderByDescending(t => t.CreateDate)
-                    .ToPagedListAsync(pageNumber, pageSize);
+                    .ToPagedList(pageNumber, pageSize);
 
                 ViewBag.CurrentPage = pageNumber;
                 ViewBag.PageSize = pageSize;
@@ -111,7 +111,7 @@ namespace WebApp.Controllers
                     .Where(t => t.Creator.Email == userEmail)
                     .CountAsync();
 
-                var tickets = await context.Ticket
+                var tickets = context.Ticket
                     .Include(t => t.Creator)
                     .Include(f => f.Category)
                     .Include(ts => ts.TicketStatus)
@@ -119,7 +119,7 @@ namespace WebApp.Controllers
                     .Include(pr => pr.Priority)
                     .Where(t => t.Creator.Email == userEmail)
                     .OrderByDescending(t => t.CreateDate)
-                    .ToPagedListAsync(pageNumber, pageSize);
+                    .ToPagedList(pageNumber, pageSize);
 
                 ViewBag.CurrentPage = pageNumber;
                 ViewBag.PageSize = pageSize;

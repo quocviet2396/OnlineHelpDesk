@@ -10,6 +10,8 @@ using WebApp.Database_helper;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 using System.Drawing.Printing;
+using WebApp.Models.ViewModels;
+using Newtonsoft.Json;
 
 namespace WebApp.Controllers
 {
@@ -30,6 +32,7 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Index(int? page)
         {
+
             int pageSize = 10;
             int pageNumber = page ?? 1;
 
@@ -452,6 +455,8 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Ticket editTicket, IFormFile file, DateTime dateTime)
         {
+
+
             // Lấy phiếu cũ từ cơ sở dữ liệu
             var oldTicket = await ticketService.GetTicketById(id);
             if (oldTicket == null)
@@ -484,9 +489,7 @@ namespace WebApp.Controllers
             }
 
             // Cập nhật thông tin phiếu từ form chỉnh sửa
-            oldTicket.Title = editTicket.Title;
-            oldTicket.Description = editTicket.Description;
-            oldTicket.CategoryId = editTicket.CategoryId;
+
 
 
             // Kiểm tra xem người dùng có phải là admin không
@@ -505,7 +508,12 @@ namespace WebApp.Controllers
                 oldTicket.ModifiedDate = dateTime;
                 oldTicket.feedback = editTicket.feedback;
             }
-
+            else
+            {
+                oldTicket.Title = editTicket.Title;
+                oldTicket.Description = editTicket.Description;
+                oldTicket.CategoryId = editTicket.CategoryId;
+            }
             // Lưu thay đổi vào cơ sở dữ liệu
             await ticketService.update(oldTicket);
 
@@ -514,14 +522,110 @@ namespace WebApp.Controllers
             return RedirectToAction("Index", "Ticket");
         }
 
+        //chart by bao
+        public string GetTicketStatusData(DateTime? startDate, DateTime? endDate)
+        {
+            var query = context.Ticket.AsQueryable();
+
+            // Lọc theo ngày bắt đầu nếu có
+            if (startDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate >= startDate.Value);
+            }
+
+            // Lọc theo ngày kết thúc nếu có
+            if (endDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate <= endDate.Value);
+            }
+
+            var statusOpen = query.Count(x => x.TicketStatusId == 1);
+            var statustPending = query.Count(x => x.TicketStatusId == 3);
+            var statusOnhold = query.Count(x => x.TicketStatusId == 4);
+            var statusIn_progress = query.Count(x => x.TicketStatusId == 2);
+            var statusRejected = query.Count(x => x.TicketStatusId == 5);
+            var statusCompleted = query.Count(x => x.TicketStatusId == 2);
+            var statusIn_Close = query.Count(x => x.TicketStatusId == 7);
+
+            var data = new ModelForChart();
+            data.Open = statusOpen;
+            data.In_progress = statusIn_progress;
+            data.Pending = statustPending;
+            data.On_hold = statusOnhold;
+            data.Rejected = statusRejected;
+            data.Closed = statusIn_Close;
+
+            string json = JsonConvert.SerializeObject(data);
+            return json;
+        }
+
+
+        public string GetTicketCategoryData(DateTime? startDate, DateTime? endDate)
+        {
+            var query = context.Ticket.AsQueryable();
+
+            // Lọc theo ngày bắt đầu nếu có
+            if (startDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate >= startDate.Value);
+            }
+
+            // Lọc theo ngày kết thúc nếu có
+            if (endDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate <= endDate.Value);
+            }
+
+            var categories = query
+                .GroupBy(t => t.Category.Name)
+                .Select(group => new
+                {
+                    CategoryName = group.Key,
+                    Count = group.Count()
+                })
+                .ToList();
+            string json = JsonConvert.SerializeObject(categories);
+            return json;
+        }
 
 
 
+        public string GetTicketCreatorData(DateTime? startDate, DateTime? endDate)
+        {
+            var query = context.Ticket.AsQueryable();
+            if (startDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate >= startDate.Value);
+            }
 
+            // Lọc theo ngày kết thúc nếu có
+            if (endDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate <= endDate.Value);
+            }
+            var creators = query.GroupBy(x => x.Creator.UserName).Select(group => new { GroupName = group.Key, CreatorName = group.Key }).ToList();
+            string json = JsonConvert.SerializeObject(creators);
+            return json;
+        }
 
+        public string GetTicketSupportData(DateTime? startDate, DateTime? endDate)
+        {
+            var query = context.Ticket.AsQueryable();
+            if (startDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate >= startDate.Value);
+            }
 
+            // Lọc theo ngày kết thúc nếu có
+            if (endDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate <= endDate.Value);
+            }
+            var supporter = query.GroupBy(x => x.Supporter.UserName).Select(group => new { GroupName = group.Key, Count = group.Count() }).ToList();
 
-
+            string json = JsonConvert.SerializeObject(supporter);
+            return json;
+        }
 
 
         [HttpPost]

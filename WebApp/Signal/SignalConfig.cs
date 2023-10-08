@@ -12,15 +12,22 @@ namespace WebApp.Signal
     {
         private readonly IAccountService _account;
         private readonly DatabaseContext _db;
-        public SignalConfig(IAccountService account, DatabaseContext db)
+        protected IHubContext<SignalConfig> _Context;
+        private readonly ITicket _ticket;
+        public SignalConfig(IAccountService account, DatabaseContext db, IHubContext<SignalConfig> Context, ITicket ticket)
         {
             _account = account;
             _db = db;
+            _Context = Context;
+            _ticket = ticket;
         }
+
+
 
         public override Task OnConnectedAsync()
         {
             Clients.Caller.SendAsync("OnConnected");
+
             return base.OnConnectedAsync();
         }
 
@@ -79,4 +86,3 @@ namespace WebApp.Signal
 
     }
 }
-

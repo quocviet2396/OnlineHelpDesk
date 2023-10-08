@@ -14,6 +14,8 @@ using System.Collections.Generic;
 using WebApp.Ultils;
 using Microsoft.AspNetCore.SignalR;
 using WebApp.Signal;
+using Newtonsoft.Json;
+using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
 {
@@ -79,93 +81,6 @@ namespace WebApp.Controllers
             return View(result);
         }
 
-        if (authService.IsAdmin())
-        {
-            ViewData["Layout"] = "_BackendLayout";
-
-            int totalTicketCount = await context.Ticket.CountAsync();
-            ViewBag.AccountName = HttpContext.Session.GetString("accEmail");
-
-            var tickets = await context.Ticket
-                .Include(t => t.Creator)
-                .Include(f => f.Category)
-                .Include(ts => ts.TicketStatus)
-                .Include(sp => sp.Supporter)
-                .Include(pr => pr.Priority)
-                .OrderByDescending(t => t.CreateDate)
-                .ToPagedListAsync(pageNumber, pageSize);
-
-            ViewBag.CurrentPage = pageNumber;
-            ViewBag.PageSize = pageSize;
-            ViewBag.TotalItemCount = totalTicketCount;
-
-            return View(tickets);
-        }
-        else if (authService.IsSupporter())
-        {
-            ViewData["Layout"] = "_BackendLayout";
-            string supporterEmail = HttpContext.Session.GetString("accEmail");
-
-            if (string.IsNullOrEmpty(supporterEmail))
-            {
-                return RedirectToAction("Login", "Authen");
-            }
-
-            ViewBag.AccountName = supporterEmail;
-            int totalTicketCount = await context.Ticket
-                .Where(t => t.Supporter.Email == supporterEmail)
-                .CountAsync();
-
-            var tickets = await context.Ticket
-                .Include(t => t.Creator)
-                .Include(f => f.Category)
-                .Include(ts => ts.TicketStatus)
-                .Include(sp => sp.Supporter)
-                .Include(pr => pr.Priority)
-                .Where(t => t.Supporter.Email == supporterEmail)
-                .OrderByDescending(t => t.CreateDate)
-                .ToPagedListAsync(pageNumber, pageSize);
-
-            ViewBag.CurrentPage = pageNumber;
-            ViewBag.PageSize = pageSize;
-            ViewBag.TotalItemCount = totalTicketCount;
-
-            return View(tickets);
-        }
-        else
-        {
-            ViewBag.us = "hidden";
-            ViewData["Layout"] = "Frontend";
-            string userEmail = HttpContext.Session.GetString("accEmail");
-
-            if (string.IsNullOrEmpty(userEmail))
-            {
-                return RedirectToAction("Login", "Authen");
-            }
-
-            ViewBag.AccountName = userEmail;
-
-            int totalTicketCount = await context.Ticket
-                .Where(t => t.Creator.Email == userEmail)
-                .CountAsync();
-
-            var tickets = await context.Ticket
-                .Include(t => t.Creator)
-                .Include(f => f.Category)
-                .Include(ts => ts.TicketStatus)
-                .Include(sp => sp.Supporter)
-                .Include(pr => pr.Priority)
-                .Where(t => t.Creator.Email == userEmail)
-                .OrderByDescending(t => t.CreateDate)
-                .ToPagedListAsync(pageNumber, pageSize);
-
-            ViewBag.CurrentPage = pageNumber;
-            ViewBag.PageSize = pageSize;
-            ViewBag.TotalItemCount = totalTicketCount;
-
-            return View(tickets);
-        }
-    }
 
 
 
@@ -259,7 +174,7 @@ namespace WebApp.Controllers
             ViewBag.CategoryId = facilities;
 
             return View();
-          
+
         }
 
         [HttpPost]
@@ -354,7 +269,7 @@ namespace WebApp.Controllers
             }
             else
             {
-                ViewData["Layout"] = "Frontend";
+                ViewData["Layout"] = "_Layout";
             }
 
             var ticket = await ticketService.GetTicketById(id);
@@ -430,7 +345,7 @@ namespace WebApp.Controllers
             else
             {
                 ViewBag.us = "hidden";
-                ViewData["Layout"] = "Frontend";
+                ViewData["Layout"] = "_Layout";
             }
 
             if (ticket == null)
@@ -475,7 +390,7 @@ namespace WebApp.Controllers
                     Text = u.Email
                 }).ToList();
             suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
-            ViewBag.SupporterEmails=suporter;
+            ViewBag.SupporterEmails = suporter;
 
             var pro = context.Priority.Select(p => new SelectListItem
             {
@@ -578,13 +493,118 @@ namespace WebApp.Controllers
             TempData["MessageType"] = "Success";
             return RedirectToAction("Index", "Ticket");
         }
+
+        //chart by bao
+        public string GetTicketStatusData(DateTime? startDate, DateTime? endDate)
+        {
+            var query = context.Ticket.AsQueryable();
+
+            // Lọc theo ngày bắt đầu nếu có
+            if (startDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate >= startDate.Value);
+            }
+
+            // Lọc theo ngày kết thúc nếu có
+            if (endDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate <= endDate.Value);
+            }
+
+            var statusOpen = query.Count(x => x.TicketStatusId == 1);
+            var statustPending = query.Count(x => x.TicketStatusId == 3);
+            var statusOnhold = query.Count(x => x.TicketStatusId == 4);
+            var statusIn_progress = query.Count(x => x.TicketStatusId == 2);
+            var statusRejected = query.Count(x => x.TicketStatusId == 5);
+            var statusCompleted = query.Count(x => x.TicketStatusId == 2);
+            var statusIn_Close = query.Count(x => x.TicketStatusId == 7);
+
+            var data = new ModelForChart();
+            data.Open = statusOpen;
+            data.In_progress = statusIn_progress;
+            data.Pending = statustPending;
+            data.On_hold = statusOnhold;
+            data.Rejected = statusRejected;
+            data.Closed = statusIn_Close;
+
+            string json = JsonConvert.SerializeObject(data);
+            return json;
+        }
+
+
+        public string GetTicketCategoryData(DateTime? startDate, DateTime? endDate)
+        {
+            var query = context.Ticket.AsQueryable();
+
+            // Lọc theo ngày bắt đầu nếu có
+            if (startDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate >= startDate.Value);
+            }
+
+            // Lọc theo ngày kết thúc nếu có
+            if (endDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate <= endDate.Value);
+            }
+
+            var categories = query
+                .GroupBy(t => t.Category.Name)
+                .Select(group => new
+                {
+                    CategoryName = group.Key,
+                    Count = group.Count()
+                })
+                .ToList();
+            string json = JsonConvert.SerializeObject(categories);
+            return json;
+        }
+
+
+
+        public string GetTicketCreatorData(DateTime? startDate, DateTime? endDate)
+        {
+            var query = context.Ticket.AsQueryable();
+            if (startDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate >= startDate.Value);
+            }
+
+            // Lọc theo ngày kết thúc nếu có
+            if (endDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate <= endDate.Value);
+            }
+            var creators = query.GroupBy(x => x.Creator.UserName).Select(group => new { GroupName = group.Key, CreatorName = group.Key }).ToList();
+            string json = JsonConvert.SerializeObject(creators);
+            return json;
+        }
+
+        public string GetTicketSupportData(DateTime? startDate, DateTime? endDate)
+        {
+            var query = context.Ticket.AsQueryable();
+            if (startDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate >= startDate.Value);
+            }
+
+            // Lọc theo ngày kết thúc nếu có
+            if (endDate.HasValue)
+            {
+                query = query.Where(x => x.CreateDate <= endDate.Value);
+            }
+            var supporter = query.GroupBy(x => x.Supporter.UserName).Select(group => new { GroupName = group.Key, Count = group.Count() }).ToList();
+
+            string json = JsonConvert.SerializeObject(supporter);
+            return json;
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Filter(int categoryId)
         {
             var filteredTickets = await ticketService.GetTicketById(categoryId);
             return View("Index", filteredTickets);
         }
-
-
     }
 }

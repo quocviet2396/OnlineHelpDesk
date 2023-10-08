@@ -5,9 +5,6 @@
     Layout = "_BackendLayout";
 }
 
-<h1>Create</h1>
-
-<h4>News</h4>
 <div class="body-wrapper">
     <div class="container-fluid">
         <div class="card">
@@ -34,7 +31,7 @@
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Img" class="form-label">Image</label>
-                                <input asp-for="Img" type="file" class="form-control" />
+                                <input asp-for="Img" type="file" name="file" class="form-control" />
                                 <span asp-validation-for="Img" class="text-danger form-text"></span>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>

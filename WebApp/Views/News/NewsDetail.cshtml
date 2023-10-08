@@ -4,16 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
-@*<div class="site-blocks-cover overlay" data-aos="fade" data-stellar-background-ratio="0.5">
-    <div class="container">
-        <div class="row align-items-center justify-content-start">
-            <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
-                <h1 class="bg-text-line">News</h1>
-                <p class="mt-4">Read the Latest News and Updates</p>
-            </div>
-        </div>
-    </div>
-</div>*@
 
 <div class="site-section">
     <div class="container">
@@ -26,46 +16,33 @@
                         <div class="content">
                             @Html.Raw(Model.Content)
                         </div>
-                        <form>
+                        <form asp-action="AddComment" asp-controller="News" method="post">
                             <h3></h3>
+                            <input asp-for="@Model.ID" type="hidden" name="mewId" />
                             <div class="form-group">
-                                <textarea id="CommentText" name="CommentText" class="form-control" rows="3" placeholder="Write your comment here..."></textarea>
+                                <textarea  name="cmt" class="form-control" rows="3" placeholder="Write your comment here..."></textarea>
                             </div>
-                            <button class="btn btn-success">Comment</button>
-
+                            <button type="submit" class="btn btn-success">Comment</button>
                         </form>
+                        <div class="comments">
+                            <h3>Comments</h3>
+                            <div class="comments" id="commentsContainer">
+                               
+                            </div>
+                            @foreach (var comment in Model.Comments)
+                            {
+                                <div class="comment">
+                                    <p>@comment.Text</p>
+                                    @*<span class="date">@comment.PostedDate</span>*@
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-@*<div class="container">
-    <h2>@Model.Title</h2>
-    <p>@Model.Content</p>
-    <p><strong>Publish Date:</strong> @Model.PublishDate.ToShortDateString()</p>
-    
-    <!-- Danh sách bình luận -->
-   
-    
-    <!-- Biểu mẫu để thêm bình luận mới -->
-    <h3>Add Comment</h3>
-    <form asp-action="Write your comment" method="post">
-        <div class="form-group">
-            <textarea id="CommentText" name="CommentText" class="form-control" rows="3" placeholder="Write your comment here"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Comment</button>
-    </form>
-</div>*@
-
-
-
 
 
 @section Scripts {

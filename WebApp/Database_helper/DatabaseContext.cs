@@ -22,6 +22,7 @@ namespace WebApp.Database_helper
         public DbSet<Priority> Priority { get; set; }
         public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<UserConn> userConn { get; set; }
         public DbSet<Notifications> Notifications { get; set; }
         public DbSet<TicketDTO> TickdetDTOs { get; set; }

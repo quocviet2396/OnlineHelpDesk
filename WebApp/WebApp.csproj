@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -12,12 +12,12 @@
     <None Remove="Ultils\" />
     <None Remove="Views\Data\" />
     <None Remove="Views\Account\" />
-    <None Remove="Authorize\" />
-    <None Remove="Signal\" />
-    <None Remove="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
+    <None Include="Views\Facilities\Create.cshtml" />
+    <None Include="Views\Facilities\Edit.cshtml" />
+    <None Include="Views\Facilities\Index.cshtml" />
     <None Include="wwwroot\backend\css\icons\tabler-icons\fonts\tabler-icons.svg" />
     <None Include="wwwroot\backend\css\icons\tabler-icons\fonts\tabler-icons.woff2" />
     <None Include="wwwroot\backend\images\logos\dark-logo.svg" />
@@ -523,19 +523,24 @@
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.11" />
     <PackageReference Include="Bogus" Version="34.0.2" />
-    <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
-    <PackageReference Include="SqlTableDependency" Version="8.5.8" />
+    <PackageReference Include="X.PagedList" Version="8.4.7" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.7" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
     <Folder Include="Views\TicketStatus\" />
     <Folder Include="Ultils\" />
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\images\avatars\" />
-    <Folder Include="Signal\" />
-    <Folder Include="Views\Mail\" />
+    <Folder Include="wwwroot\images\News\" />
+    <Folder Include="wwwroot\images\News\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LibraryModels">
+      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -548,8 +553,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="LibraryModels">
-      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj" />
   </ItemGroup>
 </Project>

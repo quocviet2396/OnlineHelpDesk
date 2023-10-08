@@ -1,0 +1,106 @@
+﻿@model IEnumerable<LibraryModels.News>
+
+@{
+    ViewData["Title"] = "News";
+    Layout = "_Layout";
+
+    // Số bài viết mỗi trang
+    int newsPerPage = 6;
+
+    // Trang hiện tại (mặc định là trang 1)
+    int currentPage = 1;
+
+    // Tính tổng số trang dựa trên số lượng bài viết và số bài viết mỗi trang
+    int totalPages = (int)Math.Ceiling((double)Model.Count() / newsPerPage);
+
+    // Lấy danh sách bài viết của trang hiện tại
+    var currentNewsPage = Model.Skip((currentPage - 1) * newsPerPage).Take(newsPerPage);
+}
+
+
+
+<div class="container">
+    <h2 class="text-center mb-4">News List</h2>
+    <div class="row">
+        @foreach (var newsItem in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="@Url.Content("~/images/News/"+newsItem.Img)" class="form-control" width="auto" height="auto">
+                    <div class="card-body">
+                        <h5 class="card-title">@newsItem.Title</h5>
+                        <p class="card-text shortened-content">@TruncateText(newsItem.Content,100)</p>
+                        <p class="card-text">
+                            <small class="text-muted">Published on @newsItem.PublishDate.ToShortDateString()</small>
+                        </p>
+                        <a class="btn btn-primary" asp-controller="Frontend" asp-action="NewsDetail" asp-route-id="@newsItem.ID">Read More</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("News", new { page = 1 })" aria-label="First">
+                                <span aria-hidden="true">&laquo;&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("News", new { page = currentPage - 1 })" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        @for (int i = 1; i <= totalPages; i++)
+                        {
+                            <li class="page-item @(i == currentPage ? "active" : "")"><a class="page-link" href="@Url.Action("News", new { page = i })">@i</a></li>
+                        }
+                        <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("News", new { page = currentPage + 1 })" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                            <a class="page-link" href="@Url.Action("News", new { page = totalPages })" aria-label="Last">
+                                <span aria-hidden="true">&raquo;&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@functions {
+    public string TruncateText(string text, int maxLength)
+    {
+        if (text.Length > maxLength)
+        {
+            return text.Substring(0, maxLength) + "...";
+        }
+        return text;
+    }
+}
+
+@*<div class="row">
+    <div class="col-md-12 text-center">
+        <div class="site-block-27">
+            <ul>
+                <li><a href="#">&lt;</a></li>
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li class="@(i == currentPage ? "active" : "")"><a href="@Url.Action("News", new { page = i })">@i</a></li>
+                }
+                <li><a href="#">&gt;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>*@
+
+
+

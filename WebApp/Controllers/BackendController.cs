@@ -1,6 +1,4 @@
-﻿using LibraryModels;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Database_helper;
 using WebApp.Repositories;
 
@@ -18,7 +16,7 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
-            if (!authenService.IsUserLoggedIn())
+            if(!authenService.IsUserLoggedIn())
             {
                 return RedirectToAction("Login", "Authen");
             }
@@ -32,7 +30,5 @@ namespace WebApp.Controllers
             }*/
             return View();
         }
-
-
     }
 }

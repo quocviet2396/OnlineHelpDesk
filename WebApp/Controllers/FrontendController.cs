@@ -7,11 +7,13 @@ namespace WebApp.Controllers
     {
         private readonly ILogger<FrontendController> logger;
         private readonly IQnAService qnAService;
+        private readonly INewsService service;
 
-        public FrontendController(ILogger<FrontendController> logger, IQnAService qnAService)
+        public FrontendController(ILogger<FrontendController> logger, IQnAService qnAService, INewsService service)
         {
             this.logger = logger;
             this.qnAService = qnAService;
+            this.service = service;
         }
         public IActionResult Index()
         {
@@ -30,6 +32,25 @@ namespace WebApp.Controllers
                 return NotFound();
             }
             return View(qna);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> News()
+        {
+            var news = await service.GetNewsList();
+            return View(news);
+        }
+        [HttpGet]
+        public async Task<IActionResult> NewsDetail(int id)
+        {
+
+            var newsItem = await service.GetNewsById(id);
+
+            if (newsItem == null)
+            {
+                return NotFound();
+            }
+            return View(newsItem);
         }
     }
 }

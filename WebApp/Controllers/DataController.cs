@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using LibraryModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using WebApp.Authorize;
 using WebApp.Repositories;
 using WebApp.Ultils;
 
@@ -13,7 +12,6 @@ using WebApp.Ultils;
 
 namespace WebApp.Controllers
 {
-    [Authorize]
     public class DataController : Controller
     {
         private readonly IDataService _data;
@@ -24,19 +22,16 @@ namespace WebApp.Controllers
             _hideemail = hideemail;
         }
 
-        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort, string? currentFilter)
+        public async Task<IActionResult> Index(int pageIndex, int? limit, string? currentSort)
         {
             var Limit = limit ?? 7;
-            var filter = string.IsNullOrEmpty(currentFilter) ? null : currentFilter;
-
-            ViewData["currentFilter"] = filter;
 
             var propertySort = string.IsNullOrEmpty(currentSort) ? null : currentSort.Split("_")[0] == "desc" ? $"asc_{currentSort.Split("_")[1]}" : $"desc_{currentSort.Split("_")[1]}";
             ViewData["propertySort"] = propertySort;
             ViewData["nameSort"] = propertySort?.Split("_")[1];
 
             var pageNumber = pageIndex <= 0 ? 1 : pageIndex;
-            var result = await _data.AllUser(pageNumber, Limit, propertySort, filter) as Paginated<UsersInfo>;
+            var result = await _data.AllUser(pageNumber, Limit, propertySort) as Paginated<UsersInfo>;
             ViewData["totalPages"] = result.TotalPages;
             ViewData["Count"] = result.Count;
             ViewData["AccCode"] = _data.AccCode().GetAwaiter().GetResult();
@@ -52,5 +47,14 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpPost]
+        public async Task<JsonResult> CreateAccount(IFormCollection data)
+        {
+            var res = await _data.CreateAccount(data);
+            var result = JsonConvert.SerializeObject(res);
+            return Json(result);
+        }
     }
 }
+

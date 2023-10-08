@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    var i = 0;
+    var i = 1;
     Layout = "_BackendLayout";
 }
 
@@ -13,11 +13,13 @@
     <!-- Change this content if you need to modify -->
     <div class="col-lg-12 d-flex align-items-stretch">
         <div class="card w-100">
-            <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">New</h5>
+            <div class="card-body p-4">            
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title fw-semibold mb-4">News</h5>
+                    <a class="btn btn-primary" asp-action="News">News List</a>
+                </div>
                 <a class="btn btn-info" asp-action="Create">Create News</a>
                 <div class="table-responsive">
-
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
                             <tr class="text-center">
@@ -37,8 +39,8 @@
                                     <h6 class="fw-semibold mb-0">PublishDate</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Images</h6>
-                                    </th
+                                        <h6 class="fw-semibold mb-0">Image</h6>
+                                    </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,10 +49,10 @@
                                 <tr class="text-center">
                                     <td class="border-bottom-0"><h6 class="fw-semibold mb-0">@i</h6></td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">@Html.DisplayFor(modelItem => item.Title)</p>
+                                        <p class="mb-0 fw-normal"> @TruncateText(item.Title,26)</p>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">@Html.DisplayFor(modelItem => item.Content)</p>
+                                        <p class="mb-0 fw-normal">@TruncateText(item.Content,50)</p>
                                     </td>
                                     <td class="border-bottom-0">
                                         <p class="mb-0 fw-normal">@Html.DisplayFor(modelItem => item.Author)</p>
@@ -70,7 +72,9 @@
 
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2">
-                                            <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-primary">Delete</a>
+@*                                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary">Edit</a>
+*@
+                                            <a asp-action="Hidden" asp-route-id="@item.ID" class="btn btn-primary">Hidden</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -83,3 +87,15 @@
         </div>
     </div>
 </div>
+
+
+@functions {
+    public string TruncateText(string text, int maxLength)
+    {
+        if (text.Length > maxLength)
+        {
+            return text.Substring(0, maxLength) + "...";
+        }
+        return text;
+    }
+}

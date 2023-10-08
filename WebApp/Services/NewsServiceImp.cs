@@ -1,4 +1,4 @@
-﻿/*using LibraryModels;
+﻿using LibraryModels;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Database_helper;
 using WebApp.Repositories;
@@ -13,136 +13,11 @@ namespace WebApp.Services
             this.db = db;
         }
 
-        public void AddCommentToNews(int newsId, Comments comment)
+        public async Task<bool> addNews(News newNews, string email)
         {
-            throw new NotImplementedException();
-        }
-
-        public void CreateNews(News news, string email)
-        {
-            try
-            {
-                news.PublishDate = DateTime.Now;
-                news.Author = email;
-                db.News.Add(news);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void DeleteNews(int id)
-        {
-            try
-            {
-                var newsToDelete = db.News.Find(id);
-                if (newsToDelete != null)
-                {
-                    db.News.Remove(newsToDelete);
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public IEnumerable<News> GetAllNews()
-        {
-            var newsList = db.News.ToList();
-
-            return newsList;
-        }
-
-
-        public async Task<News> GetNewsById(int id)
-        {
-            return await db.News.FirstOrDefaultAsync(n => n.Id == id);
-        }
-
-        public void UpdateNews(News news)
-        {
-            try
-            {
-                var existingNews = db.News.Find(news.Id);
-
-                if (existingNews != null)
-                {
-                    existingNews.Title = news.Title;
-                    existingNews.Content = news.Content;
-                    existingNews.Img = news.Img;
-
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void UpdateNews(int id, News news)
-        {
-            db.News.Update(news);
-            db.SaveChangesAsync();
-            return;
-        }
-
-        public async Task<bool> editTicketStatus(TicketStatus newTicketStatus)
-        {
-            db.TicketStatus.Update(newTicketStatus);
-            await db.SaveChangesAsync();
-            return true;
-        }
-
-        public void UpdateNews(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task CreateNews(News news)
-        {
-            throw new NotImplementedException();
-        }
-    }
-}*/
-
-
-
-using LibraryModels;
-using Microsoft.EntityFrameworkCore;
-using WebApp.Database_helper;
-using WebApp.Repositories;
-
-namespace WebApp.Services
-{
-    public class NewsServiceImp : INewsService
-    {
-        private DatabaseContext db;
-        public NewsServiceImp(DatabaseContext db)
-        {
-            this.db = db;
-        }
-
-        public void CreateNews(News news, string email)
-        {
-            try
-            {
-                news.PublishDate = DateTime.Now;
-                news.Author = email;
-                db.News.Add(news);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public async Task<bool> addNews(News newNews)
-        {
+            newNews.Status = 1;
+            newNews.Author = email;
+            newNews.PublishDate = DateTime.Now;
             await db.News.AddAsync(newNews);
             await db.SaveChangesAsync();
             return true;
@@ -155,7 +30,7 @@ namespace WebApp.Services
 
         public async Task<IEnumerable<News>> GetNewsList()
         {
-            return await db.News.ToListAsync();
+            return await db.News.Where(i => i.Status.Equals(1)).ToListAsync();
         }
 
         public async Task<bool> removeNews(int id)
@@ -180,11 +55,41 @@ namespace WebApp.Services
                 news.Author = newNews.Author;
                 news.PublishDate = newNews.PublishDate;
                 news.Img = newNews.Img;
-
+                news.Status = newNews.Status;
                 await db.SaveChangesAsync();
                 return true;
             }
             else { return false; }
         }
+
+        public Task<bool> AddComment(News newNews)
+        {
+            throw new NotImplementedException();
+        }
+
+        /*public async Task<List<Comment>> GetCommentById(int id)
+        {
+            var comments = await db.Comments
+        .Where(c => c.Id == id)
+        .ToListAsync();
+
+            return comments;
+        }*/
+
+        public async Task<IEnumerable<Comment>>GetCommentList()
+        {
+            return await db.Comments.ToListAsync();
+
+        }
+
+        public Task<News> GetCommentById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        /*Task<News> INewsService.GetCommentById(int id)
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }

@@ -16,10 +16,10 @@ namespace WebApp.Ultils
         {
             try
             {
-                var host = "smtp.gmail.com";
-                var port = 587;
-                var fromemail = "onlineOHD29061@gmail.com";
-                var password = "mbsy wnng jqyu hssz";
+                var host = _configuration.GetValue<string>("SendMail:SMTPHost");
+                var port = int.Parse(_configuration.GetValue<string>("SendMail:SMTPPort"));
+                var fromemail = _configuration.GetValue<string>("SendMail:FromEmailAddress");
+                var password = _configuration.GetValue<string>("SendMail:FromEmailPassword");
 
                 var smtpClient = new SmtpClient(host, port)
                 {
@@ -46,18 +46,8 @@ namespace WebApp.Ultils
             }
             catch (SmtpException ex)
             {
-                Console.WriteLine(ex.Message);
                 return false;
             }
-        }
-
-        public string formEmail(string account, string password)
-        {
-            var content = $"<h1>New account of online help desk fpt for you</h1>" +
-                $"<p>Email Login:<strong>{account}</strong></p>" +
-                $"<p>Password:<strong>{password}</strong></p>" +
-                $"<a href='http://localhost:5218/Authen/Login' target='_blank'>Click here to login</a>";
-            return content;
         }
     }
 }

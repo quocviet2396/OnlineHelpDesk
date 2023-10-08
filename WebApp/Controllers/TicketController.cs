@@ -24,12 +24,14 @@ namespace WebApp.Controllers
         private readonly DatabaseContext context;
         private readonly IAuthenService authService;
         private readonly IHubContext<SignalConfig> _hub;
-        public TicketController(ITicket ticketService, DatabaseContext context, IAuthenService authService, IHubContext<SignalConfig> hub)
+        private readonly Helper _helper;
+        public TicketController(ITicket ticketService, DatabaseContext context, IAuthenService authService, IHubContext<SignalConfig> hub, Helper helper)
         {
             this.ticketService = ticketService;
             this.context = context;
             this.authService = authService;
             _hub = hub;
+            _helper = helper;
         }
 
 
@@ -86,7 +88,7 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            ViewData["Layout"] = authService.IsAdmin() || authService.IsSupporter() ? "_BackendLayout" : "_Frontend";
+            ViewData["Layout"] = authService.IsAdmin() || authService.IsSupporter() ? "_BackendLayout" : "_Layout";
             var ticket = await ticketService.GetTicketById(id);
 
             var ticketDto = await context.TickdetDTOs.FirstOrDefaultAsync(a => a.TicketId == ticket.Id);
@@ -265,7 +267,7 @@ namespace WebApp.Controllers
             }
             else
             {
-                ViewData["Layout"] = "Frontend";
+                ViewData["Layout"] = "_Layout";
             }
 
             var ticket = await ticketService.GetTicketById(id);
@@ -341,7 +343,7 @@ namespace WebApp.Controllers
             else
             {
                 ViewBag.us = "hidden";
-                ViewData["Layout"] = "Frontend";
+                ViewData["Layout"] = "_Layout";
             }
 
             if (ticket == null)
@@ -470,17 +472,19 @@ namespace WebApp.Controllers
             {
                 var user = context.Users.FirstOrDefault(a => a.Id == oldTicket.CreatorId);
                 var userConn = context.userConn.FirstOrDefault(a => a.UserId == oldTicket.CreatorId);
+                var userConnId = userConn != null && userConn.ConnectionId != null ? userConn.ConnectionId : _helper.randomString(7);
                 var ticketNonCate = await ticketService.TicketNonCate(user.Email, user.Role, oldTicket.Id);
                 ticketService.saveTicketDTo(ticketNonCate, "update", userRole);
-                _hub.Clients.Client(userConn.ConnectionId).SendAsync("SendNotiAdmin", ticketNonCate, "Suporter");
+                _hub.Clients.Client(userConnId).SendAsync("SendNotiAdmin", ticketNonCate, "Suporter");
             }
             else
             {
                 var user = context.Users.FirstOrDefault(a => a.Id == editTicket.SupporterId);
                 var userConn = context.userConn.FirstOrDefault(a => a.UserId == editTicket.SupporterId);
+                var userConnId = userConn != null && userConn.ConnectionId != null ? userConn.ConnectionId : _helper.randomString(7);
                 var ticketNonCate = await ticketService.TicketNonCate(user.Email, user.Role, oldTicket.Id);
                 ticketService.saveTicketDTo(ticketNonCate, "update", userRole);
-                _hub.Clients.Client(userConn.ConnectionId).SendAsync("SendNotiAdmin", ticketNonCate, "Admin");
+                _hub.Clients.Client(userConnId).SendAsync("SendNotiAdmin", ticketNonCate, "Admin");
             }
 
             TempData["Message"] = "Edit Ticket Success.";

@@ -216,6 +216,14 @@
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>$(document).ready(function () {
 
+            function showLoadingAnimation() {
+                document.querySelector('.loader-wrapper').style.display = 'block';
+            }
+
+            // Ẩn animation loading khi tác vụ hoàn thành
+            function hideLoadingAnimation() {
+                document.querySelector('.loader-wrapper').style.display = 'none';
+            }
             var user_detail = $(".modal-body")
             var username = $("#username")
             var email = $("#email")
@@ -304,7 +312,7 @@
                 formData.append("Phone", phone);
                 formData.append("Address", address);
                 formData.append("City", city);
-
+                showLoadingAnimation()
                 $.ajax({
                     url: "/Account/CreateAccount",
                     method: "POST",
@@ -312,7 +320,7 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        console.log(response);
+                        hideLoadingAnimation()
                         var data = JSON.parse(response)
                         if (data.Success) {
                             Swal.fire({
@@ -338,6 +346,7 @@
 
                     },
                     error: function (xhr, status, error) {
+                        hideLoadingAnimation()
                         console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
                     }
                 });

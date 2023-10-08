@@ -161,6 +161,7 @@ namespace WebApp.Services
                         CreateDate = c.CreateDate,
                         ModifiedDate = c.ModifiedDate
                     }).AsEnumerable();
+
             if (id != null)
             {
                 query = query.Where(a => a.TicketId == id);
@@ -186,7 +187,6 @@ namespace WebApp.Services
                 var notiadmin = query.Where(a => a.TicketStatus == null).OrderBy(a => a.CreateDate).Where(a => a.Areaded == false).LastOrDefault();
                 return notiadmin;
             }
-
         }
 
         public async Task<bool> saveTicketDTo(TicketDTO ticketDTO, string action, string role)
@@ -220,8 +220,16 @@ namespace WebApp.Services
                     var ticketDto = await db.TickdetDTOs.FirstOrDefaultAsync(a => a.TicketId == ticketDTO.TicketId);
                     ticketDto.EmailSupporter = ticketDTO.EmailSupporter;
                     ticketDto.UserNameSupporter = ticketDTO.UserNameSupporter;
-                    ticketDto.Areaded = ticketDTO.Areaded;
-                    ticketDto.Sreaded = ticketDTO.Sreaded;
+                    if (role == "Supporter")
+                    {
+                        ticketDto.Areaded = true;
+                        ticketDto.Sreaded = true;
+                    }
+                    else
+                    {
+                        ticketDto.Areaded = true;
+                        ticketDto.Sreaded = false;
+                    }
                     ticketDto.Ureaded = ticketDTO.Ureaded;
                     ticketDto.ModifiedDate = ticketDTO.ModifiedDate;
                     ticketDto.TicketStatus = ticketDTO.TicketStatus;

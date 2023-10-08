@@ -14,7 +14,6 @@
     <None Remove="Views\Account\" />
     <None Remove="Authorize\" />
     <None Remove="Signal\" />
-    <None Remove="Views\Password\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
@@ -532,7 +531,6 @@
     <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\images\avatars\" />
     <Folder Include="Signal\" />
-    <Folder Include="Views\Password\" />
   </ItemGroup>
 
   <ItemGroup>

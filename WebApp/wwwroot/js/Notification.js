@@ -72,3 +72,13 @@ $(document).ready(() => {
         }
     });
 })
+
+
+function showLoadingAnimation() {
+    document.querySelector('.loader-wrapper').style.display = 'block';
+}
+
+// Ẩn animation loading khi tác vụ hoàn thành
+function hideLoadingAnimation() {
+    document.querySelector('.loader-wrapper').style.display = 'none';
+}

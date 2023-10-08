@@ -167,6 +167,31 @@ namespace WebApp.Controllers
             return Json(result);
         }
 
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        { return View(); }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        { return View(); }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            var result = await _account.ForgotPassword(email);
+            if (result.Success)
+            {
+
+                HttpContext.Session.SetString("emailForgot", result.Data);
+                return RedirectToAction("ChangePassword");
+            }
+            else
+            {
+                TempData["res"] = JsonConvert.SerializeObject(result);
+                return View();
+            }
+        }
+
         [HttpPost]
         public async Task<JsonResult> CreateAccount(IFormCollection data)
         {

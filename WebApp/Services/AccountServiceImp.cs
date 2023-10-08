@@ -158,7 +158,7 @@ namespace WebApp.Services
         {
             if (email != null)
             {
-                var result = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(email));
+                var result = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(email) || e.EmailToConfirm != null && e.EmailToConfirm.Equals(email));
                 if (result != null)
                 {
                     return res = _helper.CreateResponse<string>("", true, result.Code);

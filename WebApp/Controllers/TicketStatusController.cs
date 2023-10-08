@@ -53,12 +53,21 @@ namespace WebApp.Controllers
 
         public IActionResult Create()
         {
+            if (!aService.IsUserLoggedIn())
+            {
+                return RedirectToAction("Login", "Authen");
+            }
+
+            if (!aService.IsAdmin())
+            {
+                return RedirectToAction("Login", "Authen");
+            }
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] TicketStatus ticketStatus)
+        public async Task<IActionResult> Create(TicketStatus ticketStatus)
         {
             
                 _context.Add(ticketStatus);
@@ -83,7 +92,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] TicketStatus ticketStatus)
+        public async Task<IActionResult> Edit(int id, TicketStatus ticketStatus)
         {
             if (id != ticketStatus.Id)
             {

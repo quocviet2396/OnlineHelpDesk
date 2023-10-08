@@ -25,6 +25,7 @@ namespace WebApp.Database_helper
         public DbSet<UserConn> userConn { get; set; }
         public DbSet<Notifications> Notifications { get; set; }
         public DbSet<TicketDTO> TickdetDTOs { get; set; }
+        public DbSet<QnA> QnA { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

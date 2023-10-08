@@ -1,9 +1,8 @@
-﻿@model IEnumerable<LibraryModels.TicketStatus>
-
+﻿@model IEnumerable<LibraryModels.QnA>
 @{
-    ViewData["Title"] = "TicketStatusList";
+    ViewData["Title"] = "Index";
+    var i = 1;
     Layout = "_BackendLayout";
-    int i = 1;
 }
 
 <div class="body-wrapper">
@@ -11,8 +10,14 @@
     <div class="col-lg-12 d-flex align-items-stretch">
         <div class="card w-100">
             <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Ticket Status</h5>
-                <a class="btn btn-info" asp-action="Create" asp-controller="TicketStatus">Create new TicketStatus</a>
+                <h5 class="card-title fw-semibold mb-4">Q&A Topic</h5>
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-@TempData["MessageType"]" role="alert">
+                        @TempData["Message"]
+                    </div>
+                }
+                <a class="btn btn-info" asp-action="Create" asp-controller="QnA">Create New Q&A Topic</a>
                 <div class="table-responsive">
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
@@ -21,13 +26,13 @@
                                     <h4 class="fw-semibold mb-0">#</h4>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Name)</h6>
+                                    <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Title)</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Content)</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Action</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Select to Delete</h6>
                                 </th>
                             </tr>
                         </thead>
@@ -39,49 +44,41 @@
                                         <h6 class="fw-semibold mb-0"> @i </h6>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Name)</h6>
+                                        <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Title)</h6>
+                                    </td>
+                                    <td class="fw-semibold mb-0">
+                                        <h6 class="fw-semibold mb-0">@TruncateString(item.Content, 100)</h6>
                                     </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2" style="justify-content:center">
-                                            <form asp-action="Delete" asp-controller="TicketStatus" method="post" enctype="multipart/form-data">
-                                                <input type="hidden" name="arrList" value="@item.Id">
+                                            <form asp-action="Delete" asp-controller="QnA" method="post" enctype="multipart/form-data">
+                                                <input type="hidden" value="@item.Id">
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
-                                            <a class="btn btn-info" asp-route-id="@item.Id" asp-action="Edit" asp-controller="TicketStatus">
+                                            <a class="btn btn-info" asp-route-id="@item.Id" asp-action="Edit" asp-controller="QnA">
                                                 <i class="fa fa-gear"></i>
                                             </a>
                                         </div>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <input type="checkbox" name="arrList" value="@item.Id" />
                                     </td>
                                 </tr>
                                 i++;
                             }
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3"></td>
-                                <td colspan="1">
-                                    <div style="display: flex; justify-content: center; align-items: center; height: 100%;" >
-                                        <form asp-action="Delete" asp-controller="TicketStatus" method="post" enctype="multipart/form-data">
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i> Delete Selected
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End change -->
-
 </div>
 
-
+@functions {
+    public string TruncateString(string input, int maxLength)
+    {
+        if (input.Length <= maxLength)
+            return input;
+        else
+            return input.Substring(0, maxLength) + "...";
+    }
+}

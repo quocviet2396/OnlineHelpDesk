@@ -1,0 +1,21 @@
+﻿@model LibraryModels.QnA
+@{
+    ViewData["Title"] = "QnADetail";
+    Layout = "_Layout";
+}
+
+
+
+<div class="row mb-5">
+    <div class="col-md-12">
+        <div class="post-entry">
+            <div class="text p-4">
+                <h2 class="h1" style="color:darkkhaki">@Model.Title</h2>
+                <div class="content" style="font-size:25px">
+                    @Html.Raw(Model.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -29,6 +29,7 @@ builder.Services.AddScoped<IAccountService, AccountServiceImp>();
 builder.Services.AddScoped<ITicket, TicketServiceImp>();
 builder.Services.AddScoped<INewsService, NewsServiceImp>();
 builder.Services.AddScoped<INotificationService, NotificationServiceImp>();
+builder.Services.AddScoped<IQnAService, QnAServiceImp>();
 builder.Services.AddScoped<Helper>();
 builder.Services.AddScoped<Mailultil>();
 builder.Services.AddScoped<SignalConfig>();

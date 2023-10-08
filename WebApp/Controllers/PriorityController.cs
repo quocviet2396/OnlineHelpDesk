@@ -54,6 +54,15 @@ namespace WebApp.Controllers
 
         public IActionResult Create()
         {
+            if (!aService.IsUserLoggedIn())
+            {
+                return RedirectToAction("Login", "Authen");
+            }
+
+            if (!aService.IsAdmin())
+            {
+                return RedirectToAction("Login", "Authen");
+            }
             return View();
         }
 

@@ -14,18 +14,20 @@ namespace WebApp.Services
         private readonly DatabaseContext _db;
         private readonly Helper _helper;
         private readonly Mailultil _mailultil;
+        private readonly IHttpContextAccessor _httpContext;
         public Response<string> res = new Response<string>();
-        public AccountServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil)
+        public AccountServiceImp(DatabaseContext db, Helper helper, Mailultil mailultil, IHttpContextAccessor httpContext)
         {
             _db = db;
             _helper = helper;
             _mailultil = mailultil;
+            _httpContext = httpContext;
         }
 
-        public async Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort)
+        public async Task<ICollection<Users>> AllUsers(int pageNumber, int? Limit, string currentSort, string? currentFilter)
         {
             currentSort = string.IsNullOrEmpty(currentSort) ? "asc_Id" : currentSort;
-            var sort = await Sort<Users>.SortAsync(_db.Users.ToList(), currentSort);
+            var sort = await Sort<Users>.SortAsync(_db.Users.ToList(), currentSort, currentFilter);
             //goi phuong thuc paginate de phan chia trang           goi csdl de phan trang      skip     lay bao nhieu   orderby
             var result = await Paginated<Users>.CreatePaginate(sort.ToList(), pageNumber, (int)Limit, x => x.Id);
             return result;
@@ -53,9 +55,9 @@ namespace WebApp.Services
             return user;
         }
 
-        public async Task<Users> users(string stuCodeId)
+        public async Task<Users> users(string stuEmail)
         {
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.Code == stuCodeId);
+            var user = _db.Users.FirstOrDefault(u => u.Email == stuEmail);
             return user;
         }
 
@@ -126,7 +128,6 @@ namespace WebApp.Services
             return res = _helper.CreateResponse<string>("fail", false);
         }
 
-
         public async Task<Response<string>> ChangePassword(string pass, string code)
         {
             try
@@ -170,7 +171,6 @@ namespace WebApp.Services
             }
         }
 
-
         public async Task<Response<string>> CheckPhoto(IFormFile photo)
         {
             if (photo != null)
@@ -207,23 +207,20 @@ namespace WebApp.Services
         {
             try
             {
-                if (string.IsNullOrEmpty(users["Email"]) || string.IsNullOrEmpty(users["Role"]) || string.IsNullOrEmpty(users["Password"]) || string.IsNullOrEmpty(users["Username"]))
-                {
-                    return res = _helper.CreateResponse<string>("Field is not blank", false);
-                }
 
                 var checkphoto = await CheckPhoto(users.Files["Photo"]);
                 var filePath = checkphoto.Data;
-                var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(users["Email"].FirstOrDefault()));
+                var hasEmail = await _db.Users.FirstOrDefaultAsync(e => e.EmailToConfirm.Equals(users["Email"].FirstOrDefault()));
                 if (hasEmail != null)
                 {
                     return res = _helper.CreateResponse<string>("Email has already", false);
                 }
-
+                var password = _helper.randomString(10);
                 Users user = new Users()
                 {
-                    Email = users["Email"].FirstOrDefault(),
-                    Password = BCrypt.Net.BCrypt.HashPassword(users["Password"]),
+                    Email = _helper.CreateEmail(users["fName"].FirstOrDefault(), users["lName"].FirstOrDefault()),
+                    EmailToConfirm = users["Email"].FirstOrDefault(),
+                    Password = BCrypt.Net.BCrypt.HashPassword(password),
                     Status = true,
                     UserName = users["Username"].FirstOrDefault(),
                     Role = users["Role"],
@@ -237,7 +234,7 @@ namespace WebApp.Services
                 {
                     Address = users["Address"].FirstOrDefault() ?? null,
                     City = users["City"].FirstOrDefault() ?? null,
-                    Gender = bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
+                    Gender = bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? null : (bool?)parsedGender,
                     DateOfBirth = DateTime.TryParseExact(users["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
                     Phone = users["Phone"].FirstOrDefault() ?? null,
                     Photo = filePath,
@@ -247,6 +244,9 @@ namespace WebApp.Services
                 _db.UserInfos.Add(userInfo);
                 _db.SaveChanges();
 
+                string content = _mailultil.formEmail(user.Email, password);
+
+                _mailultil.SendMailGoogle(users["Email"].FirstOrDefault(), "Create account", content, Role.Admin);
 
                 return res = _helper.CreateResponse<string>("Successfully", true);
             }
@@ -255,7 +255,6 @@ namespace WebApp.Services
                 return res = _helper.CreateResponse<string>(ex.Message, false);
             }
         }
-
 
         public async Task<Response<string>> InfoChange(IFormCollection form)
         {
@@ -298,7 +297,6 @@ namespace WebApp.Services
             }
         }
 
-
         public async Task<Response<string>> ChangeAvatar(IFormCollection avatar)
         {
             try
@@ -329,6 +327,19 @@ namespace WebApp.Services
             {
                 return res = _helper.CreateResponse<string>(ex.Message, false);
             }
+        }
+
+        public async Task<Users> usersConn()
+        {
+            var email = _httpContext.HttpContext.Session.GetString("accEmail");
+            var User = await _db.Users.FirstOrDefaultAsync(a => a.Email == email);
+            return User;
+        }
+
+        public async Task<string> userConnId(int? userId)
+        {
+            var userConnid = _db.userConn.FirstOrDefault(a => a.UserId == userId).ConnectionId;
+            return userConnid;
         }
 
     }

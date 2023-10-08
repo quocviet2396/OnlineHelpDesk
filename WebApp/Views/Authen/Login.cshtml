@@ -125,7 +125,7 @@
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="email"
+                                       id="hubemail"
                                        name="email"
                                        placeholder="Enter your email"
                                        autofocus />
@@ -206,4 +206,8 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        $("#hubemail").on("change", () => {
+            localStorage.setItem("email", $("#hubemail").val())
+        })</script>
 }

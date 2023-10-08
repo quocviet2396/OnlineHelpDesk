@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject WebApp.Repositories.INotificationService INotifi;
+<!DOCTYPE html>
 
 <html lang="en"
       class="light-style layout-menu-fixed"
@@ -33,21 +34,48 @@
     <link rel="stylesheet" href="~/assets/css/demo.css" />
 
     <!-- Vendors CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.11/signalr.min.js" integrity="sha512-BmbgtaebZ4BB5jiHMIauI5fFKc7dXo0Hqm7nmkHnoq63qBaYQWg1bhcNoaIBkfpw5bymrPEM8ap2fCB6ObSK4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <link rel="stylesheet" href="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-
+   
     <link rel="stylesheet" href="~/assets/vendor/libs/apex-charts/apex-charts.css" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Page CSS -->
     <!-- Helpers -->
     <script src="~/assets/vendor/js/helpers.js"></script>
-
+    
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="~/assets/js/config.js"></script>
 </head>
+@{
+    var email = Context.Session.GetString("accEmail");
+    var notifi = await INotifi.Notifications(email) as List<LibraryModels.TicketDTO>;
+    var hubCount = notifi.Where(a => a.readed == false).Count();
+}
+
 
 <body>
+
+    <style>
+        #notification-content {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 90px;
+            width: 500px;
+            height: 300px;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            max-height: 600px;
+        }
+    </style>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -271,6 +299,26 @@
                             <!-- User -->
                             @if (Context.Session.GetString("accEmail") != null)
                             {
+                                <li class="menu-item">
+                                    <div id="notification-icon" style="width:50px;height:50px;position:relative;display:inline-block">
+                                        <i class="fa-solid fa-bell" style="font-size:35px"></i>
+                                        <span class="rounded-circle" id="hubCount" hidden style="position: absolute; top: 0; right: 0; background-color: red; color: white; padding: 4px 8px; font-size: 12px;">@hubCount</span>
+                                    </div>
+                                    <div id="notification-content">
+                                        <ul id="notification-list" class="justify-content-center">
+                                            @foreach (var item in notifi.OrderByDescending(a => a.CreateDate))
+                                            {
+                                                <li class="card mt-1 p-3">
+                                                    <strong><b>@item.UserNameCreator</b> send a new request</strong>
+                                                    <div class="text">
+                                                        <h4>@item.Title</h4>
+                                                        <p>@item.Decription</p>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </li>
                                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                         <div class="avatar avatar-online">
@@ -416,6 +464,7 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="~/js/Notification.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

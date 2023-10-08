@@ -39,9 +39,9 @@
                     <thead class=" table-primary">
                         <tr class="text-center">
                             <th>Id</th>
-                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Email","Email")">Email</a></th>
-                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_UserName","UserName")">Username</a></th>
-                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Code","Code")">Code</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Email","Email")" asp-route-currentFilter="@ViewData["currentFilter"]">Email</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_UserName","UserName")" asp-route-currentFilter="@ViewData["currentFilter"]">Username</a></th>
+                            <th><a asp-route-currentSort="@GetSortDirection(ViewData["propertySort"]?.ToString(),ViewData["nameSort"]?.ToString(),"asc_Code","Code")" asp-route-currentFilter="@ViewData["currentFilter"]">Code</a></th>
                             <th>Status</th>
                             <th>Role</th>
                             <th colspan="2"></th>
@@ -101,27 +101,28 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <button id="btn-new">
-                                Create new account with new infomation
-                            </button>
-                            <button id="btn-have">Create new account with available infomation</button>
-
                             <form enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="Email">Email:</label>*
+                                    <label class="fs-3" for="Email">Email:</label>*<small>Email has to receive account</small>
                                     <input type="email" class="form-control" id="Email" name="Email" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="UserName">Username:</label>*
+                                    <label class="fs-3" for="UserName">Username:</label>*
                                     <input type="text" class="form-control" id="UserName" name="UserName" required />
                                 </div>
-                                <div class="form-group">
-                                    <label for="Password">Password:</label>*
-                                    <input type="password" class="form-control" id="Password" name="Password" required />
+                                <div>
+                                    <div class="form-group">
+                                        <label class="fs-3" for="Password">First name:</label>*
+                                        <input type="text" class="form-control" id="fName" name="fName" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="fs-3" for="Password">Last name:</label>*
+                                        <input type="text" class="form-control" id="lName" name="lName" required />
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Role">Role:</label>*
+                                    <label class="fs-3" for="Role">Role:</label>*
                                     <select name="SelectedRole" id="Role" class="form-control" required>
                                         <option value="">---Choose role---</option>
                                         <option value="@LibraryModels.Role.Admin">@LibraryModels.Role.Admin</option>
@@ -131,40 +132,40 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Gender:</label>
+                                    <label class="fs-3">Gender:</label>
                                     <div class="form-check">
                                         <input type="radio" id="Male" name="userInfo.Gender" value="true" class="form-check-input" required />
-                                        <label for="Male" class="form-check-label">Male</label>
+                                        <label class="fs-3" for="Male" class="form-check-label">Male</label>
                                     </div>
                                     <div class="form-check">
                                         <input type="radio" id="Female" name="userInfo.Gender" value="false" class="form-check-input" required />
-                                        <label for="Female" class="form-check-label">Female</label>
+                                        <label class="fs-3" for="Female" class="form-check-label">Female</label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="DateOfBirth">Date of Birth:</label>
-                                    <input type="date" class="form-control" id="DateOfBirth" name="userInfo.DateOfBirth" required />
+                                    <label class="fs-3" for="DateOfBirth">Date of Birth:</label>
+                                    <input type="date" class="form-control" id="DateOfBirth" name="userInfo.DateOfBirth" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Photo">Photo:</label>
+                                    <label class="fs-3" for="Photo">Photo:</label>
                                     <input type="file" class="form-control" id="Photo" name="userInfo.Photo" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Phone">Phone:</label>
-                                    <input type="tel" class="form-control" id="Phone" name="userInfo.Phone" required />
+                                    <label class="fs-3" for="Phone">Phone:</label>
+                                    <input type="tel" class="form-control" id="Phone" name="userInfo.Phone" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Address">Address:</label>
-                                    <input type="text" class="form-control" id="Address" name="userInfo.Address" required />
+                                    <label class="fs-3" for="Address">Address:</label>
+                                    <input type="text" class="form-control" id="Address" name="userInfo.Address" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="City">City:</label>
-                                    <input type="text" class="form-control" id="City" name="userInfo.City" required />
+                                    <label class="fs-3" for="City">City:</label>
+                                    <input type="text" class="form-control" id="City" name="userInfo.City" />
                                 </div>
 
                                 <button type="submit" id="Create_avai" class="btn btn-primary">Create</button>
@@ -215,6 +216,14 @@
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>$(document).ready(function () {
 
+            function showLoadingAnimation() {
+                document.querySelector('.loader-wrapper').style.display = 'block';
+            }
+
+            // Ẩn animation loading khi tác vụ hoàn thành
+            function hideLoadingAnimation() {
+                document.querySelector('.loader-wrapper').style.display = 'none';
+            }
             var user_detail = $(".modal-body")
             var username = $("#username")
             var email = $("#email")
@@ -251,15 +260,15 @@
                         if (data) {
                             username.text(data.UserName)
                             email.text("Email:  " + data.Email)
-                            avarta.attr("src", `~/images/avatars/data.Photo ? data.Photo : avatar_default.jpeg`)
-                            phone.text("Phone:  " + data.Phone)
-                            address.text("Address:  " + data.Address)
-                            city.text("City:  " + data.City)
-                            dob.text("Day of birth:  " + data.DateOfBirth)
+                            avarta.attr("src", `./images/avatars/${data.Photo ? data.Photo : 'avatar_default.jpeg'}`)
+                            phone.text(data.Phone ? `"Phone:  "${data.Phone}` : '')
+                            address.text(data.Address ? `"Address:  "${data.Address} ` : '')
+                            city.text(data.City ? `"City:  "${data.City}` : '')
+                            dob.text(data.DateOfBirth ? `"Day Of birth:  "${data.DateOfBirth}` : '')
                         } else {
                             username.text(name)
                             email.text("Email:" + userMail)
-                            avarta.attr("src", `/images/avatars/avatar_default.jpeg`)
+                            avarta.attr("src", `./ images / avatars / avatar_default.jpeg`)
                             phone.text("")
                             address.text("")
                             city.text("")
@@ -278,7 +287,8 @@
 
                 var email = $("#Email").val();
                 var userName = $("#UserName").val();
-                var password = $("#Password").val();
+                var fName = $("#fName").val();
+                var lName = $("#lName").val();
                 var role = $("#Role").val();
                 var gender = $("input[name='userInfo.Gender']:checked").val();
                 var dateOfBirth = $("#DateOfBirth").val();
@@ -293,7 +303,8 @@
                 var formData = new FormData();
                 formData.append("Email", email);
                 formData.append("UserName", userName);
-                formData.append("Password", password);
+                formData.append("fName", fName);
+                formData.append("lName", lName);
                 formData.append("Role", role);
                 formData.append("Gender", gender);
                 formData.append("DateOfBirth", formattedDate);
@@ -301,7 +312,7 @@
                 formData.append("Phone", phone);
                 formData.append("Address", address);
                 formData.append("City", city);
-
+                showLoadingAnimation()
                 $.ajax({
                     url: "/Account/CreateAccount",
                     method: "POST",
@@ -309,12 +320,12 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        console.log(response);
+                        hideLoadingAnimation()
                         var data = JSON.parse(response)
                         if (data.Success) {
                             Swal.fire({
                                 icon: "success",
-                                title: "Success",
+                                title: "Successfully",
                                 text: data.Msg,
                                 customClass: {
                                     container: 'my-swal'
@@ -335,6 +346,7 @@
 
                     },
                     error: function (xhr, status, error) {
+                        hideLoadingAnimation()
                         console.log("Đã xảy ra lỗi khi gửi dữ liệu: " + error);
                     }
                 });

@@ -25,6 +25,9 @@ namespace WebApp.Repositories
         Task<Response<string>> ForgotPassword(string email);
 
         Task<Response<string>> ChangeAvatar(IFormCollection avatar);
+
+        Task<Users> usersConn();
+
+        Task<string> userConnId(int? userId);
     }
 }
-

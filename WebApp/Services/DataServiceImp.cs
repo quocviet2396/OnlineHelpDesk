@@ -82,7 +82,6 @@ namespace WebApp.Services
                         _db.UserInfos.Add(userInfo);
                         _db.SaveChanges();
 
-                        Console.WriteLine(BCrypt.Net.BCrypt.Verify(pass, user.Password));
                         //string content = System.IO.File.ReadAllText("Mail/account.html");
                         //content = content.Replace("{{email}}", user.Email);
                         //content = content.Replace("{{password}}", pass);

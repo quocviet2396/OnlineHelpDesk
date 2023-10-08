@@ -241,3 +241,4 @@ __pycache__/
 *.ipa
 *.msi
 *.n
+WebApp/.DS_Store

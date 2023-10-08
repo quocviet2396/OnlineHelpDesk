@@ -19,10 +19,6 @@ namespace LibraryModels
 
         public Users? Users { get; set; }
 
-        public int? NotiId { get; set; }
-
-        public Notifications? Notifications { get; set; }
-
     }
 }
 

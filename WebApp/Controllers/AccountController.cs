@@ -54,7 +54,7 @@ namespace WebApp.Controllers
             var stucode = HttpContext.Session.GetString("accCode");
             var stuEmail = HttpContext.Session.GetString("accEmail");
             var stuRole = HttpContext.Session.GetString("accRole");
-            TempData["AccRole"] = stuRole == "Admin" || stuRole == "Supporter" ? "_BackendLayout" : "_BackendLayout";
+            TempData["AccRole"] = stuRole == "User" ? "_Layout" : "_BackendLayout";
             var model = _account.UserInfo(stucode);
             if (model != null)
             {
@@ -167,6 +167,31 @@ namespace WebApp.Controllers
             return Json(result);
         }
 
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        { return View(); }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        { return View(); }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            var result = await _account.ForgotPassword(email);
+            if (result.Success)
+            {
+
+                HttpContext.Session.SetString("emailForgot", result.Data);
+                return RedirectToAction("ChangePassword");
+            }
+            else
+            {
+                TempData["res"] = JsonConvert.SerializeObject(result);
+                return View();
+            }
+        }
+
         [HttpPost]
         public async Task<JsonResult> CreateAccount(IFormCollection data)
         {
@@ -190,34 +215,6 @@ namespace WebApp.Controllers
             var res = await _account.InfoChange(form);
             var result = JsonConvert.SerializeObject(res);
             return Json(result);
-        }
-
-        [HttpGet]
-        [Route("/ForgotPass")]
-        public IActionResult ForgotPassword()
-        { return View(); }
-
-        [HttpGet]
-        [Route("/ChangePassword")]
-        public IActionResult ChangePassword()
-        { return View(); }
-
-        [HttpPost]
-        [Route("/ForgotPass")]
-        public async Task<IActionResult> ForgotPassword(string email)
-        {
-            var result = await _account.ForgotPassword(email);
-            if (result.Success)
-            {
-
-                HttpContext.Session.SetString("emailForgot", result.Data);
-                return RedirectToAction("ChangePassword");
-            }
-            else
-            {
-                TempData["res"] = JsonConvert.SerializeObject(result);
-                return View();
-            }
         }
 
         [HttpPost]

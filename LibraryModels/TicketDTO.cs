@@ -34,7 +34,11 @@ namespace LibraryModels
 
         public DateTime? ModifiedDate { get; set; }
 
-        public bool? readed { get; set; } = false;
+        public bool? Areaded { get; set; } = false;
+
+        public bool? Ureaded { get; set; } = false;
+
+        public bool? Sreaded { get; set; } = false;
 
         public TicketDTO()
         {

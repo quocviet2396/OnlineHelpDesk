@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using LibraryModels;
-using Microsoft.AspNetCore.JsonPatch.Internal;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Database_helper;
 using WebApp.Repositories;
@@ -171,45 +171,63 @@ namespace WebApp.Services
                 if (role == Role.FacilityHead)
                 {
                     var notiSupp = query.Where(a =>
-                        a.EmailSupporter != null && a.EmailSupporter == email).Where(a => a.TicketStatus == "In progress").Where(a => a.readed == false).OrderBy(a => a.ModifiedDate).LastOrDefault();
+                        a.EmailSupporter != null && a.EmailSupporter == email).Where(a => a.TicketStatus == "In progress").Where(a => a.Sreaded == false).OrderBy(a => a.ModifiedDate).LastOrDefault();
                     return notiSupp;
                 }
                 else
                 {
                     var nitoUser = query.Where(a =>
-                        a.EmailCreator != null && a.EmailCreator == email).Where(a => a.TicketStatus == "Closed" && a.TicketStatus != "Completed" && a.TicketStatus != "Rejected").Where(a => a.readed == false).OrderBy(a => a.ModifiedDate).LastOrDefault();
+                        a.EmailCreator != null && a.EmailCreator == email).Where(a => a.TicketStatus == "Closed" || a.TicketStatus == "Completed" || a.TicketStatus == "Rejected").Where(a => a.Ureaded == false).OrderBy(a => a.ModifiedDate).LastOrDefault();
                     return nitoUser;
                 }
             }
             else
             {
-                var notiadmin = query.Where(a => a.TicketStatus == null).OrderBy(a => a.CreateDate).Where(a => a.readed == false).LastOrDefault();
+                var notiadmin = query.Where(a => a.TicketStatus == null).OrderBy(a => a.CreateDate).Where(a => a.Areaded == false).LastOrDefault();
                 return notiadmin;
             }
 
         }
 
-        public async Task<bool> saveTicketDTo(TicketDTO ticketDTO)
+        public async Task<bool> saveTicketDTo(TicketDTO ticketDTO, string action, string role)
         {
             try
             {
-                TicketDTO tDto = new TicketDTO()
+                if (action == "Create")
                 {
-                    CreateDate = ticketDTO.CreateDate,
-                    TicketId = ticketDTO.TicketId,
-                    Title = ticketDTO.Title,
-                    Decription = ticketDTO.Decription,
-                    EmailCreator = ticketDTO.EmailCreator,
-                    EmailSupporter = ticketDTO.EmailSupporter,
-                    UserNameCreator = ticketDTO.UserNameCreator,
-                    UserNameSupporter = ticketDTO.UserNameSupporter,
-                    PhotoPerson = ticketDTO.PhotoPerson,
-                    readed = ticketDTO.readed,
-                    ModifiedDate = ticketDTO.ModifiedDate,
-                    TicketStatus = ticketDTO.TicketStatus,
-                };
-                db.TickdetDTOs.Add(tDto);
-                db.SaveChanges();
+                    TicketDTO tDto = new TicketDTO()
+                    {
+                        CreateDate = ticketDTO.CreateDate,
+                        TicketId = ticketDTO.TicketId,
+                        Title = ticketDTO.Title,
+                        Decription = ticketDTO.Decription,
+                        EmailCreator = ticketDTO.EmailCreator,
+                        EmailSupporter = ticketDTO.EmailSupporter,
+                        UserNameCreator = ticketDTO.UserNameCreator,
+                        UserNameSupporter = ticketDTO.UserNameSupporter,
+                        PhotoPerson = ticketDTO.PhotoPerson,
+                        Areaded = ticketDTO.Areaded,
+                        Ureaded = ticketDTO.Ureaded,
+                        Sreaded = ticketDTO.Sreaded,
+                        ModifiedDate = ticketDTO.ModifiedDate,
+                        TicketStatus = ticketDTO.TicketStatus,
+                    };
+                    db.TickdetDTOs.Add(tDto);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    var ticketDto = await db.TickdetDTOs.FirstOrDefaultAsync(a => a.TicketId == ticketDTO.TicketId);
+                    ticketDto.EmailSupporter = ticketDTO.EmailSupporter;
+                    ticketDto.UserNameSupporter = ticketDTO.UserNameSupporter;
+                    ticketDto.Areaded = ticketDTO.Areaded;
+                    ticketDto.Sreaded = ticketDTO.Sreaded;
+                    ticketDto.Ureaded = ticketDTO.Ureaded;
+                    ticketDto.ModifiedDate = ticketDTO.ModifiedDate;
+                    ticketDto.TicketStatus = ticketDTO.TicketStatus;
+                    db.SaveChanges();
+                }
+
                 return true;
             }
             catch (Exception ex)
@@ -219,5 +237,34 @@ namespace WebApp.Services
             }
         }
 
+
+
+        public async Task<bool> updateTicket(int id, string role, TicketDTO ticket)
+        {
+            try
+            {
+                var ticketDto = await db.TickdetDTOs.FirstOrDefaultAsync(a => a.TicketId == id);
+                if (role == "Admin")
+                {
+                    ticketDto.Areaded = true;
+                }
+                else if (role == "Supporter")
+                {
+                    ticketDto.Sreaded = true;
+                }
+                else
+                {
+                    ticketDto.Ureaded = true;
+                }
+                await db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+        }
     }
 }

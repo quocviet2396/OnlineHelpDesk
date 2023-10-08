@@ -55,8 +55,21 @@
 </head>
 @{
     var email = Context.Session.GetString("accEmail");
+    var userRole = Context.Session.GetString("accRole");
     var notifi = await INotifi.Notifications(email) as List<LibraryModels.TicketDTO>;
-    var hubCount = notifi.Where(a => a.readed == false).Count();
+    int hubCount = new int();
+    if (userRole == "Admin")
+    {
+        hubCount = notifi.Where(a => a.Areaded == false).Count();
+    }
+    else if (userRole == "Supporter")
+    {
+        hubCount = notifi.Where(a => a.Sreaded == false).Count();
+    }
+    else
+    {
+        hubCount = notifi.Where(a => a.Ureaded == false).Count();
+    }
 }
 
 <body>
@@ -246,11 +259,34 @@
                                             @foreach (var item in notifi.OrderByDescending(a => a.CreateDate))
                                             {
                                                 <li class="card mt-1 p-3">
-                                                    <strong><b>@item.UserNameCreator</b> send a new request</strong>
-                                                    <div class="text">
-                                                        <h4>@item.Title</h4>
-                                                        <p>@item.Decription</p>
-                                                    </div>
+                                                    <a href="/Ticket/Details/@item.TicketId" class="d-flex justify-content-around items-center align-items-center">
+                                                        <img ? src="~/images/avatars/@(item.PhotoPerson !=null ?item.PhotoPerson:"avatar_default.jpeg")" style="width:60px;height:60px" />
+                                                        <div>
+                                                            <strong>You have a new notification</strong>
+                                                            <div class="text">
+                                                                <h4>@item.Title</h4>
+                                                                <p>@item.Decription</p>
+                                                            </div>
+                                                        </div>
+                                                        @if (userRole == "Admin" && item.Areaded == false)
+                                                        {
+                                                            <div class="btn-primary" style="border-radius: 50%;width: 20px; height: 20px"></div>
+                                                        }
+                                                        else if (userRole == "Supporter" && item.Sreaded == false)
+                                                        {
+
+
+                                                            <div class="btn-primary" style="border-radius: 50%;width: 20px; height: 20px"></div>
+                                                        }
+                                                        else if (userRole == "User" && item.Ureaded == false)
+                                                        {
+                                                            <div class="btn-primary" style="border-radius: 50%;width: 20px; height: 20px"></div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="btn-primary" style="visibility:hidden"></div>
+                                                        }
+                                                    </a>
                                                 </li>
                                             }
                                         </ul>

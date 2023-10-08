@@ -33,12 +33,6 @@ namespace WebApp.Signal
 
         public override Task OnDisconnectedAsync(Exception? exception)
         {
-            var connectionId = Context.ConnectionId;
-
-            var user = _db.userConn.FirstOrDefault(e => e.ConnectionId == connectionId);
-            user.Connected = false;
-            _db.SaveChanges();
-
             return base.OnDisconnectedAsync(exception);
         }
 

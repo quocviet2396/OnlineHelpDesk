@@ -29,16 +29,16 @@ namespace WebApp.Services
             {
                 if (user?.Role == Role.FacilityHead)
                 {
-                    query = query.Where(a => (a.EmailSupporter != null && a.EmailSupporter.Equals(email))).Where(a => a.TicketStatus == "In progress").ToList();
+                    query = query.Where(a => (a.EmailSupporter != null && a.EmailSupporter.Equals(email))).ToList();
                 }
                 else
                 {
-                    query = query.Where(a => a.EmailCreator.Equals(email)).Where(a => a.TicketStatus == "Closed" && a.TicketStatus != "Completed" && a.TicketStatus != "Rejected").ToList();
+                    query = query.Where(a => a.EmailCreator.Equals(email)).Where(a => a.TicketStatus == "Completed" || a.TicketStatus == "Rejected").ToList();
                 }
             }
             else if (user?.Role == Role.Admin)
             {
-                query = query.Where(a => a.TicketStatus == null).ToList();
+                query = query.ToList();
             }
 
             return query;

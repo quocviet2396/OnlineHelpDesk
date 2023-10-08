@@ -6,6 +6,9 @@ using WebApp.Repositories;
 using WebApp.Ultils;
 using BCrypt.Net;
 using System.Globalization;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace WebApp.Services
 {
@@ -175,6 +178,11 @@ namespace WebApp.Services
         {
             if (photo != null)
             {
+                var filePathdiff = Path.GetExtension(photo.FileName).ToLower();
+                if (filePathdiff != ".png" && filePathdiff != ".jpeg" && filePathdiff != ".jpg")
+                {
+                    return res = _helper.CreateResponse<string>("File must be png, jpeg , jpg", false);
+                }
                 long fileSize = photo.Length;
                 long maxSize = 2 * 1024 * 1024;
                 if (fileSize > maxSize)
@@ -216,6 +224,7 @@ namespace WebApp.Services
                     return res = _helper.CreateResponse<string>("Email has already", false);
                 }
                 var password = _helper.randomString(10);
+                var userRole = users["Role"].FirstOrDefault() != null ? users["Role"].FirstOrDefault() : "User";
                 Users user = new Users()
                 {
                     Email = _helper.CreateEmail(users["fName"].FirstOrDefault(), users["lName"].FirstOrDefault()),
@@ -223,8 +232,8 @@ namespace WebApp.Services
                     Password = BCrypt.Net.BCrypt.HashPassword(password),
                     Status = true,
                     UserName = users["Username"].FirstOrDefault(),
-                    Role = users["Role"],
-                    Code = $"{users["Role"]}{_helper.randomString(10)}",
+                    Role = userRole,
+                    Code = $"{userRole}{_helper.randomString(10)}",
                 };
 
                 _db.Add(user);
@@ -244,13 +253,11 @@ namespace WebApp.Services
                 _db.UserInfos.Add(userInfo);
                 _db.SaveChanges();
 
-                //string content = System.IO.File.ReadAllText("Mail/account.html");
-                //content = content.Replace("{{email}}", user.Email);
-                //content = content.Replace("{{password}}", password);
+                string content = _mailultil.formEmail(user.Email, password);
 
-                //_mailultil.SendMailGoogle(users["Email"].FirstOrDefault(), "Create account", content, Role.Admin);
+                _mailultil.SendMailGoogle(users["Email"].FirstOrDefault(), "Create account", content, Role.Admin);
 
-                return res = _helper.CreateResponse<string>("Successfully", true);
+                return res = _helper.CreateResponse<string>($"New account has been sent to email:{users["Email"].FirstOrDefault()}", true);
             }
             catch (Exception ex)
             {

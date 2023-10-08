@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text;
 using LibraryModels;
 
 namespace WebApp.Ultils
@@ -26,10 +27,10 @@ namespace WebApp.Ultils
         public string CreateEmail(string firstname, string lastname)
         {
 
-            string Fname = firstname.ToLower();
-            string Lname = lastname.ToLower();
+            string Fname = RemoveDiacriticsAndSpaces(firstname.ToLower().Trim());
+            string Lname = RemoveDiacriticsAndSpaces(lastname.ToLower().Trim());
             Random random = new Random();
-            string randomNumber = random.Next(10, 99).ToString();
+            string randomNumber = random.Next(1000, 9999).ToString();
 
             string email = $"{Fname}{Lname}{randomNumber}@gmail.com";
 
@@ -61,6 +62,23 @@ namespace WebApp.Ultils
             };
         }
 
+        public static string RemoveDiacriticsAndSpaces(string input)
+        {
+            string normalizedString = input.Normalize(NormalizationForm.FormD);
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (char c in normalizedString)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    // Thay dấu cách bằng dấu gạch dưới (_) hoặc bất kỳ ký tự khác
+                    char replacement = (c == ' ') ? '_' : c;
+                    stringBuilder.Append(replacement);
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
 
         public Helper()
 

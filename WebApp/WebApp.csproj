@@ -14,7 +14,7 @@
     <None Remove="Views\Account\" />
     <None Remove="Authorize\" />
     <None Remove="Signal\" />
-    <None Remove="Mail\" />
+    <None Remove="Views\Password\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Backend\Index.cshtml" />
@@ -521,10 +521,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.11" />
     <PackageReference Include="Bogus" Version="34.0.2" />
-    <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
-    <PackageReference Include="SqlTableDependency" Version="8.5.8" />
   </ItemGroup>
 
   <ItemGroup>
@@ -535,7 +532,7 @@
     <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\images\avatars\" />
     <Folder Include="Signal\" />
-    <Folder Include="Mail\" />
+    <Folder Include="Views\Password\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -548,8 +545,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="LibraryModels">
-      <HintPath>..\LibraryModels\bin\Debug\net7.0\LibraryModels.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\LibraryModels\LibraryModels.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

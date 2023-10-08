@@ -14,6 +14,8 @@ namespace WebApp.Repositories
         Task<List<Ticket>> Tickets(string email, string role, int pageIndex, int? limit, string? currentSort, string? currentFilter, string? category, string? supporter, string? status, string? priority, DateTime[] CDate, DateTime[] MDate);
         Task<TicketDTO> TicketNonCate(string email, string role, int? id = null);
 
-        Task<bool> saveTicketDTo(TicketDTO ticketDTO);
+        Task<bool> saveTicketDTo(TicketDTO ticketDTO, string action, string role);
+
+        Task<bool> updateTicket(int id, string role, TicketDTO ticket);
     }
 }

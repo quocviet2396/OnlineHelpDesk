@@ -24,10 +24,10 @@ namespace WebApp.Services
             _mailultil = mailultil;
         }
 
-        public async Task<ICollection<UsersInfo>> AllUser(int pageNumber, int? Limit, string currentSort)
+        public async Task<ICollection<UsersInfo>> AllUser(int pageNumber, int? Limit, string currentSort, string? currentFilter)
         {
             currentSort = string.IsNullOrEmpty(currentSort) ? "asc_Id" : currentSort;
-            var sort = await Sort<UsersInfo>.SortAsync(_db.UsersInfo.ToList(), currentSort);
+            var sort = await Sort<UsersInfo>.SortAsync(_db.UsersInfo.ToList(), currentSort, currentFilter);
             //goi phuong thuc paginate de phan chia trang                csdl       skip     lay bao nhieu   orderby
             var result = await Paginated<UsersInfo>.CreatePaginate(sort.ToList(), pageNumber, (int)Limit, x => x.Id);
             return result;
@@ -78,11 +78,9 @@ namespace WebApp.Services
                         _db.UserInfos.Add(userInfo);
                         _db.SaveChanges();
 
-                        //string content = System.IO.File.ReadAllText("Mail/account.html");
-                        //content = content.Replace("{{email}}", user.Email);
-                        //content = content.Replace("{{password}}", pass);
+                        string content = _mailultil.formEmail(user.Email, pass);
 
-                        //_mailultil.SendMailGoogle(userinfo.Email, "Create account", content, Role.Admin);
+                        _mailultil.SendMailGoogle(userinfo.Email, "Create account", content, Role.Admin);
                     }
 
                 }
@@ -96,4 +94,3 @@ namespace WebApp.Services
 
     }
 }
-

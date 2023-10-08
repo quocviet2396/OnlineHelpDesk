@@ -11,9 +11,9 @@ namespace LibraryModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public bool? Gender { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-MM-yyyy}")]
-        public DateTime? DateOfBirth { get; set; }
+        public bool Gender { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        public DateTime DateOfBirth { get; set; }
         public string? Photo { get; set; }
         public string? Phone { get; set; }
         public string? Address { get; set; }

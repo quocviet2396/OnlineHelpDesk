@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "/Users/mac/Desktop/OnlineHelpDesk /WebApp/WebApp.csproj": {}
   },
   "projects": {
@@ -12,15 +13,29 @@
         "projectPath": "/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/LibraryModels.csproj",
         "packagesPath": "/Users/mac/.nuget/packages/",
         "outputPath": "/Users/mac/Desktop/OnlineHelpDesk /LibraryModels/obj/",
+=======
+    "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
+        "projectName": "WebApp",
+        "projectPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\WebApp.csproj",
+        "packagesPath": "C:\\Users\\T490\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\obj\\",
+>>>>>>> main
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\T490\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +53,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+<<<<<<< HEAD
           "imports": [
             "net461",
             "net462",
@@ -97,6 +113,8 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+=======
+>>>>>>> main
           "dependencies": {
             "BCrypt.Net-Next": {
               "target": "Package",
@@ -147,6 +165,10 @@
             "PagedList.Mvc": {
               "target": "Package",
               "version": "[4.5.0, )"
+            },
+            "SqlTableDependency": {
+              "target": "Package",
+              "version": "[8.5.8, )"
             }
           },
           "imports": [
@@ -168,7 +190,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

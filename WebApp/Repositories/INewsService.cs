@@ -1,4 +1,4 @@
-﻿using LibraryModels;
+﻿/*using LibraryModels;
 
 namespace WebApp.Repositories
 {
@@ -22,5 +22,22 @@ namespace WebApp.Repositories
         // Thêm một bình luận cho một tin tức
         void AddCommentToNews(int newsId, Comments comment);
         void UpdateNews(int id);
+        Task CreateNews(News news);
+    }
+}
+*/
+
+using LibraryModels;
+
+namespace WebApp.Repositories
+{
+    public interface INewsService
+    {
+        Task<IEnumerable<News>> GetNewsList();
+        Task<News> GetNewsById(int id);
+
+        Task<bool> addNews(News newNews);
+        Task<bool> removeNews(int id);
+        Task<bool> updateNews(News newNews);
     }
 }

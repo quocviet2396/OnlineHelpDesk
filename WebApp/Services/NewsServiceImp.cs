@@ -1,4 +1,4 @@
-﻿using LibraryModels;
+﻿/*using LibraryModels;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Database_helper;
 using WebApp.Repositories;
@@ -37,23 +37,15 @@ namespace WebApp.Services
         {
             try
             {
-                // Tìm tin tức cần xóa dựa trên id
                 var newsToDelete = db.News.Find(id);
-
-                // Kiểm tra xem tin tức có tồn tại không
                 if (newsToDelete != null)
                 {
-                    // Xóa tin tức khỏi DbSet trong DbContext
                     db.News.Remove(newsToDelete);
-
-                    // Lưu thay đổi vào cơ sở dữ liệu
                     db.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi nếu cần thiết
-                // Ví dụ: Ghi log lỗi hoặc thông báo lỗi cho người dùng
                 throw ex;
             }
         }
@@ -81,6 +73,7 @@ namespace WebApp.Services
                 {
                     existingNews.Title = news.Title;
                     existingNews.Content = news.Content;
+                    existingNews.Img = news.Img;
 
                     db.SaveChanges();
                 }
@@ -108,6 +101,90 @@ namespace WebApp.Services
         public void UpdateNews(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public Task CreateNews(News news)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}*/
+
+
+
+using LibraryModels;
+using Microsoft.EntityFrameworkCore;
+using WebApp.Database_helper;
+using WebApp.Repositories;
+
+namespace WebApp.Services
+{
+    public class NewsServiceImp : INewsService
+    {
+        private DatabaseContext db;
+        public NewsServiceImp(DatabaseContext db)
+        {
+            this.db = db;
+        }
+
+        public void CreateNews(News news, string email)
+        {
+            try
+            {
+                news.PublishDate = DateTime.Now;
+                news.Author = email;
+                db.News.Add(news);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<bool> addNews(News newNews)
+        {
+            await db.News.AddAsync(newNews);
+            await db.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<News> GetNewsById(int id)
+        {
+            return await db.News.FirstOrDefaultAsync(n => n.ID == id);
+        }
+
+        public async Task<IEnumerable<News>> GetNewsList()
+        {
+            return await db.News.ToListAsync();
+        }
+
+        public async Task<bool> removeNews(int id)
+        {
+            var news = await db.News.FirstOrDefaultAsync(n => n.ID == id);
+            if (news != null)
+            {
+                db.News.Remove(news);
+                await db.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> updateNews(News newNews)
+        {
+            var news = await db.News.FirstOrDefaultAsync(n => n.ID == newNews.ID);
+            if (news != null)
+            {
+                news.Title = newNews.Title;
+                news.Content = newNews.Content;
+                news.Author = newNews.Author;
+                news.PublishDate = newNews.PublishDate;
+                news.Img = newNews.Img;
+
+                await db.SaveChangesAsync();
+                return true;
+            }
+            else { return false; }
         }
     }
 }

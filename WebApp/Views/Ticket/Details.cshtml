@@ -1,116 +1,110 @@
 ﻿@model LibraryModels.Ticket
 @{
-   
-    Layout = ViewData["Layout"]?.ToString() ?? "_DefaultLayout";
     int i = 1;
+    Layout = TempData["Layout"]?.ToString() ?? "_BackendLayout";
 }
-<section class="body-wrapper" style="background-color: #eee;">
-    <div class="container py-5">
+@{
+    ViewData["Title"] = "Detail";
+}
+@inject WebApp.Repositories.IAuthenService AuthenService
+<div class="container ">
+
+    <h1>Detail</h1>
+
+    <div>
+        <h4>Ticket</h4>
+        <hr />
         <div class="row">
-            <div class="col col-lg-10">
-                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-                    <h3 class="breadcrumb-item active col-lg-10">Ticket Details</h3>
-                </nav>
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Title)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Title)
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg-10">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Title</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">@Html.DisplayFor(model => model.Title)</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Description</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">@Html.DisplayFor(model => model.Description)</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">CreateDate</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">@Html.DisplayFor(model => model.CreateDate)</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">ModifiedDate</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">@Html.DisplayFor(model => model.ModifiedDate)</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Attachment</p>
-                            </div>
-                            <div class="col-sm-9">
-                                @if (!string.IsNullOrEmpty(Model.Attachment))
-                                {
-                                    <img src="~/images/attachment/@Model.Attachment" class="img-thumbnail" width="150" height="150" />
-                                }
-                            </div>
-                        </div>
-                        <hr>
-                         <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">TicketStatus</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">@Html.DisplayFor(model => model.TicketStatus.Name)</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Facilities</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">@Html.DisplayFor(model => model.Category.Description)</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Creator</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0"> @Html.DisplayFor(model => model.Creator.Email)</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Supporter</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0"> @Html.DisplayFor(model => model.Supporter.Email)</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-                                <a class="btn btn-success" asp-action="Index">Back to List</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Description)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.Raw(Model.Description)
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.CreateDate)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.CreateDate)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.ModifiedDate)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.ModifiedDate)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Attachment)</strong>
+            </div>
+            <div class="col-md-10">
+                @if (!string.IsNullOrEmpty(Model.Attachment))
+                {
+                    <img src="~/images/attachment/@Model.Attachment" class="img-thumbnail" width="200" height="200" />
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.TicketStatus)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.TicketStatus.Name)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>Category</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Category.Description)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Creator)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Creator.Email)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <strong>@Html.DisplayNameFor(model => model.Supporter)</strong>
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Supporter.Email)
             </div>
         </div>
     </div>
-</section>
+
+    <div>
+         @if (AuthenService.IsAdmin() || AuthenService.IsSupporter()){
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a> 
+         }
+        |
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

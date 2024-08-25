@@ -33,12 +33,6 @@ namespace WebApp.Signal
 
         public override Task OnDisconnectedAsync(Exception? exception)
         {
-            var connectionId = Context.ConnectionId;
-
-            var user = _db.userConn.FirstOrDefault(e => e.ConnectionId == connectionId);
-            user.Connected = false;
-            _db.SaveChanges();
-
             return base.OnDisconnectedAsync(exception);
         }
 
@@ -47,24 +41,22 @@ namespace WebApp.Signal
             await _Context.Clients.Client(userId).SendAsync("NotifyMessage", mess);
         }
 
+        [HubMethodName("SendNotiAdmin")]
         public async Task SendNotiToAdmin(string conId, TicketDTO tickets, string mess)
         {
             await Clients.Client(conId).SendAsync("SendNotiAdmin", tickets, mess);
         }
 
-        public async Task SendNotiToSup(string email)
-        {
-            var user = _db.Users.Where(e => e.Email == email);
-            foreach (var item in user)
-            {
-                var tickets = _ticket.Tickets(email, item.Role);
-                var userConn = _db.userConn.Where(a => a.UserId == item.Id).FirstOrDefault();
-                await Clients.Client(userConn.ConnectionId).SendAsync("SendNotiToSup", tickets);
+        //[HubMethodName("CheckNoti")]
+        //public async Task CheckNoti(string email)
+        //{
+        //    var User = _db.Users.FirstOrDefault(u => u.Email == email);
+        //    var TicketNoti = await _ticket.TicketNonCate(email, User.Role);
+        //    var conId = _db.userConn.FirstOrDefault(a => a.UserId == User.Id);
+        //    await Clients.Client(conId.ConnectionId).SendAsync("SendNotiAdmin", TicketNoti, "hello");
+        //}
 
-            }
-
-        }
-
+        [HubMethodName("saveUser")]
         public async Task saveUser(string email)
         {
 

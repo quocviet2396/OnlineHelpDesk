@@ -6,6 +6,9 @@ using WebApp.Repositories;
 using WebApp.Ultils;
 using BCrypt.Net;
 using System.Globalization;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace WebApp.Services
 {
@@ -155,7 +158,7 @@ namespace WebApp.Services
         {
             if (email != null)
             {
-                var result = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(email));
+                var result = await _db.Users.FirstOrDefaultAsync(e => e.Email.Equals(email) || e.EmailToConfirm != null && e.EmailToConfirm.Equals(email));
                 if (result != null)
                 {
                     return res = _helper.CreateResponse<string>("", true, result.Code);
@@ -175,14 +178,13 @@ namespace WebApp.Services
         {
             if (photo != null)
             {
-                var FileExtension = Path.GetExtension(photo.FileName).ToLowerInvariant();
-                if (FileExtension != ".png" || FileExtension != ".jpeg" || FileExtension != ".jpg")
+                var filePathdiff = Path.GetExtension(photo.FileName).ToLower();
+                if (filePathdiff != ".png" && filePathdiff != ".jpeg" && filePathdiff != ".jpg")
                 {
-                    return res = _helper.CreateResponse<string>("File must be png jpeg or jpg", false);
+                    return res = _helper.CreateResponse<string>("File must be png, jpeg , jpg", false);
                 }
                 long fileSize = photo.Length;
                 long maxSize = 2 * 1024 * 1024;
-
                 if (fileSize > maxSize)
                 {
                     return res = _helper.CreateResponse<string>("File size must be less than 2MB. Please choose a smaller file.", false);
@@ -222,6 +224,7 @@ namespace WebApp.Services
                     return res = _helper.CreateResponse<string>("Email has already", false);
                 }
                 var password = _helper.randomString(10);
+                var userRole = users["Role"].FirstOrDefault() != null ? users["Role"].FirstOrDefault() : "User";
                 Users user = new Users()
                 {
                     Email = _helper.CreateEmail(users["fName"].FirstOrDefault(), users["lName"].FirstOrDefault()),
@@ -229,8 +232,8 @@ namespace WebApp.Services
                     Password = BCrypt.Net.BCrypt.HashPassword(password),
                     Status = true,
                     UserName = users["Username"].FirstOrDefault(),
-                    Role = users["Role"],
-                    Code = $"{users["Role"]}{_helper.randomString(10)}",
+                    Role = userRole,
+                    Code = $"{userRole}{_helper.randomString(10)}",
                 };
 
                 _db.Add(user);
@@ -240,8 +243,8 @@ namespace WebApp.Services
                 {
                     Address = users["Address"].FirstOrDefault() ?? null,
                     City = users["City"].FirstOrDefault() ?? null,
-                    Gender = (bool)(bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null),
-                    DateOfBirth = (DateTime)(DateTime.TryParseExact(users["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null),
+                    Gender = bool.TryParse(users["Gender"].FirstOrDefault(), out var parsedGender) ? null : (bool?)parsedGender,
+                    DateOfBirth = DateTime.TryParseExact(users["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
                     Phone = users["Phone"].FirstOrDefault() ?? null,
                     Photo = filePath,
                     UserId = userId
@@ -249,12 +252,12 @@ namespace WebApp.Services
 
                 _db.UserInfos.Add(userInfo);
                 _db.SaveChanges();
+
                 string content = _mailultil.formEmail(user.Email, password);
 
                 _mailultil.SendMailGoogle(users["Email"].FirstOrDefault(), "Create account", content, Role.Admin);
 
-
-                return res = _helper.CreateResponse<string>("Successfully", true);
+                return res = _helper.CreateResponse<string>($"New account has been sent to email:{users["Email"].FirstOrDefault()}", true);
             }
             catch (Exception ex)
             {
@@ -273,9 +276,9 @@ namespace WebApp.Services
                 if (form["ValueBtn"].FirstOrDefault() == "update" && infoUser != null)
                 {
                     infoUser.Address = form["Address"].FirstOrDefault() ?? null;
-                    infoUser.DateOfBirth = (DateTime)(DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth1) ? (DateTime?)parsedDateOfBirth1 : null);
+                    infoUser.DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth1) ? (DateTime?)parsedDateOfBirth1 : null;
                     infoUser.City = form["City"].FirstOrDefault() ?? null;
-                    infoUser.Gender = (bool)(bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender1) ? (bool?)parsedGender1 : null);
+                    infoUser.Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender1) ? (bool?)parsedGender1 : null;
                     infoUser.Phone = form["Phone"].FirstOrDefault() ?? null;
                     _db.SaveChanges();
                     return res = _helper.CreateResponse<string>("Update infomation successfully", true);
@@ -285,9 +288,9 @@ namespace WebApp.Services
                     UserInfo userinfo = new UserInfo()
                     {
                         Address = form["Address"].FirstOrDefault() ?? null,
-                        DateOfBirth = (DateTime)(DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null),
+                        DateOfBirth = DateTime.TryParseExact(form["DateOfBirth"].FirstOrDefault()?.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDateOfBirth) ? (DateTime?)parsedDateOfBirth : null,
                         City = form["City"].FirstOrDefault() ?? null,
-                        Gender = (bool)(bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null),
+                        Gender = bool.TryParse(form["Gender"].FirstOrDefault(), out var parsedGender) ? (bool?)parsedGender : null,
                         Phone = form["Phone"].FirstOrDefault() ?? null,
                         UserId = int.Parse(form["AccId"].FirstOrDefault()),
                     };
@@ -333,6 +336,19 @@ namespace WebApp.Services
             {
                 return res = _helper.CreateResponse<string>(ex.Message, false);
             }
+        }
+
+        public async Task<Users> usersConn()
+        {
+            var email = _httpContext.HttpContext.Session.GetString("accEmail");
+            var User = await _db.Users.FirstOrDefaultAsync(a => a.Email == email);
+            return User;
+        }
+
+        public async Task<string> userConnId(int? userId)
+        {
+            var userConnid = _db.userConn.FirstOrDefault(a => a.UserId == userId).ConnectionId;
+            return userConnid;
         }
 
     }

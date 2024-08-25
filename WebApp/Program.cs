@@ -4,15 +4,10 @@ using WebApp.Services;
 using WebApp.Signal;
 using WebApp.Ultils;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
-{
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-});
 builder.Services.AddDbContext<DatabaseContext>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
@@ -29,6 +24,7 @@ builder.Services.AddScoped<IAccountService, AccountServiceImp>();
 builder.Services.AddScoped<ITicket, TicketServiceImp>();
 builder.Services.AddScoped<INewsService, NewsServiceImp>();
 builder.Services.AddScoped<INotificationService, NotificationServiceImp>();
+builder.Services.AddScoped<IQnAService, QnAServiceImp>();
 builder.Services.AddScoped<Helper>();
 builder.Services.AddScoped<Mailultil>();
 builder.Services.AddScoped<SignalConfig>();

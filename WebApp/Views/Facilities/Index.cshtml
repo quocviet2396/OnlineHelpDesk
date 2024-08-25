@@ -15,6 +15,12 @@
         <div class="card w-100">
             <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-4">Facilities</h5>
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-@TempData["MessageType"]" role="alert">
+                        @TempData["Message"]
+                    </div>
+                }
                 <a class="btn btn-info" asp-action="Create" asp-controller="Facilities">Create New Facilities</a>
                 <div class="table-responsive">
                     <table class="table text-nowrap mb-0 align-middle">
@@ -34,9 +40,6 @@
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Action</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Select to Delete</h6>
                                 </th>
                             </tr>
                         </thead>
@@ -58,38 +61,27 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2" style="justify-content:center">
-                                            <form asp-action="Delete" asp-controller="Facilities" method="post" enctype="multipart/form-data">
+                                            <form asp-action="Delete" asp-controller="Facilities" method="post" enctype="multipart/form-data" onsubmit="return confirmDelete();">
                                                 <input type="hidden" name="arrList" value="@item.Id">
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
+                                                <script>
+                                                    function confirmDelete()
+                                                    {
+                                                        return confirm('Are you sure you want to delete this entry?'); 
+                                                    }
+                                                </script>
                                             </form>
                                             <a class="btn btn-info" asp-route-id="@item.Id" asp-action="Edit" asp-controller="Facilities">
                                                 <i class="fa fa-gear"></i>
                                             </a>
                                         </div>
                                     </td>
-                                    <td class="border-bottom-0">
-                                        <input type="checkbox" name="arrList" value="@item.Id" />
-                                    </td>
                                 </tr>
                                 i++;
                             }
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="5"></td>
-                                <td colspan="1">
-                                    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                        <form asp-action="Delete" asp-controller="Facilities" method="post" enctype="multipart/form-data">
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i> Delete Selected
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>

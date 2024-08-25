@@ -1,0 +1,61 @@
+﻿@model LibraryModels.QnA
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_BackendLayout";
+}
+
+<div class="body-wrapper">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title fw-semibold mb-4">Add new Q&A Topic</h5>
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-@TempData["MessageType"]" role="alert">
+                        @TempData["Message"]
+                    </div>
+                }
+                <div class="card">
+                    <div class="card-body">
+                        <form asp-action="Create" asp-controller="QnA">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Title" class="control-label"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Content" class="control-label"></label>
+                                <textarea asp-for="Content" id="myTextarea" class="form-control multiline-input"></textarea>
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .multiline-input {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+</style>
+
+<script>
+    tinymce.init({
+        selector: '#myTextarea',
+        plugins: 'autolink lists link image charmap print preview',
+        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    });
+</script>

@@ -40,10 +40,15 @@ namespace WebApp.Services
 
         public async Task<bool> editPriority(Priority newPriority)
         {
-            db.Priority.Update(newPriority);
-            await db.SaveChangesAsync();
-            return true;
-        }
+            var model = await db.Priority.SingleOrDefaultAsync(f => f.Id == newPriority.Id);
+            if (model != null)
+            {
+                model.Name = newPriority.Name;
+                await db.SaveChangesAsync();
+                return true;
+            }
+            else { return false; }
+       }
 
         public async Task<IEnumerable<Priority>> GetPriority()
         {

@@ -1,0 +1,72 @@
+﻿@model LibraryModels.News
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_BackendLayout";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Edit News</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ID" />
+
+                        <div class="form-group">
+                            <label asp-for="Title" class="control-label">Title:</label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="Content" class="form-label">Content</label>
+                            <div class="ckeditor-container">
+                                <textarea asp-for="Content" class="form-control multiline-input" id="myTextarea"></textarea>
+                            </div>
+                            <span asp-validation-for="Content" class="text-danger form-text"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Img" class="control-label">Photo:</label>
+                            <div class="custom-file">
+                                <input asp-for="Img" type="file" name="file" class="custom-file-input" />
+                                <label class="custom-file-label" for="customFile"></label>
+                            </div>
+                            <img src="@Url.Content("~/images/News/" + Model.Img)" class="img-fluid mt-2" alt="News Image" />
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" value="Save" class="btn btn-primary">Save Changes</button>
+                            <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script>
+    tinymce.init({
+        selector: '#myTextarea',
+        plugins: 'autolink lists link image charmap print preview',
+        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    });
+</script>
+<style>
+    .multiline-input {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+</style>

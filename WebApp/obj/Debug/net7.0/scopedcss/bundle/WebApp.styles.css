@@ -47,3 +47,43 @@ button.accept-policy[b-7882z672yd] {
   white-space: nowrap;
   line-height: 60px;
 }
+<<<<<<< HEAD
+=======
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+.comment-section[b-7882z672yd] {
+    margin-top: 20px;
+}
+
+.comment-item[b-7882z672yd] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.comment-header[b-7882z672yd] {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.user-name[b-7882z672yd] {
+    font-weight: bold;
+}
+
+.comment-date[b-7882z672yd] {
+    color: #777;
+}
+
+.comment-text[b-7882z672yd] {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.no-comment[b-7882z672yd] {
+    color: #777;
+    font-style: italic;
+}
+>>>>>>> Viet

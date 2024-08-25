@@ -240,4 +240,9 @@ __pycache__/
 *.aab
 *.ipa
 *.msi
+<<<<<<< HEAD
 *.n
+=======
+*.n
+WebApp/.DS_Store
+>>>>>>> Viet

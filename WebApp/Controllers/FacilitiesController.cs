@@ -17,13 +17,13 @@ namespace WebApp.Controllers
     {
         private readonly DatabaseContext _context;
 
-        private readonly IFacilitiesServices facilities;
+        private readonly IFacilitiesServices afacilities;
         private readonly IAuthenService aService;
 
-        public FacilitiesController(DatabaseContext context, IFacilitiesServices facilities, IAuthenService aService)
+        public FacilitiesController(DatabaseContext context, IFacilitiesServices afacilities, IAuthenService aService)
         {
             _context = context;
-            this.facilities = facilities;
+            this.afacilities = afacilities;
             this.aService = aService;
         }
         public async Task<IActionResult> Index()
@@ -71,23 +71,32 @@ namespace WebApp.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Facilities facilities)
         {
-            var suporter = _context.Users.
-                Where(u => u.Role == "Supporter").Select(u => new SelectListItem
-                {
-                    Value = u.Id.ToString(),
-                    Text = u.Email
-                }).ToList();
-            suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
-            ViewBag.SupporterEmails = suporter;
-            _context.Add(facilities);
-            await _context.SaveChangesAsync();
+            var existingStatus = await _context.Facilities.FirstOrDefaultAsync(ts => ts.Name.ToLower() == facilities.Name.ToLower());
+
+            if (existingStatus != null)
+            {
+                ModelState.AddModelError("Name", "Status already exists.");
+                return View(facilities);
+            }
+            try
+            {
+                _context.Add(facilities);
+                await _context.SaveChangesAsync();
+                TempData["Message"] = "Create new facilities success!";
+                TempData["MessageType"] = "success";
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = "Create new facilities failed!";
+                TempData["MessageType"] = "danger";
+            }
             return RedirectToAction(nameof(Index));
         }
-
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -119,18 +128,20 @@ namespace WebApp.Controllers
                 return NotFound();
             }
 
+            var existingStatus = await _context.Facilities.FirstOrDefaultAsync(ts => ts.Name.ToLower() == facilities.Name.ToLower());
+
+            if (existingStatus != null && existingStatus.Id != id)
+            {
+                ModelState.AddModelError("Name", "A state that already exists or overlaps with another state.");
+                return View(facilities);
+            }
+
             try
             {
-                var suporter = _context.Users.
-                Where(u => u.Role == "Supporter").Select(u => new SelectListItem
-                {
-                    Value = u.Id.ToString(),
-                    Text = u.Email
-                }).ToList();
-                suporter.Insert(0, new SelectListItem { Value = "", Text = "Select Supporter" });
-                ViewBag.SupporterEmails = suporter;
-                _context.Update(facilities);
+                await afacilities.editFacilities(facilities);
                 await _context.SaveChangesAsync();
+                TempData["Message"] = "Edit a Facilities success!";
+                TempData["MessageType"] = "success";
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -140,7 +151,8 @@ namespace WebApp.Controllers
                 }
                 else
                 {
-                    throw;
+                    TempData["Message"] = "Edit Facilities failed!";
+                    TempData["MessageType"] = "danger";
                 }
             }
             return RedirectToAction(nameof(Index));
@@ -151,7 +163,20 @@ namespace WebApp.Controllers
         {
             foreach (int item in arrList)
             {
-                await facilities.deleteFacilities(item);
+                try
+                {
+                    var model = await afacilities.deleteFacilities(item);
+                    TempData["Message"] = "Remove a topic Facilities success!";
+                    TempData["MessageType"] = "success";
+                    return RedirectToAction("Index", "Facilities");
+
+                }
+                catch (Exception)
+                {
+                    TempData["Message"] = "Remove a topic Facilities failed!";
+                    TempData["MessageType"] = "danger";
+                    return RedirectToAction("Index", "Facilities");
+                }
             }
             return RedirectToAction("Index");
         }

@@ -125,7 +125,7 @@
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text"
                                        class="form-control"
-                                       id="email"
+                                       id="hubemail"
                                        name="email"
                                        placeholder="Enter your email"
                                        autofocus />
@@ -133,7 +133,7 @@
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="password">Password</label>
-                                    <a href="auth-forgot-password-basic.html">
+                                    <a href="/Account/ForgotPassword">
                                         <small>Forgot Password?</small>
                                     </a>
                                 </div>
@@ -157,13 +157,6 @@
                                 <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                             </div>
                         </form>
-
-                        <p class="text-center">
-                            <span>New on our platform?</span>
-                            <a href="auth-register-basic.html">
-                                <span>Create an account</span>
-                            </a>
-                        </p>
                     </div>
                 </div>
                 <!-- /Register -->
@@ -206,4 +199,7 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>$("#hubemail").on("change", () => {
+            localStorage.setItem("email", $("#hubemail").val())
+        })</script>
 }

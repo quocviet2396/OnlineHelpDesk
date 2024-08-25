@@ -13,47 +13,36 @@ namespace WebApp.Services
     public class NotificationServiceImp : INotificationService
     {
         public readonly DatabaseContext _db;
-        public readonly SignalConfig _signal;
-        public readonly IHubContext<SignalConfig> _hubContext;
-        public NotificationServiceImp(DatabaseContext db, SignalConfig signal, IHubContext<SignalConfig> hubContext)
+        public NotificationServiceImp(DatabaseContext db)
         {
             _db = db;
-            _signal = signal;
-            _hubContext = hubContext;
         }
 
 
-        public async Task<List<Notifications>> Notifications(string email)
+        public async Task<List<TicketDTO>> Notifications(string email)
         {
             var user = _db.Users.FirstOrDefault(e => e.Email.Equals(email));
 
-            var userConnected = _db.userConn.FirstOrDefault(c => c.UserId == user.Id);
+            var query = await _db.TickdetDTOs.ToListAsync();
 
-
-            var result = userConnected != null ? await _db.Notifications.Include(a => a.userConn).Where(n => n.userConnId == userConnected.Id).ToListAsync() : null;
-
-            return result;
-        }
-
-
-        public async void sendNoti(string email, List<TicketDTO> ticket)
-        {
-            var user = _db.Users.FirstOrDefault(e => e.Email.Equals(email));
-
-            var userConnected = _db.userConn.FirstOrDefault(c => c.UserId == user.Id);
-
-
-            Notifications noti = new Notifications()
+            if (!string.IsNullOrEmpty(email) && user?.Role != Role.Admin)
             {
-                readed = false,
-                status = false,
-                userConnId = userConnected.Id,
-                url = null,
-            };
-            _db.Notifications.Add(noti);
+                if (user?.Role == Role.FacilityHead)
+                {
+                    query = query.Where(a => (a.EmailSupporter != null && a.EmailSupporter.Equals(email))).ToList();
+                }
+                else
+                {
+                    query = query.Where(a => a.EmailCreator.Equals(email)).Where(a => a.TicketStatus == "Completed" || a.TicketStatus == "Rejected").ToList();
+                }
+            }
+            else if (user?.Role == Role.Admin)
+            {
+                query = query.ToList();
+            }
 
-            var tickets = JsonConvert.SerializeObject(ticket);
-            await _hubContext.Clients.Client(userConnected.ConnectionId).SendAsync("SendNotiAdmin", tickets, "Hello");
+            return query;
         }
+
     }
 }

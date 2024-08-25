@@ -40,9 +40,16 @@ namespace WebApp.Services
 
         public async Task<bool> editFacilities(Facilities newFacilities)
         {
-            db.Facilities.Update(newFacilities);
-            await db.SaveChangesAsync();
-            return true;
+            var model = await db.Facilities.SingleOrDefaultAsync(f => f.Id == newFacilities.Id);
+            if (model != null)
+            {
+                model.Name = newFacilities.Name;
+                model.Description = newFacilities.Description;
+                model.SupporterId = newFacilities.SupporterId;
+                await db.SaveChangesAsync();
+                return true;
+            }
+            else { return false; }
         }
 
         public async Task<IEnumerable<Facilities>> GetFacilities()

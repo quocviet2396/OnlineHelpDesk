@@ -78,9 +78,11 @@ namespace WebApp.Services
                         _db.UserInfos.Add(userInfo);
                         _db.SaveChanges();
 
-                        string content = _mailultil.formEmail(user.Email, pass);
+                        //string content = System.IO.File.ReadAllText("Mail/account.html");
+                        //content = content.Replace("{{email}}", user.Email);
+                        //content = content.Replace("{{password}}", pass);
 
-                        _mailultil.SendMailGoogle(userinfo.Email, "Create account", content, Role.Admin);
+                        //_mailultil.SendMailGoogle(userinfo.Email, "Create account", content, Role.Admin);
                     }
 
                 }

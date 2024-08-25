@@ -2885,6 +2885,65 @@
       "PackagePath": "staticwebassets\\images\\82e1b487-f553-404a-95f7-05004d924309_Screenshot 2023-07-26 093629.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\Anh_ngay_dung_xuat_ban.png",
+      "PackagePath": "staticwebassets\\images\\News\\Anh_ngay_dung_xuat_ban.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\Holiday-Survey-768x432.webp",
+      "PackagePath": "staticwebassets\\images\\News\\Holiday-Survey-768x432.webp"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\canteen.png",
+      "PackagePath": "staticwebassets\\images\\News\\canteen.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\education-help-desk.webp",
+      "PackagePath": "staticwebassets\\images\\News\\education-help-desk.webp"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\gaudemo.png",
+      "PackagePath": "staticwebassets\\images\\News\\gaudemo.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\hinhtest.jpg",
+      "PackagePath": "staticwebassets\\images\\News\\hinhtest.jpg"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\hinhtest.png",
+      "PackagePath": "staticwebassets\\images\\News\\hinhtest.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\lotso.jpg",
+      "PackagePath": "staticwebassets\\images\\News\\lotso.jpg"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\News\\permission-slip-homepage.webp",
+      "PackagePath": "staticwebassets\\images\\News\\permission-slip-homepage.webp"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\aboutus\\Our.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\Our.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\aboutus\\OurStory.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\OurStory.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\aboutus\\background3.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\background3.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\aboutus\\ourteam.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\ourteam.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\aboutus\\sumenh.png",
+      "PackagePath": "staticwebassets\\images\\aboutus\\sumenh.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\anhtruong.png",
       "PackagePath": "staticwebassets\\images\\anhtruong.png"
     },
@@ -2913,6 +2972,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\0c77887a-71fc-4602-8b5c-085b77f7d1a4_logo-apple-1.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\0d2b6400-2405-4b90-b067-41adfb24a729_anhtruong.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\0d2b6400-2405-4b90-b067-41adfb24a729_anhtruong.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\0dffdba8-fe50-4f9d-9038-a054e337d9d6_Screenshot 2023-08-20 122430.png",
       "PackagePath": "staticwebassets\\images\\attachment\\0dffdba8-fe50-4f9d-9038-a054e337d9d6_Screenshot 2023-08-20 122430.png"
     },
@@ -2933,10 +2999,24 @@
       "PackagePath": "staticwebassets\\images\\attachment\\10422f06-3566-4d66-885f-5a2b074dca48_gaudemo.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\114b77ab-49e9-4069-94e1-09446eb02225_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\114b77ab-49e9-4069-94e1-09446eb02225_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\11f5a93b-8ae3-49fc-8fe3-979d6ad944eb_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\11f5a93b-8ae3-49fc-8fe3-979d6ad944eb_logo-apple-1.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\126845cd-98cf-40d6-b805-5b0d5e0e3a34_Anh_ngay_dung_xuat_ban.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\126845cd-98cf-40d6-b805-5b0d5e0e3a34_Anh_ngay_dung_xuat_ban.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\145d7161-1982-4b3b-af73-d8e2dcd4aad4_Screenshot 2023-08-20 125504.png",
       "PackagePath": "staticwebassets\\images\\attachment\\145d7161-1982-4b3b-af73-d8e2dcd4aad4_Screenshot 2023-08-20 125504.png"
     },
@@ -2973,6 +3053,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\1ea0e2c7-e65f-4248-8a9f-5314259e9ad1_gaudemo.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\1f565a31-565a-48ca-9f6f-3874fcb89529_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\1f565a31-565a-48ca-9f6f-3874fcb89529_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\2140a0b1-db6c-47dd-a9bd-bea861fc110a_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\2140a0b1-db6c-47dd-a9bd-bea861fc110a_logo-apple-1.png"
     },
@@ -2981,6 +3068,17 @@
       "PackagePath": "staticwebassets\\images\\attachment\\21a02b57-368f-4ea3-860d-4ddadece91d8_Screenshot 2023-09-05 144224.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\235820b2-8507-4b50-b34c-a81825fb30e4_Holiday-Survey-768x432.webp",
+      "PackagePath": "staticwebassets\\images\\attachment\\235820b2-8507-4b50-b34c-a81825fb30e4_Holiday-Survey-768x432.webp"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\2572ac46-def9-41e3-8dcb-a3027f48d087_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\2572ac46-def9-41e3-8dcb-a3027f48d087_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\2609ef65-b76c-481f-b7cf-7ee6964a9f1d_gaudemo.png",
       "PackagePath": "staticwebassets\\images\\attachment\\2609ef65-b76c-481f-b7cf-7ee6964a9f1d_gaudemo.png"
     },
@@ -2989,6 +3087,17 @@
       "PackagePath": "staticwebassets\\images\\attachment\\27571809-5111-4644-bbff-f1eea32d6f9d_Screenshot 2023-08-20 122529.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\28515ac4-faa8-442d-ae73-59e06166c2f8_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\28515ac4-faa8-442d-ae73-59e06166c2f8_logo-apple-1.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\28856fdc-82ed-43e6-b13b-a9a1ced1dd62_hinhtest.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\28856fdc-82ed-43e6-b13b-a9a1ced1dd62_hinhtest.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\28beeea7-74c0-4915-baae-c95587ad8dfb_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\28beeea7-74c0-4915-baae-c95587ad8dfb_logo-apple-1.png"
     },
@@ -2997,6 +3106,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\2c34696f-d152-4612-bd22-d94f3e457940_gaudemo.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\374dc93f-7926-48f3-a25f-a6419b707b1e_gaudemo.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\374dc93f-7926-48f3-a25f-a6419b707b1e_gaudemo.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\38604a42-7997-431a-b4c4-534e1228fc78_Screenshot 2023-08-20 125549.png",
       "PackagePath": "staticwebassets\\images\\attachment\\38604a42-7997-431a-b4c4-534e1228fc78_Screenshot 2023-08-20 125549.png"
     },
@@ -3065,6 +3181,17 @@
       "PackagePath": "staticwebassets\\images\\attachment\\523d8b3c-2f49-44f8-be77-2c14cb7e2d1e_Screenshot 2023-08-20 125549.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\5348a8ab-f94f-4a6d-9089-3062d534dc4d_OIP.jpg",
+      "PackagePath": "staticwebassets\\images\\attachment\\5348a8ab-f94f-4a6d-9089-3062d534dc4d_OIP.jpg"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\544085fe-ac62-4d5f-9468-b471c61222b8_gaudemo.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\544085fe-ac62-4d5f-9468-b471c61222b8_gaudemo.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\549f9981-bfc1-4c65-8515-ffb6a3619d31_Screenshot 2023-09-05 144224.png",
       "PackagePath": "staticwebassets\\images\\attachment\\549f9981-bfc1-4c65-8515-ffb6a3619d31_Screenshot 2023-09-05 144224.png"
     },
@@ -3089,10 +3216,28 @@
       "PackagePath": "staticwebassets\\images\\attachment\\5c4ccc0a-db0e-4abb-ae1f-5b3991a7e71a_Screenshot 2023-09-29 001511.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\5eea1757-8e6b-4f58-9042-3b1f4cba8f4f_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\5eea1757-8e6b-4f58-9042-3b1f4cba8f4f_logo-apple-1.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\5f6faf67-8909-43e6-9f28-88e3448c9a31_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\5f6faf67-8909-43e6-9f28-88e3448c9a31_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\5faf0abb-3a24-4b36-825a-f08c9e9d1747_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\5faf0abb-3a24-4b36-825a-f08c9e9d1747_logo-apple-1.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\609394d2-1be3-4a86-9935-4b8d773d4445_classroom.jpg",
+      "PackagePath": "staticwebassets\\images\\attachment\\609394d2-1be3-4a86-9935-4b8d773d4445_classroom.jpg"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\60ba2cac-0221-4963-8360-23736da2fe4e_Screenshot 2023-09-28 000317.png",
       "PackagePath": "staticwebassets\\images\\attachment\\60ba2cac-0221-4963-8360-23736da2fe4e_Screenshot 2023-09-28 000317.png"
     },
@@ -3101,6 +3246,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\614377b2-2c0e-4e8d-817d-14984a588b4e_Screenshot 2023-08-20 122327.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\61b56392-8407-4e2b-a0a2-ef689d3448f1_gaudemo.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\61b56392-8407-4e2b-a0a2-ef689d3448f1_gaudemo.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\61e01bbb-5250-4ebd-a1f6-7a92e158037b_Screenshot 2023-07-26 092203.png",
       "PackagePath": "staticwebassets\\images\\attachment\\61e01bbb-5250-4ebd-a1f6-7a92e158037b_Screenshot 2023-07-26 092203.png"
     },
@@ -3113,10 +3265,28 @@
       "PackagePath": "staticwebassets\\images\\attachment\\67a42bb7-9a82-4dd8-afe5-bdb384d4435c_logo-apple-1.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\6872ee90-bab4-4de4-b56f-d60249d93dd5_gaudemo.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\6872ee90-bab4-4de4-b56f-d60249d93dd5_gaudemo.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\688df20c-3aca-4bdb-a48f-a003527f9af7_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\688df20c-3aca-4bdb-a48f-a003527f9af7_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\6ae1fcaa-c5d6-4abb-80b2-7978d4b11e6d_anhtruong.png",
       "PackagePath": "staticwebassets\\images\\attachment\\6ae1fcaa-c5d6-4abb-80b2-7978d4b11e6d_anhtruong.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\6bbca70a-6ff3-40f8-8181-2be3f61be2ab_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\6bbca70a-6ff3-40f8-8181-2be3f61be2ab_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\6dea7528-8b94-45ae-9242-a10becc248db_Screenshot 2023-07-26 093452.png",
       "PackagePath": "staticwebassets\\images\\attachment\\6dea7528-8b94-45ae-9242-a10becc248db_Screenshot 2023-07-26 093452.png"
     },
@@ -3129,6 +3299,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\6fd5c16a-e082-4fe6-bad3-18681a8f7117_Screenshot 2023-08-20 125504.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\70d76a16-bf6f-4014-929b-4c42d0c66e44_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\70d76a16-bf6f-4014-929b-4c42d0c66e44_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\7147fd79-daa1-4910-b86a-5d4793dfebbd_Screenshot 2023-08-20 122327.png",
       "PackagePath": "staticwebassets\\images\\attachment\\7147fd79-daa1-4910-b86a-5d4793dfebbd_Screenshot 2023-08-20 122327.png"
     },
@@ -3157,14 +3334,35 @@
       "PackagePath": "staticwebassets\\images\\attachment\\79ad0c52-3293-4c6a-a668-f708dd0f2011_Screenshot 2023-08-20 122430.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\7a46c012-c4b1-4139-b63f-ceeaa809d322_softerror.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\7a46c012-c4b1-4139-b63f-ceeaa809d322_softerror.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\7ab11afc-0111-4aae-af1f-f846e4236340_Screenshot 2023-08-20 122529.png",
       "PackagePath": "staticwebassets\\images\\attachment\\7ab11afc-0111-4aae-af1f-f846e4236340_Screenshot 2023-08-20 122529.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\7ac6405e-7f4e-44d0-8e7c-2b2daa9a10bc_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\7ac6405e-7f4e-44d0-8e7c-2b2daa9a10bc_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\7b4089af-5799-40a6-82a7-c6a1ea42b141_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\7b4089af-5799-40a6-82a7-c6a1ea42b141_logo-apple-1.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\7bad89b3-4474-4ef7-a5f6-dbbaf7566c89_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\7bad89b3-4474-4ef7-a5f6-dbbaf7566c89_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\7d61751c-b8b1-4239-9044-9492b3cc1322_gaudemo.png",
       "PackagePath": "staticwebassets\\images\\attachment\\7d61751c-b8b1-4239-9044-9492b3cc1322_gaudemo.png"
     },
@@ -3173,6 +3371,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\7f0c32f4-386f-4935-88cb-96af84e60294_gaudemo.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\80a3c630-18c6-472c-8ad7-22fc3b0e2945_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\80a3c630-18c6-472c-8ad7-22fc3b0e2945_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\80b977b2-cd1c-46d1-bd8a-c0b0975e98f9_gaudemo.png",
       "PackagePath": "staticwebassets\\images\\attachment\\80b977b2-cd1c-46d1-bd8a-c0b0975e98f9_gaudemo.png"
     },
@@ -3197,6 +3402,17 @@
       "PackagePath": "staticwebassets\\images\\attachment\\87e0f89e-2738-4776-9465-fa842d350570_Screenshot 2023-08-20 122327.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\88f683e6-4484-4ae1-ad11-d3735b2c70c0_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\88f683e6-4484-4ae1-ad11-d3735b2c70c0_logo-apple-1.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\8915211a-b9fa-40f9-80e3-85d5e560f319_canteen.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\8915211a-b9fa-40f9-80e3-85d5e560f319_canteen.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\89ca8222-b773-4ecd-b112-c0e5c6ce7a7f_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\89ca8222-b773-4ecd-b112-c0e5c6ce7a7f_logo-apple-1.png"
     },
@@ -3233,6 +3449,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\97ba2e55-20b7-4178-a57f-ba0ab4166b17_p4.jpg"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\9ac261cd-9346-4cc4-883e-2b5105cd7f43_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\9ac261cd-9346-4cc4-883e-2b5105cd7f43_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\9c6a001d-b4de-4ab8-af32-37e7747da627_gaudemo.png",
       "PackagePath": "staticwebassets\\images\\attachment\\9c6a001d-b4de-4ab8-af32-37e7747da627_gaudemo.png"
     },
@@ -3249,6 +3472,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\9cde9d55-ba0c-41bc-bfd4-1e5ef9b27b8a_Screenshot 2023-07-26 092203.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\9d0336b8-8b46-4aba-8e60-c94b57961ff4_lab.jpg",
+      "PackagePath": "staticwebassets\\images\\attachment\\9d0336b8-8b46-4aba-8e60-c94b57961ff4_lab.jpg"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\9d718cf6-8c32-483a-8f11-1acc01574040_Screenshot 2023-08-20 122119.png",
       "PackagePath": "staticwebassets\\images\\attachment\\9d718cf6-8c32-483a-8f11-1acc01574040_Screenshot 2023-08-20 122119.png"
     },
@@ -3281,6 +3511,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\a2a68f97-0edc-450f-a25b-7f88bd9be982_p5.jpg"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\a398b623-5bbb-49df-a023-ce2c7d98f287_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\a398b623-5bbb-49df-a023-ce2c7d98f287_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\a468187b-7134-4d9b-9a28-0a7f617306ad_Screenshot 2023-09-27 232023.png",
       "PackagePath": "staticwebassets\\images\\attachment\\a468187b-7134-4d9b-9a28-0a7f617306ad_Screenshot 2023-09-27 232023.png"
     },
@@ -3289,6 +3526,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\a4e6272e-da16-4c21-8900-96eb15030445_anhtruong.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\a7fa67ce-bc29-454b-958d-ac26a5218c03_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\a7fa67ce-bc29-454b-958d-ac26a5218c03_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\aab50a25-d53b-41f2-8f1e-037c94640b24_Screenshot 2023-08-20 122327.png",
       "PackagePath": "staticwebassets\\images\\attachment\\aab50a25-d53b-41f2-8f1e-037c94640b24_Screenshot 2023-08-20 122327.png"
     },
@@ -3313,6 +3557,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\aef54b87-68df-40c8-9520-3ffde8ccd59a_logo-apple-1.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\b0251f69-9f3a-441f-83ad-76c8e7e11378_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\b0251f69-9f3a-441f-83ad-76c8e7e11378_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\b13cba1e-d796-4852-bf18-da72cd6fe261_Screenshot 2023-08-21 172127.png",
       "PackagePath": "staticwebassets\\images\\attachment\\b13cba1e-d796-4852-bf18-da72cd6fe261_Screenshot 2023-08-21 172127.png"
     },
@@ -3325,6 +3576,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\b28ff078-724e-4b01-9ba0-aa0ad9a598c2_logo-apple-1.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\b73ffffa-1302-46d8-84dc-9aa02339ed3f_gaudemo.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\b73ffffa-1302-46d8-84dc-9aa02339ed3f_gaudemo.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\b7625bb8-553b-495c-b1ba-64b8aea55455_Screenshot 2023-08-20 122430.png",
       "PackagePath": "staticwebassets\\images\\attachment\\b7625bb8-553b-495c-b1ba-64b8aea55455_Screenshot 2023-08-20 122430.png"
     },
@@ -3341,6 +3599,17 @@
       "PackagePath": "staticwebassets\\images\\attachment\\b7d81879-3171-4c88-93f9-803365f46c31_Screenshot 2023-09-05 144224.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\b7f1016b-abc8-4520-a9d2-8e108237d75f_gaudemo.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\b7f1016b-abc8-4520-a9d2-8e108237d75f_gaudemo.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\ba010bb9-26c6-48b0-bb07-2c1ab9c165ae_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\ba010bb9-26c6-48b0-bb07-2c1ab9c165ae_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\bd1337a1-7d10-4e98-ac9b-7e04888d7ed1_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\bd1337a1-7d10-4e98-ac9b-7e04888d7ed1_logo-apple-1.png"
     },
@@ -3369,6 +3638,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\c65b182d-dd73-4016-8a17-2dc44d56454a_Screenshot 2023-09-28 005059.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\c6cb48c5-bc1b-4ce2-8104-68eebd820e02_canteen.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\c6cb48c5-bc1b-4ce2-8104-68eebd820e02_canteen.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\c8245920-07e1-4c2c-8304-463cf2bb1e24_Screenshot 2023-08-25 214449.png",
       "PackagePath": "staticwebassets\\images\\attachment\\c8245920-07e1-4c2c-8304-463cf2bb1e24_Screenshot 2023-08-25 214449.png"
     },
@@ -3377,6 +3653,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\c908ca82-eadc-4769-8817-3d99a5c037e7_logo-apple-1.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\ca0f7ce2-f3c2-48ba-9727-f42f60e7730c_anhtruong.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\ca0f7ce2-f3c2-48ba-9727-f42f60e7730c_anhtruong.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\cac4951b-cf28-4757-8a89-fde0906d6246_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\cac4951b-cf28-4757-8a89-fde0906d6246_logo-apple-1.png"
     },
@@ -3385,6 +3668,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\cbf93e7f-6eec-4157-bf16-4d74e03f53fb_gaudemo.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\cd41f8cc-fab9-4fd8-bb55-1dbb3b93669c_hinhtest.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\cd41f8cc-fab9-4fd8-bb55-1dbb3b93669c_hinhtest.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\cf8b3eee-c5f1-4391-af7a-18d583a331d0_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\cf8b3eee-c5f1-4391-af7a-18d583a331d0_logo-apple-1.png"
     },
@@ -3421,6 +3711,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\d7bf1d83-eee1-4d83-8eb7-00a0bea42c72_logo-apple-1.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\da67d5b5-a589-4c4e-9758-a25638aa967d_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\da67d5b5-a589-4c4e-9758-a25638aa967d_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\db36be35-6409-4ccf-818d-765c0c52130b_p4.jpg",
       "PackagePath": "staticwebassets\\images\\attachment\\db36be35-6409-4ccf-818d-765c0c52130b_p4.jpg"
     },
@@ -3449,6 +3746,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\de5f2c99-50d6-4e9a-b499-e4357ec23a67_Screenshot 2023-08-20 122327.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\df68bcd7-f445-4218-b68a-00427d0b487a_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\df68bcd7-f445-4218-b68a-00427d0b487a_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\dfeb16eb-0f65-4e8a-a728-dca53e66eb16_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\dfeb16eb-0f65-4e8a-a728-dca53e66eb16_logo-apple-1.png"
     },
@@ -3473,6 +3777,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\e6d22e12-204a-4c78-956e-a3979d02cbb6_Screenshot 2023-09-05 144224.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\e89a90a0-a2db-458a-96a8-34c13bfa1e56_logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\e89a90a0-a2db-458a-96a8-34c13bfa1e56_logo-apple-1.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\e8e0071e-5ba4-4388-8f76-5e404d843924_lotso.jpg",
       "PackagePath": "staticwebassets\\images\\attachment\\e8e0071e-5ba4-4388-8f76-5e404d843924_lotso.jpg"
     },
@@ -3509,6 +3820,13 @@
       "PackagePath": "staticwebassets\\images\\attachment\\f579ee96-2ad5-456e-a4f5-0dc44a452c68_gaudemo.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\f5eb0f0a-22fa-40f7-9f21-e7401da21510_canteen.png",
+      "PackagePath": "staticwebassets\\images\\attachment\\f5eb0f0a-22fa-40f7-9f21-e7401da21510_canteen.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\attachment\\f663ca96-d6a6-4707-ad0d-301f229c88da_logo-apple-1.png",
       "PackagePath": "staticwebassets\\images\\attachment\\f663ca96-d6a6-4707-ad0d-301f229c88da_logo-apple-1.png"
     },
@@ -3541,26 +3859,168 @@
       "PackagePath": "staticwebassets\\images\\attachment\\p5.jpg"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\005cb785-ed0e-47b1-81fc-8e247f8e90c8.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\005cb785-ed0e-47b1-81fc-8e247f8e90c8.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\060741d1-ac14-4edd-8f64-cc19be2efbcc.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\060741d1-ac14-4edd-8f64-cc19be2efbcc.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\0706eebe-58de-4403-9b0b-87a5732596a1.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\0706eebe-58de-4403-9b0b-87a5732596a1.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\07336008-08f7-4313-ba31-63dccd6ea340.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\07336008-08f7-4313-ba31-63dccd6ea340.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\0cfd6a41-4ddd-4f9c-8b76-e6c4c274ded3.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\0cfd6a41-4ddd-4f9c-8b76-e6c4c274ded3.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\0fd4d3d1-ea28-499a-bf88-c9f0c9b3a5a6.jpg",
+      "PackagePath": "staticwebassets\\images\\avatars\\0fd4d3d1-ea28-499a-bf88-c9f0c9b3a5a6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\11cdd2ed-044e-4e81-95fd-dc4751381e87.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\11cdd2ed-044e-4e81-95fd-dc4751381e87.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\16c785c3-3054-4c46-a677-eb95e9c56124.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\16c785c3-3054-4c46-a677-eb95e9c56124.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\1db24b56-9dd5-4c75-931a-cbd6a1c7c4eb.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\1db24b56-9dd5-4c75-931a-cbd6a1c7c4eb.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\22858276-1fae-4207-a087-27c31f396be0.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\22858276-1fae-4207-a087-27c31f396be0.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\33b6c995-cfad-4616-b56f-338f6804cc15.png",
       "PackagePath": "staticwebassets\\images\\avatars\\33b6c995-cfad-4616-b56f-338f6804cc15.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\38ad2cc5-37a5-408d-804e-665b65946490.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\38ad2cc5-37a5-408d-804e-665b65946490.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\3f9e8a9b-b9c2-4029-b32b-79813503452a.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\3f9e8a9b-b9c2-4029-b32b-79813503452a.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\445489f0-8e50-474c-b946-2e6fb31ca8c2.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\445489f0-8e50-474c-b946-2e6fb31ca8c2.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\44bec251-2cb4-4f55-8224-82effe13b1e8.png",
       "PackagePath": "staticwebassets\\images\\avatars\\44bec251-2cb4-4f55-8224-82effe13b1e8.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\47d31e0d-8052-419b-9525-28fe39264b25.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\47d31e0d-8052-419b-9525-28fe39264b25.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\53f87625-f32c-4d54-aaa4-d5f0183a20b0.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\53f87625-f32c-4d54-aaa4-d5f0183a20b0.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\580741a5-294c-4889-b6ef-bea30bfa1145.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\580741a5-294c-4889-b6ef-bea30bfa1145.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\64d24fff-7076-4c70-a263-837b693a2593.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\64d24fff-7076-4c70-a263-837b693a2593.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\790c357b-0cad-4e7c-a6c5-8e48e8c1e146.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\790c357b-0cad-4e7c-a6c5-8e48e8c1e146.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\7e03b73f-b790-46b0-b9af-b34a9e78c468.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\7e03b73f-b790-46b0-b9af-b34a9e78c468.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\7ee7ad32-771c-4bc0-8baa-97d2e4307ea9.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\7ee7ad32-771c-4bc0-8baa-97d2e4307ea9.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\93119675-0045-4a43-a051-2cd4b7a92438.png",
       "PackagePath": "staticwebassets\\images\\avatars\\93119675-0045-4a43-a051-2cd4b7a92438.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\9fcf9bb2-ef40-4822-971d-e120a4ca8670.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\9fcf9bb2-ef40-4822-971d-e120a4ca8670.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\a2219519-0374-496a-9009-7e1aa676e547.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\a2219519-0374-496a-9009-7e1aa676e547.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\avatar_default.jpeg",
       "PackagePath": "staticwebassets\\images\\avatars\\avatar_default.jpeg"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\b0a0013c-f3c3-4b2d-b0b0-de159b55ff47.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\b0a0013c-f3c3-4b2d-b0b0-de159b55ff47.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\b1ed196d-0240-45b5-af6c-9f7d70715366.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\b1ed196d-0240-45b5-af6c-9f7d70715366.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\daf95d17-02ae-40a6-a3d7-46a3b6ce0a1d.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\daf95d17-02ae-40a6-a3d7-46a3b6ce0a1d.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\dddc22d5-a5cf-4872-8fa4-90d648d04046.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\dddc22d5-a5cf-4872-8fa4-90d648d04046.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\ec5be35e-5b79-4e0f-aa7b-ceca62cdc7ae.jpg",
+      "PackagePath": "staticwebassets\\images\\avatars\\ec5be35e-5b79-4e0f-aa7b-ceca62cdc7ae.jpg"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\ee896db8-463f-4c54-aafa-dc4bd2ccaed8.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\ee896db8-463f-4c54-aafa-dc4bd2ccaed8.png"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\f14b8242-45a1-4233-94a1-d96710087db7.png",
       "PackagePath": "staticwebassets\\images\\avatars\\f14b8242-45a1-4233-94a1-d96710087db7.png"
     },
     {
+<<<<<<< HEAD
+=======
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\avatars\\logo-apple-1.png",
+      "PackagePath": "staticwebassets\\images\\avatars\\logo-apple-1.png"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\qna-banner1.jpg",
+      "PackagePath": "staticwebassets\\images\\qna-banner1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\qna-banner2.jpg",
+      "PackagePath": "staticwebassets\\images\\qna-banner2.jpg"
+    },
+    {
+>>>>>>> Viet
       "Id": "C:\\Users\\T490\\Documents\\GitHub\\OnlineHelpDesk\\WebApp\\wwwroot\\images\\testimonial-1.jpg",
       "PackagePath": "staticwebassets\\images\\testimonial-1.jpg"
     },

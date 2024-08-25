@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LibraryModels
@@ -29,22 +28,17 @@ namespace LibraryModels
 
         // Mối quan hệ nhiều-một với Category 
         public int? CategoryId { get; set; }
-        [JsonIgnore]
         public Facilities? Category { get; set; }
 
         // Mối quan hệ một-nhiều với Users (Người nhận yêu cầu - Employee)
         public int? CreatorId { get; set; }
-        [JsonIgnore]
         public Users? Creator { get; set; }
 
         // Mối quan hệ một-nhiều với Users (Người hỗ trợ yêu cầu - Supporter)
         public int? SupporterId { get; set; }
-        [JsonIgnore]
         public Users? Supporter { get; set; }
         public string? feedback { get; set; }
-
         public int? PriorityId { get; set; }
-        [JsonIgnore]
         public Priority? Priority { get; set; }
     }
 }

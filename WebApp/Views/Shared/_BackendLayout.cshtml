@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="~/backend/css/styles.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="~/assets/img/favicon/favicon.ico" />
 
@@ -43,16 +44,38 @@
     <link rel="stylesheet" href="~/assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.11/signalr.min.js" integrity="sha512-BmbgtaebZ4BB5jiHMIauI5fFKc7dXo0Hqm7nmkHnoq63qBaYQWg1bhcNoaIBkfpw5bymrPEM8ap2fCB6ObSK4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Page CSS -->
     <!-- Helpers -->
     <script src="~/assets/vendor/js/helpers.js"></script>
+
+    <!--CSS CỦA NGỌC-->
+    <link rel="stylesheet" href="~/css/site.css" />
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="~/assets/js/config.js"></script>
 </head>
 
+@{
+    var email = Context.Session.GetString("accEmail");
+    var userRole = Context.Session.GetString("accRole");
+    var notifi = await INotifi.Notifications(email) as List<LibraryModels.TicketDTO>;
+    int hubCount = new int();
+    if (userRole == "Admin")
+    {
+        hubCount = notifi.Where(a => a.Areaded == false).Count();
+    }
+    else if (userRole == "Supporter")
+    {
+        hubCount = notifi.Where(a => a.Sreaded == false).Count();
+    }
+    else
+    {
+        hubCount = notifi.Where(a => a.Ureaded == false).Count();
+    }
+}
 
 <body>
     <style>
@@ -71,6 +94,11 @@
             max-height: 600px;
         }
     </style>
+
+    <!--Của Ngọc chưa biết chỗ để-->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -78,7 +106,7 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="index.html" class="app-brand-link">
+                    <a asp-action="Index" asp-controller="Backend" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <svg width="25"
                                  viewBox="0 0 25 42"
@@ -133,9 +161,17 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
+                    <!-- HomePage -->
+                    <li class="menu-item">
+                        <a asp-action="Index" asp-controller="Frontend" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Analytics">Home</div>
+                        </a>
+                    </li>
+
                     <!-- Dashboard -->
                     <li class="menu-item">
-                        <a href="index.html" class="menu-link">
+                        <a asp-action="Index" asp-controller="Backend" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
@@ -147,38 +183,6 @@
                             <i class="menu-icon tf-icons bx bx-layout"></i>
                             <div data-i18n="Layouts">Ticket ReQ</div>
                         </a>
-
-                        <a asp-action="Index" asp-controller="News" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-layout"></i>
-                            <div data-i18n="Layouts">News/Blogs</div>
-                        </a>
-                        @*<ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="layouts-without-menu.html" class="menu-link">
-                                    <div data-i18n="Without menu">Without menu</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="layouts-without-navbar.html" class="menu-link">
-                                    <div data-i18n="Without navbar">Without navbar</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="layouts-container.html" class="menu-link">
-                                    <div data-i18n="Container">Container</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="layouts-fluid.html" class="menu-link">
-                                    <div data-i18n="Fluid">Fluid</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="layouts-blank.html" class="menu-link">
-                                    <div data-i18n="Blank">Blank</div>
-                                </a>
-                            </li>
-                        </ul>*@
                     </li>
                     <!-- Components Of Admin -->
                     @if (Context.Session.GetString("accRole") == "Admin")
@@ -216,7 +220,14 @@
                         <li class="menu-item">
                             <a asp-action="Index" asp-controller="News" class="menu-link">
                                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                                <div data-i18n="Basic">News</div>
+                                <div data-i18n="Basic">News/Blogs</div>
+                            </a>
+                        </li>
+                        <!-- Q&A -->
+                        <li class="menu-item">
+                            <a asp-action="Index" asp-controller="QnA" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-collection"></i>
+                                <div data-i18n="Basic">Q&A Topic</div>
                             </a>
                         </li>
                     }
@@ -236,33 +247,56 @@
                         <div class="navbar-nav align-items-center">
                             <div class="nav-item d-flex align-items-center">
                                 <i class="bx bx-toggle-right fs-4 lh-0"></i>
-                                <label class="form-control border-0 shadow-none">Welcome to Dashboard Online HelpDesk Management</label>
+                                <label class="form-control border-0 shadow-none" style="color:orangered; font-size:30px;">Welcome to OnlineHelpDesk Management</label>
                                 <i class="bx bx-toggle-left fs-4 lh-0"></i>
                             </div>
                         </div>
                         <!-- /Search -->
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
-                            <!-- Place this tag where you want the button to render. -->
-                            <li class="nav-item lh-1 me-3">
-                                <a class="github-button"
-                                   href="https://github.com/themeselection/sneat-html-admin-template-free"
-                                   data-icon="octicon-star"
-                                   data-size="large"
-                                   data-show-count="true"
-                                   aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                            </li>
-
                             <!-- User -->
                             @if (Context.Session.GetString("accEmail") != null)
                             {
                                 <li class="menu-item">
                                     <div id="notification-icon" style="width:50px;height:50px;position:relative;display:inline-block">
                                         <i class="fa-solid fa-bell" style="font-size:35px"></i>
-                                        <span class="rounded-circle" id="hubCount" hidden style="position: absolute; top: 0; right: 0; background-color: red; color: white; padding: 4px 8px; font-size: 12px;"></span>
+                                        <span class="rounded-circle" id="hubCount" hidden style="position: absolute; top: 0; right: 0; background-color: red; color: white; padding: 4px 8px; font-size: 12px;">@hubCount</span>
                                     </div>
                                     <div id="notification-content">
-                                        <ul id="notification-list">
+                                        <ul id="notification-list" class="justify-content-center">
+                                            @foreach (var item in notifi.OrderByDescending(a => a.CreateDate))
+                                            {
+                                                <li class="card mt-1 p-3">
+                                                    <a href="/Ticket/Details/@item.TicketId" class="d-flex justify-content-around items-center align-items-center">
+                                                        <img ? src="~/images/avatars/@(item.PhotoPerson !=null ?item.PhotoPerson:"avatar_default.jpeg")" style="width:60px;height:60px" />
+                                                        <div>
+                                                            <strong>You have a new notification</strong>
+                                                            <div class="text">
+                                                                <h4>@item.Title</h4>
+                                                                <p>@item.Decription</p>
+                                                            </div>
+                                                        </div>
+                                                        @if (userRole == "Admin" && item.Areaded == false)
+                                                        {
+                                                            <div class="btn-primary" style="border-radius: 50%;width: 20px; height: 20px"></div>
+                                                        }
+                                                        else if (userRole == "Supporter" && item.Sreaded == false)
+                                                        {
+
+
+                                                            <div class="btn-primary" style="border-radius: 50%;width: 20px; height: 20px"></div>
+                                                        }
+                                                        else if (userRole == "User" && item.Ureaded == false)
+                                                        {
+                                                            <div class="btn-primary" style="border-radius: 50%;width: 20px; height: 20px"></div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="btn-primary" style="visibility:hidden"></div>
+                                                        }
+                                                    </a>
+                                                </li>
+                                            }
                                         </ul>
                                     </div>
                                 </li>
@@ -295,21 +329,6 @@
                                             <a class="dropdown-item" href="/Account/UserProfile">
                                                 <i class="bx bx-user me-2"></i>
                                                 <span class="align-middle">My Profile</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="bx bx-cog me-2"></i>
-                                                <span class="align-middle">Settings</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <span class="d-flex align-items-center align-middle">
-                                                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                                    <span class="flex-grow-1 align-middle">Billing</span>
-                                                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                                                </span>
                                             </a>
                                         </li>
                                         <li>
@@ -376,14 +395,6 @@
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    <!-- / Layout wrapper -->
-
-    <div class="buy-now">
-        <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-           target="_blank"
-           class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
-    </div>
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="~/assets/vendor/libs/jquery/jquery.js"></script>
@@ -406,19 +417,12 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
-    <script>$(document).ready(() => {
-            $("#notification-icon").on("click", (event) => {
-                event.stopPropagation();
-                $('#notification-content').toggle();
-            })
+    <script src="~/js/Notification.js"></script>
 
-            $(document).click(function (event) {
-                if (!$(event.target).closest('#notification-icon, #notification-content').length) {
-                    $('#notification-content').hide();
-                }
-            });
-        })</script>
+    
+
+    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 
 </html>

@@ -1,9 +1,7 @@
 ﻿@model LibraryModels.Ticket
 @{
-    Layout = "_Layout";
-}
-@{
     ViewData["Title"] = "Create";
+    Layout = "_Layout";
 }
 
 <div>
@@ -22,9 +20,10 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Description" class="control-label"></label>
-                                <input asp-for="Description" class="form-control" />
+                                <textarea asp-for="Description" id="myTextarea" name="Description" class="form-control"></textarea>
                                 <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
+
                             <div class="form-group" hidden>
                                 <label asp-for="CreateDate" hidden class="control-label"></label>
                                 <input asp-for="CreateDate" hidden class="form-control" />
@@ -45,7 +44,7 @@
                                 <select asp-for="TicketStatusId" hidden class="form-control" asp-items="ViewBag.TicketStatusId"></select>
                             </div>
                             <div class="form-group">
-                                <label asp-for="CategoryId" class="control-label"></label>
+                                <label class="control-label">Facilities</label>
                                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
                             </div>
                             <div class="form-group" hidden>
@@ -74,8 +73,17 @@
     </div>
 
 </div>
+<script>
+  tinymce.init({
+    selector: '#myTextarea',
+    plugins: 'autolink lists link image charmap print preview',
+    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+  });
+</script>
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

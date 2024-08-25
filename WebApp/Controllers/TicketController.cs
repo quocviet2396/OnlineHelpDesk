@@ -52,7 +52,7 @@ namespace WebApp.Controllers
             }
 
 
-            ViewData["Layout"] = authService.IsAdmin() || authService.IsSupporter() ? "_BackendLayout" : "_Layout";
+            TempData["Layout"] = authService.IsAdmin() || authService.IsSupporter() ? "_BackendLayout" : "_Layout";
             ViewBag.AccountName = userEmail;
 
             var result = await ticketService.Tickets(userEmail, userRole.Role, pageIndex, limit, currentSort, currentFilter, category, supporter, status, priority, CDate, MDate) as Paginated<Ticket>;
@@ -90,7 +90,7 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            ViewData["Layout"] = authService.IsAdmin() || authService.IsSupporter() ? "_BackendLayout" : "_Layout";
+            TempData["Layout"] = authService.IsAdmin() || authService.IsSupporter() ? "_BackendLayout" : "_Layout";
             var ticket = await ticketService.GetTicketById(id);
 
             var ticketDto = await context.TickdetDTOs.FirstOrDefaultAsync(a => a.TicketId == ticket.Id);
@@ -110,6 +110,8 @@ namespace WebApp.Controllers
                 ticketDto.Ureaded = true;
                 context.SaveChanges();
             }
+
+
 
             if (ticket == null)
             {
@@ -170,7 +172,7 @@ namespace WebApp.Controllers
                 Text
                    = f.Name
             }).ToList();
-            facilities.Insert(0, new SelectListItem { Value = "", Text = "Select Catagory" });
+            facilities.Insert(0, new SelectListItem { Value = "", Text = "Select Facilities" });
             ViewBag.CategoryId = facilities;
 
             return View();
@@ -184,6 +186,7 @@ namespace WebApp.Controllers
             var idUser = context.Users.Where(x => x.Email == test).FirstOrDefault().Id;
             var user = context.Users.FirstOrDefault(e => e.Role == Role.Admin);
             var userConn = context.userConn.FirstOrDefault(a => a.UserId == user.Id);
+            var userConId = userConn != null ? userConn.ConnectionId : "aa";
             try
             {
 
@@ -193,7 +196,7 @@ namespace WebApp.Controllers
                     Text
                     = f.Name
                 }).ToList();
-                facilities.Insert(0, new SelectListItem { Value = "", Text = "Select Catagory" });
+                facilities.Insert(0, new SelectListItem { Value = "", Text = "Select Facilities" });
                 ViewBag.CategoryId = facilities;
                 var ticketStatusOptions = context.TicketStatus
                     .Select(ts => new SelectListItem
@@ -232,8 +235,8 @@ namespace WebApp.Controllers
                     NewTicket.CreatorId = idUser;
                     ticketService.create(NewTicket);
                     var ticketNonCate = await ticketService.TicketNonCate(user.Email, user.Role);
-                    ticketService.saveTicketDTo(ticketNonCate, "Create", null);
-                    _hub.Clients.Client(userConn.ConnectionId).SendAsync("SendNotiAdmin", ticketNonCate, "success");
+                    await ticketService.saveTicketDTo(ticketNonCate, "Create", null);
+                    _hub.Clients.Client(userConId).SendAsync("SendNotiAdmin", ticketNonCate, "success");
                     return RedirectToAction("Index"); // Chuyển hướng về trang danh sách phiếu sau khi tạo thành công.
                 }
                 else
@@ -261,15 +264,15 @@ namespace WebApp.Controllers
             }
             if (authService.IsAdmin())
             {
-                ViewData["Layout"] = "_BackendLayout";
+                TempData["Layout"] = "_BackendLayout";
             }
             else if (authService.IsSupporter())
             {
-                ViewData["Layout"] = "_BackendLayout";
+                TempData["Layout"] = "_BackendLayout";
             }
             else
             {
-                ViewData["Layout"] = "_Layout";
+                TempData["Layout"] = "_Layout";
             }
 
             var ticket = await ticketService.GetTicketById(id);
@@ -329,23 +332,30 @@ namespace WebApp.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var ticket = await ticketService.GetTicketById(id);
+            var ticketDto = await context.TickdetDTOs.FirstOrDefaultAsync(a => a.TicketId == ticket.Id);
             if (!authService.IsUserLoggedIn())
             {
                 return RedirectToAction("Login", "Authen");
             }
             if (authService.IsAdmin())
             {
-                ViewData["Layout"] = "_BackendLayout";
+                TempData["Layout"] = "_BackendLayout";
+                ticketDto.Areaded = true;
+                context.SaveChanges();
             }
             else if (authService.IsSupporter())
             {
                 ViewBag.sp = "hidden";
-                ViewData["Layout"] = "_BackendLayout";
+                TempData["Layout"] = "_BackendLayout";
+                ticketDto.Sreaded = true;
+                context.SaveChanges();
             }
             else
             {
                 ViewBag.us = "hidden";
-                ViewData["Layout"] = "_Layout";
+                TempData["Layout"] = "_Layout";
+                ticketDto.Ureaded = true;
+                context.SaveChanges();
             }
 
             if (ticket == null)
@@ -476,23 +486,21 @@ namespace WebApp.Controllers
                 var userConn = context.userConn.FirstOrDefault(a => a.UserId == oldTicket.CreatorId);
                 var userConnId = userConn != null && userConn.ConnectionId != null ? userConn.ConnectionId : _helper.randomString(7);
                 var ticketNonCate = await ticketService.TicketNonCate(user.Email, user.Role, oldTicket.Id);
-                ticketService.saveTicketDTo(ticketNonCate, "update", userRole);
+               await ticketService.saveTicketDTo(ticketNonCate, "update", userRole);
                 _hub.Clients.Client(userConnId).SendAsync("SendNotiAdmin", ticketNonCate, "Suporter");
             }
-            else
+            else if(authService.IsAdmin())
             {
                 var user = context.Users.FirstOrDefault(a => a.Id == editTicket.SupporterId);
                 var userConn = context.userConn.FirstOrDefault(a => a.UserId == editTicket.SupporterId);
                 var userConnId = userConn != null && userConn.ConnectionId != null ? userConn.ConnectionId : _helper.randomString(7);
                 var ticketNonCate = await ticketService.TicketNonCate(user.Email, user.Role, oldTicket.Id);
-                ticketService.saveTicketDTo(ticketNonCate, "update", userRole);
+              await  ticketService.saveTicketDTo(ticketNonCate, "update", userRole);
                 _hub.Clients.Client(userConnId).SendAsync("SendNotiAdmin", ticketNonCate, "Admin");
             }
-
-            TempData["Message"] = "Edit Ticket Success.";
-            TempData["MessageType"] = "Success";
             return RedirectToAction("Index", "Ticket");
         }
+        
 
         //chart by bao
         public string GetTicketStatusData(DateTime? startDate, DateTime? endDate)
@@ -600,11 +608,6 @@ namespace WebApp.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> Filter(int categoryId)
-        {
-            var filteredTickets = await ticketService.GetTicketById(categoryId);
-            return View("Index", filteredTickets);
-        }
+      
     }
 }

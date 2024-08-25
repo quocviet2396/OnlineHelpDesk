@@ -3,32 +3,43 @@
     ViewBag.Title = "QnA";
     Layout = "_Layout";
 }
-<div class="body-wrapper">
-    <div class="col-lg-12 d-flex align-items-stretch">
-        <div class="card w-100">
-            <div class="card-body p-4">
-                <h1 class="card-title fw-semibold mb-4">Q&A Topic</h1>
-                <p class="mt-4" style="color:red">Reading the Q&A can help you find a solution faster than sending a support request."</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="row mb-5">
-    @foreach (var qna in Model)
-    {
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="post-entry">
-                <div class="text p-4">
-                    <h2 class="h1 text-black"><a href="@Url.Action("QnADetail", new { id = qna.Id })">@qna.Title</a></h2>
-                    <p class="mb-0">@TruncateString(qna.Content, 100)</p>
+<p>
+    <style>
+        body {
+            background-image: url('@Url.Content("~/images/qna-banner1.jpg")');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+    <div class="body-wrapper">
+        <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+                <div class="card-body p-4">
+                    <h1 class="card-title fw-semibold mb-4">Q&A Topic</h1>
+                    <p class="mt-4" style="color:red">Reading the Q&A can help you find a solution faster than sending a support request."</p>
                 </div>
             </div>
         </div>
-    }
-</div>
+    </div>
+    
+        <div class="row mb-5">
+            @foreach (var qna in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div style="word-wrap:break-word; background-color:gainsboro" class="post-entry">
+                        <div class="text p-4">
+                            <h2 class="h1 text-black">
+                                <a style="color:darkblue" href="@Url.Action("QnADetail", new { id = qna.Id })">@qna.Title</a>
+                            </h2>
+                            <p style="color: black; font-size: larger;" class="mb-0">@Html.Raw(TruncateString(qna.Content, 100))</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    
+</p>
 
 
 @functions {

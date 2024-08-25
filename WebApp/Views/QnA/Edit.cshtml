@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="Content" class="control-label"></label>
-                                <textarea asp-for="Content" class="form-control multiline-input"></textarea>
+                                <textarea asp-for="Content" id="myTextarea" class="form-control multiline-input"></textarea>
                                 <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
                             <div class="form-group">
@@ -52,3 +52,11 @@
         word-wrap: break-word;
     }
 </style>
+
+<script>
+    tinymce.init({
+        selector: '#myTextarea',
+        plugins: 'autolink lists link image charmap print preview',
+        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    });
+</script>

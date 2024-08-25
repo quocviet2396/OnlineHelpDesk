@@ -1,12 +1,12 @@
 ﻿@model LibraryModels.Ticket
 @{
     int i = 1;
-    Layout = ViewData["Layout"]?.ToString() ?? "_DefaultLayout";
+    Layout = TempData["Layout"]?.ToString() ?? "_BackendLayout";
 }
 @{
     ViewData["Title"] = "Detail";
 }
-
+@inject WebApp.Repositories.IAuthenService AuthenService
 <div class="container ">
 
     <h1>Detail</h1>
@@ -28,8 +28,9 @@
                 <strong>@Html.DisplayNameFor(model => model.Description)</strong>
             </div>
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.Description)
+                @Html.Raw(Model.Description)
             </div>
+
         </div>
 
         <div class="row">
@@ -100,7 +101,10 @@
     </div>
 
     <div>
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a> |
+         @if (AuthenService.IsAdmin() || AuthenService.IsSupporter()){
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a> 
+         }
+        |
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </div>
 </div>

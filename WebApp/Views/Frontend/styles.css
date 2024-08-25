@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.image-container {
+    margin-bottom: 20px;
+}
+
+.comment-section {
+    margin-top: 20px;
+}
+
+.comments {
+    margin-top: 10px;
+}
+
+.comment {
+    margin-bottom: 15px;
+}
+
+.no-comment {
+    margin-top: 10px;
+}
+
+.alerts {
+    margin-top: 20px;
+}
+

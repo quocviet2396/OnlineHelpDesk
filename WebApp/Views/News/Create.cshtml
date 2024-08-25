@@ -1,5 +1,6 @@
 ﻿@model LibraryModels.News
 
+
 @{
     ViewData["Title"] = "Create";
     Layout = "_BackendLayout";
@@ -10,8 +11,14 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="card-title fw-semibold mb-4">Create News</h5>
-                    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+                    @if (TempData["Message"] != null)
+                    {
+                        <div class="alert alert-@TempData["MessageType"]" role="alert">
+                            @TempData["Message"]
+                        </div>
+                    }
+                    <h5 class="card-title fw-bold mb-4">Create News</h5>
+                    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -26,24 +33,70 @@
 
                             <div class="mb-3">
                                 <label asp-for="Content" class="form-label">Content</label>
-                                <input asp-for="Content" class="form-control" />
+                                <div class="ckeditor-container">
+                                    <textarea asp-for="Content" class="form-control multiline-input"></textarea>
+                                </div>
                                 <span asp-validation-for="Content" class="text-danger form-text"></span>
                             </div>
+
+
                             <div class="mb-3">
                                 <label asp-for="Img" class="form-label">Image</label>
                                 <input asp-for="Img" type="file" name="file" class="form-control" />
                                 <span asp-validation-for="Img" class="text-danger form-text"></span>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </form>
                     </div>
-                </div>           
+                </div>
             </div>
         </div>
     </div>
-
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    tinymce.init({
+        selector: '#myTextarea',
+        plugins: 'autolink lists link image charmap print preview',
+        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    });
+</script>
+@section scripts {
+   
+    
 }
+
+<style>
+    .body-wrapper {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        border-radius: 0.25rem;
+    }
+
+    .multiline-input {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        min-height: 100px; /* Set a minimum height for the textarea */
+    }
+
+    .ckeditor-container {
+        margin-bottom: 15px;
+    }
+
+    .text-end {
+        text-align: end;
+        margin-top: 15px;
+    }
+</style>

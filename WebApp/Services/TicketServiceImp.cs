@@ -119,17 +119,19 @@ namespace WebApp.Services
             {
                 sort = sort.Where(a => a.CreateDate.HasValue && a.CreateDate.Value.Date >= CDate[0].Date && a.CreateDate.Value.Date <= CDate[1].Date);
             }
+            else if (CDate.Length == 1 && CDate[0] != null)
+            {
+                sort = sort.Where(a => a.CreateDate.HasValue && a.CreateDate.Value.Date == CDate[0].Date);
+            }
+
+            // Lọc theo ngày sửa (ModifiedDate)
             if (MDate.Length == 2)
             {
                 sort = sort.Where(a => a.ModifiedDate.HasValue && a.ModifiedDate.Value.Date >= MDate[0].Date && a.ModifiedDate.Value.Date <= MDate[1].Date);
             }
-            if (MDate.Length >= 1 && MDate[0] != null)
+            else if (MDate.Length == 1 && MDate[0] != null)
             {
-                sort = sort.Where(a => a.ModifiedDate.HasValue && a.ModifiedDate.Value.Date == CDate[0].Date);
-            }
-            if (CDate.Length >= 1 && CDate[0] != null)
-            {
-                sort = sort.Where(a => a.CreateDate.HasValue && a.CreateDate.Value.Date == CDate[0].Date);
+                sort = sort.Where(a => a.ModifiedDate.HasValue && a.ModifiedDate.Value.Date == MDate[0].Date);
             }
 
             var result = await Paginated<Ticket>.CreatePaginate(sort.ToList(), pageNumber, (int)Limit, x => x.CreateDate);
@@ -213,7 +215,7 @@ namespace WebApp.Services
                         TicketStatus = ticketDTO.TicketStatus,
                     };
                     db.TickdetDTOs.Add(tDto);
-                    db.SaveChanges();
+                   await db.SaveChangesAsync();
                 }
                 else
                 {
@@ -233,7 +235,7 @@ namespace WebApp.Services
                     ticketDto.Ureaded = ticketDTO.Ureaded;
                     ticketDto.ModifiedDate = ticketDTO.ModifiedDate;
                     ticketDto.TicketStatus = ticketDTO.TicketStatus;
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
 
                 return true;

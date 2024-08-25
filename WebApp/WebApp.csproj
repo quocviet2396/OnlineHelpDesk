@@ -20,6 +20,17 @@
     <None Include="Views\Facilities\Create.cshtml" />
     <None Include="Views\Facilities\Edit.cshtml" />
     <None Include="Views\Facilities\Index.cshtml" />
+    <None Include="Views\Priority\Create.cshtml" />
+    <None Include="Views\Priority\Edit.cshtml" />
+    <None Include="Views\Priority\Index.cshtml" />
+    <None Include="Views\TicketStatus\Create.cshtml" />
+    <None Include="Views\TicketStatus\Edit.cshtml" />
+    <None Include="Views\TicketStatus\Index.cshtml" />
+    <None Include="Views\Ticket\Create.cshtml" />
+    <None Include="Views\Ticket\Delete.cshtml" />
+    <None Include="Views\Ticket\Details.cshtml" />
+    <None Include="Views\Ticket\Edit.cshtml" />
+    <None Include="Views\Ticket\Index.cshtml" />
     <None Include="wwwroot\backend\css\icons\tabler-icons\fonts\tabler-icons.svg" />
     <None Include="wwwroot\backend\css\icons\tabler-icons\fonts\tabler-icons.woff2" />
     <None Include="wwwroot\backend\images\logos\dark-logo.svg" />
@@ -527,7 +538,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\TicketStatus\" />
     <Folder Include="Ultils\" />
     <Folder Include="Views\Data\" />
     <Folder Include="Views\Account\" />

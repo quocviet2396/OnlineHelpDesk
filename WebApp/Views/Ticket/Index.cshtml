@@ -1,6 +1,6 @@
 ﻿@{
     int ids = 1;
-    Layout = ViewData["Layout"]?.ToString() ?? "_BackendLayout";
+    Layout = TempData["Layout"]?.ToString() ?? "_BackendLayout";
     var status = ViewData["Status"] as IEnumerable<LibraryModels.TicketStatus>;
     var priority = ViewData["Priority"] as IEnumerable<LibraryModels.Priority>;
     var supp = ViewData["Supporter"] as IEnumerable<LibraryModels.Users>;
@@ -18,7 +18,7 @@
         return string.IsNullOrEmpty(propertySort) ? currentSort : (nameSort == nameToSort ? propertySort : currentSort);
     }
 }
-
+@inject WebApp.Repositories.IAuthenService AuthenService
 @model IEnumerable<LibraryModels.Ticket>
 @if (TempData["Message"] != null)
 {
@@ -72,20 +72,20 @@
                             <div>
                                 <label>Select date CreateDate</label>
                                 <div class="d-flex gap-2">
-                                    <input type="date" name="CDate" class="form-control" />
-                                    <input type="date" name="CDate" class="form-control" />
+                                    <input type="date" name="CDate" id="CStartDate" class="form-control" />
+                                    <input type="date" name="CDate" id="CEndDate" class="form-control" />
                                 </div>
                             </div>
 
                             <div>
                                 <label>Select date ModifiDate</label>
                                 <div class="d-flex gap-2">
-                                    <input type="date" name="MDate" class="form-control" />
-                                    <input type="date" name="MDate" class="form-control" />
+                                    <input type="date" name="MDate" id="MStartDate"class="form-control" />
+                                    <input type="date" name="MDate" id="MEndDate" class="form-control" />
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary mt-2" type="submit">Filter</button>
+                        <button class="btn btn-primary mt-2" onclick="filterData()" type="submit">Filter</button>
                     </form>
                 </div>
                 <div class="table-responsive">
@@ -101,24 +101,24 @@
                                            asp-route-currentFilter="@ViewData["currentFilter"]"> @Html.DisplayNameFor(model => model.Title)</a>
                                     </h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Description)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.CreateDate)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.ModifiedDate)</h6>
                                 </th>
-                                 <th class="border-bottom-0">
+                                <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Attachment)</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.TicketStatus)</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Category</h6>
-                                    
+                                    <h6 class="fw-semibold mb-0">Facilities</h6>
+
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 @ViewBag.us class="fw-semibold mb-0">@Html.DisplayNameFor(model => model.Creator)</h6>
@@ -149,8 +149,9 @@
                                         <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Title)</h6>
                                     </td>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.Description)</h6>
+                                        <h6 class="fw-semibold mb-0">@Html.Raw(item.Description)</h6>
                                     </td>
+
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">@Html.DisplayFor(modelItem => item.CreateDate)</h6>
                                     </td>
@@ -185,10 +186,20 @@
                                     </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2" style="justify-content:center">
-                                            @if (item.feedback == null)
+
+                                            @if (AuthenService.IsAdmin() || AuthenService.IsSupporter() || (AuthenService.IsUserLoggedIn() && item.TicketStatusId == null))
                                             {
-                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-gear"></i></a>
+                                                @if (item.feedback == null)
+                                                {
+                                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-gear"></i></a>
+                                                }
+
                                             }
+
+
+
+
+
                                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-info-circle"></i></a>
                                             @if (item.TicketStatusId == null && item.feedback == null && item.PriorityId == null && item.SupporterId == null)
                                             {
@@ -237,11 +248,28 @@
     <!-- End change -->
 
 </div>
+<script>function filterData() {
+        const CStartDate = document.getElementById("CStartDate").value;
+        const CEndDate = document.getElementById("CEndDate").value;
+        const MStartDate = document.getElementById("MStartDate").value;
+        const MEndDate = document.getElementById("MEndDate").value;
 
+        if (CStartDate > CEndDate || MStartDate > MEndDate) {
+            alert("Ngày bắt đầu không thể lớn hơn ngày kết thúc.");
+            return;
+        }
+
+        // Thực hiện việc lọc dữ liệu dựa trên ngày tạo và ngày sửa đổi ở đây
+        // Gọi hàm hoặc thực hiện các hành động mà bạn cần để lọc dữ liệu
+        // Ví dụ: Gửi yêu cầu lọc dữ liệu lên máy chủ và cập nhật giao diện người dùng
+    }</script>
 
 @section Scripts{
 
-    <script>// Lắng nghe sự kiện thay đổi của dropdown
+
+
+    <script>
+        // Lắng nghe sự kiện thay đổi của dropdown
 
         var statusSelect = document.querySelector('select[name="status"]');
         statusSelect.addEventListener("change", () => {

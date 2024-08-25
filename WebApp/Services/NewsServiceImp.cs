@@ -30,7 +30,7 @@ namespace WebApp.Services
 
         public async Task<IEnumerable<News>> GetNewsList()
         {
-            return await db.News.Where(i => i.Status.Equals(1)).ToListAsync();
+            return await db.News.Where(i => i.Status.Equals(1)).OrderByDescending(c => c.PublishDate).ToListAsync();
         }
 
         public async Task<bool> removeNews(int id)
@@ -53,7 +53,7 @@ namespace WebApp.Services
                 news.Title = newNews.Title;
                 news.Content = newNews.Content;
                 news.Author = newNews.Author;
-                news.PublishDate = newNews.PublishDate;
+                news.PublishDate = DateTime.Now;
                 news.Img = newNews.Img;
                 news.Status = newNews.Status;
                 await db.SaveChangesAsync();
@@ -67,15 +67,6 @@ namespace WebApp.Services
             throw new NotImplementedException();
         }
 
-        /*public async Task<List<Comment>> GetCommentById(int id)
-        {
-            var comments = await db.Comments
-        .Where(c => c.Id == id)
-        .ToListAsync();
-
-            return comments;
-        }*/
-
         public async Task<IEnumerable<Comment>>GetCommentList()
         {
             return await db.Comments.ToListAsync();
@@ -86,10 +77,5 @@ namespace WebApp.Services
         {
             throw new NotImplementedException();
         }
-
-        /*Task<News> INewsService.GetCommentById(int id)
-        {
-            throw new NotImplementedException();
-        }*/
     }
 }

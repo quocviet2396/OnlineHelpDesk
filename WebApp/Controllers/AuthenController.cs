@@ -75,8 +75,9 @@ namespace WebApp.Controllers
                     .Where(u => u.Email == user.Email && u.userInfo != null)
                     .Select(u => u.userInfo.Photo)
                     .FirstOrDefault();
+                string avatarUrl1 = "/images/avatars/" + avatarUrl;
                 string defaultAvatarPath = "/images/avatars/avatar_default.jpeg";
-                string accAvatarUrl = avatarUrl ?? defaultAvatarPath;
+                string accAvatarUrl = avatarUrl1 ?? defaultAvatarPath;
                 HttpContext.Session.SetString("accAvatarUrl", accAvatarUrl);
                 // Chuyển trang theo role
                 if (authenService.IsAdmin())

@@ -49,6 +49,13 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(QnA newQnA)
         {
+            var existTitile = await db.QnA.FirstOrDefaultAsync(q => q.Title.ToLower() == newQnA.Title.ToLower());
+            if (existTitile != null)
+            {
+                TempData["Message"] = "The Title already exists!!";
+                TempData["MessageType"] = "danger";
+                return View(newQnA);
+            }    
             try
             {
                 db.Add(newQnA);
@@ -103,6 +110,13 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(QnA editQnA)
         {
+            var existTitile = await db.QnA.FirstOrDefaultAsync(q => q.Title.ToLower() == editQnA.Title.ToLower());
+            if (existTitile != null && existTitile.Id != editQnA.Id)
+            {
+                TempData["Message"] = "The Title already exists!!";
+                TempData["MessageType"] = "danger";
+                return View(editQnA);
+            }
             try
             {
                 await qnAService.updateQnA(editQnA);

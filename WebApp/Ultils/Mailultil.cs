@@ -59,5 +59,14 @@ namespace WebApp.Ultils
                 $"<a href='http://localhost:5218/Authen/Login' target='_blank'>Click here to login</a>";
             return content;
         }
+
+        public string sendPass(string pass)
+        {
+            var content = $"<div>" +
+                $"<h1>The password that has been rest by admin is</h1>" +
+                $"<p><strong>{pass}</strong></p>" +
+                $"</div>";
+            return content;
+        }
     }
 }

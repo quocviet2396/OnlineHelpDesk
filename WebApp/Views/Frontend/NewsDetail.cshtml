@@ -1,32 +1,79 @@
 ﻿@model LibraryModels.News
 @{
-    ViewData["Title"] = "NewsDetail";
+    ViewData["Title"] = "Detail";
     Layout = "_Layout";
 }
 
 <div class="container">
-    <br />
-    <a class="btn btn-primary " style="text-align: left;" asp-action="News">News List</a>
-</div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card card-outline-secondary my-4">
+                <div class="card-body">
+                    <h2 class="h3 text-black">@Model.Title</h2>
+                    <span class="text-uppercase date d-block mb-3"><small>@Model.PublishDate.ToString("MMMM dd, yyyy")</small></span>
+                    <div class="image text-center">
+                        <img src="@Url.Content("~/images/News/" + Model.Img)" alt="@Model.Title" class="img-fluid rounded">
+                    </div>
+                    <div class="content mt-4" style="text-align: justify; line-height: 1.6; color: #333; word-wrap: break-word;">
+                        @Html.Raw(Model.Content)
+                    </div>
+                    <br />
+                    <form asp-action="AddComment" asp-controller="News" method="post">
+                        <input asp-for="@Model.ID" type="hidden" name="mewId" />
+                        <div class="form-group">
+                            @if (TempData["Message"] != null)
+                            {
+                                <div class="alert alert-@TempData["MessageType"]" role="alert">
+                                    @TempData["Message"]
+                                </div>
+                            }
+                            <textarea id="cmt" name="cmt" class="form-control" rows="3" placeholder="Write your comment here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success" style="font-weight: bold;">Comment</button>
+                    </form>
 
-<div class="container">
-    <div class="card card-outline-secondary my-4">
-        <div class="card-body">
-            <div class="row">
-                <h2 class="h3 text-black">@Model.Title</h2>
-                <span class="text-uppercase date d-block mb-3"><small>@Model.PublishDate</small></span>
-                <div class="image text-center">
-                    <img src="@Url.Content("~/images/News/" + Model.Img)" alt="@Model.Title" class="img-fluid image rounded">
-                </div>
-                <div class="content, form-control" style="text-align:justify; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-                    @Model.Content
+                    <div class="mt-4">
+                        @if (ViewBag.Reviews != null && ViewBag.Reviews.Count > 0)
+                        {
+                            foreach (var item in ViewBag.Reviews)
+                            {
+                                <div class="media mt-3">
+                                    
+@*                                    <img src="https://via.placeholder.com/50" class="mr-3 rounded-circle" alt="User Avatar">
+*@                                    <div class="media-body form-control">
+                                        <div>
+                                            <span class="mt-0"><strong>@item.UserName</strong></span>
+                                            <small class="text-muted">@item.Date.ToString("MM-dd, yyyy HH:mm")</small>
+                                        </div>
+                                        <div><a>@item.Text</a></div>
+
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="no-comment">No comments yet.</div>
+                        }
+                    </div>
+
+
+
+
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success mt-4">
+                            @TempData["SuccessMessage"]
+                        </div>
+                    }
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger mt-4">
+                            @TempData["ErrorMessage"]
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-

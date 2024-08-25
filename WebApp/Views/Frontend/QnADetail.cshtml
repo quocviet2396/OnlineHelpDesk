@@ -5,13 +5,20 @@
 }
 
 
-
+<style>
+    body {
+        background-image: url('@Url.Content("~/images/qna-banner2.jpg")');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
 <div class="row mb-5">
     <div class="col-md-12">
         <div class="post-entry">
             <div class="text p-4">
-                <h2 class="h1" style="color:darkkhaki">@Model.Title</h2>
-                <div class="content" style="font-size:25px">
+                <h2 class="h1" style="color:blueviolet; font-size:60px; font-weight:bold">@Model.Title</h2>
+                <div class="content" style="font-size:40px; word-wrap:break-word; color: initial; font-weight: bolder;">
                     @Html.Raw(Model.Content)
                 </div>
             </div>

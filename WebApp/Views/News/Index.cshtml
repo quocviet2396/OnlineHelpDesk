@@ -1,80 +1,71 @@
 ﻿@model IEnumerable<LibraryModels.News>
-
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-@TempData["MessageType"]" role="alert">
+        @TempData["msg"]
+    </div>
+}
 @{
     ViewData["Title"] = "Index";
     var i = 1;
     Layout = "_BackendLayout";
 }
-
-<h1>News</h1>
-
+@using System.Net
 <div class="body-wrapper">
-
-    <!-- Change this content if you need to modify -->
-    <div class="col-lg-12 d-flex align-items-stretch">
-        <div class="card w-100">
-            <div class="card-body p-4">            
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="card-title fw-semibold mb-4">News</h5>
-                    <a class="btn btn-primary" asp-action="News">News List</a>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="card-title fw-bold">News</h5>
+                    <a class="btn btn-info" asp-action="Create">Create News</a>
                 </div>
-                <a class="btn btn-info" asp-action="Create">Create News</a>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label class="me-2">Filter by Date:</label>
+                        <input type="date" id="publishDateFilter" class="form-control" onchange="filterByPublishDate(this)" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="me-2">Filter by Author:</label>
+                        <select id="authorFilter" class="form-control" onchange="filterByAuthor(this)">
+                            <option value="">All Authors</option>
+                            @foreach (var author in Model.Select(n => n.Author).Distinct())
+                            {
+                                <option value="@author">@author</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
-                    <table class="table text-nowrap mb-0 align-middle">
-                        <thead class="text-dark fs-4">
+                    <table class="table text-nowrap mb-0">
+                        <thead class="text-dark fs-5">
                             <tr class="text-center">
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">#</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Titile</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Content</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Author</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">PublishDate</h6>
-                                </th>
-                                <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Image</h6>
-                                    </th>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Content</th>
+                                <th>Author</th>
+                                <th onclick="sortPublishDate()">Publish Date</th>
+                                <th>Image</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
                                 <tr class="text-center">
-                                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">@i</h6></td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal"> @TruncateText(item.Title,26)</p>
+                                    <td>@i</td>
+                                    <td>@TruncateText(item.Title, 26)</td>
+                                    <td><h6 class="fw-semibold mb-0">@Html.Raw(TruncateString(item.Content, 100))</h6></td>
+                                    
+                                    <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PublishDate)</td>
+                                    <td>
+                                        <img src="@Url.Content("~/images/News/" + item.Img)" width="50" height="50">
                                     </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">@TruncateText(item.Content,50)</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">@Html.DisplayFor(modelItem => item.Author)</p>
-                                    </td>
-                                    <td class="border-bottom-0">
+                                    <td>
                                         <div class="d-flex align-items-center gap-2">
-                                            <p class="mb-0 fw-normal">@Html.DisplayFor(modelItem => item.PublishDate)</p>
-                                        </div>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">
-
-                                                <img src="@Url.Content("~/images/News/"+item.Img)" width="50" height="50">
-
-                                            </p>
-                                        </td>
-
-                                    <td class="border-bottom-0">
-                                        <div class="d-flex align-items-center gap-2">
-@*                                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary">Edit</a>
-*@
-                                            <a asp-action="Hidden" asp-route-id="@item.ID" class="btn btn-primary">Hidden</a>
+                                            <a asp-action="Hidden" asp-route-id="@item.ID" class="btn btn-primary btn-sm">Hide</a>
+                                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary btn-sm">Edit</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -88,6 +79,69 @@
     </div>
 </div>
 
+@section Scripts {
+    <script>
+        let ascending = true;
+
+        function sortPublishDate() {
+            const table = document.querySelector('.table');
+            const rows = Array.from(table.getElementsByTagName('tr'));
+            rows.shift(); // Remove the header row
+
+            rows.sort((a, b) => {
+                const dateA = new Date(a.cells[4].innerText);
+                const dateB = new Date(b.cells[4].innerText);
+
+                if (ascending) {
+                    return dateA - dateB;
+                } else {
+                    return dateB - dateA;
+                }
+            });
+
+            const tbody = table.getElementsByTagName('tbody')[0];
+            tbody.innerHTML = ''; // Clear the current content
+
+            rows.forEach(row => {
+                tbody.appendChild(row);
+            });
+
+            ascending = !ascending;
+        }
+    </script>
+}
+
+<script>
+    function filterByAuthor(select) {
+        var author = select.value.toLowerCase();
+        var tableRows = document.querySelectorAll('tbody tr');
+
+        tableRows.forEach(function (row) {
+            var rowAuthor = row.querySelector('td:nth-child(4)').innerText.toLowerCase();
+            if (author === '' || rowAuthor.includes(author)) {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    function filterByPublishDate(input) {
+        var selectedDate = new Date(input.value);
+        var tableRows = document.querySelectorAll('tbody tr');
+
+        tableRows.forEach(function (row) {
+            var rowPublishDate = new Date(row.querySelector('td:nth-child(5)').innerText);
+            if (!isNaN(selectedDate) && (selectedDate.toDateString() === rowPublishDate.toDateString())) {
+                row.style.display = 'table-row';
+            } else if (isNaN(selectedDate)) {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+</script>
 
 @functions {
     public string TruncateText(string text, int maxLength)
@@ -97,5 +151,15 @@
             return text.Substring(0, maxLength) + "...";
         }
         return text;
+    }
+}
+
+@functions {
+    public string TruncateString(string input, int maxLength)
+    {
+        if (input.Length <= maxLength)
+            return input;
+        else
+            return input.Substring(0, maxLength) + "...";
     }
 }

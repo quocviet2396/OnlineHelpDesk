@@ -1,12 +1,15 @@
 ﻿@model LibraryModels.Ticket
 @{
     int i = 1;
-    Layout = ViewData["Layout"]?.ToString() ?? "_DefaultLayout";
+    Layout = TempData["Layout"]?.ToString() ?? "_BackendLayout";
 }
 @{
     ViewData["Title"] = "Edit";
 }
 
+
+
+@inject WebApp.Repositories.IAuthenService authService
 
 
 
@@ -25,17 +28,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control"></textarea>
+                <textarea id="myTextarea" asp-for="Description" name="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
 
             <div class="form-group" @ViewBag.us>
                 <label asp-for="CreateDate" class="control-label"></label>
-                <input  asp-for="CreateDate" class="form-control" />
+                <input asp-for="CreateDate" class="form-control" />
                 <span asp-validation-for="CreateDate" class="text-danger"></span>
             </div>
             <div class="form-group" @ViewBag.us>
-                <label  asp-for="ModifiedDate" class="control-label"></label>
+                <label asp-for="ModifiedDate" class="control-label"></label>
                 <input asp-for="ModifiedDate" class="form-control" name="dateTime" />
                 <span asp-validation-for="ModifiedDate" class="text-danger"></span>
             </div>
@@ -46,12 +49,20 @@
 
 
             <!-- Hộp tải lên tệp mới -->
-            <div class="form-group">
-                <label asp-for="Attachment" class="control-label"></label>
-                <input asp-for="Attachment" type="file" name="file"  class="form-control" />
-                <span asp-validation-for="Attachment" class="text-danger"></span>
-            </div>
+            @if (!authService.IsSupporter() && !authService.IsAdmin())
+            {
+                <div class="form-group">
+                    <label asp-for="Attachment" class="control-label"></label>
 
+
+                    <input asp-for="Attachment" type="file" name="file" class="form-control" />
+
+
+
+
+                    <span asp-validation-for="Attachment" class="text-danger"></span>
+                </div>
+            }
 
             <div class="form-group" @ViewBag.us>
                 <label asp-for="TicketStatusId" class="control-label"></label>
@@ -68,12 +79,12 @@
 
 
 
-            <div class="form-group" >
-                <label  class="control-label">Category</label>
+            <div class="form-group">
+                <label class="control-label">Facilities</label>
                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
-            <div class="form-group" @ViewBag.us @ViewBag.sp>
+            <div hidden class="form-group" @ViewBag.us @ViewBag.sp>
                 <label asp-for="CreatorId" class="control-label"></label>
                 <select asp-for="CreatorId" class="form-control" asp-items="ViewBag.CreatorId"></select>
                 <span asp-validation-for="CreatorId" class="text-danger"></span>
@@ -107,5 +118,14 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+<script>
+  tinymce.init({
+    selector: '#myTextarea',
+    plugins: 'autolink lists link image charmap print preview',
+    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+  });
+</script>
